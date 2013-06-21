@@ -1030,6 +1030,7 @@ private void consultaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
                 JDialogLogin telaL = new JDialogLogin(null, true);
                 telaL.setLocationRelativeTo(telaL);
                 telaL.setVisible(true);
+                System.out.println("teste");
             }
         });
     }
