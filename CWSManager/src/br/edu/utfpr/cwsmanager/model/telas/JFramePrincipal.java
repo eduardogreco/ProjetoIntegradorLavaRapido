@@ -74,16 +74,17 @@ public class JFramePrincipal extends javax.swing.JFrame {
         jtAtalho.setBackground(new java.awt.Color(198, 198, 198));
         jtAtalho.setRollover(true);
 
+        jButtonCliente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icones/pessoa.png"))); // NOI18N
         jButtonCliente.setToolTipText("Cadastrar de Clientes");
         jButtonCliente.setFocusable(false);
         jButtonCliente.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jButtonCliente.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         jButtonCliente.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                jButtonClienteMouseEntered(evt);
-            }
             public void mouseExited(java.awt.event.MouseEvent evt) {
                 jButtonClienteMouseExited(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jButtonClienteMouseEntered(evt);
             }
         });
         jButtonCliente.addActionListener(new java.awt.event.ActionListener() {
@@ -248,10 +249,17 @@ public class JFramePrincipal extends javax.swing.JFrame {
         jMenuCadastros.setText("Cadastros");
 
         jMenuItem1.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_1, java.awt.event.InputEvent.CTRL_MASK));
+        jMenuItem1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icones/funcionario.png"))); // NOI18N
         jMenuItem1.setText("Cadastrar Funcionário");
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem1ActionPerformed(evt);
+            }
+        });
         jMenuCadastros.add(jMenuItem1);
 
         jMenuItem2.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_2, java.awt.event.InputEvent.CTRL_MASK));
+        jMenuItem2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icones/veiculo.png"))); // NOI18N
         jMenuItem2.setText("Cadastrar Veículo");
         jMenuCadastros.add(jMenuItem2);
 
@@ -313,14 +321,16 @@ public class JFramePrincipal extends javax.swing.JFrame {
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
             .add(layout.createSequentialGroup()
                 .add(jtAtalho, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                .add(0, 602, Short.MAX_VALUE))
+                .add(0, 554, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void jMenuCadastroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuCadastroActionPerformed
-
+ JDialogCliente jdCliente = new JDialogCliente(this, true);
+        jdCliente.setLocationRelativeTo(null);
+        jdCliente.setVisible(true);        
     }//GEN-LAST:event_jMenuCadastroActionPerformed
 
     private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
@@ -337,6 +347,9 @@ public class JFramePrincipal extends javax.swing.JFrame {
 
     private void jButtonClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonClienteActionPerformed
         // TODO add your handling code here:
+         JDialogCliente jdCliente = new JDialogCliente(this, true);
+        jdCliente.setLocationRelativeTo(jdCliente);
+        jdCliente.setVisible(true);
     }//GEN-LAST:event_jButtonClienteActionPerformed
 
     private void jButtonProdutoMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonProdutoMouseEntered
@@ -445,6 +458,10 @@ public class JFramePrincipal extends javax.swing.JFrame {
         // TODO add your handling code here:
  
     }//GEN-LAST:event_jButtonSairActionPerformed
+
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     /**
      * @param args the command line arguments
