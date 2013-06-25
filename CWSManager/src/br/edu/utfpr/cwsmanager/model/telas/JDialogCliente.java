@@ -29,16 +29,16 @@ public class JDialogCliente extends javax.swing.JDialog {
 
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jPanel1 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jRadioButton1 = new javax.swing.JRadioButton();
-        jRadioButton2 = new javax.swing.JRadioButton();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
+        jLabelCodCliente = new javax.swing.JLabel();
+        jLabelNomeCliente = new javax.swing.JLabel();
+        jLabelCpfCliente = new javax.swing.JLabel();
+        jLabelSexoCliente = new javax.swing.JLabel();
+        jRadioButtonMasculinoCliente = new javax.swing.JRadioButton();
+        jRadioButtonFemininoCliente = new javax.swing.JRadioButton();
+        jLabelDataNascCliente = new javax.swing.JLabel();
+        jLabelTelPessoalCliente = new javax.swing.JLabel();
+        jLabelTelComercialCliente = new javax.swing.JLabel();
+        jLabelEmailCliente = new javax.swing.JLabel();
         jTextField1 = new javax.swing.JTextField();
         jTextField2 = new javax.swing.JTextField();
         jFormattedTextField2 = new javax.swing.JFormattedTextField();
@@ -46,7 +46,7 @@ public class JDialogCliente extends javax.swing.JDialog {
         jFormattedTextFieldDataNasc1 = new javax.swing.JFormattedTextField();
         jTextField3 = new javax.swing.JTextField();
         jButtonPesquisar1 = new javax.swing.JButton();
-        jLabel9 = new javax.swing.JLabel();
+        jLabelCelCliente = new javax.swing.JLabel();
         jFormattedTextFieldCelularHum1 = new javax.swing.JFormattedTextField();
         jFormattedTextFieldTelComecial1 = new javax.swing.JFormattedTextField();
         jPanel2 = new javax.swing.JPanel();
@@ -88,30 +88,30 @@ public class JDialogCliente extends javax.swing.JDialog {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Cadastro de Clientes");
 
-        jLabel1.setText("Código:");
+        jLabelCodCliente.setText("Código:");
 
-        jLabel2.setText("Nome:");
+        jLabelNomeCliente.setText("Nome:");
 
-        jLabel3.setText("CPF:");
+        jLabelCpfCliente.setText("CPF:");
 
-        jLabel4.setText("Sexo:");
+        jLabelSexoCliente.setText("Sexo:");
 
-        jRadioButton1.setText("Masculino");
-        jRadioButton1.addActionListener(new java.awt.event.ActionListener() {
+        jRadioButtonMasculinoCliente.setText("Masculino");
+        jRadioButtonMasculinoCliente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jRadioButton1ActionPerformed(evt);
+                jRadioButtonMasculinoClienteActionPerformed(evt);
             }
         });
 
-        jRadioButton2.setText("Feminino");
+        jRadioButtonFemininoCliente.setText("Feminino");
 
-        jLabel5.setText("Data de Nascimento:");
+        jLabelDataNascCliente.setText("Data de Nascimento:");
 
-        jLabel6.setText("Telefone Pessoal:");
+        jLabelTelPessoalCliente.setText("Telefone Pessoal:");
 
-        jLabel7.setText("Telefone Comercial:");
+        jLabelTelComercialCliente.setText("Telefone Comercial:");
 
-        jLabel8.setText("Email:");
+        jLabelEmailCliente.setText("Email:");
 
         jTextField2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -156,7 +156,7 @@ public class JDialogCliente extends javax.swing.JDialog {
             }
         });
 
-        jLabel9.setText("Celular:");
+        jLabelCelCliente.setText("Celular:");
 
         try {
             jFormattedTextFieldCelularHum1.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("(##) ####-####")));
@@ -186,24 +186,24 @@ public class JDialogCliente extends javax.swing.JDialog {
                             .add(jPanel1Layout.createSequentialGroup()
                                 .add(jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
                                     .add(jPanel1Layout.createSequentialGroup()
-                                        .add(jLabel7)
+                                        .add(jLabelTelComercialCliente)
                                         .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED))
                                     .add(org.jdesktop.layout.GroupLayout.TRAILING, jPanel1Layout.createSequentialGroup()
-                                        .add(jLabel8)
+                                        .add(jLabelEmailCliente)
                                         .add(99, 99, 99)))
                                 .add(jTextField3, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 399, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
                             .add(jPanel1Layout.createSequentialGroup()
                                 .add(jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                                    .add(jLabel1)
-                                    .add(jLabel2)
-                                    .add(jLabel3)
-                                    .add(jLabel4))
+                                    .add(jLabelCodCliente)
+                                    .add(jLabelNomeCliente)
+                                    .add(jLabelCpfCliente)
+                                    .add(jLabelSexoCliente))
                                 .add(18, 18, 18)
                                 .add(jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
                                     .add(jPanel1Layout.createSequentialGroup()
-                                        .add(jRadioButton1)
+                                        .add(jRadioButtonMasculinoCliente)
                                         .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                                        .add(jRadioButton2))
+                                        .add(jRadioButtonFemininoCliente))
                                     .add(jPanel1Layout.createSequentialGroup()
                                         .add(jTextField1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 61, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
@@ -216,15 +216,15 @@ public class JDialogCliente extends javax.swing.JDialog {
                             .add(jFormattedTextFieldTelComecial1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 134, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                             .add(jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING, false)
                                 .add(org.jdesktop.layout.GroupLayout.LEADING, jPanel1Layout.createSequentialGroup()
-                                    .add(jLabel5)
+                                    .add(jLabelDataNascCliente)
                                     .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                                     .add(jFormattedTextFieldDataNasc1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 134, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
                                 .add(jPanel1Layout.createSequentialGroup()
-                                    .add(jLabel6)
+                                    .add(jLabelTelPessoalCliente)
                                     .add(28, 28, 28)
                                     .add(jFormattedTextFieldTelefonePessoal1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                         .add(51, 51, 51)
-                        .add(jLabel9)
+                        .add(jLabelCelCliente)
                         .add(18, 18, 18)
                         .add(jFormattedTextFieldCelularHum1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 150, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                         .add(0, 0, Short.MAX_VALUE))))
@@ -235,39 +235,39 @@ public class JDialogCliente extends javax.swing.JDialog {
                 .add(21, 21, 21)
                 .add(jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
                     .add(jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
-                        .add(jLabel1)
+                        .add(jLabelCodCliente)
                         .add(jTextField1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
                     .add(jButtonPesquisar1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 30, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
                 .add(18, 18, 18)
                 .add(jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
-                    .add(jLabel2)
+                    .add(jLabelNomeCliente)
                     .add(jTextField2, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
                 .add(18, 18, 18)
                 .add(jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
-                    .add(jLabel3)
+                    .add(jLabelCpfCliente)
                     .add(jFormattedTextField2, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
                 .add(18, 18, 18)
                 .add(jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
-                    .add(jLabel4)
-                    .add(jRadioButton1)
-                    .add(jRadioButton2))
+                    .add(jLabelSexoCliente)
+                    .add(jRadioButtonMasculinoCliente)
+                    .add(jRadioButtonFemininoCliente))
                 .add(18, 18, 18)
                 .add(jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
-                    .add(jLabel5)
+                    .add(jLabelDataNascCliente)
                     .add(jFormattedTextFieldDataNasc1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
                 .add(18, 18, 18)
                 .add(jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
-                    .add(jLabel6)
+                    .add(jLabelTelPessoalCliente)
                     .add(jFormattedTextFieldTelefonePessoal1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                    .add(jLabel9)
+                    .add(jLabelCelCliente)
                     .add(jFormattedTextFieldCelularHum1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
                 .add(18, 18, 18)
                 .add(jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
-                    .add(jLabel7)
+                    .add(jLabelTelComercialCliente)
                     .add(jFormattedTextFieldTelComecial1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
                 .add(18, 18, 18)
                 .add(jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
-                    .add(jLabel8)
+                    .add(jLabelEmailCliente)
                     .add(jTextField3, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(81, Short.MAX_VALUE))
         );
@@ -546,9 +546,9 @@ public class JDialogCliente extends javax.swing.JDialog {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jRadioButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton1ActionPerformed
+    private void jRadioButtonMasculinoClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButtonMasculinoClienteActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jRadioButton1ActionPerformed
+    }//GEN-LAST:event_jRadioButtonMasculinoClienteActionPerformed
 
     private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
         // TODO add your handling code here:
@@ -651,7 +651,6 @@ public class JDialogCliente extends javax.swing.JDialog {
     private javax.swing.JFormattedTextField jFormattedTextFieldDataNasc1;
     private javax.swing.JFormattedTextField jFormattedTextFieldTelComecial1;
     private javax.swing.JFormattedTextField jFormattedTextFieldTelefonePessoal1;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
@@ -662,23 +661,24 @@ public class JDialogCliente extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel19;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel22;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
+    private javax.swing.JLabel jLabelCelCliente;
+    private javax.swing.JLabel jLabelCodCliente;
+    private javax.swing.JLabel jLabelCpfCliente;
+    private javax.swing.JLabel jLabelDataNascCliente;
+    private javax.swing.JLabel jLabelEmailCliente;
+    private javax.swing.JLabel jLabelNomeCliente;
+    private javax.swing.JLabel jLabelSexoCliente;
+    private javax.swing.JLabel jLabelTelComercialCliente;
+    private javax.swing.JLabel jLabelTelPessoalCliente;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
-    private javax.swing.JRadioButton jRadioButton1;
-    private javax.swing.JRadioButton jRadioButton2;
+    private javax.swing.JRadioButton jRadioButtonFemininoCliente;
+    private javax.swing.JRadioButton jRadioButtonMasculinoCliente;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField10;

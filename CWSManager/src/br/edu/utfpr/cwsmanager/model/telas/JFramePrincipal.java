@@ -34,6 +34,7 @@ public class JFramePrincipal extends javax.swing.JFrame {
         jMenu9 = new javax.swing.JMenu();
         jMenu10 = new javax.swing.JMenu();
         jMenuItem5 = new javax.swing.JMenuItem();
+        buttonGroup1 = new javax.swing.ButtonGroup();
         jtAtalho = new javax.swing.JToolBar();
         jButtonCliente = new javax.swing.JButton();
         jButtonProduto = new javax.swing.JButton();
@@ -53,11 +54,23 @@ public class JFramePrincipal extends javax.swing.JFrame {
         jMenu2 = new javax.swing.JMenu();
         jMenuItem4 = new javax.swing.JMenuItem();
         jMenu4 = new javax.swing.JMenu();
+        jMenuItem15 = new javax.swing.JMenuItem();
+        jMenuItem16 = new javax.swing.JMenuItem();
+        jMenuItem17 = new javax.swing.JMenuItem();
         jMenu1 = new javax.swing.JMenu();
+        jMenuItem14 = new javax.swing.JMenuItem();
         jMenu3 = new javax.swing.JMenu();
+        jMenuItem12 = new javax.swing.JMenuItem();
+        jMenuItem13 = new javax.swing.JMenuItem();
         jMenu5 = new javax.swing.JMenu();
+        jMenuItem11 = new javax.swing.JMenuItem();
         jMenu6 = new javax.swing.JMenu();
+        jMenuItem8 = new javax.swing.JMenuItem();
+        jMenuItem9 = new javax.swing.JMenuItem();
+        jMenuItem10 = new javax.swing.JMenuItem();
         jMenu7 = new javax.swing.JMenu();
+        jMenuItem6 = new javax.swing.JMenuItem();
+        jMenuItem7 = new javax.swing.JMenuItem();
 
         jMenu8.setText("File");
         jMenuBar2.add(jMenu8);
@@ -274,7 +287,7 @@ public class JFramePrincipal extends javax.swing.JFrame {
         jMenuCadastros.add(jMenuCadastro);
 
         jMenuItem3.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_4, java.awt.event.InputEvent.CTRL_MASK));
-        jMenuItem3.setText("Cadastrar Tipo de Servico");
+        jMenuItem3.setText("Cadastrar Tipo de Serviço");
         jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem3ActionPerformed(evt);
@@ -284,7 +297,7 @@ public class JFramePrincipal extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenuCadastros);
 
-        jMenu2.setText("Ordem de Servico");
+        jMenu2.setText("Ordem de Serviço");
 
         jMenuItem4.setText("Abrir ordem de servico");
         jMenu2.add(jMenuItem4);
@@ -292,21 +305,63 @@ public class JFramePrincipal extends javax.swing.JFrame {
         jMenuBar1.add(jMenu2);
 
         jMenu4.setText("Consultas");
+
+        jMenuItem15.setText("Consulta de Funcionários");
+        jMenu4.add(jMenuItem15);
+
+        jMenuItem16.setText("Consulta de Veículos");
+        jMenu4.add(jMenuItem16);
+
+        jMenuItem17.setText("Consulta de Clientes");
+        jMenu4.add(jMenuItem17);
+
         jMenuBar1.add(jMenu4);
 
         jMenu1.setText("Relatórios");
+
+        jMenuItem14.setText("Gerenciador de relatórios");
+        jMenu1.add(jMenuItem14);
+
         jMenuBar1.add(jMenu1);
 
         jMenu3.setText("Ferramentas");
+
+        jMenuItem12.setText("Configuração do Banco de dados");
+        jMenu3.add(jMenuItem12);
+
+        jMenuItem13.setText("Consulta HQL");
+        jMenu3.add(jMenuItem13);
+
         jMenuBar1.add(jMenu3);
 
         jMenu5.setText("Sobre");
+
+        jMenuItem11.setText("Informações");
+        jMenu5.add(jMenuItem11);
+
         jMenuBar1.add(jMenu5);
 
         jMenu6.setText("Ajuda");
+
+        jMenuItem8.setText("Manual Web");
+        jMenu6.add(jMenuItem8);
+
+        jMenuItem9.setText("Figura do Modelo do Banco de Dados");
+        jMenu6.add(jMenuItem9);
+
+        jMenuItem10.setText("Especificação do projeto");
+        jMenu6.add(jMenuItem10);
+
         jMenuBar1.add(jMenu6);
 
         jMenu7.setText("Opções");
+
+        jMenuItem6.setText("Logout");
+        jMenu7.add(jMenuItem6);
+
+        jMenuItem7.setText("Sair");
+        jMenu7.add(jMenuItem7);
+
         jMenuBar1.add(jMenu7);
 
         setJMenuBar(jMenuBar1);
@@ -321,7 +376,7 @@ public class JFramePrincipal extends javax.swing.JFrame {
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
             .add(layout.createSequentialGroup()
                 .add(jtAtalho, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                .add(0, 554, Short.MAX_VALUE))
+                .add(0, 557, Short.MAX_VALUE))
         );
 
         pack();
@@ -498,6 +553,7 @@ public class JFramePrincipal extends javax.swing.JFrame {
         });
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JButton jButtonCliente;
     private javax.swing.JButton jButtonCompra;
     private javax.swing.JButton jButtonEstoque;
@@ -522,10 +578,22 @@ public class JFramePrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuCadastro;
     private javax.swing.JMenu jMenuCadastros;
     private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem jMenuItem10;
+    private javax.swing.JMenuItem jMenuItem11;
+    private javax.swing.JMenuItem jMenuItem12;
+    private javax.swing.JMenuItem jMenuItem13;
+    private javax.swing.JMenuItem jMenuItem14;
+    private javax.swing.JMenuItem jMenuItem15;
+    private javax.swing.JMenuItem jMenuItem16;
+    private javax.swing.JMenuItem jMenuItem17;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItem5;
+    private javax.swing.JMenuItem jMenuItem6;
+    private javax.swing.JMenuItem jMenuItem7;
+    private javax.swing.JMenuItem jMenuItem8;
+    private javax.swing.JMenuItem jMenuItem9;
     private javax.swing.JToolBar jtAtalho;
     // End of variables declaration//GEN-END:variables
 }
