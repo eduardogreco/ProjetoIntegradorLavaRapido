@@ -5,6 +5,7 @@
 package br.edu.utfpr.cwsmanager.model.telas;
 
 import static java.awt.Frame.MAXIMIZED_BOTH;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -51,7 +52,9 @@ public class JFramePrincipal extends javax.swing.JFrame {
         jMenuItem2 = new javax.swing.JMenuItem();
         jMenuCadastro = new javax.swing.JMenuItem();
         jMenuItem3 = new javax.swing.JMenuItem();
-        jMenu2 = new javax.swing.JMenu();
+        jMenuItem18 = new javax.swing.JMenuItem();
+        jMenuSolicitacaoServico = new javax.swing.JMenu();
+        jMenuOrdemServico = new javax.swing.JMenu();
         jMenuItem4 = new javax.swing.JMenuItem();
         jMenu4 = new javax.swing.JMenu();
         jMenuItem15 = new javax.swing.JMenuItem();
@@ -295,23 +298,33 @@ public class JFramePrincipal extends javax.swing.JFrame {
         });
         jMenuCadastros.add(jMenuItem3);
 
+        jMenuItem18.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_5, java.awt.event.InputEvent.CTRL_MASK));
+        jMenuItem18.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icones/city.png"))); // NOI18N
+        jMenuItem18.setText("Cadastrar Cidade");
+        jMenuCadastros.add(jMenuItem18);
+
         jMenuBar1.add(jMenuCadastros);
 
-        jMenu2.setText("Ordem de Serviço");
+        jMenuSolicitacaoServico.setText("Solicitação de Serviço");
+        jMenuBar1.add(jMenuSolicitacaoServico);
+
+        jMenuOrdemServico.setText("Ordem de Serviço");
 
         jMenuItem4.setText("Abrir ordem de servico");
-        jMenu2.add(jMenuItem4);
+        jMenuOrdemServico.add(jMenuItem4);
 
-        jMenuBar1.add(jMenu2);
+        jMenuBar1.add(jMenuOrdemServico);
 
         jMenu4.setText("Consultas");
 
+        jMenuItem15.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icones/searchfuncionario.png"))); // NOI18N
         jMenuItem15.setText("Consulta de Funcionários");
         jMenu4.add(jMenuItem15);
 
         jMenuItem16.setText("Consulta de Veículos");
         jMenu4.add(jMenuItem16);
 
+        jMenuItem17.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icones/searchclient.png"))); // NOI18N
         jMenuItem17.setText("Consulta de Clientes");
         jMenu4.add(jMenuItem17);
 
@@ -319,6 +332,7 @@ public class JFramePrincipal extends javax.swing.JFrame {
 
         jMenu1.setText("Relatórios");
 
+        jMenuItem14.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icones/gerenciarRel.png"))); // NOI18N
         jMenuItem14.setText("Gerenciador de relatórios");
         jMenu1.add(jMenuItem14);
 
@@ -326,9 +340,11 @@ public class JFramePrincipal extends javax.swing.JFrame {
 
         jMenu3.setText("Ferramentas");
 
+        jMenuItem12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icones/bancoDeDados.png"))); // NOI18N
         jMenuItem12.setText("Configuração do Banco de dados");
         jMenu3.add(jMenuItem12);
 
+        jMenuItem13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icones/consultaHQL.png"))); // NOI18N
         jMenuItem13.setText("Consulta HQL");
         jMenu3.add(jMenuItem13);
 
@@ -336,6 +352,7 @@ public class JFramePrincipal extends javax.swing.JFrame {
 
         jMenu5.setText("Sobre");
 
+        jMenuItem11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icones/sobre.png"))); // NOI18N
         jMenuItem11.setText("Informações");
         jMenu5.add(jMenuItem11);
 
@@ -343,23 +360,43 @@ public class JFramePrincipal extends javax.swing.JFrame {
 
         jMenu6.setText("Ajuda");
 
+        jMenuItem8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icones/manual_menu.png"))); // NOI18N
         jMenuItem8.setText("Manual Web");
+        jMenuItem8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem8ActionPerformed(evt);
+            }
+        });
         jMenu6.add(jMenuItem8);
 
+        jMenuItem9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icones/manual_mer.png"))); // NOI18N
         jMenuItem9.setText("Figura do Modelo do Banco de Dados");
         jMenu6.add(jMenuItem9);
 
+        jMenuItem10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icones/especificacao.png"))); // NOI18N
         jMenuItem10.setText("Especificação do projeto");
+        jMenuItem10.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem10ActionPerformed(evt);
+            }
+        });
         jMenu6.add(jMenuItem10);
 
         jMenuBar1.add(jMenu6);
 
         jMenu7.setText("Opções");
 
+        jMenuItem6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icones/logout.png"))); // NOI18N
         jMenuItem6.setText("Logout");
         jMenu7.add(jMenuItem6);
 
+        jMenuItem7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icones/sair.png"))); // NOI18N
         jMenuItem7.setText("Sair");
+        jMenuItem7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem7ActionPerformed(evt);
+            }
+        });
         jMenu7.add(jMenuItem7);
 
         jMenuBar1.add(jMenu7);
@@ -376,7 +413,7 @@ public class JFramePrincipal extends javax.swing.JFrame {
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
             .add(layout.createSequentialGroup()
                 .add(jtAtalho, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                .add(0, 557, Short.MAX_VALUE))
+                .add(0, 568, Short.MAX_VALUE))
         );
 
         pack();
@@ -516,8 +553,33 @@ public class JFramePrincipal extends javax.swing.JFrame {
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
         // TODO add your handling code here:
+        JDialogFuncionario jdFuncionario = new JDialogFuncionario(this, true);
+        jdFuncionario.setLocationRelativeTo(null);
+        jdFuncionario.setVisible(true);
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
+    private void jMenuItem8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem8ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jMenuItem8ActionPerformed
+
+    private void jMenuItem10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem10ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jMenuItem10ActionPerformed
+
+    private void jMenuItem7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem7ActionPerformed
+        // TODO add your handling code here:
+        Sair();
+    }//GEN-LAST:event_jMenuItem7ActionPerformed
+
+
+     private void Sair() {
+        String[] opcoes = {"Sim", "Não"};
+        int opcao = JOptionPane.showOptionDialog(null, "Tem certeza que deseja sair?", "Mensagem",
+                JOptionPane.YES_OPTION, JOptionPane.QUESTION_MESSAGE, null, opcoes, opcoes[1]);
+        if (JOptionPane.YES_OPTION == opcao) {
+            System.exit(0);
+        }
+    }
     /**
      * @param args the command line arguments
      */
@@ -565,7 +627,6 @@ public class JFramePrincipal extends javax.swing.JFrame {
     private javax.swing.JButton jButtonVenda;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu10;
-    private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenu jMenu4;
     private javax.swing.JMenu jMenu5;
@@ -586,6 +647,7 @@ public class JFramePrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem15;
     private javax.swing.JMenuItem jMenuItem16;
     private javax.swing.JMenuItem jMenuItem17;
+    private javax.swing.JMenuItem jMenuItem18;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
@@ -594,6 +656,8 @@ public class JFramePrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem7;
     private javax.swing.JMenuItem jMenuItem8;
     private javax.swing.JMenuItem jMenuItem9;
+    private javax.swing.JMenu jMenuOrdemServico;
+    private javax.swing.JMenu jMenuSolicitacaoServico;
     private javax.swing.JToolBar jtAtalho;
     // End of variables declaration//GEN-END:variables
 }
