@@ -10,6 +10,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.List;
 import br.edu.utfpr.cwsmanager.model.util.ConnectionFactory;
+import br.edu.utfpr.cwsmanager.model.veiculo.Veiculo;
 import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.util.ArrayList;
@@ -20,7 +21,8 @@ import java.util.ArrayList;
  */
 public class DaoCliente implements Dao<Cliente> {
 
-    private static Cliente converteRsParaCliente(ResultSet rs) throws SQLException {
+    private DaoVeiculo daoVeiculo = new DaoVeiculo();
+    public static Cliente converteRsParaCliente(ResultSet rs) throws SQLException {
         Cliente c = new Cliente();
         c.setId(rs.getInt("id"));
         c.setNome(rs.getString("nome"));
@@ -45,8 +47,11 @@ public class DaoCliente implements Dao<Cliente> {
 
     @Override
     public void delete(Cliente c) throws Exception {
+        daoVeiculo.deleteId_cliente(c.getId());
+        
         Statement st = ConnectionFactory.prepareConnection().createStatement();
         st.execute("DELETE FROM Cliente WHERE id = " + c.getId());
+        
     }
 
     @Override
@@ -58,6 +63,7 @@ public class DaoCliente implements Dao<Cliente> {
         rs.next();
         Cliente c = converteRsParaCliente(rs);
 
+        c.setVeiculos(daoVeiculo.retrieveId_cliente(c.getId()));
         return c;
     }
 
@@ -76,7 +82,7 @@ public class DaoCliente implements Dao<Cliente> {
         return Clientes;
     }
 
-    private void insert(Cliente c) throws SQLException {
+    public void insert(Cliente c) throws SQLException {
         PreparedStatement pst = ConnectionFactory.prepareConnection().prepareStatement("INSERT INTO Cliente (nome, cpf, sexo, dataNascimento, telPessoal, celular, telComercial, email) VALUES(?,?,?,?,?,?,?,?)", Statement.RETURN_GENERATED_KEYS);
         pst.setString(1, c.getNome());
         pst.setString(2, c.getCpf());
@@ -93,13 +99,25 @@ public class DaoCliente implements Dao<Cliente> {
         ResultSet rs = pst.getGeneratedKeys();
         rs.next();
         c.setId(rs.getInt(1));
+        
+        for (Veiculo obj : c.getVeiculos()){
+            obj.setCliente(c);
+            daoVeiculo.insert(obj);
+        }
     }
 
-    private void update(Cliente c) throws SQLException {
+    public void update(Cliente c) throws SQLException, Exception {
         PreparedStatement pst = ConnectionFactory.prepareConnection().prepareStatement("UPDATE Cliente SET nome = ?, cpf = ? WHERE id = ?");
         pst.setString(1, c.getNome());
         pst.setString(2, c.getCpf());
         pst.setInt(3, c.getId());
         pst.execute();
+        
+        daoVeiculo.deleteId_cliente(c.getId());
+        
+        for (Veiculo obj : c.getVeiculos()){
+            obj.setCliente(c);
+            daoVeiculo.insert(obj);
+        }
     }
 }

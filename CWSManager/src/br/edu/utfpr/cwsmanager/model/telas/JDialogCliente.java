@@ -4,11 +4,27 @@
  */
 package br.edu.utfpr.cwsmanager.model.telas;
 
+import br.edu.utfpr.cwsmanager.model.daos.DaoCliente;
+import br.edu.utfpr.cwsmanager.model.pessoa.Cliente;
+import br.edu.utfpr.cwsmanager.model.util.UtilDatas;
+import br.edu.utfpr.cwsmanager.model.veiculo.Veiculo;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author EduardoGreco
  */
 public class JDialogCliente extends javax.swing.JDialog {
+
+    private UtilDatas converteData = new UtilDatas();
+    private DaoCliente daoCliente = new DaoCliente();
+    private DefaultTableModel modeloVeiculo;
+    private List<Veiculo> veiculos = new ArrayList<Veiculo>();
 
     /**
      * Creates new form JDialogCliente
@@ -16,6 +32,11 @@ public class JDialogCliente extends javax.swing.JDialog {
     public JDialogCliente(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+
+        habilitaCampos(false);
+
+        modeloVeiculo = (DefaultTableModel) jTableVeiculo.getModel(); //cadastro veiculo
+        modeloVeiculo.setNumRows(0);
     }
 
     /**
@@ -27,6 +48,7 @@ public class JDialogCliente extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        GroupSexo = new javax.swing.ButtonGroup();
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jPanel1 = new javax.swing.JPanel();
         jLabelCodCliente = new javax.swing.JLabel();
@@ -39,16 +61,16 @@ public class JDialogCliente extends javax.swing.JDialog {
         jLabelTelPessoalCliente = new javax.swing.JLabel();
         jLabelTelComercialCliente = new javax.swing.JLabel();
         jLabelEmailCliente = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
-        jFormattedTextField2 = new javax.swing.JFormattedTextField();
-        jFormattedTextFieldTelefonePessoal1 = new javax.swing.JFormattedTextField();
-        jFormattedTextFieldDataNasc1 = new javax.swing.JFormattedTextField();
-        jTextField3 = new javax.swing.JTextField();
-        jButtonPesquisar1 = new javax.swing.JButton();
+        jTextFieldIdCliente = new javax.swing.JTextField();
+        jTextFieldNomeCliente = new javax.swing.JTextField();
+        jFormattedTextFieldCPFCliente = new javax.swing.JFormattedTextField();
+        jFormattedTextFieldTelefonePessoalCliente = new javax.swing.JFormattedTextField();
+        jFormattedTextFieldDataNascCliente = new javax.swing.JFormattedTextField();
+        jTextFieldEmailCliente = new javax.swing.JTextField();
+        jButtonPesquisarCliente = new javax.swing.JButton();
         jLabelCelCliente = new javax.swing.JLabel();
-        jFormattedTextFieldCelularHum1 = new javax.swing.JFormattedTextField();
-        jFormattedTextFieldTelComecial1 = new javax.swing.JFormattedTextField();
+        jFormattedTextFieldCelularCliente = new javax.swing.JFormattedTextField();
+        jFormattedTextFieldTelComecialCliente = new javax.swing.JFormattedTextField();
         jPanel2 = new javax.swing.JPanel();
         jLabel16 = new javax.swing.JLabel();
         jTextField8 = new javax.swing.JTextField();
@@ -63,27 +85,35 @@ public class JDialogCliente extends javax.swing.JDialog {
         jTextField12 = new javax.swing.JTextField();
         jTextField13 = new javax.swing.JTextField();
         jLabel22 = new javax.swing.JLabel();
-        jComboBoxEstado = new javax.swing.JComboBox();
+        jButtonPesquisarCidade = new javax.swing.JButton();
+        jButtonIncluirCidade = new javax.swing.JButton();
+        jTextField1 = new javax.swing.JTextField();
+        jTextField2 = new javax.swing.JTextField();
         jPanel3 = new javax.swing.JPanel();
         jLabel12 = new javax.swing.JLabel();
-        jFormattedTextField1 = new javax.swing.JFormattedTextField();
+        jFormattedTextFieldPlaca = new javax.swing.JFormattedTextField();
         jLabel13 = new javax.swing.JLabel();
-        jTextField6 = new javax.swing.JTextField();
-        jTextField7 = new javax.swing.JTextField();
+        jTextFieldModelo = new javax.swing.JTextField();
+        jTextFieldCor = new javax.swing.JTextField();
         jLabel14 = new javax.swing.JLabel();
         jLabel15 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox();
+        jComboBoxTipoVeiculo = new javax.swing.JComboBox();
+        jButtonAdicionarVeiculo = new javax.swing.JButton();
+        jButtonAlterarVeiculo = new javax.swing.JButton();
+        jButtonExcluirVeiculo = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTableVeiculo = new javax.swing.JTable();
         jPanel4 = new javax.swing.JPanel();
         jLabel10 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
         jTextField4 = new javax.swing.JTextField();
         jTextField5 = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        jButtonGravar = new javax.swing.JButton();
+        jButtonCancelar = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
-        jButton6 = new javax.swing.JButton();
+        jButtonIncluir = new javax.swing.JButton();
+        jButtonAlterar = new javax.swing.JButton();
+        jButtonExcluir = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Cadastro de Clientes");
@@ -96,6 +126,7 @@ public class JDialogCliente extends javax.swing.JDialog {
 
         jLabelSexoCliente.setText("Sexo:");
 
+        GroupSexo.add(jRadioButtonMasculinoCliente);
         jRadioButtonMasculinoCliente.setText("Masculino");
         jRadioButtonMasculinoCliente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -103,6 +134,7 @@ public class JDialogCliente extends javax.swing.JDialog {
             }
         });
 
+        GroupSexo.add(jRadioButtonFemininoCliente);
         jRadioButtonFemininoCliente.setText("Feminino");
 
         jLabelDataNascCliente.setText("Data de Nascimento:");
@@ -113,66 +145,66 @@ public class JDialogCliente extends javax.swing.JDialog {
 
         jLabelEmailCliente.setText("Email:");
 
-        jTextField2.addActionListener(new java.awt.event.ActionListener() {
+        jTextFieldNomeCliente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField2ActionPerformed(evt);
+                jTextFieldNomeClienteActionPerformed(evt);
             }
         });
 
         try {
-            jFormattedTextFieldTelefonePessoal1.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("(##) ####-####")));
+            jFormattedTextFieldTelefonePessoalCliente.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("(##) ####-####")));
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
-        jFormattedTextFieldTelefonePessoal1.setMinimumSize(new java.awt.Dimension(42, 28));
-        jFormattedTextFieldTelefonePessoal1.setPreferredSize(new java.awt.Dimension(42, 28));
-        jFormattedTextFieldTelefonePessoal1.addActionListener(new java.awt.event.ActionListener() {
+        jFormattedTextFieldTelefonePessoalCliente.setMinimumSize(new java.awt.Dimension(42, 28));
+        jFormattedTextFieldTelefonePessoalCliente.setPreferredSize(new java.awt.Dimension(42, 28));
+        jFormattedTextFieldTelefonePessoalCliente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jFormattedTextFieldTelefonePessoal1ActionPerformed(evt);
+                jFormattedTextFieldTelefonePessoalClienteActionPerformed(evt);
             }
         });
 
         try {
-            jFormattedTextFieldDataNasc1.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
+            jFormattedTextFieldDataNascCliente.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
-        jFormattedTextFieldDataNasc1.setMinimumSize(new java.awt.Dimension(42, 28));
-        jFormattedTextFieldDataNasc1.setPreferredSize(new java.awt.Dimension(42, 28));
-        jFormattedTextFieldDataNasc1.addActionListener(new java.awt.event.ActionListener() {
+        jFormattedTextFieldDataNascCliente.setMinimumSize(new java.awt.Dimension(42, 28));
+        jFormattedTextFieldDataNascCliente.setPreferredSize(new java.awt.Dimension(42, 28));
+        jFormattedTextFieldDataNascCliente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jFormattedTextFieldDataNasc1ActionPerformed(evt);
+                jFormattedTextFieldDataNascClienteActionPerformed(evt);
             }
         });
 
-        jButtonPesquisar1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icones/pesquisa.png"))); // NOI18N
-        jButtonPesquisar1.setToolTipText("Pesquisar Cliente");
-        jButtonPesquisar1.setMaximumSize(new java.awt.Dimension(42, 28));
-        jButtonPesquisar1.setMinimumSize(new java.awt.Dimension(42, 28));
-        jButtonPesquisar1.setPreferredSize(new java.awt.Dimension(42, 28));
-        jButtonPesquisar1.addActionListener(new java.awt.event.ActionListener() {
+        jButtonPesquisarCliente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icones/pesquisa.png"))); // NOI18N
+        jButtonPesquisarCliente.setToolTipText("Pesquisar Cliente");
+        jButtonPesquisarCliente.setMaximumSize(new java.awt.Dimension(42, 28));
+        jButtonPesquisarCliente.setMinimumSize(new java.awt.Dimension(42, 28));
+        jButtonPesquisarCliente.setPreferredSize(new java.awt.Dimension(42, 28));
+        jButtonPesquisarCliente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonPesquisar1ActionPerformed(evt);
+                jButtonPesquisarClienteActionPerformed(evt);
             }
         });
 
         jLabelCelCliente.setText("Celular:");
 
         try {
-            jFormattedTextFieldCelularHum1.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("(##) ####-####")));
+            jFormattedTextFieldCelularCliente.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("(##) ####-####")));
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
-        jFormattedTextFieldCelularHum1.setMinimumSize(new java.awt.Dimension(42, 28));
-        jFormattedTextFieldCelularHum1.setPreferredSize(new java.awt.Dimension(42, 28));
+        jFormattedTextFieldCelularCliente.setMinimumSize(new java.awt.Dimension(42, 28));
+        jFormattedTextFieldCelularCliente.setPreferredSize(new java.awt.Dimension(42, 28));
 
         try {
-            jFormattedTextFieldTelComecial1.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("(##) ####-####")));
+            jFormattedTextFieldTelComecialCliente.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("(##) ####-####")));
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
-        jFormattedTextFieldTelComecial1.setMinimumSize(new java.awt.Dimension(42, 28));
-        jFormattedTextFieldTelComecial1.setPreferredSize(new java.awt.Dimension(42, 28));
+        jFormattedTextFieldTelComecialCliente.setMinimumSize(new java.awt.Dimension(42, 28));
+        jFormattedTextFieldTelComecialCliente.setPreferredSize(new java.awt.Dimension(42, 28));
 
         org.jdesktop.layout.GroupLayout jPanel1Layout = new org.jdesktop.layout.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -191,7 +223,7 @@ public class JDialogCliente extends javax.swing.JDialog {
                                     .add(org.jdesktop.layout.GroupLayout.TRAILING, jPanel1Layout.createSequentialGroup()
                                         .add(jLabelEmailCliente)
                                         .add(99, 99, 99)))
-                                .add(jTextField3, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 399, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                                .add(jTextFieldEmailCliente, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 399, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
                             .add(jPanel1Layout.createSequentialGroup()
                                 .add(jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
                                     .add(jLabelCodCliente)
@@ -205,28 +237,28 @@ public class JDialogCliente extends javax.swing.JDialog {
                                         .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                                         .add(jRadioButtonFemininoCliente))
                                     .add(jPanel1Layout.createSequentialGroup()
-                                        .add(jTextField1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 61, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                                        .add(jTextFieldIdCliente, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 61, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
-                                        .add(jButtonPesquisar1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 40, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                                    .add(jTextField2, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 469, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                                    .add(jFormattedTextField2, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 247, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))))
+                                        .add(jButtonPesquisarCliente, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 40, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                                    .add(jTextFieldNomeCliente, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 469, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                                    .add(jFormattedTextFieldCPFCliente, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 247, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))))
                         .addContainerGap(74, Short.MAX_VALUE))
                     .add(jPanel1Layout.createSequentialGroup()
                         .add(jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING)
-                            .add(jFormattedTextFieldTelComecial1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 134, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                            .add(jFormattedTextFieldTelComecialCliente, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 134, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                             .add(jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING, false)
                                 .add(org.jdesktop.layout.GroupLayout.LEADING, jPanel1Layout.createSequentialGroup()
                                     .add(jLabelDataNascCliente)
                                     .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                                    .add(jFormattedTextFieldDataNasc1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 134, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                                    .add(jFormattedTextFieldDataNascCliente, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 134, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
                                 .add(jPanel1Layout.createSequentialGroup()
                                     .add(jLabelTelPessoalCliente)
                                     .add(28, 28, 28)
-                                    .add(jFormattedTextFieldTelefonePessoal1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                                    .add(jFormattedTextFieldTelefonePessoalCliente, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                         .add(51, 51, 51)
                         .add(jLabelCelCliente)
                         .add(18, 18, 18)
-                        .add(jFormattedTextFieldCelularHum1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 150, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                        .add(jFormattedTextFieldCelularCliente, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 150, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                         .add(0, 0, Short.MAX_VALUE))))
         );
         jPanel1Layout.setVerticalGroup(
@@ -236,16 +268,16 @@ public class JDialogCliente extends javax.swing.JDialog {
                 .add(jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
                     .add(jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
                         .add(jLabelCodCliente)
-                        .add(jTextField1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                    .add(jButtonPesquisar1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 30, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                        .add(jTextFieldIdCliente, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                    .add(jButtonPesquisarCliente, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 30, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
                 .add(18, 18, 18)
                 .add(jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
                     .add(jLabelNomeCliente)
-                    .add(jTextField2, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                    .add(jTextFieldNomeCliente, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
                 .add(18, 18, 18)
                 .add(jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
                     .add(jLabelCpfCliente)
-                    .add(jFormattedTextField2, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                    .add(jFormattedTextFieldCPFCliente, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
                 .add(18, 18, 18)
                 .add(jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
                     .add(jLabelSexoCliente)
@@ -254,21 +286,21 @@ public class JDialogCliente extends javax.swing.JDialog {
                 .add(18, 18, 18)
                 .add(jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
                     .add(jLabelDataNascCliente)
-                    .add(jFormattedTextFieldDataNasc1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                    .add(jFormattedTextFieldDataNascCliente, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
                 .add(18, 18, 18)
                 .add(jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
                     .add(jLabelTelPessoalCliente)
-                    .add(jFormattedTextFieldTelefonePessoal1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                    .add(jFormattedTextFieldTelefonePessoalCliente, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                     .add(jLabelCelCliente)
-                    .add(jFormattedTextFieldCelularHum1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                    .add(jFormattedTextFieldCelularCliente, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
                 .add(18, 18, 18)
                 .add(jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
                     .add(jLabelTelComercialCliente)
-                    .add(jFormattedTextFieldTelComecial1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                    .add(jFormattedTextFieldTelComecialCliente, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
                 .add(18, 18, 18)
                 .add(jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
                     .add(jLabelEmailCliente)
-                    .add(jTextField3, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                    .add(jTextFieldEmailCliente, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(81, Short.MAX_VALUE))
         );
 
@@ -288,10 +320,25 @@ public class JDialogCliente extends javax.swing.JDialog {
 
         jLabel22.setText("UF:");
 
-        jComboBoxEstado.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Acre", "Alagoas", "Amapá", "Amazonas", "Bahia", "Ceará", "Distrito Federal", "Espírito Santo", "Goiás", "Maranhão", "Minas Gerais", "Mato Grosso do Sul", "Mato Grosso", "Pará", "Paraíba", "Pernambuco", "Piauí", "Paraná", "Rio de Janeiro", "Rio Grande do Norte", "Rio Grande do Sul", "Rondônia", "Roraima", "Santa Catarina", "Sergipe", "São Paulo", "Tocantins" }));
-        jComboBoxEstado.addActionListener(new java.awt.event.ActionListener() {
+        jButtonPesquisarCidade.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icones/pesquisa.png"))); // NOI18N
+        jButtonPesquisarCidade.setToolTipText("Pesquisar Cliente");
+        jButtonPesquisarCidade.setMaximumSize(new java.awt.Dimension(42, 28));
+        jButtonPesquisarCidade.setMinimumSize(new java.awt.Dimension(42, 28));
+        jButtonPesquisarCidade.setPreferredSize(new java.awt.Dimension(42, 28));
+        jButtonPesquisarCidade.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBoxEstadoActionPerformed(evt);
+                jButtonPesquisarCidadeActionPerformed(evt);
+            }
+        });
+
+        jButtonIncluirCidade.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icones/incluir.png"))); // NOI18N
+        jButtonIncluirCidade.setToolTipText("Pesquisar Cliente");
+        jButtonIncluirCidade.setMaximumSize(new java.awt.Dimension(42, 28));
+        jButtonIncluirCidade.setMinimumSize(new java.awt.Dimension(42, 28));
+        jButtonIncluirCidade.setPreferredSize(new java.awt.Dimension(42, 28));
+        jButtonIncluirCidade.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonIncluirCidadeActionPerformed(evt);
             }
         });
 
@@ -308,7 +355,7 @@ public class JDialogCliente extends javax.swing.JDialog {
                     .add(jLabel20)
                     .add(jLabel21))
                 .add(18, 18, 18)
-                .add(jPanel2Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                .add(jPanel2Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING, false)
                     .add(jPanel2Layout.createSequentialGroup()
                         .add(jTextField8, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 338, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
@@ -316,15 +363,22 @@ public class JDialogCliente extends javax.swing.JDialog {
                         .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
                         .add(jTextField9, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 69, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
                     .add(jPanel2Layout.createSequentialGroup()
-                        .add(jPanel2Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING, false)
-                            .add(org.jdesktop.layout.GroupLayout.LEADING, jTextField13, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 184, Short.MAX_VALUE)
-                            .add(org.jdesktop.layout.GroupLayout.LEADING, jTextField12)
+                        .add(jPanel2Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING)
+                            .add(org.jdesktop.layout.GroupLayout.LEADING, jTextField13)
                             .add(org.jdesktop.layout.GroupLayout.LEADING, jTextField11)
-                            .add(org.jdesktop.layout.GroupLayout.LEADING, jTextField10))
-                        .add(34, 34, 34)
+                            .add(org.jdesktop.layout.GroupLayout.LEADING, jTextField10)
+                            .add(org.jdesktop.layout.GroupLayout.LEADING, jPanel2Layout.createSequentialGroup()
+                                .add(jTextField12, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 54, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                                .add(jButtonPesquisarCidade, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 40, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                                .add(jButtonIncluirCidade, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 40, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                                .add(0, 0, Short.MAX_VALUE))
+                            .add(org.jdesktop.layout.GroupLayout.LEADING, jTextField1))
+                        .add(18, 18, 18)
                         .add(jLabel22)
-                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                        .add(jComboBoxEstado, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)))
+                        .add(18, 18, 18)
+                        .add(jTextField2, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 114, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(59, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
@@ -344,26 +398,32 @@ public class JDialogCliente extends javax.swing.JDialog {
                 .add(jPanel2Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
                     .add(jLabel19)
                     .add(jTextField11, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                .add(15, 15, 15)
+                .add(14, 14, 14)
+                .add(jPanel2Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING)
+                    .add(jPanel2Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
+                        .add(jLabel20)
+                        .add(jTextField12, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                    .add(jButtonPesquisarCidade, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 30, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                    .add(jButtonIncluirCidade, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 30, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                .add(18, 18, 18)
                 .add(jPanel2Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
-                    .add(jLabel20)
-                    .add(jTextField12, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                    .add(jTextField1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                     .add(jLabel22)
-                    .add(jComboBoxEstado, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                .add(13, 13, 13)
+                    .add(jTextField2, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                .add(20, 20, 20)
                 .add(jPanel2Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
                     .add(jLabel21)
                     .add(jTextField13, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(210, Short.MAX_VALUE))
+                .addContainerGap(157, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Endereço", jPanel2);
 
         jLabel12.setText("Placa:");
 
-        jFormattedTextField1.addActionListener(new java.awt.event.ActionListener() {
+        jFormattedTextFieldPlaca.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jFormattedTextField1ActionPerformed(evt);
+                jFormattedTextFieldPlacaActionPerformed(evt);
             }
         });
 
@@ -373,7 +433,46 @@ public class JDialogCliente extends javax.swing.JDialog {
 
         jLabel15.setText("Tipo do Veículo:");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Carro", "Caminhao", "Caminhonete", "Moto", "Onibus" }));
+        jComboBoxTipoVeiculo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Carro", "Caminhao", "Caminhonete", "Moto", "Onibus" }));
+
+        jButtonAdicionarVeiculo.setText("Adicionar");
+        jButtonAdicionarVeiculo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonAdicionarVeiculoActionPerformed(evt);
+            }
+        });
+
+        jButtonAlterarVeiculo.setText("Alterar");
+        jButtonAlterarVeiculo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonAlterarVeiculoActionPerformed(evt);
+            }
+        });
+
+        jButtonExcluirVeiculo.setText("Excluir");
+        jButtonExcluirVeiculo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonExcluirVeiculoActionPerformed(evt);
+            }
+        });
+
+        jTableVeiculo.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Placa", "Modelo", "Cor", "Tipo"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, true, true
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane1.setViewportView(jTableVeiculo);
 
         org.jdesktop.layout.GroupLayout jPanel3Layout = new org.jdesktop.layout.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -381,23 +480,32 @@ public class JDialogCliente extends javax.swing.JDialog {
             jPanel3Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
             .add(jPanel3Layout.createSequentialGroup()
                 .add(49, 49, 49)
-                .add(jPanel3Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING, false)
+                .add(jPanel3Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                    .add(jScrollPane1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 564, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                     .add(jPanel3Layout.createSequentialGroup()
-                        .add(jLabel15)
-                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .add(jComboBox1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                    .add(jPanel3Layout.createSequentialGroup()
-                        .add(jPanel3Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                            .add(jLabel13)
-                            .add(jLabel12)
-                            .add(jLabel14))
+                        .add(jPanel3Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING, false)
+                            .add(jPanel3Layout.createSequentialGroup()
+                                .add(jLabel15)
+                                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .add(jComboBoxTipoVeiculo, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                            .add(jPanel3Layout.createSequentialGroup()
+                                .add(jPanel3Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                                    .add(jLabel13)
+                                    .add(jLabel12)
+                                    .add(jLabel14))
+                                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                                .add(jPanel3Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                                    .add(jTextFieldCor, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 168, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                                    .add(jPanel3Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING, false)
+                                        .add(jFormattedTextFieldPlaca, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 168, Short.MAX_VALUE)
+                                        .add(jTextFieldModelo)))))
+                        .add(34, 34, 34)
+                        .add(jButtonAdicionarVeiculo)
                         .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                        .add(jPanel3Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                            .add(jTextField7, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 168, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                            .add(jPanel3Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING, false)
-                                .add(jFormattedTextField1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 168, Short.MAX_VALUE)
-                                .add(jTextField6)))))
-                .addContainerGap(348, Short.MAX_VALUE))
+                        .add(jButtonAlterarVeiculo)
+                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                        .add(jButtonExcluirVeiculo)))
+                .addContainerGap(25, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
@@ -405,20 +513,25 @@ public class JDialogCliente extends javax.swing.JDialog {
                 .add(34, 34, 34)
                 .add(jPanel3Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
                     .add(jLabel12)
-                    .add(jFormattedTextField1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                    .add(jFormattedTextFieldPlaca, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
                 .add(18, 18, 18)
                 .add(jPanel3Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
                     .add(jLabel13)
-                    .add(jTextField6, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                    .add(jTextFieldModelo, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
                 .add(18, 18, 18)
                 .add(jPanel3Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
-                    .add(jTextField7, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                    .add(jTextFieldCor, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                     .add(jLabel14))
                 .add(18, 18, 18)
                 .add(jPanel3Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
                     .add(jLabel15)
-                    .add(jComboBox1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(250, Short.MAX_VALUE))
+                    .add(jComboBoxTipoVeiculo, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                    .add(jButtonAdicionarVeiculo)
+                    .add(jButtonAlterarVeiculo)
+                    .add(jButtonExcluirVeiculo))
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
+                .add(jScrollPane1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 219, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(17, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Veículo", jPanel3);
@@ -470,11 +583,21 @@ public class JDialogCliente extends javax.swing.JDialog {
 
         jTabbedPane1.addTab("Login WebSite", jPanel4);
 
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icones/gravar.png"))); // NOI18N
-        jButton1.setText("Gravar");
+        jButtonGravar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icones/gravar.png"))); // NOI18N
+        jButtonGravar.setText("Gravar");
+        jButtonGravar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonGravarActionPerformed(evt);
+            }
+        });
 
-        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icones/cancelar.png"))); // NOI18N
-        jButton2.setText("Cancelar");
+        jButtonCancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icones/cancelar.png"))); // NOI18N
+        jButtonCancelar.setText("Cancelar");
+        jButtonCancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonCancelarActionPerformed(evt);
+            }
+        });
 
         jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icones/remove.png"))); // NOI18N
         jButton3.setText("Sair");
@@ -484,27 +607,27 @@ public class JDialogCliente extends javax.swing.JDialog {
             }
         });
 
-        jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icones/incluir.png"))); // NOI18N
-        jButton4.setText("Incluir");
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
+        jButtonIncluir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icones/incluir.png"))); // NOI18N
+        jButtonIncluir.setText("Incluir");
+        jButtonIncluir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
+                jButtonIncluirActionPerformed(evt);
             }
         });
 
-        jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icones/alterar.png"))); // NOI18N
-        jButton5.setText("Alterar");
-        jButton5.addActionListener(new java.awt.event.ActionListener() {
+        jButtonAlterar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icones/alterar.png"))); // NOI18N
+        jButtonAlterar.setText("Alterar");
+        jButtonAlterar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton5ActionPerformed(evt);
+                jButtonAlterarActionPerformed(evt);
             }
         });
 
-        jButton6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icones/excluir.png"))); // NOI18N
-        jButton6.setText("Exluir");
-        jButton6.addActionListener(new java.awt.event.ActionListener() {
+        jButtonExcluir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icones/excluir.png"))); // NOI18N
+        jButtonExcluir.setText("Exluir");
+        jButtonExcluir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton6ActionPerformed(evt);
+                jButtonExcluirActionPerformed(evt);
             }
         });
 
@@ -519,15 +642,15 @@ public class JDialogCliente extends javax.swing.JDialog {
                         .add(6, 6, 6)
                         .add(jButton3, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 98, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .add(jButton1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 98, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                        .add(jButtonGravar, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 98, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                        .add(jButton2, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 98, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                        .add(jButtonCancelar, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 98, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
                     .add(jTabbedPane1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 665, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                    .add(jButton6, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .add(jButton5, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 104, Short.MAX_VALUE)
-                    .add(jButton4, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .add(jButtonExcluir, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .add(jButtonAlterar, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 104, Short.MAX_VALUE)
+                    .add(jButtonIncluir, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -537,15 +660,15 @@ public class JDialogCliente extends javax.swing.JDialog {
                     .add(jTabbedPane1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 495, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                     .add(layout.createSequentialGroup()
                         .add(75, 75, 75)
-                        .add(jButton4, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 34, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                        .add(jButtonIncluir, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 34, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                         .add(19, 19, 19)
-                        .add(jButton5, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 34, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                        .add(jButtonAlterar, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 34, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                         .add(18, 18, 18)
-                        .add(jButton6, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 36, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)))
+                        .add(jButtonExcluir, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 36, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
-                    .add(jButton1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 37, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                    .add(jButton2, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 37, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                    .add(jButtonGravar, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 37, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                    .add(jButtonCancelar, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 37, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                     .add(jButton3, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 37, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(26, Short.MAX_VALUE))
         );
@@ -557,38 +680,49 @@ public class JDialogCliente extends javax.swing.JDialog {
         // TODO add your handling code here:
     }//GEN-LAST:event_jRadioButtonMasculinoClienteActionPerformed
 
-    private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
+    private void jTextFieldNomeClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldNomeClienteActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField2ActionPerformed
+    }//GEN-LAST:event_jTextFieldNomeClienteActionPerformed
 
-    private void jFormattedTextFieldTelefonePessoal1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jFormattedTextFieldTelefonePessoal1ActionPerformed
+    private void jFormattedTextFieldTelefonePessoalClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jFormattedTextFieldTelefonePessoalClienteActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jFormattedTextFieldTelefonePessoal1ActionPerformed
+    }//GEN-LAST:event_jFormattedTextFieldTelefonePessoalClienteActionPerformed
 
-    private void jFormattedTextFieldDataNasc1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jFormattedTextFieldDataNasc1ActionPerformed
+    private void jFormattedTextFieldDataNascClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jFormattedTextFieldDataNascClienteActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jFormattedTextFieldDataNasc1ActionPerformed
+    }//GEN-LAST:event_jFormattedTextFieldDataNascClienteActionPerformed
 
-    private void jButtonPesquisar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonPesquisar1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButtonPesquisar1ActionPerformed
+    private void jButtonPesquisarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonPesquisarClienteActionPerformed
+        int id = Integer.parseInt(jTextFieldIdCliente.getText().trim());
+        try {
+            setCliente(daoCliente.retrieve(id));
+        } catch (Exception ex) {
+            Logger.getLogger(JDialogCliente.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jButtonPesquisarClienteActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
         dispose();
     }//GEN-LAST:event_jButton3ActionPerformed
 
-    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton5ActionPerformed
+    private void jButtonAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAlterarActionPerformed
+        habilitaCampos(true);
+    }//GEN-LAST:event_jButtonAlterarActionPerformed
 
-    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton6ActionPerformed
+    private void jButtonExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonExcluirActionPerformed
+        try {
+            daoCliente.delete(getCliente());
+        } catch (Exception ex) {
+            Logger.getLogger(JDialogCliente.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        clearCampos();
+    }//GEN-LAST:event_jButtonExcluirActionPerformed
 
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton4ActionPerformed
+    private void jButtonIncluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonIncluirActionPerformed
+        clearCampos();
+        habilitaCampos(true);
+    }//GEN-LAST:event_jButtonIncluirActionPerformed
 
     private void jTextField4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField4ActionPerformed
         // TODO add your handling code here:
@@ -598,13 +732,84 @@ public class JDialogCliente extends javax.swing.JDialog {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField5ActionPerformed
 
-    private void jFormattedTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jFormattedTextField1ActionPerformed
+    private void jFormattedTextFieldPlacaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jFormattedTextFieldPlacaActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jFormattedTextField1ActionPerformed
+    }//GEN-LAST:event_jFormattedTextFieldPlacaActionPerformed
 
-    private void jComboBoxEstadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxEstadoActionPerformed
+    private void jButtonGravarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonGravarActionPerformed
+        Cliente cliente = new Cliente();
+
+        cliente = getCliente();
+
+        try {
+            // TODO add your handling code here:
+            if (cliente.getId() != 0) {
+                daoCliente.update(cliente);
+            } else {
+                daoCliente.insert(getCliente());
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(JDialogCliente.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        clearCampos();
+        habilitaCampos(false);
+    }//GEN-LAST:event_jButtonGravarActionPerformed
+
+    private void jButtonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCancelarActionPerformed
+        habilitaCampos(false);
+        clearCampos();
+    }//GEN-LAST:event_jButtonCancelarActionPerformed
+
+    private void jButtonPesquisarCidadeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonPesquisarCidadeActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jComboBoxEstadoActionPerformed
+    }//GEN-LAST:event_jButtonPesquisarCidadeActionPerformed
+
+    private void jButtonIncluirCidadeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonIncluirCidadeActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonIncluirCidadeActionPerformed
+
+    private void jButtonAdicionarVeiculoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAdicionarVeiculoActionPerformed
+        // TODO add your handling code here:
+        Veiculo veiculo = new Veiculo();
+        veiculo.setPlaca(jFormattedTextFieldPlaca.getText().trim());
+        veiculo.setModelo(jTextFieldModelo.getText().trim());
+        veiculo.setCor(jTextFieldCor.getText().trim());
+        veiculo.setTipoVeiculo(jComboBoxTipoVeiculo.getSelectedItem().toString());
+
+        veiculos.add(veiculo);
+        preencherTableVeiculos();
+    }//GEN-LAST:event_jButtonAdicionarVeiculoActionPerformed
+
+    private void jButtonAlterarVeiculoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAlterarVeiculoActionPerformed
+        // TODO add your handling code here:
+        int linha = jTableVeiculo.getSelectedRow();
+
+        if (linha < 0) {
+            return;
+        }
+
+        jFormattedTextFieldPlaca.setText(jTableVeiculo.getValueAt(linha, 0).toString());
+        jTextFieldModelo.setText(jTableVeiculo.getValueAt(linha, 1).toString());
+        jTextFieldCor.setText(jTableVeiculo.getValueAt(linha, 2).toString());
+        jComboBoxTipoVeiculo.setSelectedItem(jTableVeiculo.getValueAt(linha, 3).toString());
+
+        veiculos.remove(linha);
+        preencherTableVeiculos();
+    }//GEN-LAST:event_jButtonAlterarVeiculoActionPerformed
+
+    private void jButtonExcluirVeiculoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonExcluirVeiculoActionPerformed
+        // TODO add your handling code here:
+        int linha = jTableVeiculo.getSelectedRow();
+
+        if (linha < 0) {
+            return;
+        }
+
+        veiculos.remove(linha);
+        preencherTableVeiculos();
+    }//GEN-LAST:event_jButtonExcluirVeiculoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -648,21 +853,26 @@ public class JDialogCliente extends javax.swing.JDialog {
         });
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
+    private javax.swing.ButtonGroup GroupSexo;
     private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
-    private javax.swing.JButton jButton6;
-    private javax.swing.JButton jButtonPesquisar1;
-    private javax.swing.JComboBox jComboBox1;
-    private javax.swing.JComboBox jComboBoxEstado;
-    private javax.swing.JFormattedTextField jFormattedTextField1;
-    private javax.swing.JFormattedTextField jFormattedTextField2;
-    private javax.swing.JFormattedTextField jFormattedTextFieldCelularHum1;
-    private javax.swing.JFormattedTextField jFormattedTextFieldDataNasc1;
-    private javax.swing.JFormattedTextField jFormattedTextFieldTelComecial1;
-    private javax.swing.JFormattedTextField jFormattedTextFieldTelefonePessoal1;
+    private javax.swing.JButton jButtonAdicionarVeiculo;
+    private javax.swing.JButton jButtonAlterar;
+    private javax.swing.JButton jButtonAlterarVeiculo;
+    private javax.swing.JButton jButtonCancelar;
+    private javax.swing.JButton jButtonExcluir;
+    private javax.swing.JButton jButtonExcluirVeiculo;
+    private javax.swing.JButton jButtonGravar;
+    private javax.swing.JButton jButtonIncluir;
+    private javax.swing.JButton jButtonIncluirCidade;
+    private javax.swing.JButton jButtonPesquisarCidade;
+    private javax.swing.JButton jButtonPesquisarCliente;
+    private javax.swing.JComboBox jComboBoxTipoVeiculo;
+    private javax.swing.JFormattedTextField jFormattedTextFieldCPFCliente;
+    private javax.swing.JFormattedTextField jFormattedTextFieldCelularCliente;
+    private javax.swing.JFormattedTextField jFormattedTextFieldDataNascCliente;
+    private javax.swing.JFormattedTextField jFormattedTextFieldPlaca;
+    private javax.swing.JFormattedTextField jFormattedTextFieldTelComecialCliente;
+    private javax.swing.JFormattedTextField jFormattedTextFieldTelefonePessoalCliente;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
@@ -691,20 +901,118 @@ public class JDialogCliente extends javax.swing.JDialog {
     private javax.swing.JPanel jPanel4;
     private javax.swing.JRadioButton jRadioButtonFemininoCliente;
     private javax.swing.JRadioButton jRadioButtonMasculinoCliente;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTabbedPane jTabbedPane1;
+    private javax.swing.JTable jTableVeiculo;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField10;
     private javax.swing.JTextField jTextField11;
     private javax.swing.JTextField jTextField12;
     private javax.swing.JTextField jTextField13;
     private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
     private javax.swing.JTextField jTextField4;
     private javax.swing.JTextField jTextField5;
-    private javax.swing.JTextField jTextField6;
-    private javax.swing.JTextField jTextField7;
     private javax.swing.JTextField jTextField8;
     private javax.swing.JTextField jTextField9;
+    private javax.swing.JTextField jTextFieldCor;
+    private javax.swing.JTextField jTextFieldEmailCliente;
+    private javax.swing.JTextField jTextFieldIdCliente;
+    private javax.swing.JTextField jTextFieldModelo;
+    private javax.swing.JTextField jTextFieldNomeCliente;
     // End of variables declaration//GEN-END:variables
 
+    public Cliente getCliente() {
+        Cliente cliente = new Cliente();
+
+        try {
+            cliente.setId(Integer.parseInt(jTextFieldIdCliente.getText().trim()));
+        } catch (Exception e) {
+            cliente.setId(0);
+        }
+
+        cliente.setNome(jTextFieldNomeCliente.getText().trim());
+        cliente.setCpf(jFormattedTextFieldCPFCliente.getText().trim());
+        cliente.setSexo((jRadioButtonMasculinoCliente.isSelected()) ? "M" : "F");
+        cliente.setDataNascimento(converteData.toDate(jFormattedTextFieldDataNascCliente.getText().trim()));
+        cliente.setTelPessoal(jFormattedTextFieldTelefonePessoalCliente.getText().trim());
+        cliente.setCelular(jFormattedTextFieldCelularCliente.getText().trim());
+        cliente.setTelComercial(jFormattedTextFieldTelComecialCliente.getText().trim());
+        cliente.setEmail(jTextFieldEmailCliente.getText().trim());
+        
+        cliente.setVeiculos(veiculos);
+
+        return cliente;
+    }
+
+    private void setCliente(Cliente cliente) {
+        jTextFieldNomeCliente.setText(cliente.getNome());
+        jFormattedTextFieldCPFCliente.setText(cliente.getCpf());
+        jRadioButtonMasculinoCliente.setSelected((cliente.getSexo().equals("M") ? true : false));
+        jFormattedTextFieldDataNascCliente.setText(converteData.toString(cliente.getDataNascimento()));
+        jFormattedTextFieldTelefonePessoalCliente.setText(cliente.getTelPessoal());
+        jFormattedTextFieldCelularCliente.setText(cliente.getCelular());
+        jFormattedTextFieldTelComecialCliente.setText(cliente.getTelComercial());
+        jTextFieldEmailCliente.setText(cliente.getEmail());
+        
+        veiculos = cliente.getVeiculos();
+        preencherTableVeiculos();
+    }
+
+    private void clearCampos() {
+        jTextFieldIdCliente.setText("");
+        jTextFieldNomeCliente.setText("");
+        jFormattedTextFieldCPFCliente.setText("");
+        jRadioButtonMasculinoCliente.setSelected(true);
+        jFormattedTextFieldDataNascCliente.setText("");
+        jFormattedTextFieldTelefonePessoalCliente.setText("");
+        jFormattedTextFieldCelularCliente.setText("");
+        jFormattedTextFieldTelComecialCliente.setText("");
+        jTextFieldEmailCliente.setText("");
+        modeloVeiculo.setNumRows(0);
+        veiculos.clear();
+
+    }
+
+    private void habilitaCampos(boolean comando) {
+        jButtonAlterar.setEnabled(!comando);
+        jButtonExcluir.setEnabled(!comando);
+        jButtonIncluir.setEnabled(!comando);
+
+        jButtonCancelar.setEnabled(comando);
+        jButtonGravar.setEnabled(comando);
+
+        jTextFieldIdCliente.setEnabled(!comando);
+        jButtonPesquisarCliente.setEnabled(!comando);
+        jTextFieldNomeCliente.setEnabled(comando);
+        jFormattedTextFieldCPFCliente.setEnabled(comando);
+        jRadioButtonMasculinoCliente.setEnabled(comando);
+        jRadioButtonFemininoCliente.setEnabled(comando);
+        jFormattedTextFieldDataNascCliente.setEnabled(comando);
+        jFormattedTextFieldTelefonePessoalCliente.setEnabled(comando);
+        jFormattedTextFieldCelularCliente.setEnabled(comando);
+        jFormattedTextFieldTelComecialCliente.setEnabled(comando);
+        jTextFieldEmailCliente.setEnabled(comando);
+        
+        jFormattedTextFieldPlaca.setEnabled(comando);
+        jTextFieldModelo.setEnabled(comando);
+        jTextFieldCor.setEnabled(comando);
+        jComboBoxTipoVeiculo.setEnabled(comando);
+        jTableVeiculo.setEnabled(comando);
+        jButtonAdicionarVeiculo.setEnabled(comando);
+        jButtonAlterarVeiculo.setEnabled(comando);
+        jButtonExcluirVeiculo.setEnabled(comando);
+
+    }
+
+    private void preencherTableVeiculos() {
+        modeloVeiculo.setNumRows(0);
+        for (Veiculo obj : veiculos) {
+            modeloVeiculo.addRow(new Object[]{
+                obj.getPlaca(),
+                obj.getModelo(),
+                obj.getCor(),
+                obj.getTipoVeiculo()
+            });
+        }
+    }
 }

@@ -4,8 +4,11 @@
  */
 package br.edu.utfpr.cwsmanager.model.pessoa;
 
+import br.edu.utfpr.cwsmanager.model.veiculo.Veiculo;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 
 /**
  *
@@ -21,6 +24,7 @@ public class Cliente {
     private String celular;
     private String telComercial;
     private String email;
+    private List<Veiculo> veiculos = new ArrayList<Veiculo>();
 
     public int getId() {
         return id;
@@ -97,6 +101,14 @@ public class Cliente {
     @Override
     public String toString() {
         return "Cliente{" + "id=" + id + ", nome=" + nome + ", cpf=" + cpf + ", sexo=" + sexo + ", dataNascimento=" + dataNascimento + ", telPessoal=" + telPessoal + ", celular=" + celular + ", telComercial=" + telComercial + ", email=" + email + '}';
+    }
+
+    public void setVeiculos(List<Veiculo> veiculos) {
+        this.veiculos = veiculos;
+    }
+
+    public List<Veiculo> getVeiculos() {
+        return veiculos;
     }
     
     
