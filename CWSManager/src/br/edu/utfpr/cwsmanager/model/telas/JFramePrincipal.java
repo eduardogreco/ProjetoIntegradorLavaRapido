@@ -49,7 +49,6 @@ public class JFramePrincipal extends javax.swing.JFrame {
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenuCadastros = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
-        jMenuItem2 = new javax.swing.JMenuItem();
         jMenuCadastro = new javax.swing.JMenuItem();
         jMenuItem3 = new javax.swing.JMenuItem();
         jMenuItem18 = new javax.swing.JMenuItem();
@@ -274,11 +273,6 @@ public class JFramePrincipal extends javax.swing.JFrame {
         });
         jMenuCadastros.add(jMenuItem1);
 
-        jMenuItem2.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_2, java.awt.event.InputEvent.CTRL_MASK));
-        jMenuItem2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icones/veiculo.png"))); // NOI18N
-        jMenuItem2.setText("Cadastrar Veículo");
-        jMenuCadastros.add(jMenuItem2);
-
         jMenuCadastro.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_3, java.awt.event.InputEvent.CTRL_MASK));
         jMenuCadastro.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icones/client.png"))); // NOI18N
         jMenuCadastro.setText("Cadastrar Cliente");
@@ -301,6 +295,11 @@ public class JFramePrincipal extends javax.swing.JFrame {
         jMenuItem18.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_5, java.awt.event.InputEvent.CTRL_MASK));
         jMenuItem18.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icones/city.png"))); // NOI18N
         jMenuItem18.setText("Cadastrar Cidade");
+        jMenuItem18.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem18ActionPerformed(evt);
+            }
+        });
         jMenuCadastros.add(jMenuItem18);
 
         jMenuBar1.add(jMenuCadastros);
@@ -426,7 +425,9 @@ public class JFramePrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuCadastroActionPerformed
 
     private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
-        // TODO add your handling code here:
+        JDialogTipoServico jdTipoServico = new JDialogTipoServico(this, true);
+        jdTipoServico.setLocationRelativeTo(null);
+        jdTipoServico.setVisible(true);
     }//GEN-LAST:event_jMenuItem3ActionPerformed
 
     private void jButtonClienteMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonClienteMouseEntered
@@ -571,6 +572,12 @@ public class JFramePrincipal extends javax.swing.JFrame {
         Sair();
     }//GEN-LAST:event_jMenuItem7ActionPerformed
 
+    private void jMenuItem18ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem18ActionPerformed
+JDialogCidade jdCidade = new JDialogCidade(this, true);
+        jdCidade.setLocationRelativeTo(null);
+        jdCidade.setVisible(true);        // TODO add your handling code here:
+    }//GEN-LAST:event_jMenuItem18ActionPerformed
+
 
      private void Sair() {
         String[] opcoes = {"Sim", "Não"};
@@ -648,7 +655,6 @@ public class JFramePrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem16;
     private javax.swing.JMenuItem jMenuItem17;
     private javax.swing.JMenuItem jMenuItem18;
-    private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItem5;
