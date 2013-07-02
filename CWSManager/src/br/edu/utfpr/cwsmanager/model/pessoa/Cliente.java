@@ -24,10 +24,28 @@ public class Cliente {
     private String celular;
     private String telComercial;
     private String email;
+    private String login;
+    private String senha;
     private List<Veiculo> veiculos = new ArrayList<Veiculo>();
 
     public int getId() {
         return id;
+    }
+
+    public String getLogin() {
+        return login;
+    }
+
+    public void setLogin(String login) {
+        this.login = login;
+    }
+
+    public String getSenha() {
+        return senha;
+    }
+
+    public void setSenha(String senha) {
+        this.senha = senha;
     }
 
     public String getNome() {
@@ -100,7 +118,7 @@ public class Cliente {
 
     @Override
     public String toString() {
-        return "Cliente{" + "id=" + id + ", nome=" + nome + ", cpf=" + cpf + ", sexo=" + sexo + ", dataNascimento=" + dataNascimento + ", telPessoal=" + telPessoal + ", celular=" + celular + ", telComercial=" + telComercial + ", email=" + email + '}';
+        return "Cliente{" + "id=" + id + ", nome=" + nome + ", cpf=" + cpf + ", sexo=" + sexo + ", dataNascimento=" + dataNascimento + ", telPessoal=" + telPessoal + ", celular=" + celular + ", telComercial=" + telComercial + ", email=" + email + ", login=" + login + ", senha=" + senha + ", veiculos=" + veiculos + '}';
     }
 
     public void setVeiculos(List<Veiculo> veiculos) {

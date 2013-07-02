@@ -33,6 +33,8 @@ public class DaoCliente implements Dao<Cliente> {
         c.setCelular(rs.getString("celular"));
         c.setTelComercial(rs.getString("telComercial"));
         c.setEmail(rs.getString("email"));
+        c.setLogin(rs.getString("login"));
+        c.setSenha(rs.getString("senha"));
         return c;
     }
 
@@ -83,7 +85,7 @@ public class DaoCliente implements Dao<Cliente> {
     }
 
     public void insert(Cliente c) throws SQLException {
-        PreparedStatement pst = ConnectionFactory.prepareConnection().prepareStatement("INSERT INTO Cliente (nome, cpf, sexo, dataNascimento, telPessoal, celular, telComercial, email) VALUES(?,?,?,?,?,?,?,?)", Statement.RETURN_GENERATED_KEYS);
+        PreparedStatement pst = ConnectionFactory.prepareConnection().prepareStatement("INSERT INTO Cliente (nome, cpf, sexo, dataNascimento, telPessoal, celular, telComercial, email, login, senha) VALUES(?,?,?,?,?,?,?,?,?,?)", Statement.RETURN_GENERATED_KEYS);
         pst.setString(1, c.getNome());
         pst.setString(2, c.getCpf());
         pst.setString(3, c.getSexo());
@@ -92,6 +94,8 @@ public class DaoCliente implements Dao<Cliente> {
         pst.setString(6, c.getCelular());
         pst.setString(7, c.getTelComercial());
         pst.setString(8, c.getEmail());
+        pst.setString(9, c.getLogin());
+        pst.setString(10, c.getSenha());
 
 
         pst.execute();
