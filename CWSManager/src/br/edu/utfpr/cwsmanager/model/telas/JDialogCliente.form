@@ -388,11 +388,11 @@
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="40" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="jLabel16" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="jLabel18" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="jLabel19" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="jLabel20" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="jLabel21" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="jLabelNomeEndereco" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="jLabelComplemento" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="jLabelBairro" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="jLabelCidadeEnd" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="jLabelCep" alignment="0" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
@@ -433,25 +433,25 @@
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="jLabel16" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jLabelNomeEndereco" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="jTextFieldNomeEndreco" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="jLabel17" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="jTextFieldNumEndereco" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="jLabel18" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jLabelComplemento" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="jTextFieldComplemento" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="jLabel19" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jLabelBairro" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="jTextFieldBairro" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="14" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="1" attributes="0">
                           <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="jLabel20" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="jLabelCidadeEnd" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="jTextFieldPesquisaCodCidade" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <Component id="jButtonPesquisarCidade" min="-2" pref="30" max="-2" attributes="0"/>
@@ -465,7 +465,7 @@
                       </Group>
                       <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="jLabel21" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jLabelCep" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="jTextFieldCep" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace pref="157" max="32767" attributes="0"/>
@@ -474,7 +474,7 @@
             </DimensionLayout>
           </Layout>
           <SubComponents>
-            <Component class="javax.swing.JLabel" name="jLabel16">
+            <Component class="javax.swing.JLabel" name="jLabelNomeEndereco">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Endere&#xe7;o:"/>
               </Properties>
@@ -488,24 +488,24 @@
             </Component>
             <Component class="javax.swing.JTextField" name="jTextFieldNumEndereco">
             </Component>
-            <Component class="javax.swing.JLabel" name="jLabel18">
+            <Component class="javax.swing.JLabel" name="jLabelComplemento">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Complemento:"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JTextField" name="jTextFieldComplemento">
             </Component>
-            <Component class="javax.swing.JLabel" name="jLabel19">
+            <Component class="javax.swing.JLabel" name="jLabelBairro">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Bairro:"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JLabel" name="jLabel20">
+            <Component class="javax.swing.JLabel" name="jLabelCidadeEnd">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Cidade:"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JLabel" name="jLabel21">
+            <Component class="javax.swing.JLabel" name="jLabelCep">
               <Properties>
                 <Property name="text" type="java.lang.String" value="CEP:"/>
               </Properties>

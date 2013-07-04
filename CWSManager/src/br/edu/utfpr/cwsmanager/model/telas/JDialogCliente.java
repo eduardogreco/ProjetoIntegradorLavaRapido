@@ -5,6 +5,8 @@
 package br.edu.utfpr.cwsmanager.model.telas;
 
 import br.edu.utfpr.cwsmanager.model.daos.DaoCliente;
+import br.edu.utfpr.cwsmanager.model.daos.DaoEndereco;
+import br.edu.utfpr.cwsmanager.model.endereco.Endereco;
 import br.edu.utfpr.cwsmanager.model.pessoa.Cliente;
 import br.edu.utfpr.cwsmanager.model.util.UtilDatas;
 import br.edu.utfpr.cwsmanager.model.veiculo.Veiculo;
@@ -72,15 +74,15 @@ public class JDialogCliente extends javax.swing.JDialog {
         jFormattedTextFieldCelularCliente = new javax.swing.JFormattedTextField();
         jFormattedTextFieldTelComecialCliente = new javax.swing.JFormattedTextField();
         jPanel2 = new javax.swing.JPanel();
-        jLabel16 = new javax.swing.JLabel();
+        jLabelNomeEndereco = new javax.swing.JLabel();
         jTextFieldNomeEndreco = new javax.swing.JTextField();
         jLabel17 = new javax.swing.JLabel();
         jTextFieldNumEndereco = new javax.swing.JTextField();
-        jLabel18 = new javax.swing.JLabel();
+        jLabelComplemento = new javax.swing.JLabel();
         jTextFieldComplemento = new javax.swing.JTextField();
-        jLabel19 = new javax.swing.JLabel();
-        jLabel20 = new javax.swing.JLabel();
-        jLabel21 = new javax.swing.JLabel();
+        jLabelBairro = new javax.swing.JLabel();
+        jLabelCidadeEnd = new javax.swing.JLabel();
+        jLabelCep = new javax.swing.JLabel();
         jTextFieldBairro = new javax.swing.JTextField();
         jTextFieldPesquisaCodCidade = new javax.swing.JTextField();
         jTextFieldCep = new javax.swing.JTextField();
@@ -306,17 +308,17 @@ public class JDialogCliente extends javax.swing.JDialog {
 
         jTabbedPane1.addTab("Pessoal", jPanel1);
 
-        jLabel16.setText("Endereço:");
+        jLabelNomeEndereco.setText("Endereço:");
 
         jLabel17.setText("N");
 
-        jLabel18.setText("Complemento:");
+        jLabelComplemento.setText("Complemento:");
 
-        jLabel19.setText("Bairro:");
+        jLabelBairro.setText("Bairro:");
 
-        jLabel20.setText("Cidade:");
+        jLabelCidadeEnd.setText("Cidade:");
 
-        jLabel21.setText("CEP:");
+        jLabelCep.setText("CEP:");
 
         jLabel22.setText("UF:");
 
@@ -349,11 +351,11 @@ public class JDialogCliente extends javax.swing.JDialog {
             .add(jPanel2Layout.createSequentialGroup()
                 .add(40, 40, 40)
                 .add(jPanel2Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                    .add(jLabel16)
-                    .add(jLabel18)
-                    .add(jLabel19)
-                    .add(jLabel20)
-                    .add(jLabel21))
+                    .add(jLabelNomeEndereco)
+                    .add(jLabelComplemento)
+                    .add(jLabelBairro)
+                    .add(jLabelCidadeEnd)
+                    .add(jLabelCep))
                 .add(18, 18, 18)
                 .add(jPanel2Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING, false)
                     .add(jPanel2Layout.createSequentialGroup()
@@ -386,22 +388,22 @@ public class JDialogCliente extends javax.swing.JDialog {
             .add(jPanel2Layout.createSequentialGroup()
                 .add(34, 34, 34)
                 .add(jPanel2Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
-                    .add(jLabel16)
+                    .add(jLabelNomeEndereco)
                     .add(jTextFieldNomeEndreco, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                     .add(jLabel17)
                     .add(jTextFieldNumEndereco, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
                 .add(18, 18, 18)
                 .add(jPanel2Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
-                    .add(jLabel18)
+                    .add(jLabelComplemento)
                     .add(jTextFieldComplemento, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
                 .add(18, 18, 18)
                 .add(jPanel2Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
-                    .add(jLabel19)
+                    .add(jLabelBairro)
                     .add(jTextFieldBairro, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
                 .add(14, 14, 14)
                 .add(jPanel2Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING)
                     .add(jPanel2Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
-                        .add(jLabel20)
+                        .add(jLabelCidadeEnd)
                         .add(jTextFieldPesquisaCodCidade, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
                     .add(jButtonPesquisarCidade, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 30, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                     .add(jButtonIncluirCidade, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 30, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
@@ -412,7 +414,7 @@ public class JDialogCliente extends javax.swing.JDialog {
                     .add(jTextFieldUFCidade, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
                 .add(20, 20, 20)
                 .add(jPanel2Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
-                    .add(jLabel21)
+                    .add(jLabelCep)
                     .add(jTextFieldCep, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(157, Short.MAX_VALUE))
         );
@@ -879,19 +881,19 @@ public class JDialogCliente extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
-    private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
-    private javax.swing.JLabel jLabel18;
-    private javax.swing.JLabel jLabel19;
-    private javax.swing.JLabel jLabel20;
-    private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel22;
+    private javax.swing.JLabel jLabelBairro;
     private javax.swing.JLabel jLabelCelCliente;
+    private javax.swing.JLabel jLabelCep;
+    private javax.swing.JLabel jLabelCidadeEnd;
     private javax.swing.JLabel jLabelCodCliente;
+    private javax.swing.JLabel jLabelComplemento;
     private javax.swing.JLabel jLabelCpfCliente;
     private javax.swing.JLabel jLabelDataNascCliente;
     private javax.swing.JLabel jLabelEmailCliente;
     private javax.swing.JLabel jLabelNomeCliente;
+    private javax.swing.JLabel jLabelNomeEndereco;
     private javax.swing.JLabel jLabelSexoCliente;
     private javax.swing.JLabel jLabelTelComercialCliente;
     private javax.swing.JLabel jLabelTelPessoalCliente;
@@ -940,11 +942,12 @@ public class JDialogCliente extends javax.swing.JDialog {
         cliente.setEmail(jTextFieldEmailCliente.getText().trim());
         cliente.setLogin(jTextFieldLoginCliente.getText().trim());
         cliente.setSenha(jTextFieldSenhaCliente.getText().trim());
-        
+
         cliente.setVeiculos(veiculos);
 
         return cliente;
     }
+
 
     private void setCliente(Cliente cliente) {
         jTextFieldNomeCliente.setText(cliente.getNome());
@@ -957,7 +960,7 @@ public class JDialogCliente extends javax.swing.JDialog {
         jTextFieldEmailCliente.setText(cliente.getEmail());
         jTextFieldLoginCliente.setText(cliente.getLogin());
         jTextFieldSenhaCliente.setText(cliente.getSenha());
-        
+
         veiculos = cliente.getVeiculos();
         preencherTableVeiculos();
     }
@@ -1000,7 +1003,7 @@ public class JDialogCliente extends javax.swing.JDialog {
         jTextFieldEmailCliente.setEnabled(comando);
         jTextFieldLoginCliente.setEnabled(comando);
         jTextFieldSenhaCliente.setEnabled(comando);
-        
+
         jFormattedTextFieldPlaca.setEnabled(comando);
         jTextFieldModelo.setEnabled(comando);
         jTextFieldCor.setEnabled(comando);

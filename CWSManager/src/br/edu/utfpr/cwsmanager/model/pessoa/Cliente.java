@@ -4,6 +4,7 @@
  */
 package br.edu.utfpr.cwsmanager.model.pessoa;
 
+import br.edu.utfpr.cwsmanager.model.endereco.Endereco;
 import br.edu.utfpr.cwsmanager.model.veiculo.Veiculo;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -128,6 +129,5 @@ public class Cliente {
     public List<Veiculo> getVeiculos() {
         return veiculos;
     }
-    
-    
+   
 }
