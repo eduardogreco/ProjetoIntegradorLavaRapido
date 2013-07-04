@@ -38,6 +38,7 @@ public class JFramePrincipal extends javax.swing.JFrame {
         buttonGroup1 = new javax.swing.ButtonGroup();
         jtAtalho = new javax.swing.JToolBar();
         jButtonCliente = new javax.swing.JButton();
+        jButtonSolicitacaoService = new javax.swing.JButton();
         jButtonProduto = new javax.swing.JButton();
         jButtonCompra = new javax.swing.JButton();
         jButtonVenda = new javax.swing.JButton();
@@ -57,8 +58,9 @@ public class JFramePrincipal extends javax.swing.JFrame {
         jMenuItem4 = new javax.swing.JMenuItem();
         jMenu4 = new javax.swing.JMenu();
         jMenuItem15 = new javax.swing.JMenuItem();
-        jMenuItem16 = new javax.swing.JMenuItem();
+        jMenuItemConsultaCidade = new javax.swing.JMenuItem();
         jMenuItem17 = new javax.swing.JMenuItem();
+        jMenuItem2 = new javax.swing.JMenuItem();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem14 = new javax.swing.JMenuItem();
         jMenu3 = new javax.swing.JMenu();
@@ -108,6 +110,26 @@ public class JFramePrincipal extends javax.swing.JFrame {
             }
         });
         jtAtalho.add(jButtonCliente);
+
+        jButtonSolicitacaoService.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icones/ssservice.png"))); // NOI18N
+        jButtonSolicitacaoService.setToolTipText("Cadastrar de Clientes");
+        jButtonSolicitacaoService.setFocusable(false);
+        jButtonSolicitacaoService.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jButtonSolicitacaoService.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jButtonSolicitacaoService.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jButtonSolicitacaoServiceMouseExited(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jButtonSolicitacaoServiceMouseEntered(evt);
+            }
+        });
+        jButtonSolicitacaoService.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonSolicitacaoServiceActionPerformed(evt);
+            }
+        });
+        jtAtalho.add(jButtonSolicitacaoService);
 
         jButtonProduto.setToolTipText("Cadastro de Produtos");
         jButtonProduto.setFocusable(false);
@@ -320,19 +342,33 @@ public class JFramePrincipal extends javax.swing.JFrame {
         jMenuItem15.setText("Consulta de Funcionários");
         jMenu4.add(jMenuItem15);
 
-        jMenuItem16.setText("Consulta de Veículos");
-        jMenu4.add(jMenuItem16);
+        jMenuItemConsultaCidade.setText("Consulta de Cidades");
+        jMenu4.add(jMenuItemConsultaCidade);
 
         jMenuItem17.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icones/searchclient.png"))); // NOI18N
         jMenuItem17.setText("Consulta de Clientes");
+        jMenuItem17.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem17ActionPerformed(evt);
+            }
+        });
         jMenu4.add(jMenuItem17);
+
+        jMenuItem2.setText("Consulta de Tipo de Servico");
+        jMenu4.add(jMenuItem2);
 
         jMenuBar1.add(jMenu4);
 
         jMenu1.setText("Relatórios");
 
+        jMenuItem14.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_R, java.awt.event.InputEvent.ALT_MASK | java.awt.event.InputEvent.CTRL_MASK));
         jMenuItem14.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icones/gerenciarRel.png"))); // NOI18N
         jMenuItem14.setText("Gerenciador de relatórios");
+        jMenuItem14.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem14ActionPerformed(evt);
+            }
+        });
         jMenu1.add(jMenuItem14);
 
         jMenuBar1.add(jMenu1);
@@ -341,6 +377,11 @@ public class JFramePrincipal extends javax.swing.JFrame {
 
         jMenuItem12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icones/bancoDeDados.png"))); // NOI18N
         jMenuItem12.setText("Configuração do Banco de dados");
+        jMenuItem12.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem12ActionPerformed(evt);
+            }
+        });
         jMenu3.add(jMenuItem12);
 
         jMenuItem13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icones/consultaHQL.png"))); // NOI18N
@@ -353,6 +394,11 @@ public class JFramePrincipal extends javax.swing.JFrame {
 
         jMenuItem11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icones/sobre.png"))); // NOI18N
         jMenuItem11.setText("Informações");
+        jMenuItem11.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem11ActionPerformed(evt);
+            }
+        });
         jMenu5.add(jMenuItem11);
 
         jMenuBar1.add(jMenu5);
@@ -578,6 +624,46 @@ JDialogCidade jdCidade = new JDialogCidade(this, true);
         jdCidade.setVisible(true);        // TODO add your handling code here:
     }//GEN-LAST:event_jMenuItem18ActionPerformed
 
+    private void jButtonSolicitacaoServiceMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonSolicitacaoServiceMouseExited
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonSolicitacaoServiceMouseExited
+
+    private void jButtonSolicitacaoServiceMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonSolicitacaoServiceMouseEntered
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonSolicitacaoServiceMouseEntered
+
+    private void jButtonSolicitacaoServiceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSolicitacaoServiceActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonSolicitacaoServiceActionPerformed
+
+    private void jMenuItem14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem14ActionPerformed
+        // TODO add your handling code here:
+        JDialogRelatorio jDialogRelatorio = new JDialogRelatorio(this, true);
+        jDialogRelatorio.setLocationRelativeTo(null);
+        jDialogRelatorio.setVisible(true);
+    }//GEN-LAST:event_jMenuItem14ActionPerformed
+
+    private void jMenuItem12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem12ActionPerformed
+        // TODO add your handling code here:
+        JDialogConfigBanco jDialogConfigBanco = new JDialogConfigBanco((null), false);
+        jDialogConfigBanco.setLocationRelativeTo(null);
+        jDialogConfigBanco.setVisible(true);
+    }//GEN-LAST:event_jMenuItem12ActionPerformed
+
+    private void jMenuItem11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem11ActionPerformed
+        // TODO add your handling code here:
+        JDialogSobre jDialogSobre = new JDialogSobre(null, true);
+        jDialogSobre.setLocationRelativeTo(null);
+        jDialogSobre.setVisible(true);
+    }//GEN-LAST:event_jMenuItem11ActionPerformed
+
+    private void jMenuItem17ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem17ActionPerformed
+        // TODO add your handling code here:
+        JDialogConsCliente jdConsCliente = new JDialogConsCliente(this, true);
+        jdConsCliente.setLocationRelativeTo(null);
+        jdConsCliente.setVisible(true);
+    }//GEN-LAST:event_jMenuItem17ActionPerformed
+
 
      private void Sair() {
         String[] opcoes = {"Sim", "Não"};
@@ -631,6 +717,7 @@ JDialogCidade jdCidade = new JDialogCidade(this, true);
     private javax.swing.JButton jButtonManual;
     private javax.swing.JButton jButtonProduto;
     private javax.swing.JButton jButtonSair;
+    private javax.swing.JButton jButtonSolicitacaoService;
     private javax.swing.JButton jButtonVenda;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu10;
@@ -652,9 +739,9 @@ JDialogCidade jdCidade = new JDialogCidade(this, true);
     private javax.swing.JMenuItem jMenuItem13;
     private javax.swing.JMenuItem jMenuItem14;
     private javax.swing.JMenuItem jMenuItem15;
-    private javax.swing.JMenuItem jMenuItem16;
     private javax.swing.JMenuItem jMenuItem17;
     private javax.swing.JMenuItem jMenuItem18;
+    private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItem5;
@@ -662,6 +749,7 @@ JDialogCidade jdCidade = new JDialogCidade(this, true);
     private javax.swing.JMenuItem jMenuItem7;
     private javax.swing.JMenuItem jMenuItem8;
     private javax.swing.JMenuItem jMenuItem9;
+    private javax.swing.JMenuItem jMenuItemConsultaCidade;
     private javax.swing.JMenu jMenuOrdemServico;
     private javax.swing.JMenu jMenuSolicitacaoServico;
     private javax.swing.JToolBar jtAtalho;
