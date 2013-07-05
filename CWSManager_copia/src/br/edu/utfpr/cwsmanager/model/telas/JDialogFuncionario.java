@@ -67,7 +67,7 @@ public class JDialogFuncionario extends javax.swing.JDialog {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        jLabelCodigoFuncionario.setText("Teste:");
+        jLabelCodigoFuncionario.setText("Código:");
 
         jTextField1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
