@@ -60,7 +60,10 @@ public class JFramePrincipal extends javax.swing.JFrame {
         jMenuItem3 = new javax.swing.JMenuItem();
         jMenuItem18 = new javax.swing.JMenuItem();
         jMenuSolicitacaoServico = new javax.swing.JMenu();
+        jMenuItem4 = new javax.swing.JMenuItem();
+        jMenuItem16 = new javax.swing.JMenuItem();
         jMenuOrdemServico = new javax.swing.JMenu();
+        jMenuItem19 = new javax.swing.JMenuItem();
         jMenu4 = new javax.swing.JMenu();
         jMenuItem15 = new javax.swing.JMenuItem();
         jMenuItemConsultaCidade = new javax.swing.JMenuItem();
@@ -452,9 +455,35 @@ public class JFramePrincipal extends javax.swing.JFrame {
         jMenuBar1.add(jMenuCadastros);
 
         jMenuSolicitacaoServico.setText("Solicitação de Serviço");
+
+        jMenuItem4.setText("Consultar");
+        jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem4ActionPerformed(evt);
+            }
+        });
+        jMenuSolicitacaoServico.add(jMenuItem4);
+
+        jMenuItem16.setText("Cadastrar");
+        jMenuItem16.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem16ActionPerformed(evt);
+            }
+        });
+        jMenuSolicitacaoServico.add(jMenuItem16);
+
         jMenuBar1.add(jMenuSolicitacaoServico);
 
         jMenuOrdemServico.setText("Ordem de Serviço");
+
+        jMenuItem19.setText("Gerenciar");
+        jMenuItem19.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem19ActionPerformed(evt);
+            }
+        });
+        jMenuOrdemServico.add(jMenuItem19);
+
         jMenuBar1.add(jMenuOrdemServico);
 
         jMenu4.setText("Consultas");
@@ -861,6 +890,27 @@ public class JFramePrincipal extends javax.swing.JFrame {
         jdOrdemServico.setVisible(true);
     }//GEN-LAST:event_jButtonOrdemServicoMENUActionPerformed
 
+    private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
+        // TODO add your handling code here:
+        JDialogSolicitacaoServico jdSolicitacaoServico = new JDialogSolicitacaoServico(this, true);
+        jdSolicitacaoServico.setLocationRelativeTo(jdSolicitacaoServico);
+        jdSolicitacaoServico.setVisible(true);
+    }//GEN-LAST:event_jMenuItem4ActionPerformed
+
+    private void jMenuItem16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem16ActionPerformed
+        // TODO add your handling code here:
+        JDialogSolicitacaoServico jdSolicitacaoServico = new JDialogSolicitacaoServico(this, true);
+        jdSolicitacaoServico.setLocationRelativeTo(jdSolicitacaoServico);
+        jdSolicitacaoServico.setVisible(true);
+    }//GEN-LAST:event_jMenuItem16ActionPerformed
+
+    private void jMenuItem19ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem19ActionPerformed
+        // TODO add your handling code here:
+         JDialogOrdemServico jdOrdemServico = new JDialogOrdemServico(this, true);
+        jdOrdemServico.setLocationRelativeTo(jdOrdemServico);
+        jdOrdemServico.setVisible(true);
+    }//GEN-LAST:event_jMenuItem19ActionPerformed
+
     private void Sair() {
         String[] opcoes = {"Sim", "Não"};
         int opcao = JOptionPane.showOptionDialog(null, "Tem certeza que deseja sair?", "Mensagem",
@@ -942,10 +992,13 @@ public class JFramePrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem13;
     private javax.swing.JMenuItem jMenuItem14;
     private javax.swing.JMenuItem jMenuItem15;
+    private javax.swing.JMenuItem jMenuItem16;
     private javax.swing.JMenuItem jMenuItem17;
     private javax.swing.JMenuItem jMenuItem18;
+    private javax.swing.JMenuItem jMenuItem19;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
+    private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JMenuItem jMenuItem6;
     private javax.swing.JMenuItem jMenuItem7;
@@ -956,4 +1009,11 @@ public class JFramePrincipal extends javax.swing.JFrame {
     private javax.swing.JMenu jMenuSolicitacaoServico;
     private javax.swing.JToolBar jtAtalho;
     // End of variables declaration//GEN-END:variables
+
+public void AbreTelaGerarOrdem(){
+JDialogCadOrdemServico jdCadOrdemServico = new JDialogCadOrdemServico(this, true);
+        jdCadOrdemServico.setLocationRelativeTo(jdCadOrdemServico);
+        jdCadOrdemServico.setVisible(true);
+}
+
 }
