@@ -4,6 +4,9 @@
  */
 package br.edu.utfpr.cwsmanager.model.pessoa;
 
+import java.util.Calendar;
+import java.util.Date;
+
 /**
  *
  * @author RAFAEL
@@ -20,6 +23,37 @@ public class Funcionario {
     private String telPessoal;
     private String celular;
     private String email;
+    private String login;
+    private String senha;
+    
+     private Date dataNascimento = Calendar.getInstance().getTime();
+
+    public Date getDataNascimento() {
+        return dataNascimento;
+    }
+
+    public void setDataNascimento(Date dataNascimento) {
+        this.dataNascimento = dataNascimento;
+    }
+
+    
+   
+
+    public String getLogin() {
+        return login;
+    }
+
+    public void setLogin(String login) {
+        this.login = login;
+    }
+
+    public String getSenha() {
+        return senha;
+    }
+
+    public void setSenha(String senha) {
+        this.senha = senha;
+    }
 
     public int getIdFuncionario() {
         return idFuncionario;
@@ -87,9 +121,13 @@ public class Funcionario {
 
     @Override
     public String toString() {
-        return "Funcionario{" + "idFuncionario=" + idFuncionario + ", nome=" + nome + ", cpf=" + cpf + ", sexo=" + sexo + ", estadoCivil=" + estadoCivil + ", telPessoal=" + telPessoal + ", celular=" + celular + ", email=" + email + '}';
+        return "Funcionario{" + "idFuncionario=" + idFuncionario + ", nome=" + nome + ", cpf=" + cpf + ", sexo=" + sexo + ", estadoCivil=" + estadoCivil + ", telPessoal=" + telPessoal + ", celular=" + celular + ", email=" + email + ", login=" + login + ", senha=" + senha + ", dataNascimento=" + dataNascimento + '}';
     }
+
     
+   
+
+   
     
 }
 
