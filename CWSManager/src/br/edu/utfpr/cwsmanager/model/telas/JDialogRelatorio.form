@@ -34,7 +34,7 @@
                       <Component id="jPanel2" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
-              <EmptySpace pref="13" max="32767" attributes="0"/>
+              <EmptySpace max="32767" attributes="0"/>
           </Group>
           <Group type="102" alignment="1" attributes="0">
               <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
@@ -113,12 +113,12 @@
       <SubComponents>
         <Component class="javax.swing.JRadioButton" name="jRadioRelSS">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Relat&#xf3;rio de Solicitacao de Servicos"/>
+            <Property name="text" type="java.lang.String" value="Relat&#xf3;rio de Solicita&#xe7;ao de Servi&#xe7;os em aberto"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JRadioButton" name="jRadioRelOS">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Relat&#xf3;rio de Ordem de servico encerradas"/>
+            <Property name="text" type="java.lang.String" value="Relat&#xf3;rio de Ordem de servi&#xe7;o encerradas"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JRadioButton" name="jRadioRelClientes">
@@ -128,7 +128,7 @@
         </Component>
         <Component class="javax.swing.JRadioButton" name="jRadioRelFuncionarios">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Relat&#xf3;rio de Funcionarios"/>
+            <Property name="text" type="java.lang.String" value="Relat&#xf3;rio de Funcion&#xe1;rios"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jRadioRelFuncionariosActionPerformed"/>

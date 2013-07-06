@@ -43,13 +43,13 @@ public class JDialogRelatorio extends javax.swing.JDialog {
 
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
 
-        jRadioRelSS.setText("Relatório de Solicitacao de Servicos");
+        jRadioRelSS.setText("Relatório de Solicitaçao de Serviços em aberto");
 
-        jRadioRelOS.setText("Relatório de Ordem de servico encerradas");
+        jRadioRelOS.setText("Relatório de Ordem de serviço encerradas");
 
         jRadioRelClientes.setText("Relatório de Clientes");
 
-        jRadioRelFuncionarios.setText("Relatório de Funcionarios");
+        jRadioRelFuncionarios.setText("Relatório de Funcionários");
         jRadioRelFuncionarios.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jRadioRelFuncionariosActionPerformed(evt);
@@ -116,7 +116,7 @@ public class JDialogRelatorio extends javax.swing.JDialog {
                     .add(layout.createSequentialGroup()
                         .add(55, 55, 55)
                         .add(jPanel2, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(13, Short.MAX_VALUE))
+                .addContainerGap(org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .add(org.jdesktop.layout.GroupLayout.TRAILING, layout.createSequentialGroup()
                 .add(0, 0, Short.MAX_VALUE)
                 .add(jButtonGerarRel, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 110, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
