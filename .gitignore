@@ -3,6 +3,11 @@
 /LP2/nbproject/private/
 /CWSManager/nbproject/private/
 /CWSManager/build/
+<<<<<<< HEAD
 CWSManager/src/br/edu/utfpr/cwsmanager/model/telas/JDialogCadSolicitacaoServico.form
 
 CWSManager/src/br/edu/utfpr/cwsmanager/model/telas/JDialogCadSolicitacaoServico.form
+=======
+/CWSManager_copia/nbproject/private/
+/CWSManager_copia/build/
+>>>>>>> c092cce0b4be022c756c45d7ea438ec8061b7c08

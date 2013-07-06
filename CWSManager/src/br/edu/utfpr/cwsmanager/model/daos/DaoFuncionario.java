@@ -10,6 +10,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.List;
 import br.edu.utfpr.cwsmanager.model.util.ConnectionFactory;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.util.ArrayList;
 
@@ -24,6 +25,7 @@ public class DaoFuncionario implements Dao<Funcionario> {
         f.setIdFuncionario(rs.getInt("id"));
         f.setNome(rs.getString("nome"));
         f.setCpf(rs.getString("cpf"));
+     //   f.setDataNascimento(rs.getDate("dataNacimento"));
         f.setSexo(rs.getString("sexo"));
         f.setEstadoCivil(rs.getString("Estadocivil"));
         f.setTelPessoal(rs.getString("telPessoal"));
@@ -75,8 +77,10 @@ public class DaoFuncionario implements Dao<Funcionario> {
         return Funcionario;
     }
 
-    private void insert(Funcionario f) throws SQLException {
-        PreparedStatement pst = ConnectionFactory.prepareConnection().prepareStatement("INSERT INTO Funcionario (nome, cpf, sexo, estadoCivil, telPessoal, celular, email) VALUES(?,?,?,?,?,?,?)", Statement.RETURN_GENERATED_KEYS);
+    public void insert(Funcionario f) throws SQLException {
+        PreparedStatement pst = ConnectionFactory.prepareConnection().prepareStatement("INSERT INTO Funcionario (nome, cpf, sexo,  estadoCivil, telPessoal, celular, email) VALUES(?,?,?,?,?,?,?)", Statement.RETURN_GENERATED_KEYS);
+        
+       
         pst.setString(1, f.getNome());
         pst.setString(2, f.getCpf());
         pst.setString(3, f.getSexo());
@@ -93,7 +97,7 @@ public class DaoFuncionario implements Dao<Funcionario> {
         f.setIdFuncionario(rs.getInt(1));
     }
 
-    private void update(Funcionario f) throws SQLException {
+    public void update(Funcionario f) throws SQLException {
         PreparedStatement pst = ConnectionFactory.prepareConnection().prepareStatement("UPDATE Funcionario SET nome = ?, cpf = ? WHERE id = ?");
         pst.setString(1, f.getNome());
         pst.setString(2, f.getCpf());
