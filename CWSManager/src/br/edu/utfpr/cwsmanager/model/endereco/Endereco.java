@@ -17,11 +17,21 @@ public class Endereco {
     private int numero;
     private String complemento;
     private String bairro;
-    private String cidade;
-    private String Uf;
     private String cep;
+    private Cliente cliente;
+    private Cidade cidade = new Cidade();
 
     public Endereco() {
+    }
+
+    
+    
+    public Cliente getCliente() {
+        return cliente;
+    }
+
+    public void setCliente(Cliente cliente) {
+        this.cliente = cliente;
     }
 
     public int getId() {
@@ -64,22 +74,6 @@ public class Endereco {
         this.bairro = bairro;
     }
 
-    public String getCidade() {
-        return cidade;
-    }
-
-    public void setCidade(String cidade) {
-        this.cidade = cidade;
-    }
-
-    public String getUf() {
-        return Uf;
-    }
-
-    public void setUf(String Uf) {
-        this.Uf = Uf;
-    }
-
     public String getCep() {
         return cep;
     }
@@ -88,8 +82,18 @@ public class Endereco {
         this.cep = cep;
     }
 
+    public Cidade getCidade() {
+        return cidade;
+    }
+
+    public void setCidade(Cidade cidade) {
+        this.cidade = cidade;
+    }
+
     @Override
     public String toString() {
-        return "Endereco{" + "id=" + id + ", nomeEndereco=" + nomeEndereco + ", numero=" + numero + ", complemento=" + complemento + ", bairro=" + bairro + ", cidade=" + cidade + ", Uf=" + Uf + ", cep=" + cep + '}';
+        return "Endereco{" + "id=" + id + ", nomeEndereco=" + nomeEndereco + ", numero=" + numero + ", complemento=" + complemento + ", bairro=" + bairro + ", cep=" + cep + ", cliente=" + cliente + ", cidade=" + cidade + '}';
     }
+
+ 
 }

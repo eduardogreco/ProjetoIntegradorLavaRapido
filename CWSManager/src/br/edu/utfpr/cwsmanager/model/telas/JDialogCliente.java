@@ -4,8 +4,10 @@
  */
 package br.edu.utfpr.cwsmanager.model.telas;
 
+import br.edu.utfpr.cwsmanager.model.daos.DaoCidade;
 import br.edu.utfpr.cwsmanager.model.daos.DaoCliente;
 import br.edu.utfpr.cwsmanager.model.daos.DaoEndereco;
+import br.edu.utfpr.cwsmanager.model.endereco.Cidade;
 import br.edu.utfpr.cwsmanager.model.endereco.Endereco;
 import br.edu.utfpr.cwsmanager.model.pessoa.Cliente;
 import br.edu.utfpr.cwsmanager.model.util.UtilDatas;
@@ -15,6 +17,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -27,6 +30,7 @@ public class JDialogCliente extends javax.swing.JDialog {
     private DaoCliente daoCliente = new DaoCliente();
     private DefaultTableModel modeloVeiculo;
     private List<Veiculo> veiculos = new ArrayList<Veiculo>();
+    private DaoCidade daoCidade = new DaoCidade();
 
     /**
      * Creates new form JDialogCliente
@@ -319,6 +323,12 @@ public class JDialogCliente extends javax.swing.JDialog {
         jLabelCidadeEnd.setText("Cidade:");
 
         jLabelCep.setText("CEP:");
+
+        jTextFieldPesquisaCodCidade.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                jTextFieldPesquisaCodCidadeFocusLost(evt);
+            }
+        });
 
         jLabel22.setText("UF:");
 
@@ -812,6 +822,29 @@ public class JDialogCliente extends javax.swing.JDialog {
         preencherTableVeiculos();
     }//GEN-LAST:event_jButtonExcluirVeiculoActionPerformed
 
+    private void jTextFieldPesquisaCodCidadeFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextFieldPesquisaCodCidadeFocusLost
+        Cidade cidade = new Cidade();
+        int id_cidade = 0;
+        
+        try {
+            id_cidade = Integer.parseInt(jTextFieldPesquisaCodCidade.getText().trim());
+        } catch (Exception e) {
+            return;
+        }
+        
+        try {
+            cidade = daoCidade.retrieve(id_cidade);
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Código da cidade não cadastrado", "Atenção", JOptionPane.WARNING_MESSAGE);
+            jTextFieldPesquisaCodCidade.setText("");
+            jTextFieldPesquisaCodCidade.grabFocus();
+            return;
+        }
+        
+        jTextFieldNomeCidade.setText(cidade.getNome());
+        jTextFieldUFCidade.setText(cidade.getEstado());
+    }//GEN-LAST:event_jTextFieldPesquisaCodCidadeFocusLost
+
     /**
      * @param args the command line arguments
      */
@@ -942,6 +975,13 @@ public class JDialogCliente extends javax.swing.JDialog {
         cliente.setLogin(jTextFieldLoginCliente.getText().trim());
         cliente.setSenha(jTextFieldSenhaCliente.getText().trim());
 
+        cliente.getEndereco().setNomeEndereco(jTextFieldNomeEndreco.getText().trim());
+        cliente.getEndereco().setNumero(Integer.parseInt(jTextFieldNumEndereco.getText().trim()));
+        cliente.getEndereco().setComplemento(jTextFieldComplemento.getText().trim());
+        cliente.getEndereco().setBairro(jTextFieldBairro.getText().trim());
+        cliente.getEndereco().getCidade().setId(Integer.parseInt(jTextFieldPesquisaCodCidade.getText().trim()));
+        cliente.getEndereco().setCep(jTextFieldCep.getText().trim());
+       
         cliente.setVeiculos(veiculos);
 
         return cliente;
@@ -960,6 +1000,15 @@ public class JDialogCliente extends javax.swing.JDialog {
         jTextFieldLoginCliente.setText(cliente.getLogin());
         jTextFieldSenhaCliente.setText(cliente.getSenha());
 
+        jTextFieldNomeEndreco.setText(cliente.getEndereco().getNomeEndereco());
+        jTextFieldNumEndereco.setText(Integer.toString(cliente.getEndereco().getNumero()));
+       jTextFieldComplemento.setText(cliente.getEndereco().getComplemento());
+        jTextFieldBairro.setText(cliente.getEndereco().getBairro());
+        jTextFieldPesquisaCodCidade.setText(Integer.toString(cliente.getEndereco().getCidade().getId()));
+        jTextFieldNomeCidade.setText(cliente.getEndereco().getCidade().getNome());
+        jTextFieldUFCidade.setText(cliente.getEndereco().getCidade().getEstado());
+        jTextFieldCep.setText(cliente.getEndereco().getCep());
+        
         veiculos = cliente.getVeiculos();
         preencherTableVeiculos();
     }
@@ -976,6 +1025,14 @@ public class JDialogCliente extends javax.swing.JDialog {
         jTextFieldEmailCliente.setText("");
         jTextFieldLoginCliente.setText("");
         jTextFieldSenhaCliente.setText("");
+        jTextFieldNomeEndreco.setText("");
+        jTextFieldNumEndereco.setText("");
+        jTextFieldComplemento.setText("");
+        jTextFieldBairro.setText("");
+        jTextFieldPesquisaCodCidade.setText("");
+        jTextFieldNomeCidade.setText("");
+        jTextFieldUFCidade.setText("");
+        jTextFieldCep.setText("");
         modeloVeiculo.setNumRows(0);
         veiculos.clear();
 
@@ -1002,6 +1059,14 @@ public class JDialogCliente extends javax.swing.JDialog {
         jTextFieldEmailCliente.setEnabled(comando);
         jTextFieldLoginCliente.setEnabled(comando);
         jTextFieldSenhaCliente.setEnabled(comando);
+        jTextFieldNomeEndreco.setEnabled(comando);
+        jTextFieldNumEndereco.setEnabled(comando);
+        jTextFieldComplemento.setEnabled(comando);
+        jTextFieldBairro.setEnabled(comando);
+        jTextFieldPesquisaCodCidade.setEnabled(comando);
+        jTextFieldNomeCidade.setEnabled(comando);
+        jTextFieldUFCidade.setEnabled(comando);
+        jTextFieldCep.setEnabled(comando);
 
         jFormattedTextFieldPlaca.setEnabled(comando);
         jTextFieldModelo.setEnabled(comando);

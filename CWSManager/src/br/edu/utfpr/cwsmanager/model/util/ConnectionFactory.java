@@ -14,7 +14,7 @@ import java.sql.SQLException;
  */
 public class ConnectionFactory {
     
-    public static final String JDBC_URL = "jdbc:mysql://localhost:3306/ProjetoIntegrador?user=root&password=1234";
+    public static final String JDBC_URL = "jdbc:mysql://localhost:3306/teste?user=root&password=";
 
     public static  Connection prepareConnection() throws SQLException {
         DriverManager.registerDriver(new com.mysql.jdbc.Driver());

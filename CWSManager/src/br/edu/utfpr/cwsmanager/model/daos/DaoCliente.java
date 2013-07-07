@@ -22,6 +22,8 @@ import java.util.ArrayList;
 public class DaoCliente implements Dao<Cliente> {
 
     private DaoVeiculo daoVeiculo = new DaoVeiculo();
+    private DaoEndereco daoEndereco = new DaoEndereco();
+    
     public static Cliente converteRsParaCliente(ResultSet rs) throws SQLException {
         Cliente c = new Cliente();
         c.setId(rs.getInt("id"));
@@ -51,6 +53,9 @@ public class DaoCliente implements Dao<Cliente> {
     public void delete(Cliente c) throws Exception {
         daoVeiculo.deleteId_cliente(c.getId());
         
+        c.getEndereco().setCliente(c);
+        daoEndereco.deleteid_cliente(c.getEndereco());
+        
         Statement st = ConnectionFactory.prepareConnection().createStatement();
         st.execute("DELETE FROM Cliente WHERE id = " + c.getId());
         
@@ -66,6 +71,7 @@ public class DaoCliente implements Dao<Cliente> {
         Cliente c = converteRsParaCliente(rs);
 
         c.setVeiculos(daoVeiculo.retrieveId_cliente(c.getId()));
+        c.setEndereco(daoEndereco.retrieveid_cliente(c.getId()));
         return c;
     }
 
@@ -103,7 +109,8 @@ public class DaoCliente implements Dao<Cliente> {
         ResultSet rs = pst.getGeneratedKeys();
         rs.next();
         c.setId(rs.getInt(1));
-        
+        c.getEndereco().setCliente(c);
+        daoEndereco.insert(c.getEndereco());
         for (Veiculo obj : c.getVeiculos()){
             obj.setCliente(c);
             daoVeiculo.insert(obj);
@@ -117,6 +124,9 @@ public class DaoCliente implements Dao<Cliente> {
         pst.setInt(3, c.getId());
         pst.execute();
         
+        
+        c.getEndereco().setCliente(c);
+        daoEndereco.updateid_cliente(c.getEndereco());
         daoVeiculo.deleteId_cliente(c.getId());
         
         for (Veiculo obj : c.getVeiculos()){

@@ -28,11 +28,21 @@ public class Cliente {
     private String login;
     private String senha;
     private List<Veiculo> veiculos = new ArrayList<Veiculo>();
+    private Endereco endereco = new Endereco();
 
     public int getId() {
         return id;
     }
 
+    public Endereco getEndereco() {
+        return endereco;
+    }
+
+    public void setEndereco(Endereco endereco) {
+        this.endereco = endereco;
+    }
+
+    
     public String getLogin() {
         return login;
     }
