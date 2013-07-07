@@ -69,6 +69,8 @@ public class JDialogFuncionario extends javax.swing.JDialog {
         jFormattedTextFieldCelularFuncionario = new javax.swing.JFormattedTextField();
         jComboBoxEstadoCivil = new javax.swing.JComboBox();
         jLabel12 = new javax.swing.JLabel();
+        jFormattedTextFieldDataNascFuncionario = new javax.swing.JFormattedTextField();
+        jLabelDataNascCliente = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jLabelNomeEndereco = new javax.swing.JLabel();
         jTextFieldNomeEnderecoFuncionario = new javax.swing.JTextField();
@@ -92,6 +94,8 @@ public class JDialogFuncionario extends javax.swing.JDialog {
         jLabel11 = new javax.swing.JLabel();
         jTextFieldLoginFuncionario = new javax.swing.JTextField();
         jTextFieldSenhaFuncionario = new javax.swing.JTextField();
+        jLabel13 = new javax.swing.JLabel();
+        jTextFieldConfirmaSenhaFuncionario = new javax.swing.JTextField();
         jButtonGravarFuncionario = new javax.swing.JButton();
         jButtonCancelarFuncionario = new javax.swing.JButton();
         jButtonSair = new javax.swing.JButton();
@@ -174,6 +178,21 @@ public class JDialogFuncionario extends javax.swing.JDialog {
 
         jLabel12.setText("Estado Civil:");
 
+        try {
+            jFormattedTextFieldDataNascFuncionario.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+        jFormattedTextFieldDataNascFuncionario.setMinimumSize(new java.awt.Dimension(42, 28));
+        jFormattedTextFieldDataNascFuncionario.setPreferredSize(new java.awt.Dimension(42, 28));
+        jFormattedTextFieldDataNascFuncionario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jFormattedTextFieldDataNascFuncionarioActionPerformed(evt);
+            }
+        });
+
+        jLabelDataNascCliente.setText("Data de Nascimento:");
+
         org.jdesktop.layout.GroupLayout jPanel1Layout = new org.jdesktop.layout.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -182,39 +201,6 @@ public class JDialogFuncionario extends javax.swing.JDialog {
                 .add(34, 34, 34)
                 .add(jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
                     .add(jPanel1Layout.createSequentialGroup()
-                        .add(jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                            .add(jPanel1Layout.createSequentialGroup()
-                                .add(jLabelEmailCliente)
-                                .add(99, 99, 99)
-                                .add(jTextFieldEmailFuncionario, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 399, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                            .add(jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING)
-                                .add(jPanel1Layout.createSequentialGroup()
-                                    .add(jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                                        .add(jLabel12)
-                                        .add(jPanel1Layout.createSequentialGroup()
-                                            .add(110, 110, 110)
-                                            .add(jComboBoxEstadoCivil, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 125, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)))
-                                    .add(289, 289, 289))
-                                .add(jPanel1Layout.createSequentialGroup()
-                                    .add(jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                                        .add(jLabelCodCliente)
-                                        .add(jLabelNomeCliente)
-                                        .add(jLabelCpfCliente)
-                                        .add(jLabelSexoCliente))
-                                    .add(18, 18, 18)
-                                    .add(jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                                        .add(jPanel1Layout.createSequentialGroup()
-                                            .add(jRadioButtonMasculinoFuncionario)
-                                            .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                                            .add(jRadioButtonFemininoFuncionario))
-                                        .add(jPanel1Layout.createSequentialGroup()
-                                            .add(jTextFieldIdFuncionario, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 61, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                                            .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
-                                            .add(jButtonPesquisarFuncionario, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 40, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                                        .add(jTextFieldNomeFuncionario, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 469, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                                        .add(jFormattedTextFieldCPFFuncionario, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 247, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)))))
-                        .addContainerGap(100, Short.MAX_VALUE))
-                    .add(jPanel1Layout.createSequentialGroup()
                         .add(jLabelTelPessoalCliente)
                         .add(28, 28, 28)
                         .add(jFormattedTextFieldTelefonePessoalFuncionario, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 125, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
@@ -222,7 +208,42 @@ public class JDialogFuncionario extends javax.swing.JDialog {
                         .add(jLabelCelCliente)
                         .add(18, 18, 18)
                         .add(jFormattedTextFieldCelularFuncionario, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 150, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                        .add(0, 0, Short.MAX_VALUE))))
+                        .add(0, 0, Short.MAX_VALUE))
+                    .add(jPanel1Layout.createSequentialGroup()
+                        .add(jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING, false)
+                            .add(jPanel1Layout.createSequentialGroup()
+                                .add(jLabelDataNascCliente)
+                                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                                .add(jFormattedTextFieldDataNascFuncionario, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 134, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .add(jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                                    .add(jLabel12)
+                                    .add(jPanel1Layout.createSequentialGroup()
+                                        .add(110, 110, 110)
+                                        .add(jComboBoxEstadoCivil, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 125, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))))
+                            .add(org.jdesktop.layout.GroupLayout.LEADING, jPanel1Layout.createSequentialGroup()
+                                .add(jLabelEmailCliente)
+                                .add(99, 99, 99)
+                                .add(jTextFieldEmailFuncionario, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 399, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                            .add(org.jdesktop.layout.GroupLayout.LEADING, jPanel1Layout.createSequentialGroup()
+                                .add(jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                                    .add(jLabelCodCliente)
+                                    .add(jLabelNomeCliente)
+                                    .add(jLabelCpfCliente)
+                                    .add(jLabelSexoCliente))
+                                .add(18, 18, 18)
+                                .add(jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                                    .add(jPanel1Layout.createSequentialGroup()
+                                        .add(jRadioButtonMasculinoFuncionario)
+                                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                                        .add(jRadioButtonFemininoFuncionario))
+                                    .add(jPanel1Layout.createSequentialGroup()
+                                        .add(jTextFieldIdFuncionario, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 61, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
+                                        .add(jButtonPesquisarFuncionario, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 40, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                                    .add(jFormattedTextFieldCPFFuncionario, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 247, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                                    .add(jTextFieldNomeFuncionario))))
+                        .addContainerGap(100, Short.MAX_VALUE))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
@@ -246,17 +267,19 @@ public class JDialogFuncionario extends javax.swing.JDialog {
                     .add(jLabelSexoCliente)
                     .add(jRadioButtonMasculinoFuncionario)
                     .add(jRadioButtonFemininoFuncionario))
-                .add(10, 10, 10)
+                .add(14, 14, 14)
                 .add(jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
+                    .add(jLabelDataNascCliente)
+                    .add(jFormattedTextFieldDataNascFuncionario, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                     .add(jLabel12)
                     .add(jComboBoxEstadoCivil, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                .add(22, 22, 22)
+                .add(56, 56, 56)
                 .add(jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
                     .add(jLabelTelPessoalCliente)
                     .add(jFormattedTextFieldTelefonePessoalFuncionario, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                     .add(jLabelCelCliente)
                     .add(jFormattedTextFieldCelularFuncionario, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                .add(64, 64, 64)
+                .add(18, 18, 18)
                 .add(jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
                     .add(jLabelEmailCliente)
                     .add(jTextFieldEmailFuncionario, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
@@ -394,20 +417,34 @@ public class JDialogFuncionario extends javax.swing.JDialog {
             }
         });
 
+        jLabel13.setText("Confirmar Senha:");
+
+        jTextFieldConfirmaSenhaFuncionario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextFieldConfirmaSenhaFuncionarioActionPerformed(evt);
+            }
+        });
+
         org.jdesktop.layout.GroupLayout jPanel4Layout = new org.jdesktop.layout.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
             .add(jPanel4Layout.createSequentialGroup()
                 .add(45, 45, 45)
-                .add(jPanel4Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                    .add(jLabel10)
-                    .add(jLabel11))
-                .add(38, 38, 38)
                 .add(jPanel4Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING, false)
-                    .add(jTextFieldLoginFuncionario)
-                    .add(jTextFieldSenhaFuncionario, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 243, Short.MAX_VALUE))
-                .addContainerGap(300, Short.MAX_VALUE))
+                    .add(jPanel4Layout.createSequentialGroup()
+                        .add(jLabel13)
+                        .add(38, 38, 38)
+                        .add(jTextFieldConfirmaSenhaFuncionario))
+                    .add(jPanel4Layout.createSequentialGroup()
+                        .add(jPanel4Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                            .add(jLabel10)
+                            .add(jLabel11))
+                        .add(88, 88, 88)
+                        .add(jPanel4Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING)
+                            .add(jTextFieldSenhaFuncionario, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 243, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                            .add(jTextFieldLoginFuncionario, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 243, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap())
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
@@ -420,7 +457,11 @@ public class JDialogFuncionario extends javax.swing.JDialog {
                 .add(jPanel4Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
                     .add(jLabel11)
                     .add(jTextFieldSenhaFuncionario, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(384, Short.MAX_VALUE))
+                .add(18, 18, 18)
+                .add(jPanel4Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
+                    .add(jLabel13)
+                    .add(jTextFieldConfirmaSenhaFuncionario, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(346, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Login Sistema", jPanel4);
@@ -604,6 +645,14 @@ public class JDialogFuncionario extends javax.swing.JDialog {
         // TODO add your handling code here:
     }//GEN-LAST:event_jComboBoxEstadoCivilActionPerformed
 
+    private void jTextFieldConfirmaSenhaFuncionarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldConfirmaSenhaFuncionarioActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextFieldConfirmaSenhaFuncionarioActionPerformed
+
+    private void jFormattedTextFieldDataNascFuncionarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jFormattedTextFieldDataNascFuncionarioActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jFormattedTextFieldDataNascFuncionarioActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -656,15 +705,15 @@ public class JDialogFuncionario extends javax.swing.JDialog {
     private javax.swing.JButton jButtonPesquisarCidade;
     private javax.swing.JButton jButtonPesquisarFuncionario;
     private javax.swing.JButton jButtonSair;
-    private javax.swing.JComboBox jComboBox1;
-    private javax.swing.JComboBox jComboBox2;
     private javax.swing.JComboBox jComboBoxEstadoCivil;
     private javax.swing.JFormattedTextField jFormattedTextFieldCPFFuncionario;
     private javax.swing.JFormattedTextField jFormattedTextFieldCelularFuncionario;
+    private javax.swing.JFormattedTextField jFormattedTextFieldDataNascFuncionario;
     private javax.swing.JFormattedTextField jFormattedTextFieldTelefonePessoalFuncionario;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabelBairro;
@@ -674,6 +723,7 @@ public class JDialogFuncionario extends javax.swing.JDialog {
     private javax.swing.JLabel jLabelCodCliente;
     private javax.swing.JLabel jLabelComplemento;
     private javax.swing.JLabel jLabelCpfCliente;
+    private javax.swing.JLabel jLabelDataNascCliente;
     private javax.swing.JLabel jLabelEmailCliente;
     private javax.swing.JLabel jLabelNomeCliente;
     private javax.swing.JLabel jLabelNomeEndereco;
@@ -688,6 +738,7 @@ public class JDialogFuncionario extends javax.swing.JDialog {
     private javax.swing.JTextField jTextFieldBairroFuncionario;
     private javax.swing.JTextField jTextFieldCep;
     private javax.swing.JTextField jTextFieldComplementoFuncionario;
+    private javax.swing.JTextField jTextFieldConfirmaSenhaFuncionario;
     private javax.swing.JTextField jTextFieldEmailFuncionario;
     private javax.swing.JTextField jTextFieldIdFuncionario;
     private javax.swing.JTextField jTextFieldLoginFuncionario;
@@ -772,6 +823,7 @@ public class JDialogFuncionario extends javax.swing.JDialog {
         jComboBoxEstadoCivil.setEnabled(comando);
         jFormattedTextFieldTelefonePessoalFuncionario.setEnabled(comando);
         jFormattedTextFieldCelularFuncionario.setEnabled(comando);
+        jFormattedTextFieldDataNascFuncionario.setEnabled(comando);
       
         jTextFieldEmailFuncionario.setEnabled(comando);
         jTextFieldLoginFuncionario.setEnabled(comando);

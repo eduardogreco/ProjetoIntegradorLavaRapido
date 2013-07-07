@@ -26,7 +26,7 @@ public class Funcionario {
     private String login;
     private String senha;
     
-     private Date dataNascimento = Calendar.getInstance().getTime();
+    private Date dataNascimento = Calendar.getInstance().getTime();
 
     public Date getDataNascimento() {
         return dataNascimento;
