@@ -43,6 +43,7 @@ public class JDialogTipoServico extends javax.swing.JDialog {
         jButtonCancelarTipoServico = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Cadastrar Tipo de Serviço");
 
         jLabelCodTipoServico.setText("Código:");
 
@@ -139,8 +140,8 @@ public class JDialogTipoServico extends javax.swing.JDialog {
                 .add(jButtonGravarTipoServico)
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                 .add(jButtonCancelarTipoServico)
-                .add(60, 60, 60)
-                .add(jButtonSairTipoServico, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 66, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                .add(49, 49, 49)
+                .add(jButtonSairTipoServico, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 77, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -184,7 +185,7 @@ public class JDialogTipoServico extends javax.swing.JDialog {
             .add(layout.createSequentialGroup()
                 .add(17, 17, 17)
                 .add(jPanel1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(49, Short.MAX_VALUE))
+                .addContainerGap(org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();

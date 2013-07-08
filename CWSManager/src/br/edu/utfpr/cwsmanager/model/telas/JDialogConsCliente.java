@@ -42,6 +42,7 @@ public class JDialogConsCliente extends javax.swing.JDialog {
         jButton3 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Consulta de Clientes");
 
         jLabelPesquisa.setText("Consulta por:");
 

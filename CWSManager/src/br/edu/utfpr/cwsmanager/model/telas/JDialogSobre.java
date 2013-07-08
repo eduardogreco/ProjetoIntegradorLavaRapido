@@ -40,6 +40,7 @@ public class JDialogSobre extends javax.swing.JDialog {
         jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Sobre");
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel2.setText("CWS Manager - Car Wash System Manager");
@@ -85,23 +86,25 @@ public class JDialogSobre extends javax.swing.JDialog {
                         .add(jLabel13))
                     .add(layout.createSequentialGroup()
                         .add(18, 18, 18)
+                        .add(jLabel1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 300, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                        .add(18, 18, 18)
                         .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                            .add(jButton1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 74, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                            .add(layout.createSequentialGroup()
-                                .add(jLabel1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 300, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                                .add(18, 18, 18)
-                                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                                    .add(jLabel3)
-                                    .add(jLabel4)
-                                    .add(jLabel5)
-                                    .add(jLabel6)
-                                    .add(jLabel7)
-                                    .add(jLabel8))))))
+                            .add(jLabel3)
+                            .add(jLabel4)
+                            .add(jLabel5)
+                            .add(jLabel6)
+                            .add(jLabel7)
+                            .add(jLabel8))))
                 .addContainerGap(org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .add(org.jdesktop.layout.GroupLayout.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .add(jLabel2)
-                .add(102, 102, 102))
+                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                    .add(org.jdesktop.layout.GroupLayout.TRAILING, layout.createSequentialGroup()
+                        .add(jLabel2)
+                        .add(102, 102, 102))
+                    .add(org.jdesktop.layout.GroupLayout.TRAILING, layout.createSequentialGroup()
+                        .add(jButton1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 74, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap())))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)

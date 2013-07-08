@@ -41,6 +41,7 @@ public class JDialogOrdemServico extends javax.swing.JDialog {
         jButton3 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Ordem de Serviço");
 
         jLabel12.setText("Consulta por:");
 

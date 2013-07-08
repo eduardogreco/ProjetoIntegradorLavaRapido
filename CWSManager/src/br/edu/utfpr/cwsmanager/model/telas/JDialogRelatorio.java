@@ -37,6 +37,7 @@ public class JDialogRelatorio extends javax.swing.JDialog {
         jButtonSairRel = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Relatórios");
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel1.setText("Selecione o relatório desejado:");

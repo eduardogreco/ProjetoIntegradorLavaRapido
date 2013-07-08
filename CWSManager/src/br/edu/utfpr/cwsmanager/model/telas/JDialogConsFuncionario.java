@@ -42,6 +42,7 @@ public class JDialogConsFuncionario extends javax.swing.JDialog {
         jButton3 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Consulta de Funcionários");
 
         jLabelPesquisa.setText("Consulta por:");
 

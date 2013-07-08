@@ -104,7 +104,7 @@ public class JDialogFuncionario extends javax.swing.JDialog {
         jButtonExcluirFuncionario = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("Cadastro de Clientes");
+        setTitle("Cadastro de Funcionários");
 
         jLabelCodCliente.setText("Código:");
 
@@ -243,7 +243,7 @@ public class JDialogFuncionario extends javax.swing.JDialog {
                                         .add(jButtonPesquisarFuncionario, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 40, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
                                     .add(jFormattedTextFieldCPFFuncionario, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 247, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                                     .add(jTextFieldNomeFuncionario))))
-                        .addContainerGap(100, Short.MAX_VALUE))))
+                        .addContainerGap(74, Short.MAX_VALUE))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
@@ -283,7 +283,7 @@ public class JDialogFuncionario extends javax.swing.JDialog {
                 .add(jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
                     .add(jLabelEmailCliente)
                     .add(jTextFieldEmailFuncionario, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(135, Short.MAX_VALUE))
+                .addContainerGap(92, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Pessoal", jPanel1);
@@ -361,7 +361,7 @@ public class JDialogFuncionario extends javax.swing.JDialog {
                         .add(jLabel22)
                         .add(18, 18, 18)
                         .add(jTextFieldUFCidade, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 114, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(105, Short.MAX_VALUE))
+                .addContainerGap(59, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
@@ -396,7 +396,7 @@ public class JDialogFuncionario extends javax.swing.JDialog {
                 .add(jPanel2Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
                     .add(jLabelCep)
                     .add(jTextFieldCep, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(215, Short.MAX_VALUE))
+                .addContainerGap(157, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Endereço", jPanel2);
@@ -461,7 +461,7 @@ public class JDialogFuncionario extends javax.swing.JDialog {
                 .add(jPanel4Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
                     .add(jLabel13)
                     .add(jTextFieldConfirmaSenhaFuncionario, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(346, Short.MAX_VALUE))
+                .addContainerGap(304, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Login Sistema", jPanel4);

@@ -42,6 +42,7 @@ public class JDialogConsCidade extends javax.swing.JDialog {
         jButton3 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Consulta de Cidades");
 
         jLabelPesquisa.setText("Consulta por:");
 
