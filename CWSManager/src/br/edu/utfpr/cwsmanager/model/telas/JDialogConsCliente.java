@@ -4,8 +4,15 @@
  */
 package br.edu.utfpr.cwsmanager.model.telas;
 
+import br.edu.utfpr.cwsmanager.model.daos.DaoCliente;
+import br.edu.utfpr.cwsmanager.model.pessoa.Cliente;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+
 
 /**
  *
@@ -13,12 +20,20 @@ import java.util.logging.Logger;
  */
 public class JDialogConsCliente extends javax.swing.JDialog {
 
-    /**
-     * Creates new form JDialogConsCliente
-     */
-    public JDialogConsCliente(java.awt.Frame parent, boolean modal) {
+    private DaoCliente daoCliente;
+    private List<Cliente> clientes;
+    private DefaultTableModel modeloCliente;
+    public Cliente cliente;
+    
+    public JDialogConsCliente(java.awt.Dialog parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        
+        daoCliente = new DaoCliente();
+        cliente    = new Cliente();
+        
+        modeloCliente = (DefaultTableModel) jTableResult.getModel(); 
+        modeloCliente.setNumRows(0);
     }
 
     /**
@@ -46,7 +61,7 @@ public class JDialogConsCliente extends javax.swing.JDialog {
 
         jLabelPesquisa.setText("Consulta por:");
 
-        jComboBoxCampos.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Codigo", "Nome" }));
+        jComboBoxCampos.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Geral", "Codigo", "Nome" }));
 
         jFormattedTextFieldPesquisa.setMinimumSize(new java.awt.Dimension(42, 28));
         jFormattedTextFieldPesquisa.setPreferredSize(new java.awt.Dimension(42, 28));
@@ -196,15 +211,15 @@ public class JDialogConsCliente extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonPesquisarActionPerformed
-        // TODO add your handling code here:
+        pesquisa();
     }//GEN-LAST:event_jButtonPesquisarActionPerformed
 
     private void jButtonOkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonOkActionPerformed
-        // TODO add your handling code here:
+        selecionar();
     }//GEN-LAST:event_jButtonOkActionPerformed
 
     private void jButtonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCancelarActionPerformed
-        // TODO add your handling code here:
+        modeloCliente.setNumRows(0);
     }//GEN-LAST:event_jButtonCancelarActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
@@ -242,7 +257,7 @@ public class JDialogConsCliente extends javax.swing.JDialog {
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                JDialogConsCliente dialog = new JDialogConsCliente(new javax.swing.JFrame(), true);
+                JDialogConsCliente dialog = new JDialogConsCliente(new javax.swing.JDialog(), true);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {
@@ -265,4 +280,58 @@ public class JDialogConsCliente extends javax.swing.JDialog {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTableResult;
     // End of variables declaration//GEN-END:variables
+
+    private void selecionar(){
+        int linha = jTableResult.getSelectedRow();
+
+        if (linha < 0) {
+            JOptionPane.showMessageDialog(null, "Selecion um registro.", "Atenção", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+        
+        cliente = clientes.get(linha);
+        dispose();
+    }
+    
+    private void pesquisa(){
+        clientes   = new ArrayList<>();
+        
+        switch (jComboBoxCampos.getSelectedIndex()){
+            case 0:
+            try {
+                clientes = daoCliente.list();
+            } catch (Exception ex) {
+                Logger.getLogger(JDialogConsCliente.class.getName()).log(Level.SEVERE, null, ex);
+            }
+               
+               break;
+                
+            case 1:
+                break;
+              
+            case 2:
+                
+                break;
+        }
+        
+        preencherjTable();
+    }
+    private void preencherjTable() {
+        modeloCliente.setNumRows(0);
+        
+        if (clientes.isEmpty()){
+            JOptionPane.showMessageDialog(null, "Registros não encontrados.", "Atenção", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+        
+        for (Cliente obj : clientes) {
+            modeloCliente.addRow(new Object[]{
+                obj.getId(),
+                obj.getNome(),
+                obj.getCpf(),
+                obj.getEmail()
+            });
+        }
+    }
+
 }

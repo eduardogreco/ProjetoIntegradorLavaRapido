@@ -37,6 +37,7 @@ public class DaoCliente implements Dao<Cliente> {
         c.setEmail(rs.getString("email"));
         c.setLogin(rs.getString("login"));
         c.setSenha(rs.getString("senha"));
+        c.getEndereco().setId((rs.getInt("idEndereco")));
         return c;
     }
 
@@ -51,14 +52,14 @@ public class DaoCliente implements Dao<Cliente> {
 
     @Override
     public void delete(Cliente c) throws Exception {
-        daoVeiculo.deleteId_cliente(c.getId());
-        
-        c.getEndereco().setCliente(c);
-        daoEndereco.deleteid_cliente(c.getEndereco());
-        
+        for(Veiculo v: c.getVeiculos()){
+            daoVeiculo.delete(v);            
+        }      
+ 
         Statement st = ConnectionFactory.prepareConnection().createStatement();
         st.execute("DELETE FROM Cliente WHERE id = " + c.getId());
-        
+
+        daoEndereco.delete(c.getEndereco());       
     }
 
     @Override
@@ -70,8 +71,8 @@ public class DaoCliente implements Dao<Cliente> {
         rs.next();
         Cliente c = converteRsParaCliente(rs);
 
-        c.setVeiculos(daoVeiculo.retrieveId_cliente(c.getId()));
-        c.setEndereco(daoEndereco.retrieveid_cliente(c.getId()));
+        c.setVeiculos(daoVeiculo.list(c.getId()));
+        c.setEndereco(daoEndereco.retrieve(c.getEndereco().getId()));
         return c;
     }
 
@@ -90,8 +91,11 @@ public class DaoCliente implements Dao<Cliente> {
         return Clientes;
     }
 
-    public void insert(Cliente c) throws SQLException {
-        PreparedStatement pst = ConnectionFactory.prepareConnection().prepareStatement("INSERT INTO Cliente (nome, cpf, sexo, dataNascimento, telPessoal, celular, telComercial, email, login, senha) VALUES(?,?,?,?,?,?,?,?,?,?)", Statement.RETURN_GENERATED_KEYS);
+    public Integer insert(Cliente c) throws SQLException {
+        
+        daoEndereco.insert(c.getEndereco());
+        
+        PreparedStatement pst = ConnectionFactory.prepareConnection().prepareStatement("INSERT INTO Cliente (nome, cpf, sexo, dataNascimento, telPessoal, celular, telComercial, email, login, senha, idEndereco) VALUES(?,?,?,?,?,?,?,?,?,?,?)", Statement.RETURN_GENERATED_KEYS);
         pst.setString(1, c.getNome());
         pst.setString(2, c.getCpf());
         pst.setString(3, c.getSexo());
@@ -102,6 +106,7 @@ public class DaoCliente implements Dao<Cliente> {
         pst.setString(8, c.getEmail());
         pst.setString(9, c.getLogin());
         pst.setString(10, c.getSenha());
+        pst.setInt(11, c.getEndereco().getId());
 
 
         pst.execute();
@@ -109,12 +114,13 @@ public class DaoCliente implements Dao<Cliente> {
         ResultSet rs = pst.getGeneratedKeys();
         rs.next();
         c.setId(rs.getInt(1));
-        c.getEndereco().setCliente(c);
-        daoEndereco.insert(c.getEndereco());
+        
         for (Veiculo obj : c.getVeiculos()){
             obj.setCliente(c);
             daoVeiculo.insert(obj);
         }
+        
+        return c.getId();
     }
 
     public void update(Cliente c) throws SQLException, Exception {
@@ -124,14 +130,11 @@ public class DaoCliente implements Dao<Cliente> {
         pst.setInt(3, c.getId());
         pst.execute();
         
-        
-        c.getEndereco().setCliente(c);
-        daoEndereco.updateid_cliente(c.getEndereco());
-        daoVeiculo.deleteId_cliente(c.getId());
+        daoEndereco.update(c.getEndereco());
         
         for (Veiculo obj : c.getVeiculos()){
             obj.setCliente(c);
-            daoVeiculo.insert(obj);
+            daoVeiculo.persist(obj);
         }
     }
 }

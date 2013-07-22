@@ -25,11 +25,11 @@ public class DaoEndereco implements Dao<Endereco> {
     public Endereco converteRsParaEndereco(ResultSet rs) throws SQLException, Exception {
         Endereco e = new Endereco();
         e.setId(rs.getInt("id"));
-        e.setNomeEndereco(rs.getString("nomeendereco"));
+        e.setNomeEndereco(rs.getString("logradouro"));
         e.setNumero(rs.getInt("numero"));
         e.setComplemento(rs.getString("complemento"));
         e.setBairro(rs.getString("bairro"));
-        e.setCidade(daoCidade.retrieve(rs.getInt("id_cidade")));
+        e.setCidade(daoCidade.retrieve(rs.getInt("idCidade")));
         e.setCep(rs.getString("cep"));
         return e;
     }
@@ -48,25 +48,10 @@ Statement st = ConnectionFactory.prepareConnection().createStatement();
         st.execute("DELETE FROM Endereco WHERE id = " + e.getId());
     }
     
-     public void deleteid_cliente(Endereco e) throws Exception {
-Statement st = ConnectionFactory.prepareConnection().createStatement();
-            st.execute("DELETE FROM Endereco WHERE id_cliente = " + e.getCliente().getId());
-    }
-
     @Override
     public Endereco retrieve(int id) throws Exception {
  Statement st = ConnectionFactory.prepareConnection().createStatement();
         st.execute("SELECT * FROM Endereco WHERE id =" + id);
-        ResultSet rs = st.getResultSet();
-
-        rs.next();
-        Endereco e = converteRsParaEndereco(rs);
-        return e;
-    }
-
-    public Endereco retrieveid_cliente(int id) throws Exception {
- Statement st = ConnectionFactory.prepareConnection().createStatement();
-        st.execute("SELECT * FROM Endereco WHERE id_cliente =" + id);
         ResultSet rs = st.getResultSet();
 
         rs.next();
@@ -90,16 +75,14 @@ List<Endereco> Enderecos = new ArrayList<Endereco>();
     }
 
     public void insert(Endereco e) throws SQLException {
- PreparedStatement pst = ConnectionFactory.prepareConnection().prepareStatement("INSERT INTO Endereco (id_cliente, nomeEndereco, numero, complemento, bairro, id_cidade, cep) VALUES(?,?,?,?,?,?,?)", Statement.RETURN_GENERATED_KEYS);
- pst.setInt(1, e.getCliente().getId());
- pst.setString(2, e.getNomeEndereco());
-        pst.setInt(3, e.getNumero());
-        pst.setString(4, e.getComplemento());
-        pst.setString(5, e.getBairro());
-        pst.setInt(6, e.getCidade().getId());
-        pst.setString(7, e.getCep());
+        PreparedStatement pst = ConnectionFactory.prepareConnection().prepareStatement("INSERT INTO Endereco (logradouro, numero, complemento, bairro, idCidade, cep) VALUES(?,?,?,?,?,?)", Statement.RETURN_GENERATED_KEYS);
 
-
+        pst.setString(1, e.getNomeEndereco());
+        pst.setInt(2, e.getNumero());
+        pst.setString(3, e.getComplemento());
+        pst.setString(4, e.getBairro());
+        pst.setInt(5, e.getCidade().getId());
+        pst.setString(6, e.getCep());
 
         pst.execute();
 
@@ -109,8 +92,8 @@ List<Endereco> Enderecos = new ArrayList<Endereco>();
     }
 
     public void update(Endereco e) throws SQLException {
-PreparedStatement pst = ConnectionFactory.prepareConnection().prepareStatement("UPDATE Endereco SET nomeEndereco = ?, numero = ?, complemento = ?, bairro = ?, id_cidade = ?, cep = ? WHERE id = ?");
-         pst.setString(1, e.getNomeEndereco());
+        PreparedStatement pst = ConnectionFactory.prepareConnection().prepareStatement("UPDATE Endereco SET logradouro = ?, numero = ?, complemento = ?, bairro = ?, idCidade = ?, cep = ? WHERE id = ?");
+        pst.setString(1, e.getNomeEndereco());
         pst.setInt(2, e.getNumero());
         pst.setString(3, e.getComplemento());
         pst.setString(4, e.getBairro());
@@ -119,20 +102,5 @@ PreparedStatement pst = ConnectionFactory.prepareConnection().prepareStatement("
         pst.setInt(7, e.getId());
         pst.execute();
 
-    }
-    
-     public void updateid_cliente(Endereco e) throws SQLException {
-PreparedStatement pst = ConnectionFactory.prepareConnection().prepareStatement("UPDATE Endereco SET nomeEndereco = ?, numero = ?, complemento = ?, bairro = ?, id_cidade = ?, cep = ? WHERE id_cliente = ?");
-         pst.setString(1, e.getNomeEndereco());
-        pst.setInt(2, e.getNumero());
-        pst.setString(3, e.getComplemento());
-        pst.setString(4, e.getBairro());
-        pst.setInt(5, e.getCidade().getId());
-        pst.setString(6, e.getCep());
-        pst.setInt(7, e.getCliente().getId());
-        pst.execute();
-
-    }
-
-    
+    }  
 }

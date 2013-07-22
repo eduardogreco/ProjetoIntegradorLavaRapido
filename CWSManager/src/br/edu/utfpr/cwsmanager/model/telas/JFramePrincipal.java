@@ -4,7 +4,11 @@
  */
 package br.edu.utfpr.cwsmanager.model.telas;
 
+import java.awt.Desktop;
 import static java.awt.Frame.MAXIMIZED_BOTH;
+import java.io.File;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -39,20 +43,27 @@ public class JFramePrincipal extends javax.swing.JFrame {
         jtAtalho = new javax.swing.JToolBar();
         jButtonSair = new javax.swing.JButton();
         jButtonCliente = new javax.swing.JButton();
+        jSeparator1 = new javax.swing.JToolBar.Separator();
         jButtonSolicitacaoService = new javax.swing.JButton();
         jButtonOrdemServicoMENU = new javax.swing.JButton();
-        jButtonConsultaClienteMENU = new javax.swing.JButton();
+        jSeparator2 = new javax.swing.JToolBar.Separator();
         jButtonGerRelatorioMENU = new javax.swing.JButton();
+        jSeparator3 = new javax.swing.JToolBar.Separator();
+        jButtonConsultaClienteMENU = new javax.swing.JButton();
+        jSeparator4 = new javax.swing.JToolBar.Separator();
         jButtonSobreMENU = new javax.swing.JButton();
         jButtonManualMENU = new javax.swing.JButton();
+        jSeparator5 = new javax.swing.JToolBar.Separator();
         jButtonSairMENU = new javax.swing.JButton();
-        jButtonProduto = new javax.swing.JButton();
-        jButtonCompra = new javax.swing.JButton();
-        jButtonVenda = new javax.swing.JButton();
-        jButtonHistoricoCliente = new javax.swing.JButton();
         jButtonEstoque = new javax.swing.JButton();
         jButtonGerRelatorio = new javax.swing.JButton();
+        jButtonProduto = new javax.swing.JButton();
+        jButtonHistoricoCliente = new javax.swing.JButton();
+        jButtonVenda = new javax.swing.JButton();
+        jButtonCompra = new javax.swing.JButton();
         jButtonManual = new javax.swing.JButton();
+        jPanel1 = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenuCadastros = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
@@ -95,13 +106,13 @@ public class JFramePrincipal extends javax.swing.JFrame {
         jMenuItem5.setText("jMenuItem5");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Principal");
+        setTitle("Car Wash System - Manager");
 
         jtAtalho.setBackground(new java.awt.Color(198, 198, 198));
         jtAtalho.setRollover(true);
 
         jButtonSair.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icones/funcionario4848.png"))); // NOI18N
-        jButtonSair.setToolTipText("Sair do Sistema");
+        jButtonSair.setToolTipText("Cadastro de Funcionários");
         jButtonSair.setFocusable(false);
         jButtonSair.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jButtonSair.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
@@ -121,7 +132,7 @@ public class JFramePrincipal extends javax.swing.JFrame {
         jtAtalho.add(jButtonSair);
 
         jButtonCliente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icones/cliente4848.png"))); // NOI18N
-        jButtonCliente.setToolTipText("Cadastrar Clientes");
+        jButtonCliente.setToolTipText("Cadastro de Clientes");
         jButtonCliente.setFocusable(false);
         jButtonCliente.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jButtonCliente.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
@@ -139,9 +150,10 @@ public class JFramePrincipal extends javax.swing.JFrame {
             }
         });
         jtAtalho.add(jButtonCliente);
+        jtAtalho.add(jSeparator1);
 
         jButtonSolicitacaoService.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icones/ssservice.png"))); // NOI18N
-        jButtonSolicitacaoService.setToolTipText("Solicitacao de Servico");
+        jButtonSolicitacaoService.setToolTipText("Solicitação de Serviço");
         jButtonSolicitacaoService.setFocusable(false);
         jButtonSolicitacaoService.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jButtonSolicitacaoService.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
@@ -161,7 +173,7 @@ public class JFramePrincipal extends javax.swing.JFrame {
         jtAtalho.add(jButtonSolicitacaoService);
 
         jButtonOrdemServicoMENU.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icones/ordemservico.png"))); // NOI18N
-        jButtonOrdemServicoMENU.setToolTipText("Ordem de Servico");
+        jButtonOrdemServicoMENU.setToolTipText("Ordem de Serviço");
         jButtonOrdemServicoMENU.setFocusable(false);
         jButtonOrdemServicoMENU.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jButtonOrdemServicoMENU.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
@@ -179,6 +191,28 @@ public class JFramePrincipal extends javax.swing.JFrame {
             }
         });
         jtAtalho.add(jButtonOrdemServicoMENU);
+        jtAtalho.add(jSeparator2);
+
+        jButtonGerRelatorioMENU.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icones/relatorios.png"))); // NOI18N
+        jButtonGerRelatorioMENU.setToolTipText("Gerenciamento de Relatórios");
+        jButtonGerRelatorioMENU.setFocusable(false);
+        jButtonGerRelatorioMENU.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jButtonGerRelatorioMENU.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jButtonGerRelatorioMENU.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jButtonGerRelatorioMENUMouseExited(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jButtonGerRelatorioMENUMouseEntered(evt);
+            }
+        });
+        jButtonGerRelatorioMENU.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonGerRelatorioMENUActionPerformed(evt);
+            }
+        });
+        jtAtalho.add(jButtonGerRelatorioMENU);
+        jtAtalho.add(jSeparator3);
 
         jButtonConsultaClienteMENU.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icones/search.png"))); // NOI18N
         jButtonConsultaClienteMENU.setToolTipText("Consulta de Clientes");
@@ -199,29 +233,10 @@ public class JFramePrincipal extends javax.swing.JFrame {
             }
         });
         jtAtalho.add(jButtonConsultaClienteMENU);
-
-        jButtonGerRelatorioMENU.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icones/relatorios.png"))); // NOI18N
-        jButtonGerRelatorioMENU.setToolTipText("Gerenciamento de Relatóriosl");
-        jButtonGerRelatorioMENU.setFocusable(false);
-        jButtonGerRelatorioMENU.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButtonGerRelatorioMENU.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jButtonGerRelatorioMENU.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                jButtonGerRelatorioMENUMouseExited(evt);
-            }
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                jButtonGerRelatorioMENUMouseEntered(evt);
-            }
-        });
-        jButtonGerRelatorioMENU.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonGerRelatorioMENUActionPerformed(evt);
-            }
-        });
-        jtAtalho.add(jButtonGerRelatorioMENU);
+        jtAtalho.add(jSeparator4);
 
         jButtonSobreMENU.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icones/help.png"))); // NOI18N
-        jButtonSobreMENU.setToolTipText("Informação do Sistema");
+        jButtonSobreMENU.setToolTipText("Informações do Sistema");
         jButtonSobreMENU.setFocusable(false);
         jButtonSobreMENU.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jButtonSobreMENU.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
@@ -241,7 +256,7 @@ public class JFramePrincipal extends javax.swing.JFrame {
         jtAtalho.add(jButtonSobreMENU);
 
         jButtonManualMENU.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icones/manual.png"))); // NOI18N
-        jButtonManualMENU.setToolTipText("Manual do Usuário");
+        jButtonManualMENU.setToolTipText("Manual do Sistema");
         jButtonManualMENU.setFocusable(false);
         jButtonManualMENU.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jButtonManualMENU.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
@@ -259,6 +274,7 @@ public class JFramePrincipal extends javax.swing.JFrame {
             }
         });
         jtAtalho.add(jButtonManualMENU);
+        jtAtalho.add(jSeparator5);
 
         jButtonSairMENU.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icones/quit.png"))); // NOI18N
         jButtonSairMENU.setToolTipText("Sair do Sistema");
@@ -279,82 +295,6 @@ public class JFramePrincipal extends javax.swing.JFrame {
             }
         });
         jtAtalho.add(jButtonSairMENU);
-
-        jButtonProduto.setToolTipText("Cadastro de Produtos");
-        jButtonProduto.setFocusable(false);
-        jButtonProduto.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButtonProduto.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jButtonProduto.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                jButtonProdutoMouseExited(evt);
-            }
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                jButtonProdutoMouseEntered(evt);
-            }
-        });
-        jButtonProduto.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonProdutoActionPerformed(evt);
-            }
-        });
-        jtAtalho.add(jButtonProduto);
-
-        jButtonCompra.setToolTipText("Registrar Compras");
-        jButtonCompra.setFocusable(false);
-        jButtonCompra.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButtonCompra.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jButtonCompra.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                jButtonCompraMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                jButtonCompraMouseExited(evt);
-            }
-        });
-        jButtonCompra.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonCompraActionPerformed(evt);
-            }
-        });
-        jtAtalho.add(jButtonCompra);
-
-        jButtonVenda.setToolTipText("Registrar Vendas");
-        jButtonVenda.setFocusable(false);
-        jButtonVenda.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButtonVenda.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jButtonVenda.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                jButtonVendaMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                jButtonVendaMouseExited(evt);
-            }
-        });
-        jButtonVenda.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonVendaActionPerformed(evt);
-            }
-        });
-        jtAtalho.add(jButtonVenda);
-
-        jButtonHistoricoCliente.setToolTipText("Histórico de Clientes");
-        jButtonHistoricoCliente.setFocusable(false);
-        jButtonHistoricoCliente.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButtonHistoricoCliente.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jButtonHistoricoCliente.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                jButtonHistoricoClienteMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                jButtonHistoricoClienteMouseExited(evt);
-            }
-        });
-        jButtonHistoricoCliente.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonHistoricoClienteActionPerformed(evt);
-            }
-        });
-        jtAtalho.add(jButtonHistoricoCliente);
 
         jButtonEstoque.setToolTipText("Verificar Estoque");
         jButtonEstoque.setFocusable(false);
@@ -394,6 +334,82 @@ public class JFramePrincipal extends javax.swing.JFrame {
         });
         jtAtalho.add(jButtonGerRelatorio);
 
+        jButtonProduto.setToolTipText("Cadastro de Produtos");
+        jButtonProduto.setFocusable(false);
+        jButtonProduto.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jButtonProduto.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jButtonProduto.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jButtonProdutoMouseExited(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jButtonProdutoMouseEntered(evt);
+            }
+        });
+        jButtonProduto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonProdutoActionPerformed(evt);
+            }
+        });
+        jtAtalho.add(jButtonProduto);
+
+        jButtonHistoricoCliente.setToolTipText("Histórico de Clientes");
+        jButtonHistoricoCliente.setFocusable(false);
+        jButtonHistoricoCliente.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jButtonHistoricoCliente.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jButtonHistoricoCliente.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jButtonHistoricoClienteMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jButtonHistoricoClienteMouseExited(evt);
+            }
+        });
+        jButtonHistoricoCliente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonHistoricoClienteActionPerformed(evt);
+            }
+        });
+        jtAtalho.add(jButtonHistoricoCliente);
+
+        jButtonVenda.setToolTipText("Registrar Vendas");
+        jButtonVenda.setFocusable(false);
+        jButtonVenda.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jButtonVenda.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jButtonVenda.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jButtonVendaMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jButtonVendaMouseExited(evt);
+            }
+        });
+        jButtonVenda.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonVendaActionPerformed(evt);
+            }
+        });
+        jtAtalho.add(jButtonVenda);
+
+        jButtonCompra.setToolTipText("Registrar Compras");
+        jButtonCompra.setFocusable(false);
+        jButtonCompra.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jButtonCompra.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jButtonCompra.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jButtonCompraMouseExited(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jButtonCompraMouseEntered(evt);
+            }
+        });
+        jButtonCompra.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonCompraActionPerformed(evt);
+            }
+        });
+        jtAtalho.add(jButtonCompra);
+
         jButtonManual.setToolTipText("Manual do Usuário");
         jButtonManual.setFocusable(false);
         jButtonManual.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -412,6 +428,27 @@ public class JFramePrincipal extends javax.swing.JFrame {
             }
         });
         jtAtalho.add(jButtonManual);
+
+        jPanel1.setBorder(javax.swing.BorderFactory.createEtchedBorder(null, new java.awt.Color(102, 102, 102)));
+
+        jLabel1.setText("Barra de Status:");
+
+        org.jdesktop.layout.GroupLayout jPanel1Layout = new org.jdesktop.layout.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+            .add(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .add(jLabel1)
+                .addContainerGap(org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+            .add(org.jdesktop.layout.GroupLayout.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .add(jLabel1)
+                .addContainerGap())
+        );
 
         jMenuCadastros.setText("Cadastros");
 
@@ -599,6 +636,11 @@ public class JFramePrincipal extends javax.swing.JFrame {
 
         jMenuItem9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icones/manual_mer.png"))); // NOI18N
         jMenuItem9.setText("Figura do Modelo do Banco de Dados");
+        jMenuItem9.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem9ActionPerformed(evt);
+            }
+        });
         jMenu6.add(jMenuItem9);
 
         jMenuItem10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icones/especificacao.png"))); // NOI18N
@@ -641,12 +683,14 @@ public class JFramePrincipal extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
             .add(jtAtalho, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 1430, Short.MAX_VALUE)
+            .add(jPanel1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
             .add(layout.createSequentialGroup()
                 .add(jtAtalho, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                .add(0, 568, Short.MAX_VALUE))
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 536, Short.MAX_VALUE)
+                .add(jPanel1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
         );
 
         pack();
@@ -690,18 +734,6 @@ public class JFramePrincipal extends javax.swing.JFrame {
     private void jButtonProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonProdutoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButtonProdutoActionPerformed
-
-    private void jButtonCompraMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonCompraMouseEntered
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButtonCompraMouseEntered
-
-    private void jButtonCompraMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonCompraMouseExited
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButtonCompraMouseExited
-
-    private void jButtonCompraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCompraActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButtonCompraActionPerformed
 
     private void jButtonVendaMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonVendaMouseEntered
         // TODO add your handling code here:
@@ -787,10 +819,20 @@ public class JFramePrincipal extends javax.swing.JFrame {
 
     private void jMenuItem8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem8ActionPerformed
         // TODO add your handling code here:
+        try {
+            Desktop.getDesktop().open(new File("src/HTML/manual.html"));
+        } catch (Exception ex) {
+            Logger.getLogger(JFramePrincipal.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_jMenuItem8ActionPerformed
 
     private void jMenuItem10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem10ActionPerformed
         // TODO add your handling code here:
+        try {
+            Desktop.getDesktop().open(new File("src/HTML/especificacao_projeto.html"));
+        } catch (Exception ex) {
+            Logger.getLogger(JFramePrincipal.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_jMenuItem10ActionPerformed
 
     private void jMenuItem7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem7ActionPerformed
@@ -842,7 +884,7 @@ public class JFramePrincipal extends javax.swing.JFrame {
 
     private void jMenuItem17ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem17ActionPerformed
         // TODO add your handling code here:
-        JDialogConsCliente jdConsCliente = new JDialogConsCliente(this, true);
+        JDialogConsCliente jdConsCliente = new JDialogConsCliente(new javax.swing.JDialog(), true);
         jdConsCliente.setLocationRelativeTo(null);
         jdConsCliente.setVisible(true);
     }//GEN-LAST:event_jMenuItem17ActionPerformed
@@ -870,6 +912,11 @@ public class JFramePrincipal extends javax.swing.JFrame {
 
     private void jButtonManualMENUActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonManualMENUActionPerformed
         // TODO add your handling code here:
+        try {
+            Desktop.getDesktop().open(new File("src/HTML/manual.html"));
+        } catch (Exception ex) {
+            Logger.getLogger(JFramePrincipal.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_jButtonManualMENUActionPerformed
 
     private void jButtonSobreMENUMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonSobreMENUMouseEntered
@@ -911,7 +958,7 @@ public class JFramePrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonConsultaClienteMENUMouseExited
 
     private void jButtonConsultaClienteMENUActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonConsultaClienteMENUActionPerformed
-        JDialogConsCliente jDialogConsCliente = new JDialogConsCliente(this, true);
+        JDialogConsCliente jDialogConsCliente = new JDialogConsCliente(new javax.swing.JDialog(), true);
         jDialogConsCliente.setLocationRelativeTo(jDialogConsCliente);
         jDialogConsCliente.setVisible(true);        // TODO add your handling code here:
     }//GEN-LAST:event_jButtonConsultaClienteMENUActionPerformed
@@ -980,6 +1027,27 @@ public class JFramePrincipal extends javax.swing.JFrame {
         jdConsTipoDeServico.setVisible(true);
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
+    private void jButtonCompraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCompraActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonCompraActionPerformed
+
+    private void jButtonCompraMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonCompraMouseEntered
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonCompraMouseEntered
+
+    private void jButtonCompraMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonCompraMouseExited
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonCompraMouseExited
+
+    private void jMenuItem9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem9ActionPerformed
+        // TODO add your handling code here:
+        try {
+            Desktop.getDesktop().open(new File("src/HTML/DER_CWS.png"));
+        } catch (Exception ex) {
+            Logger.getLogger(JFramePrincipal.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jMenuItem9ActionPerformed
+
     private void Sair() {
         String[] opcoes = {"Sim", "Não"};
         int opcao = JOptionPane.showOptionDialog(null, "Tem certeza que deseja sair?", "Mensagem",
@@ -1047,6 +1115,7 @@ public class JFramePrincipal extends javax.swing.JFrame {
     private javax.swing.JButton jButtonSobreMENU;
     private javax.swing.JButton jButtonSolicitacaoService;
     private javax.swing.JButton jButtonVenda;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu10;
     private javax.swing.JMenu jMenu3;
@@ -1082,6 +1151,12 @@ public class JFramePrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItemConsultaCidade;
     private javax.swing.JMenu jMenuOrdemServico;
     private javax.swing.JMenu jMenuSolicitacaoServico;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JToolBar.Separator jSeparator1;
+    private javax.swing.JToolBar.Separator jSeparator2;
+    private javax.swing.JToolBar.Separator jSeparator3;
+    private javax.swing.JToolBar.Separator jSeparator4;
+    private javax.swing.JToolBar.Separator jSeparator5;
     private javax.swing.JToolBar jtAtalho;
     // End of variables declaration//GEN-END:variables
 

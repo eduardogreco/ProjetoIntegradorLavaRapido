@@ -1,0 +1,595 @@
+<!--
+To change this template, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Documento Especificação do Projeto</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    </head>
+    <body>
+        <div>Documento de Especificação de Projeto
+
+
+
+
+Projeto de Software
+Disciplina PI33A – Primeiro Semestre – 2013.
+Professora Aretha Barbosa Alencar
+UTFPR – Universidade Tecnológica Federal do Paraná – Campus Campo Mourão
+
+
+
+
+
+
+
+Projeto: CWS - Manager
+Equipe: Eduardo Roberto Greco -  eduardogreco93@gmail.com 
+Raphael Lira – raphael_lds4630@hotmail.com
+
+HISTÓRICO DE REVISÕES
+
+Nome da alteração
+Responsável
+Data
+Descrição do sistema
+Eduardo/Raphael
+06/06/2013
+Objetivos do sistema
+Eduardo/Raphael
+06/06/2013
+Sistemas Similares
+Raphael
+10/06/2013
+Requisitos
+Eduardo
+10/06/2013
+Matriz de Rastreabilidade
+Raphael
+13/06/2013
+Descrição atores
+Eduardo
+13/06/2013
+Caso de uso
+Raphael
+13/06/2013
+Descrição casos de uso
+Eduardo
+17/06/2013
+Caso de uso
+Raphael
+17/06/2013
+Descrição casos de uso
+Eduardo
+18/06/2013
+Descrição casos de uso
+Eduardo
+19/06/2013
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Orientação para uso do template: 
+Instruções de preenchimento estão espalhadas pelas várias seções deste template, em cor azul e envoltas por tags (“<” e “>”). Após ler uma instrução de preenchimento e entender que informação deve ser fornecida, delete a instrução de preenchimento e substitua-a por texto de sua própria autoria, relacionado à seção. A cor vermelha é utilizado como comentário e deverá ser apagada do documento.
+Ao fim da elaboração do documento, atualize seu índice clicando com o botão direito do mouse no mesmo e depois em Atualizar Campo (Update Field).
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Este documento foi estendido da proposta de documentação de especificação funcional elaborada pelo Centro de Inovação de Recife / Qualiti Software Processes / Centro de Estudos e Sistemas Avançados do Recife (C.E.S.A.R) de 2007.
+Índice
+1.  Introdução	5
+1.1  Descrição do sistema	5
+1.2  Objetivo do sistema	5
+1.3  Sistemas Similares	5
+1.4  Convenções, termos e abreviações	5
+1.4.1 Identificação dos casos de uso 	5
+2.  Lista de Requisitos 	6
+2.1  Matriz de Rastreabilidade	6
+3.  Atores	6
+4.  Casos de Uso	7
+ Diagrama de Caso de Uso  -  SysLavaRapido	7
+ [UC01] Logar no sistema	7
+ [UC02] Cadastrar Cliente	8
+ [UC03] Cadastrar Funcionário	9
+ [UC04] Cadastrar Veículos	10
+ [UC05] Cadastrar tipo de serviços	11
+ [UC06] Abrir ordem de serviço	13
+ [UC07] Fechar ordem de serviço	14
+ [UC08] Emitir relatórios	15
+ [UC09] Logar do WebSite	15
+ [UC10] Verificar horários disponíveis no WebSite	16
+ [UC11] Agendar um Serviço no WebSite	17
+
+1. Introdução
+Este documento especifica os casos de uso e requisitos não-funcionais (RNFs) do projeto intitulado CWS - Manager, referente ao projeto final da disciplina de Projeto Integrador I (PI33A), contida no terceiro semestre da matriz curricular do curso de Tecnologia de Desenvolvimento de Sistemas para Internet, ministrada pela Profa. Aretha Barbosa Alencar. O objetivo do documento é apresentar as soluções elaboradas e discutidas durante o semestre para a construção da análise e do projeto de um software fundamentado nas idéias do paradigma orientado à objetos.
+1.1 Descrição do sistema
+O CWS - Manager será capaz de gerenciar entrada e saída de veículos, controle de serviços realizados, o cadastro de clientes, funcionários, veículos, tipo de serviços de um lava-rápido. O Sistema também poderá emitir uma série de relatórios e contará com um agendamento de serviços online(WebSite), onde o cliente acompanhara os horários disponíveis e poderá agendar o serviço que será realizado em seu veículo.
+
+1.2 Objetivo do sistema
+O principal objetivo do CWS - Manager é controlar os serviços realizados e o gerenciamento de clientes, funcionários, veículos de um lava-rápido. Ele também oferecerá mobilidade ao cliente, que poderá consultar e reservar seu serviço via WebSite.
+
+1.3 Sistemas Similares
+- Sistema de gerenciamento de Lava-Rápido e Estacionamento
+         Este software foi desenvolvido para controle de estacionamentos e lava-rápido, possui telas intuitivas, de fácil utilização. Imprime tickets de entrada de veículos e campos de cadastro como placa, nome do carro, código, data, chave, box, telefone do proprietário, convênio com estabelecimentos e muito mais.
+
+Fonte: http://ultradownloads.com.br/download/Gerenciamento-de-Lava-Rapido/#ixzz2WiHYI8Bk
+
+
+- Lava Rápido 3.0 
+É um prático sistema de gerenciamento para lava rápidos. Com ele é possível controlar a entrada de veículos, valores para todos eles e tipos de lavadas para cada veículo que entrou.
+
+Fonte: http://ultradownloads.com.br/download/Lava-Rapido/#ixzz2WiIOgVR3
+
+
+
+
+
+
+
+
+
+
+
+
+
+1.4 Convenções, termos e abreviações
+A correta interpretação deste documento exige o conhecimento de algumas convenções, termos específicos e abreviações, que são descritos a seguir.
+- CWS – Manager: Car Wash System – Manager
+- UC: Casos de uso
+- RF: Requisitos funcionais
+- RNF: Requisitos não funcionais
+1.4.1 Identificação dos casos de uso 
+Os casos de uso devem ser identificados com um identificador único. A numeração inicia com o identificador [UC01] e prossegue sendo incrementada à medida que forem surgindo novos casos de uso.
+A nomenclatura dos fluxos secundários dos casos de uso é dada por uma sigla e por um número. A sigla deve ser FA para fluxos alternativos e FE para fluxos de erro. O número é um seqüencial que inicia de 01. Um exemplo de fluxo alternativo é [FA01] e um exemplo de fluxo de erro é [FE01]. O número do identificador reinicia a cada caso de uso.
+Para referenciar casos de uso em qualquer local do documento, o identificador do caso de uso é utilizado. Por exemplo, a pré-condição de um caso de uso poderia conter o seguinte texto: “Este caso de uso demanda que o usuário da aplicação esteja logado, como descrito em [UC12]”. Para referenciar um fluxo secundário fora do caso de uso que o define, é necessário utilizar o identificador do caso de uso concatenado com um ponto e com e o identificador do fluxo. Por exemplo, a descrição de um caso de uso poderia conter o seguinte texto: “Este caso de uso permite que o usuário edite informações avançadas do seu perfil e é disparado quando o usuário clica no botão Informações Avançadas durante seu cadastro, conforme descrito no fluxo alternativo [UC01].[FA02]”.
+2. Lista de Requisitos 
+Abaixo encontra-se a lista de requisitos do projeto.
+	1RF: O sistema deve permitir que os funcionários possam fazer o login no sistema, o 	         login/senha são previamente definidos no seu cadastro;
+	2RF: O sistema deve gerenciar o cadastro dos clientes, contendo seus dados(nome, 	         CPF, endereço, etc.), relacionar a um ou mais veículos, alem disso 		             	         login/senha de acesso para o sistema web;
+	3RF: O sistema deve gerenciar o cadastro dos funcionários, contendo seus 		         dados(nome, CPF, endereço, etc.) e login/senha para acesso do sistema;
+	4RF: O sistema deve gerenciar o cadastro dos veículos, contendo seus dados como 	         modelo, cor, placa;
+	5RF: O sistema deve gerenciar o cadastro dos tipos de serviços prestados, como 	         o preço e tempo para realizar o serviço;
+	6RF: O sistema deve abrir ordem de serviço, onde o funcionário informara o cliente, 	        veículo e o tipo de serviço que será prestado, também conterá o status, data e 	         hora de inicio;
+	7RF: O sistema deve fechar ordem de serviço, aonde o funcionário informara a data 	         e hora de conclusão e o custo final do serviço;
+	8RF: O sistema deve emitir relatórios;
+	9RF: O sistema deve permitir que o Cliente faça login via Web;
+	10RF: O sistema deve permitir que o Cliente possa verificar os horários disponíveis 		para agendar um serviço através de um WebSite;
+	11RF: O sistema deve permitir que o Cliente agende um serviço através de um 			WebSite.
+2.1 Matriz de Rastreabilidade
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+3. Atores
+A tabela abaixo descreve brevemente cada ator da aplicação.
+
+Ator
+Descrição
+Funcionário
+O Funcionário poderá fazer login no sistema, cadastrar clientes, funcionários, veículos e tipos de serviço, além de incluir e finalizar ordens de serviço, e poderá realizar relatórios.
+
+Cliente
+
+O Cliente poderá logar no sistema web, consultar horários disponíveis para agendamento, e agendar um serviço.
+
+
+4. Casos de Uso
+Diagramas de caso de uso representam requisitos funcionais do sistema, provendo uma visualização sucinta do comportamento do mesmo. Normalmente a descrição do caso de uso é uma descrição na qual detalhes internos sobre como o sistema responde as ações de um ator estão ausentes ou descritas muito resumidamente, devido ao fato de os clientes não terem interesse em particularidades técnicas do sistema.
+A notação simplificada mostrada nos diagramas de casos de uso tem a finalidade de fornecer uma maneira intuitiva para pessoas que mesmo não familiarizadas com UML possam entender as funcionalidades do sistema. Um diagrama de casos de uso contém atores e casos de uso, onde eles se relacionam entre si, os relacionamentos podem ser ator com caso de uso, ator com ator em relacionamento de herança, caso de uso com caso de uso em relacionamento de herança, extend e include.
+Diagrama de Caso de Uso  -  CWS – Manager
+Essa seção apresenta todos os requisitos funcionais da aplicação, especificados como casos de uso. 
+
+
+
+
+[UC01] Logar no sistema
+Ator(es):
+Funcionário
+
+Descrição: Este caso de uso representa os passos necessários para que um funcionário possa logar no sistema.
+Pré-condições: O Funcionário deve estar cadastrado no sistema
+
+Fluxo principal
+
+1. O funcionário abre a tela de login do sistema
+2. O funcionário informa o usuário e a senha
+3. O funcionário seleciona a opção de logar no sistema.[FE01]
+4. O sistema abre a tela inicial do sistema
+
+Fluxos de erro
+[FE01]: Usuário ou senha incorretos
+
+3.1 O sistema exibe uma mensagem informando que o usuário ou a senha estão incorretos, ou usuário não cadastrado.
+3.2 Volta para o passo 2.
+
+[UC02] Cadastrar Cliente
+Ator(es):
+Funcionário
+
+
+Descrição: Neste caso de uso o funcionário poderá escolher uma das seguintes operações para manter os clientes no sistema: cadastrar, alterar, consultar ou remover.
+
+Fluxo principal
+O funcionário seleciona uma das opções de tarefa:
+
+1. Incluir [FA01]
+2. Alterar [FA02]
+3. Consultar [FA03]
+4. Remover [FA04] 
+
+Fluxos alternativos
+[FA01]: Incluir
+1.1. O sistema abre uma tela de cadastro de clientes.
+            1.2. O funcionário informa os dados do cliente.
+            1.3. O funcionário seleciona gravar. 
+            1.4. O sistema valida os dados. [FE01]
+1.5. O sistema informa o sucesso da operação.
+[FA02]: Alterar
+2.1. Inclui [FA03] 
+2.2. O funcionário informa os dados a serem alterados. 
+2.3. O funcionário seleciona gravar. 
+2.4. O sistema valida os dados. [FE02]
+[FA03]: Consultar
+3.1. O sistema abre tela de consulta. 
+3.2. O funcionário informa o meio de consulta(nome de cliente ou código de cliente). 
+3.3. O sistema retorna o cadastro de cliente.[FE03]
+[FA04]: Excluir
+4.1. Incluir [FA03] 
+4.2. O funcionário seleciona opção de excluir. 
+4.3. O sistema apaga cliente dos registros. 
+4.4. O sistema informa o sucesso da operação.
+
+Fluxos de erro
+[FE01]: Dados incorretos
+1.4.1. O sistema informa o erro. 
+1.4.2. Volta ao passo 1.3.
+
+[FE02]: Dados incorretos
+2.4.1. O sistema informa o erro
+              2.4.2. Volta ao passo 2.2.
+
+[FE03]: Registro não encontrado
+   3.3.1. O sistema informa o erro. 
+   3.3.2. Volta ao passo 3.2.
+
+
+[UC03] Cadastrar Funcionário
+Ator(es):
+Funcionário
+
+
+Descrição: Neste caso de uso o Usuário poderá realizar as seguintes operações para manter os funcionários cadastrados com seus dados pessoais e profissionais no sistema: cadastrar, alterar, consultar e remover.
+
+
+Fluxo principal
+O Usuário seleciona uma opção para manipular um funcionário:
+
+			1. Inserir [FA01]
+			2. Alterar[FA02]
+			3. Consultar [FA03]
+			4. Remover [FA04]
+
+Fluxos alternativos
+[FA01]: Inserir
+1.1. O sistema abre uma tela de cadastro de funcionário. 
+1.2. O usuário informa os dados do funcionário. 
+1.3. O usuário seleciona gravar. 
+1.4. O sistema valida os dados. [FE01] 
+1.5. O sistema informa o sucesso da operação.
+[FA02]: Alterar
+	2.1. Inclui [FA03] 
+	2.2. O usuário informa os dados a serem alterados. 
+	2.3. O usuário seleciona gravar. 
+	2.4. O sistema valida os dados. [FE02] 
+	2.5. O sistema informa o sucesso da operação.
+[FA03]: Consultar
+	3.1. O sistema abre tela de consulta. 
+	3.2. O usuário informa o meio de consulta(nome de usuário ou código de usuário).
+            3.3. O sistema retorna o cadastro de usuário.[FE03]
+[FA04]: Excluir
+	4.1. Incluir [FA03]
+            4.2. O usuário seleciona opção de excluir. 
+            4.3. O sistema apaga usuário dos registros. 
+            4.4. O sistema informa o sucesso da operação.
+
+Fluxos de erro
+[FE01]: Dados incorretos
+1.5.1. O sistema exibe uma mensagem de erro da operação. 
+1.5.2. Volta ao passo 1.3.
+[FE02]: Dados incorretos
+2.4.1. O sistema exibe uma mensagem de erro da operação. 
+2.4.2. Volta ao passo 2.2. [FE03]: Registro não encontrado 
+3.3.1. O sistema exibe uma mensagem de erro da operação. 
+3.3.2. Volta ao passo 3.2.
+
+[UC04] Cadastrar Veículos
+Ator(es):
+Funcionário
+
+Descrição: Neste caso de uso o funcionário poderá escolher uma das seguintes operações para manter os veículos no sistema: cadastrar, alterar, consultar ou remover.
+
+Fluxo principal
+O funcionário seleciona uma das opções de tarefa:
+
+1. Incluir [FA01]
+2. Alterar [FA02]
+3. Consultar [FA03]
+4. Remover [FA04] 
+
+Fluxos alternativos
+[FA01]: Incluir
+1.1. O sistema abre uma tela de cadastro de veículos.
+            1.2. O funcionário informa os dados do veículo.
+            1.3. O funcionário seleciona gravar. 
+            1.4. O sistema valida os dados. [FE01]
+1.5. O sistema informa o sucesso da operação.
+[FA02]: Alterar
+2.1. Inclui [FA03] 
+2.2. O funcionário informa os dados a serem alterados. 
+2.3. O funcionário seleciona gravar. 
+2.4. O sistema valida os dados. [FE02]
+[FA03]: Consultar
+3.1. O sistema abre tela de consulta. 
+3.2. O funcionário informa o meio de consulta(código do veículo ou placa). 
+3.3. O sistema retorna o cadastro do veículo.[FE03]
+[FA04]: Excluir
+4.1. Incluir [FA03] 
+4.2. O funcionário seleciona opção de excluir. 
+4.3. O sistema apaga veículo dos registros. 
+4.4. O sistema informa o sucesso da operação.
+
+
+Fluxos de erro
+[FE01]: Dados incorretos
+1.4.1. O sistema informa o erro. 
+1.4.2. Volta ao passo 1.3.
+
+[FE02]: Dados incorretos
+2.4.1. O sistema informa o erro
+              2.4.2. Volta ao passo 2.2.
+
+[FE03]: Registro não encontrado
+   3.3.1. O sistema informa o erro. 
+   3.3.2. Volta ao passo 3.2.
+[UC05] Cadastrar tipo de serviços
+Ator(es):
+Funcionário
+
+
+Descrição: Neste caso de uso o funcionário poderá escolher uma das seguintes operações para manter os tipos de serviços no sistema: cadastrar, alterar, consultar ou remover.
+Fluxo principal
+O funcionário seleciona uma das opções de tarefa:
+
+1. Incluir [FA01]
+2. Alterar [FA02]
+3. Consultar [FA03]
+4. Remover [FA04] 
+
+Fluxos alternativos
+[FA01]: Incluir
+1.1. O sistema abre uma tela de cadastro de tipo de serviços.
+            1.2. O funcionário informa os dados dos tipo de serviços.
+            1.3. O funcionário seleciona gravar. 
+            1.4. O sistema valida os dados. [FE01]
+1.5. O sistema informa o sucesso da operação.
+[FA02]: Alterar
+2.1. Inclui [FA03] 
+2.2. O funcionário informa os dados a serem alterados. 
+2.3. O funcionário seleciona gravar. 
+2.4. O sistema valida os dados. [FE02]
+[FA03]: Consultar
+3.1. O sistema abre tela de consulta. 
+3.2. O funcionário informa o meio de consulta(código do serviço). 
+3.3. O sistema retorna o tipo do serviço.[FE03]
+[FA04]: Excluir
+4.1. Incluir [FA03] 
+4.2. O funcionário seleciona opção de excluir. 
+4.3. O sistema apaga tipo de serviço dos registros. 
+4.4. O sistema informa o sucesso da operação.
+
+
+Fluxos de erro
+[FE01]: Dados incorretos
+1.4.1. O sistema informa o erro. 
+1.4.2. Volta ao passo 1.3.
+
+[FE02]: Dados incorretos
+2.4.1. O sistema informa o erro
+              2.4.2. Volta ao passo 2.2.
+
+[FE03]: Registro não encontrado
+   3.3.1. O sistema informa o erro. 
+   3.3.2. Volta ao passo 3.2.
+[UC06] Abrir ordem de serviço
+Ator(es):
+Funcionário, Cliente
+
+Descrição: Neste caso de uso o funcionário poderá incluir uma ordem de serviço de acordo com o que o cliente solicitou, informando alguns dados como hora de inicio, cliente e podendo adicionar algumas observações.
+Pré-condições: Cliente informar o tipo de serviço que deseja.
+
+Fluxo principal
+O funcionário seleciona uma das opções de tarefa:
+
+1. Incluir [FA01]
+2. Alterar [FA02]
+3. Consultar [FA03]
+4. Gravar [FA04] 
+
+Fluxos alternativos
+[FA01]: Incluir
+1.1. O sistema abre uma tela de ordem de serviços.
+            1.2. O funcionário clica em incluir nova ordem.
+            1.3. O funcionário informa os dados da ordem.
+            1.4. O funcionário seleciona gravar. 
+1.5. O sistema valida os dados. [FE01]
+1.6. O sistema informa o sucesso da operação.
+[FA02]: Alterar
+2.1. Inclui [FA03] 
+2.2. O funcionário informa os dados a serem alterados. 
+2.3. O funcionário seleciona gravar. 
+2.4. O sistema valida os dados. [FE02]
+[FA03]: Consultar
+3.1. O sistema abre tela de consulta. 
+3.2. O funcionário informa o meio de consulta(código da ordem). 
+3.3. O sistema retorna a ordem.[FE03]
+[FA04]: Gravar
+4.1. Incluir [FA03] 
+4.2. O funcionário seleciona opção de gravar.
+4.3. O sistema grava um nova ordem de serviço e mantém seu status como aberta. 
+4.4. O sistema informa o sucesso da operação.
+
+Fluxos de erro
+[FE01]: Dados incorretos
+1.5.1. O sistema informa o erro. 
+1.5.2. Volta ao passo 1.3.
+
+[FE02]: Dados incorretos
+2.4.1. O sistema informa o erro
+              2.4.2. Volta ao passo 2.2.
+
+[FE03]: Registro não encontrado
+   3.3.1. O sistema informa o erro. 
+   3.3.2. Volta ao passo 3.2.
+
+[UC07] Fechar ordem de serviço
+Ator(es):
+Funcionário
+
+
+Descrição: Neste caso de uso o funcionário poderá verificar as ordens de serviço em aberto e finaliza-las, informando o tempo gasto e podendo adicionar algumas observações.
+Pré-condições: O funcionário ter realizado os serviços descritos na ordem em aberto.
+
+Fluxo principal
+O funcionário seleciona uma das opções de tarefa:
+
+1. Consultar [FA01]
+2. Encerrar [FA02]
+3. Gravar [FA03]
+
+Fluxos alternativos
+[FA01]: Consultar
+1.1. O sistema abre uma tela de consulta.
+            1.2. O funcionário informa o meio de consulta(código ou status da ordem).
+            1.3. O sistema retorna a ordem.[FE01]
+[FA02]: Encerrar
+2.1. O sistema abre uma tela de ordem de serviços em aberto.
+2.2. O funcionário seleciona uma ordem em aberto.
+2.3. O funcionário seleciona encerrar ordem.
+2.4. O funcionário informa os dados solicitador para encerrar.
+2.5 O funcionário seleciona gravar.
+2.6 O sistema valida os dados.[FE02]
+2.7 O sistema informa o sucesso da operação.
+
+[FA03]: Gravar
+4.1. Encerrar [FA02] 
+4.2. O funcionário seleciona opção de gravar.
+4.3. O sistema grava ordem de serviço finalizada e altera seu status para finalizada.
+4.4. O sistema informa o sucesso da operação.
+
+Fluxos de erro
+[FE01]: Ordem não encontrada
+1.5.1. O sistema informa o erro. 
+1.5.2. Volta ao passo 1.2.
+
+[FE02]: Dados incorretos
+2.6.1. O sistema informa o erro
+              2.6.2. Volta ao passo 2.4.
+[UC08] Emitir relatórios
+Ator(es):
+Funcionário
+
+
+Descrição: Neste caso de uso o funcionário poderá obter relatórios predefinidos no sistema.
+
+Fluxo principal
+1. O funcionário seleciona o relatório que deseja
+2. O funcionário seleciona gerar relatório
+3. O sistema retorna um relatório com os dados definidos	.
+
+[UC09] Logar do WebSite
+Ator(es):
+Cliente
+
+Descrição: Este caso de uso representa os passos necessários para que o cliente possa acessar o WebSite para agendar um serviço.
+
+Pré-condições: O cliente deve estar cadastrado no sistema.
+
+Fluxo principal
+	1. O cliente abre a tela de login do WebSite.
+ 	2. O cliente informa o usuário e a senha. 
+ 	3. O cliente seleciona a opção de logar no sistema. [FE01]
+  	4. O WebSite abre sua tela principal.
+
+Fluxos de erro
+[FE 001]: Usuário ou senha incorretos
+3.1. O WebSite exibe uma mensagem informando que o usuário ou a senha estão incorretos, ou não cadastrado.
+3.2.  Volta para o passo 2.
+
+[UC10] Verificar horários disponíveis no WebSite
+Ator(es):
+Cliente
+
+Descrição: Este caso de uso será responsável por auxiliar o Cliente a encontrar um horário disponível para agendar um serviço.
+
+Fluxo principal
+	1. O cliente abre a tela de horários do WebSite.
+ 	2. O cliente verifica os horários disponíveis para serviço.
+
+[UC11] Agendar um Serviço no WebSite
+Ator(es):
+Cliente
+
+
+Descrição: Este caso de uso será responsável por auxiliar o Cliente a agendar um serviço através do WebSite.
+
+Fluxo principal
+	1. O cliente abre a tela de agendamento.
+ 	2. O cliente seleciona um horário disponível.
+ 	3. O cliente informa o tipo de serviço que deseja realizar no seu veículo. 
+	4. O cliente grava essas informações.</div>
+    </body>
+</html>

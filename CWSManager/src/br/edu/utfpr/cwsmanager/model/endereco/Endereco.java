@@ -13,25 +13,14 @@ import br.edu.utfpr.cwsmanager.model.pessoa.Cliente;
 public class Endereco {
 
     private int id;
-    private String nomeEndereco;
+    private String logradouro;
     private int numero;
     private String complemento;
     private String bairro;
     private String cep;
-    private Cliente cliente;
     private Cidade cidade = new Cidade();
 
     public Endereco() {
-    }
-
-    
-    
-    public Cliente getCliente() {
-        return cliente;
-    }
-
-    public void setCliente(Cliente cliente) {
-        this.cliente = cliente;
     }
 
     public int getId() {
@@ -43,11 +32,11 @@ public class Endereco {
     }
 
     public String getNomeEndereco() {
-        return nomeEndereco;
+        return logradouro;
     }
 
     public void setNomeEndereco(String nomeEndereco) {
-        this.nomeEndereco = nomeEndereco;
+        this.logradouro = nomeEndereco;
     }
 
     public int getNumero() {
@@ -92,8 +81,7 @@ public class Endereco {
 
     @Override
     public String toString() {
-        return "Endereco{" + "id=" + id + ", nomeEndereco=" + nomeEndereco + ", numero=" + numero + ", complemento=" + complemento + ", bairro=" + bairro + ", cep=" + cep + ", cliente=" + cliente + ", cidade=" + cidade + '}';
+        return "Endereco{" + "id=" + id + ", nomeEndereco=" + logradouro + ", numero=" + numero + ", complemento=" + complemento + ", bairro=" + bairro + ", cep=" + cep + ", cidade=" + cidade + '}';
     }
 
- 
 }

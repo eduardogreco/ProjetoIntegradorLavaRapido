@@ -6,19 +6,19 @@ package br.edu.utfpr.cwsmanager.model.telas;
 
 import br.edu.utfpr.cwsmanager.model.daos.DaoCidade;
 import br.edu.utfpr.cwsmanager.model.daos.DaoCliente;
-import br.edu.utfpr.cwsmanager.model.daos.DaoEndereco;
+import br.edu.utfpr.cwsmanager.model.daos.DaoVeiculo;
 import br.edu.utfpr.cwsmanager.model.endereco.Cidade;
-import br.edu.utfpr.cwsmanager.model.endereco.Endereco;
 import br.edu.utfpr.cwsmanager.model.pessoa.Cliente;
 import br.edu.utfpr.cwsmanager.model.util.UtilDatas;
 import br.edu.utfpr.cwsmanager.model.veiculo.Veiculo;
-import java.sql.SQLException;
+import java.awt.event.WindowEvent;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import sun.awt.WindowClosingListener;
 
 /**
  *
@@ -31,7 +31,7 @@ public class JDialogCliente extends javax.swing.JDialog {
     private DefaultTableModel modeloVeiculo;
     private List<Veiculo> veiculos = new ArrayList<Veiculo>();
     private DaoCidade daoCidade = new DaoCidade();
-
+    private Cliente cliente;
     /**
      * Creates new form JDialogCliente
      */
@@ -89,12 +89,12 @@ public class JDialogCliente extends javax.swing.JDialog {
         jLabelCep = new javax.swing.JLabel();
         jTextFieldBairro = new javax.swing.JTextField();
         jTextFieldPesquisaCodCidade = new javax.swing.JTextField();
-        jTextFieldCep = new javax.swing.JTextField();
         jLabel22 = new javax.swing.JLabel();
         jButtonPesquisarCidade = new javax.swing.JButton();
         jButtonIncluirCidade = new javax.swing.JButton();
         jTextFieldNomeCidade = new javax.swing.JTextField();
         jTextFieldUFCidade = new javax.swing.JTextField();
+        jTextFieldCep = new javax.swing.JFormattedTextField();
         jPanel3 = new javax.swing.JPanel();
         jLabel12 = new javax.swing.JLabel();
         jFormattedTextFieldPlaca = new javax.swing.JFormattedTextField();
@@ -109,6 +109,8 @@ public class JDialogCliente extends javax.swing.JDialog {
         jButtonExcluirVeiculo = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTableVeiculo = new javax.swing.JTable();
+        jTextFieldIdVeiculo = new javax.swing.JTextField();
+        jLabel1 = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
         jLabel10 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
@@ -156,6 +158,12 @@ public class JDialogCliente extends javax.swing.JDialog {
                 jTextFieldNomeClienteActionPerformed(evt);
             }
         });
+
+        try {
+            jFormattedTextFieldCPFCliente.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###.###.###-##")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
 
         try {
             jFormattedTextFieldTelefonePessoalCliente.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("(##) ####-####")));
@@ -354,6 +362,12 @@ public class JDialogCliente extends javax.swing.JDialog {
             }
         });
 
+        try {
+            jTextFieldCep.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("#####-###")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+
         org.jdesktop.layout.GroupLayout jPanel2Layout = new org.jdesktop.layout.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -367,30 +381,31 @@ public class JDialogCliente extends javax.swing.JDialog {
                     .add(jLabelCidadeEnd)
                     .add(jLabelCep))
                 .add(18, 18, 18)
-                .add(jPanel2Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING, false)
-                    .add(jPanel2Layout.createSequentialGroup()
-                        .add(jTextFieldNomeEndreco, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 338, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                        .add(jLabel17)
-                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
-                        .add(jTextFieldNumEndereco, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 69, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                    .add(jPanel2Layout.createSequentialGroup()
-                        .add(jPanel2Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING)
-                            .add(org.jdesktop.layout.GroupLayout.LEADING, jTextFieldCep)
-                            .add(org.jdesktop.layout.GroupLayout.LEADING, jTextFieldBairro)
-                            .add(org.jdesktop.layout.GroupLayout.LEADING, jTextFieldComplemento)
-                            .add(org.jdesktop.layout.GroupLayout.LEADING, jPanel2Layout.createSequentialGroup()
-                                .add(jTextFieldPesquisaCodCidade, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 54, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                                .add(jButtonPesquisarCidade, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 40, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                                .add(jButtonIncluirCidade, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 40, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                                .add(0, 0, Short.MAX_VALUE))
-                            .add(org.jdesktop.layout.GroupLayout.LEADING, jTextFieldNomeCidade))
-                        .add(18, 18, 18)
-                        .add(jLabel22)
-                        .add(18, 18, 18)
-                        .add(jTextFieldUFCidade, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 114, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)))
+                .add(jPanel2Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                    .add(jPanel2Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING, false)
+                        .add(jPanel2Layout.createSequentialGroup()
+                            .add(jTextFieldNomeEndreco, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 338, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                            .add(jLabel17)
+                            .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
+                            .add(jTextFieldNumEndereco, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 69, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                        .add(jPanel2Layout.createSequentialGroup()
+                            .add(jPanel2Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING)
+                                .add(org.jdesktop.layout.GroupLayout.LEADING, jTextFieldBairro)
+                                .add(org.jdesktop.layout.GroupLayout.LEADING, jTextFieldComplemento)
+                                .add(org.jdesktop.layout.GroupLayout.LEADING, jPanel2Layout.createSequentialGroup()
+                                    .add(jTextFieldPesquisaCodCidade, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 54, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                                    .add(jButtonPesquisarCidade, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 40, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                                    .add(jButtonIncluirCidade, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 40, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                                    .add(0, 0, Short.MAX_VALUE))
+                                .add(org.jdesktop.layout.GroupLayout.LEADING, jTextFieldNomeCidade))
+                            .add(18, 18, 18)
+                            .add(jLabel22)
+                            .add(18, 18, 18)
+                            .add(jTextFieldUFCidade, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 114, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)))
+                    .add(jTextFieldCep, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 265, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(142, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
@@ -473,11 +488,11 @@ public class JDialogCliente extends javax.swing.JDialog {
 
             },
             new String [] {
-                "Placa", "Modelo", "Cor", "Tipo"
+                "Código", "Placa", "Modelo", "Cor", "Tipo"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, true, true
+                false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -485,6 +500,10 @@ public class JDialogCliente extends javax.swing.JDialog {
             }
         });
         jScrollPane1.setViewportView(jTableVeiculo);
+
+        jTextFieldIdVeiculo.setEditable(false);
+
+        jLabel1.setText("Cód.:");
 
         org.jdesktop.layout.GroupLayout jPanel3Layout = new org.jdesktop.layout.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -498,19 +517,22 @@ public class JDialogCliente extends javax.swing.JDialog {
                         .add(jPanel3Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING, false)
                             .add(jPanel3Layout.createSequentialGroup()
                                 .add(jLabel15)
-                                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                                 .add(jComboBoxTipoVeiculo, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
                             .add(jPanel3Layout.createSequentialGroup()
                                 .add(jPanel3Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                                    .add(jLabel13)
-                                    .add(jLabel12)
-                                    .add(jLabel14))
-                                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                                .add(jPanel3Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                                    .add(jTextFieldCor, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 168, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                                    .add(jPanel3Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING, false)
-                                        .add(jFormattedTextFieldPlaca, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 168, Short.MAX_VALUE)
-                                        .add(jTextFieldModelo)))))
+                                    .add(jLabel14)
+                                    .add(jPanel3Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                                        .add(org.jdesktop.layout.GroupLayout.TRAILING, jPanel3Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                                            .add(jLabel13)
+                                            .add(jLabel12))
+                                        .add(jLabel1)))
+                                .add(18, 18, 18)
+                                .add(jPanel3Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING, false)
+                                    .add(jTextFieldCor, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 168, Short.MAX_VALUE)
+                                    .add(jFormattedTextFieldPlaca, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 168, Short.MAX_VALUE)
+                                    .add(jTextFieldModelo)
+                                    .add(jTextFieldIdVeiculo))))
                         .add(34, 34, 34)
                         .add(jButtonAdicionarVeiculo)
                         .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
@@ -522,28 +544,37 @@ public class JDialogCliente extends javax.swing.JDialog {
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
             .add(jPanel3Layout.createSequentialGroup()
-                .add(34, 34, 34)
+                .addContainerGap(23, Short.MAX_VALUE)
                 .add(jPanel3Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
-                    .add(jLabel12)
-                    .add(jFormattedTextFieldPlaca, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                .add(18, 18, 18)
-                .add(jPanel3Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
-                    .add(jLabel13)
-                    .add(jTextFieldModelo, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                .add(18, 18, 18)
-                .add(jPanel3Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
-                    .add(jTextFieldCor, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                    .add(jLabel14))
-                .add(18, 18, 18)
-                .add(jPanel3Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
-                    .add(jLabel15)
-                    .add(jComboBoxTipoVeiculo, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                    .add(jButtonAdicionarVeiculo)
-                    .add(jButtonAlterarVeiculo)
-                    .add(jButtonExcluirVeiculo))
-                .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
-                .add(jScrollPane1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 219, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(17, Short.MAX_VALUE))
+                    .add(jTextFieldIdVeiculo, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                    .add(jLabel1))
+                .add(12, 12, 12)
+                .add(jPanel3Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                    .add(jPanel3Layout.createSequentialGroup()
+                        .add(40, 40, 40)
+                        .add(jPanel3Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
+                            .add(jLabel13)
+                            .add(jTextFieldModelo, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                        .add(jPanel3Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                            .add(jPanel3Layout.createSequentialGroup()
+                                .add(12, 12, 12)
+                                .add(jPanel3Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
+                                    .add(jLabel14)
+                                    .add(jTextFieldCor, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)))
+                            .add(jPanel3Layout.createSequentialGroup()
+                                .add(58, 58, 58)
+                                .add(jPanel3Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
+                                    .add(jButtonExcluirVeiculo)
+                                    .add(jButtonAlterarVeiculo)
+                                    .add(jButtonAdicionarVeiculo)
+                                    .add(jComboBoxTipoVeiculo, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                                    .add(jLabel15))
+                                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                                .add(jScrollPane1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 219, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))))
+                    .add(jPanel3Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
+                        .add(jLabel12)
+                        .add(jFormattedTextFieldPlaca, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap())
         );
 
         jTabbedPane1.addTab("Veículo", jPanel3);
@@ -704,12 +735,28 @@ public class JDialogCliente extends javax.swing.JDialog {
     }//GEN-LAST:event_jFormattedTextFieldDataNascClienteActionPerformed
 
     private void jButtonPesquisarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonPesquisarClienteActionPerformed
-        int id = Integer.parseInt(jTextFieldIdCliente.getText().trim());
-        try {
-            setCliente(daoCliente.retrieve(id));
-        } catch (Exception ex) {
-            Logger.getLogger(JDialogCliente.class.getName()).log(Level.SEVERE, null, ex);
-        }
+//        int id = Integer.parseInt(jTextFieldIdCliente.getText().trim());
+//        try {
+//            cliente = daoCliente.retrieve(id);
+//            setCliente();
+//        } catch (Exception ex) {
+//            Logger.getLogger(JDialogCliente.class.getName()).log(Level.SEVERE, null, ex);
+//        }
+        
+        final JDialogConsCliente consulta = new JDialogConsCliente(this, true);
+        consulta.setVisible(true);
+        
+        consulta.addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosed(java.awt.event.WindowEvent evt) {
+                cliente = consulta.cliente;
+                try {
+                    cliente = daoCliente.retrieve(cliente.getId());
+                } catch (Exception ex) {
+                    Logger.getLogger(JDialogCliente.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                setCliente();
+            }
+        });
     }//GEN-LAST:event_jButtonPesquisarClienteActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
@@ -748,23 +795,21 @@ public class JDialogCliente extends javax.swing.JDialog {
     }//GEN-LAST:event_jFormattedTextFieldPlacaActionPerformed
 
     private void jButtonGravarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonGravarActionPerformed
-        Cliente cliente = new Cliente();
-
-        cliente = getCliente();
-
         try {
             // TODO add your handling code here:
             if (cliente.getId() != 0) {
-                daoCliente.update(cliente);
+                daoCliente.update(getCliente());
+                JOptionPane.showMessageDialog(null, "Registro alterado com sucesso.", "Alteração", JOptionPane.INFORMATION_MESSAGE);
             } else {
-                daoCliente.insert(getCliente());
+                int idCliente = daoCliente.insert(getCliente());
+                jTextFieldIdCliente.setText(Integer.toString(idCliente));
+                JOptionPane.showMessageDialog(null, "Registro gravado com sucesso.", "Gravação", JOptionPane.INFORMATION_MESSAGE);
             }
 
         } catch (Exception ex) {
             Logger.getLogger(JDialogCliente.class.getName()).log(Level.SEVERE, null, ex);
         }
 
-        clearCampos();
         habilitaCampos(false);
     }//GEN-LAST:event_jButtonGravarActionPerformed
 
@@ -784,6 +829,10 @@ public class JDialogCliente extends javax.swing.JDialog {
     private void jButtonAdicionarVeiculoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAdicionarVeiculoActionPerformed
         // TODO add your handling code here:
         Veiculo veiculo = new Veiculo();
+        try {
+            veiculo.setId(Integer.parseInt(jTextFieldIdVeiculo.getText().toString().trim()));
+        } catch (Exception e) {
+        }
         veiculo.setPlaca(jFormattedTextFieldPlaca.getText().trim());
         veiculo.setModelo(jTextFieldModelo.getText().trim());
         veiculo.setCor(jTextFieldCor.getText().trim());
@@ -801,10 +850,11 @@ public class JDialogCliente extends javax.swing.JDialog {
             return;
         }
 
-        jFormattedTextFieldPlaca.setText(jTableVeiculo.getValueAt(linha, 0).toString());
-        jTextFieldModelo.setText(jTableVeiculo.getValueAt(linha, 1).toString());
-        jTextFieldCor.setText(jTableVeiculo.getValueAt(linha, 2).toString());
-        jComboBoxTipoVeiculo.setSelectedItem(jTableVeiculo.getValueAt(linha, 3).toString());
+        jTextFieldIdVeiculo.setText(jTableVeiculo.getValueAt(linha, 0).toString());
+        jFormattedTextFieldPlaca.setText(jTableVeiculo.getValueAt(linha, 1).toString());
+        jTextFieldModelo.setText(jTableVeiculo.getValueAt(linha, 2).toString());
+        jTextFieldCor.setText(jTableVeiculo.getValueAt(linha, 3).toString());
+        jComboBoxTipoVeiculo.setSelectedItem(jTableVeiculo.getValueAt(linha, 4).toString());
 
         veiculos.remove(linha);
         preencherTableVeiculos();
@@ -818,6 +868,18 @@ public class JDialogCliente extends javax.swing.JDialog {
             return;
         }
 
+        Veiculo v = new Veiculo();
+        DaoVeiculo daoVeiculo = new DaoVeiculo();
+        
+        v = veiculos.get(linha);
+        
+        if (v.getId() != 0){
+            try {
+                daoVeiculo.delete(v);
+            } catch (Exception ex) {
+                Logger.getLogger(JDialogCliente.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
         veiculos.remove(linha);
         preencherTableVeiculos();
     }//GEN-LAST:event_jButtonExcluirVeiculoActionPerformed
@@ -825,13 +887,13 @@ public class JDialogCliente extends javax.swing.JDialog {
     private void jTextFieldPesquisaCodCidadeFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextFieldPesquisaCodCidadeFocusLost
         Cidade cidade = new Cidade();
         int id_cidade = 0;
-        
+
         try {
             id_cidade = Integer.parseInt(jTextFieldPesquisaCodCidade.getText().trim());
         } catch (Exception e) {
             return;
         }
-        
+
         try {
             cidade = daoCidade.retrieve(id_cidade);
         } catch (Exception e) {
@@ -840,7 +902,7 @@ public class JDialogCliente extends javax.swing.JDialog {
             jTextFieldPesquisaCodCidade.grabFocus();
             return;
         }
-        
+
         jTextFieldNomeCidade.setText(cidade.getNome());
         jTextFieldUFCidade.setText(cidade.getEstado());
     }//GEN-LAST:event_jTextFieldPesquisaCodCidadeFocusLost
@@ -907,6 +969,7 @@ public class JDialogCliente extends javax.swing.JDialog {
     private javax.swing.JFormattedTextField jFormattedTextFieldPlaca;
     private javax.swing.JFormattedTextField jFormattedTextFieldTelComecialCliente;
     private javax.swing.JFormattedTextField jFormattedTextFieldTelefonePessoalCliente;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
@@ -939,11 +1002,12 @@ public class JDialogCliente extends javax.swing.JDialog {
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTable jTableVeiculo;
     private javax.swing.JTextField jTextFieldBairro;
-    private javax.swing.JTextField jTextFieldCep;
+    private javax.swing.JFormattedTextField jTextFieldCep;
     private javax.swing.JTextField jTextFieldComplemento;
     private javax.swing.JTextField jTextFieldCor;
     private javax.swing.JTextField jTextFieldEmailCliente;
     private javax.swing.JTextField jTextFieldIdCliente;
+    private javax.swing.JTextField jTextFieldIdVeiculo;
     private javax.swing.JTextField jTextFieldLoginCliente;
     private javax.swing.JTextField jTextFieldModelo;
     private javax.swing.JTextField jTextFieldNomeCidade;
@@ -956,8 +1020,6 @@ public class JDialogCliente extends javax.swing.JDialog {
     // End of variables declaration//GEN-END:variables
 
     public Cliente getCliente() {
-        Cliente cliente = new Cliente();
-
         try {
             cliente.setId(Integer.parseInt(jTextFieldIdCliente.getText().trim()));
         } catch (Exception e) {
@@ -981,14 +1043,14 @@ public class JDialogCliente extends javax.swing.JDialog {
         cliente.getEndereco().setBairro(jTextFieldBairro.getText().trim());
         cliente.getEndereco().getCidade().setId(Integer.parseInt(jTextFieldPesquisaCodCidade.getText().trim()));
         cliente.getEndereco().setCep(jTextFieldCep.getText().trim());
-       
-        cliente.setVeiculos(veiculos);
 
+        cliente.setVeiculos(veiculos);
+        
         return cliente;
     }
 
-
-    private void setCliente(Cliente cliente) {
+    private void setCliente() {
+        jTextFieldIdCliente.setText(Integer.toString(cliente.getId()));
         jTextFieldNomeCliente.setText(cliente.getNome());
         jFormattedTextFieldCPFCliente.setText(cliente.getCpf());
         jRadioButtonMasculinoCliente.setSelected((cliente.getSexo().equals("M") ? true : false));
@@ -1002,18 +1064,19 @@ public class JDialogCliente extends javax.swing.JDialog {
 
         jTextFieldNomeEndreco.setText(cliente.getEndereco().getNomeEndereco());
         jTextFieldNumEndereco.setText(Integer.toString(cliente.getEndereco().getNumero()));
-       jTextFieldComplemento.setText(cliente.getEndereco().getComplemento());
+        jTextFieldComplemento.setText(cliente.getEndereco().getComplemento());
         jTextFieldBairro.setText(cliente.getEndereco().getBairro());
         jTextFieldPesquisaCodCidade.setText(Integer.toString(cliente.getEndereco().getCidade().getId()));
         jTextFieldNomeCidade.setText(cliente.getEndereco().getCidade().getNome());
         jTextFieldUFCidade.setText(cliente.getEndereco().getCidade().getEstado());
         jTextFieldCep.setText(cliente.getEndereco().getCep());
-        
+
         veiculos = cliente.getVeiculos();
         preencherTableVeiculos();
     }
 
     private void clearCampos() {
+        cliente = new Cliente();
         jTextFieldIdCliente.setText("");
         jTextFieldNomeCliente.setText("");
         jFormattedTextFieldCPFCliente.setText("");
@@ -1068,6 +1131,7 @@ public class JDialogCliente extends javax.swing.JDialog {
         jTextFieldUFCidade.setEnabled(comando);
         jTextFieldCep.setEnabled(comando);
 
+        jTextFieldIdVeiculo.setEnabled(comando);
         jFormattedTextFieldPlaca.setEnabled(comando);
         jTextFieldModelo.setEnabled(comando);
         jTextFieldCor.setEnabled(comando);
@@ -1083,6 +1147,7 @@ public class JDialogCliente extends javax.swing.JDialog {
         modeloVeiculo.setNumRows(0);
         for (Veiculo obj : veiculos) {
             modeloVeiculo.addRow(new Object[]{
+                obj.getId(),
                 obj.getPlaca(),
                 obj.getModelo(),
                 obj.getCor(),
