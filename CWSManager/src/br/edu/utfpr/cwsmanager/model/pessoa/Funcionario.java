@@ -4,8 +4,13 @@
  */
 package br.edu.utfpr.cwsmanager.model.pessoa;
 
+import br.edu.utfpr.cwsmanager.model.endereco.Endereco;
+//import br.edu.utfpr.cwsmanager.model.endereco.EnderecoFuncionario;
+import br.edu.utfpr.cwsmanager.model.veiculo.Veiculo;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 
 /**
  *
@@ -25,6 +30,19 @@ public class Funcionario {
     private String email;
     private String login;
     private String senha;
+    private Endereco endereco= new Endereco();
+
+    public Endereco getEndereco() {
+        return endereco;
+    }
+
+    public void setEndereco(Endereco endereco) {
+        this.endereco = endereco;
+    }
+
+
+  
+    
     
     private Date dataNascimento = Calendar.getInstance().getTime();
 
@@ -121,9 +139,11 @@ public class Funcionario {
 
     @Override
     public String toString() {
-        return "Funcionario{" + "idFuncionario=" + idFuncionario + ", nome=" + nome + ", cpf=" + cpf + ", sexo=" + sexo + ", estadoCivil=" + estadoCivil + ", telPessoal=" + telPessoal + ", celular=" + celular + ", email=" + email + ", login=" + login + ", senha=" + senha + ", dataNascimento=" + dataNascimento + '}';
+        return "Funcionario{" + "idFuncionario=" + idFuncionario + ", nome=" + nome + ", cpf=" + cpf + ", sexo=" + sexo + ", estadoCivil=" + estadoCivil + ", telPessoal=" + telPessoal + ", celular=" + celular + ", email=" + email + ", login=" + login + ", senha=" + senha + ",  dataNascimento=" + dataNascimento + '}';
     }
 
+    
+  
     
    
 

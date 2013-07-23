@@ -10,15 +10,20 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.List;
 import br.edu.utfpr.cwsmanager.model.util.ConnectionFactory;
+import br.edu.utfpr.cwsmanager.model.veiculo.Veiculo;
 import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.util.ArrayList;
 
 /**
  *
- * @author RaphaelLira
+ * @author Raphael Lira
  */
 public class DaoFuncionario implements Dao<Funcionario> {
+
+     private DaoEndereco daoEndereco = new DaoEndereco();
+    
+    
 
     private static Funcionario converteRsParaFuncionario(ResultSet rs) throws SQLException {
         Funcionario f = new Funcionario();
@@ -47,7 +52,9 @@ public class DaoFuncionario implements Dao<Funcionario> {
     @Override
     public void delete(Funcionario f) throws Exception {
         Statement st = ConnectionFactory.prepareConnection().createStatement();
-        st.execute("DELETE FROM Cliente WHERE id = " + f.getIdFuncionario());
+
+
+        st.execute("DELETE FROM Funcionario WHERE idFuncionario = " + f.getIdFuncionario());
     }
 
     @Override
@@ -59,11 +66,13 @@ public class DaoFuncionario implements Dao<Funcionario> {
         rs.next();
         Funcionario f = converteRsParaFuncionario(rs);
 
+
+
         return f;
     }
 
     @Override
-    public List<Funcionario> list() throws Exception {
+    public List<Funcionario> list(String parametro) throws Exception {
         List<Funcionario> Funcionario = new ArrayList<Funcionario>();
 
         Statement st = ConnectionFactory.prepareConnection().createStatement();
@@ -79,8 +88,9 @@ public class DaoFuncionario implements Dao<Funcionario> {
 
     public void insert(Funcionario f) throws SQLException {
         PreparedStatement pst = ConnectionFactory.prepareConnection().prepareStatement("INSERT INTO Funcionario (nome, cpf, sexo, dataNascimento, estadoCivil, telPessoal, celular, email, login, senha) VALUES(?,?,?,?,?,?,?,?,?,?)", Statement.RETURN_GENERATED_KEYS);
-        
-       
+
+        daoEndereco.insert(f.getEndereco());
+
         pst.setString(1, f.getNome());
         pst.setString(2, f.getCpf());
         pst.setString(3, f.getSexo());
@@ -98,6 +108,8 @@ public class DaoFuncionario implements Dao<Funcionario> {
         ResultSet rs = pst.getGeneratedKeys();
         rs.next();
         f.setIdFuncionario(rs.getInt(1));
+        
+         
     }
 
     public void update(Funcionario f) throws SQLException {
@@ -106,7 +118,8 @@ public class DaoFuncionario implements Dao<Funcionario> {
         pst.setString(2, f.getCpf());
         pst.setInt(3, f.getIdFuncionario());
         pst.execute();
+        
+        daoEndereco.update(f.getEndereco());
+      
     }
-
-
 }
