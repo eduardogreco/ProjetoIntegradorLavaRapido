@@ -10,7 +10,6 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.List;
 import br.edu.utfpr.cwsmanager.model.util.ConnectionFactory;
-import br.edu.utfpr.cwsmanager.model.veiculo.Veiculo;
 import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.util.ArrayList;
