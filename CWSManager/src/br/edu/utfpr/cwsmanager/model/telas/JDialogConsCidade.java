@@ -4,8 +4,14 @@
  */
 package br.edu.utfpr.cwsmanager.model.telas;
 
+import br.edu.utfpr.cwsmanager.model.daos.DaoCidade;
+import br.edu.utfpr.cwsmanager.model.endereco.Cidade;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -13,12 +19,24 @@ import java.util.logging.Logger;
  */
 public class JDialogConsCidade extends javax.swing.JDialog {
 
+    private DaoCidade daoCidade;
+    private List<Cidade> cidades;
+    private DefaultTableModel modeloCidade;
+    public Cidade cidade;
+
     /**
      * Creates new form JDialogConsCliente
      */
-    public JDialogConsCidade(java.awt.Frame parent, boolean modal) {
+    public JDialogConsCidade(java.awt.Dialog parent, boolean modal) {
         super(parent, modal);
         initComponents();
+
+        daoCidade = new DaoCidade();
+        cidade = new Cidade();
+
+        modeloCidade = (DefaultTableModel) jTableResultConsultaCidade.getModel();
+        modeloCidade.setNumRows(0);
+
     }
 
     /**
@@ -46,7 +64,7 @@ public class JDialogConsCidade extends javax.swing.JDialog {
 
         jLabelPesquisa.setText("Consulta por:");
 
-        jComboBoxCampos.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Codigo", "Nome" }));
+        jComboBoxCampos.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Geral", "Codigo", "Nome" }));
         jComboBoxCampos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboBoxCamposActionPerformed(evt);
@@ -201,15 +219,15 @@ public class JDialogConsCidade extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonPesquisarActionPerformed
-        // TODO add your handling code here:
+        pesquisa();
     }//GEN-LAST:event_jButtonPesquisarActionPerformed
 
     private void jButtonOkConsultaFuncionarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonOkConsultaFuncionarioActionPerformed
-        // TODO add your handling code here:
+        selecionar();        // TODO add your handling code here:
     }//GEN-LAST:event_jButtonOkConsultaFuncionarioActionPerformed
 
     private void jButtonCancelarConsultaFuncionarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCancelarConsultaFuncionarioActionPerformed
-        // TODO add your handling code here:
+        modeloCidade.setNumRows(0);        // TODO add your handling code here:
     }//GEN-LAST:event_jButtonCancelarConsultaFuncionarioActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
@@ -251,7 +269,7 @@ public class JDialogConsCidade extends javax.swing.JDialog {
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                JDialogConsCidade dialog = new JDialogConsCidade(new javax.swing.JFrame(), true);
+                JDialogConsCidade dialog = new JDialogConsCidade(new javax.swing.JDialog(), true);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {
@@ -274,4 +292,56 @@ public class JDialogConsCidade extends javax.swing.JDialog {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTableResultConsultaCidade;
     // End of variables declaration//GEN-END:variables
+
+    private void selecionar() {
+        int linha = jTableResultConsultaCidade.getSelectedRow();
+
+        if (linha < 0) {
+            JOptionPane.showMessageDialog(null, "Selecion um registro.", "Atenção", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+
+        cidade = cidades.get(linha);
+        dispose();
+    }
+
+    private void pesquisa() {
+        cidades = new ArrayList<>();
+
+        switch (jComboBoxCampos.getSelectedIndex()) {
+            case 0:
+                try {
+                    cidades = daoCidade.list();
+                } catch (Exception ex) {
+                    Logger.getLogger(JDialogConsCidade.class.getName()).log(Level.SEVERE, null, ex);
+                }
+
+                break;
+
+            case 1:
+                break;
+
+            case 2:
+
+                break;
+        }
+
+        preencherjTable();
+    }
+
+    private void preencherjTable() {
+        modeloCidade.setNumRows(0);
+
+        if (cidades.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Registros não encontrados.", "Atenção", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+
+        for (Cidade obj : cidades) {
+            modeloCidade.addRow(new Object[]{
+                obj.getId(),
+                obj.getNome(),
+                obj.getEstado(),});
+        }
+    }
 }

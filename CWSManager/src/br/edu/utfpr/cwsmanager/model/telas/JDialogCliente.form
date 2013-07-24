@@ -277,6 +277,9 @@
               </Properties>
             </Component>
             <Component class="javax.swing.JTextField" name="jTextFieldIdCliente">
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextFieldIdClienteActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JTextField" name="jTextFieldNomeCliente">
               <Events>
@@ -323,6 +326,10 @@
               </Events>
             </Component>
             <Component class="javax.swing.JTextField" name="jTextFieldEmailCliente">
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextFieldEmailClienteActionPerformed"/>
+                <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="jTextFieldEmailClienteFocusLost"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JButton" name="jButtonPesquisarCliente">
               <Properties>
@@ -520,6 +527,7 @@
             </Component>
             <Component class="javax.swing.JTextField" name="jTextFieldPesquisaCodCidade">
               <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextFieldPesquisaCodCidadeActionPerformed"/>
                 <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="jTextFieldPesquisaCodCidadeFocusLost"/>
               </Events>
             </Component>
@@ -569,6 +577,9 @@
               </Events>
             </Component>
             <Component class="javax.swing.JTextField" name="jTextFieldNomeCidade">
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextFieldNomeCidadeActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JTextField" name="jTextFieldUFCidade">
             </Component>

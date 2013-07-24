@@ -32,6 +32,8 @@ public class JDialogCliente extends javax.swing.JDialog {
     private List<Veiculo> veiculos = new ArrayList<Veiculo>();
     private DaoCidade daoCidade = new DaoCidade();
     private Cliente cliente;
+    private Cidade cidade;
+
     /**
      * Creates new form JDialogCliente
      */
@@ -153,6 +155,12 @@ public class JDialogCliente extends javax.swing.JDialog {
 
         jLabelEmailCliente.setText("Email:");
 
+        jTextFieldIdCliente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextFieldIdClienteActionPerformed(evt);
+            }
+        });
+
         jTextFieldNomeCliente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextFieldNomeClienteActionPerformed(evt);
@@ -188,6 +196,17 @@ public class JDialogCliente extends javax.swing.JDialog {
         jFormattedTextFieldDataNascCliente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jFormattedTextFieldDataNascClienteActionPerformed(evt);
+            }
+        });
+
+        jTextFieldEmailCliente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextFieldEmailClienteActionPerformed(evt);
+            }
+        });
+        jTextFieldEmailCliente.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                jTextFieldEmailClienteFocusLost(evt);
             }
         });
 
@@ -332,6 +351,11 @@ public class JDialogCliente extends javax.swing.JDialog {
 
         jLabelCep.setText("CEP:");
 
+        jTextFieldPesquisaCodCidade.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextFieldPesquisaCodCidadeActionPerformed(evt);
+            }
+        });
         jTextFieldPesquisaCodCidade.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
                 jTextFieldPesquisaCodCidadeFocusLost(evt);
@@ -359,6 +383,12 @@ public class JDialogCliente extends javax.swing.JDialog {
         jButtonIncluirCidade.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonIncluirCidadeActionPerformed(evt);
+            }
+        });
+
+        jTextFieldNomeCidade.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextFieldNomeCidadeActionPerformed(evt);
             }
         });
 
@@ -742,10 +772,10 @@ public class JDialogCliente extends javax.swing.JDialog {
 //        } catch (Exception ex) {
 //            Logger.getLogger(JDialogCliente.class.getName()).log(Level.SEVERE, null, ex);
 //        }
-        
+
         final JDialogConsCliente consulta = new JDialogConsCliente(this, true);
         consulta.setVisible(true);
-        
+
         consulta.addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowClosed(java.awt.event.WindowEvent evt) {
                 cliente = consulta.cliente;
@@ -819,11 +849,32 @@ public class JDialogCliente extends javax.swing.JDialog {
     }//GEN-LAST:event_jButtonCancelarActionPerformed
 
     private void jButtonPesquisarCidadeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonPesquisarCidadeActionPerformed
-        // TODO add your handling code here:
+        final JDialogConsCidade consultaCidade = new JDialogConsCidade(this, true);
+        consultaCidade.setVisible(true);
+
+
+        consultaCidade.addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosed(java.awt.event.WindowEvent evt) {
+                cidade = consultaCidade.cidade;
+
+                try {
+                    cidade = daoCidade.retrieve(cidade.getId());
+                } catch (Exception ex) {
+                    Logger.getLogger(JDialogCliente.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                jTextFieldPesquisaCodCidade.setText(Integer.toString(cidade.getId()));
+                jTextFieldNomeCidade.setText(cidade.getNome());
+                jTextFieldUFCidade.setText(cidade.getEstado());
+
+            }
+        });
+
     }//GEN-LAST:event_jButtonPesquisarCidadeActionPerformed
 
     private void jButtonIncluirCidadeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonIncluirCidadeActionPerformed
         // TODO add your handling code here:
+        JDialogCidade cadCidade = new JDialogCidade(this, true);
+        cadCidade.setVisible(true);
     }//GEN-LAST:event_jButtonIncluirCidadeActionPerformed
 
     private void jButtonAdicionarVeiculoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAdicionarVeiculoActionPerformed
@@ -870,10 +921,10 @@ public class JDialogCliente extends javax.swing.JDialog {
 
         Veiculo v = new Veiculo();
         DaoVeiculo daoVeiculo = new DaoVeiculo();
-        
+
         v = veiculos.get(linha);
-        
-        if (v.getId() != 0){
+
+        if (v.getId() != 0) {
             try {
                 daoVeiculo.delete(v);
             } catch (Exception ex) {
@@ -906,6 +957,26 @@ public class JDialogCliente extends javax.swing.JDialog {
         jTextFieldNomeCidade.setText(cidade.getNome());
         jTextFieldUFCidade.setText(cidade.getEstado());
     }//GEN-LAST:event_jTextFieldPesquisaCodCidadeFocusLost
+
+    private void jTextFieldIdClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldIdClienteActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextFieldIdClienteActionPerformed
+
+    private void jTextFieldNomeCidadeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldNomeCidadeActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextFieldNomeCidadeActionPerformed
+
+    private void jTextFieldPesquisaCodCidadeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldPesquisaCodCidadeActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextFieldPesquisaCodCidadeActionPerformed
+
+    private void jTextFieldEmailClienteFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextFieldEmailClienteFocusLost
+
+    }//GEN-LAST:event_jTextFieldEmailClienteFocusLost
+
+    private void jTextFieldEmailClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldEmailClienteActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextFieldEmailClienteActionPerformed
 
     /**
      * @param args the command line arguments
@@ -1045,7 +1116,7 @@ public class JDialogCliente extends javax.swing.JDialog {
         cliente.getEndereco().setCep(jTextFieldCep.getText().trim());
 
         cliente.setVeiculos(veiculos);
-        
+
         return cliente;
     }
 

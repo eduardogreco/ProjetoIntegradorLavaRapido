@@ -841,7 +841,7 @@ public class JFramePrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem7ActionPerformed
 
     private void jMenuItem18ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem18ActionPerformed
-        JDialogCidade jdCidade = new JDialogCidade(this, true);
+        JDialogCidade jdCidade = new JDialogCidade(new javax.swing.JDialog(), true);
         jdCidade.setLocationRelativeTo(null);
         jdCidade.setVisible(true);        // TODO add your handling code here:
     }//GEN-LAST:event_jMenuItem18ActionPerformed
@@ -1015,7 +1015,7 @@ public class JFramePrincipal extends javax.swing.JFrame {
 
     private void jMenuItemConsultaCidadeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemConsultaCidadeActionPerformed
         // TODO add your handling code here:
-        JDialogConsCidade jdConsCidade = new JDialogConsCidade(this, true);
+        JDialogConsCidade jdConsCidade = new JDialogConsCidade(new javax.swing.JDialog(), true);
         jdConsCidade.setLocationRelativeTo(null);
         jdConsCidade.setVisible(true);
     }//GEN-LAST:event_jMenuItemConsultaCidadeActionPerformed
