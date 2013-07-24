@@ -884,6 +884,7 @@ public class JDialogCliente extends javax.swing.JDialog {
             veiculo.setId(Integer.parseInt(jTextFieldIdVeiculo.getText().toString().trim()));
         } catch (Exception e) {
         }
+        jTextFieldIdVeiculo.setText("");
         veiculo.setPlaca(jFormattedTextFieldPlaca.getText().trim());
         veiculo.setModelo(jTextFieldModelo.getText().trim());
         veiculo.setCor(jTextFieldCor.getText().trim());
@@ -1198,6 +1199,8 @@ public class JDialogCliente extends javax.swing.JDialog {
         jTextFieldComplemento.setEnabled(comando);
         jTextFieldBairro.setEnabled(comando);
         jTextFieldPesquisaCodCidade.setEnabled(comando);
+        jButtonPesquisarCidade.setEnabled(comando);
+        jButtonIncluirCidade.setEnabled(comando);
         jTextFieldNomeCidade.setEnabled(comando);
         jTextFieldUFCidade.setEnabled(comando);
         jTextFieldCep.setEnabled(comando);

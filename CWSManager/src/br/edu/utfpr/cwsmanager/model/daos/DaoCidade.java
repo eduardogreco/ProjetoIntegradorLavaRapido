@@ -88,4 +88,41 @@ public class DaoCidade implements Dao<Cidade> {
         pst.setInt(3, c.getId());
         pst.execute();
     }
+    
+    public List<Cidade> list(Filter... filters) throws SQLException{
+        
+        List<Cidade> Cidades = new ArrayList<Cidade>();
+        
+        ResultSet rs = null;
+        
+        /* Verifica se algum friltro foi fornecido para o método */
+        if(filters == null || filters.length == 0){
+            Statement st =  ConnectionFactory.prepareConnection().createStatement();
+            rs =  st.executeQuery("SELECT * FROM Cidade");
+        }else{
+            String sql = "SELECT * FROM Cidade WHERE ";
+            
+            for(Filter f : filters){
+                System.out.println(f);
+                switch(f.getOperator()){
+                    case IS_NULL: sql += f.getAttribute() + " IS NULL"; break;
+                    case LIKE: sql += f.getAttribute() + " LIKE '%" + f.getValue()+ "%'"; break;
+                    case EQUAL: sql += f.getAttribute() + "='" + f.getValue()+ "'"; break;
+                    default:
+                        throw new RuntimeException("Tipo de operador não suportado:" + f.getOperator());
+                }
+            }
+            PreparedStatement pst =  ConnectionFactory.prepareConnection().prepareStatement(sql);
+            System.out.println("SQL:" + sql);
+            rs =  pst.executeQuery();
+        }
+        
+        /* Converte o ResultSet da query para uma lista de objetos */
+        while(rs.next()){
+            Cidade c = converteRsParaCidade(rs);
+            Cidades.add(c);
+        }
+        
+        return Cidades;
+    }
 }

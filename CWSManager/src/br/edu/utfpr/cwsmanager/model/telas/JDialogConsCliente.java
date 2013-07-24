@@ -5,6 +5,8 @@
 package br.edu.utfpr.cwsmanager.model.telas;
 
 import br.edu.utfpr.cwsmanager.model.daos.DaoCliente;
+import br.edu.utfpr.cwsmanager.model.daos.Filter;
+import br.edu.utfpr.cwsmanager.model.daos.Operator;
 import br.edu.utfpr.cwsmanager.model.pessoa.Cliente;
 import java.util.ArrayList;
 import java.util.List;
@@ -307,10 +309,19 @@ public class JDialogConsCliente extends javax.swing.JDialog {
                break;
                 
             case 1:
+        try {
+            clientes = daoCliente.list(new Filter("id", Operator.LIKE, jFormattedTextFieldPesquisa.getText()));
+        } catch (Exception ex) {
+            Logger.getLogger(JDialogConsCliente.class.getName()).log(Level.SEVERE, null, ex);
+        }
                 break;
               
             case 2:
-                
+        try {
+            clientes = daoCliente.list(new Filter("nome", Operator.LIKE, jFormattedTextFieldPesquisa.getText()));
+        } catch (Exception ex) {
+            Logger.getLogger(JDialogConsCliente.class.getName()).log(Level.SEVERE, null, ex);
+        }
                 break;
         }
         

@@ -5,7 +5,10 @@
 package br.edu.utfpr.cwsmanager.model.telas;
 
 import br.edu.utfpr.cwsmanager.model.daos.DaoCidade;
+import br.edu.utfpr.cwsmanager.model.daos.Filter;
+import br.edu.utfpr.cwsmanager.model.daos.Operator;
 import br.edu.utfpr.cwsmanager.model.endereco.Cidade;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
@@ -319,10 +322,20 @@ public class JDialogConsCidade extends javax.swing.JDialog {
                 break;
 
             case 1:
+        try {
+            cidades = daoCidade.list(new Filter("id", Operator.LIKE, jFormattedTextFieldPesquisaFuncionario.getText()));
+        } catch (SQLException ex) {
+            Logger.getLogger(JDialogConsCidade.class.getName()).log(Level.SEVERE, null, ex);
+        }
                 break;
 
             case 2:
+                try {
 
+                    cidades = daoCidade.list(new Filter("nome", Operator.LIKE, jFormattedTextFieldPesquisaFuncionario.getText()));
+                } catch (SQLException ex) {
+                    Logger.getLogger(JDialogConsCidade.class.getName()).log(Level.SEVERE, null, ex);
+                }
                 break;
         }
 

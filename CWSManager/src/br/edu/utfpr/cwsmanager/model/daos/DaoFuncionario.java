@@ -71,7 +71,7 @@ public class DaoFuncionario implements Dao<Funcionario> {
     }
 
     @Override
-    public List<Funcionario> list(String parametro) throws Exception {
+    public List<Funcionario> list() throws Exception {
         List<Funcionario> Funcionario = new ArrayList<Funcionario>();
 
         Statement st = ConnectionFactory.prepareConnection().createStatement();
@@ -84,6 +84,7 @@ public class DaoFuncionario implements Dao<Funcionario> {
 
         return Funcionario;
     }
+    
 
     public void insert(Funcionario f) throws SQLException {
         PreparedStatement pst = ConnectionFactory.prepareConnection().prepareStatement("INSERT INTO Funcionario (nome, cpf, sexo, dataNascimento, estadoCivil, telPessoal, celular, email, login, senha) VALUES(?,?,?,?,?,?,?,?,?,?)", Statement.RETURN_GENERATED_KEYS);
@@ -120,5 +121,10 @@ public class DaoFuncionario implements Dao<Funcionario> {
         
         daoEndereco.update(f.getEndereco());
       
+    }
+
+    @Override
+    public List<Funcionario> list(Filter... filters) throws Exception {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }

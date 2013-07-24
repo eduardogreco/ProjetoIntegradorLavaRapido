@@ -111,4 +111,9 @@ public class DaoVeiculo implements Dao<Veiculo> {
         pst.setInt(5, v.getId());
         pst.execute();
     }
+
+    @Override
+    public List<Veiculo> list(Filter... filters) throws Exception {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }

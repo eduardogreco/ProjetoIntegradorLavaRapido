@@ -103,4 +103,9 @@ List<Endereco> Enderecos = new ArrayList<Endereco>();
         pst.execute();
 
     }  
+
+    @Override
+    public List<Endereco> list(Filter... filters) throws Exception {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }
