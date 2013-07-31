@@ -67,7 +67,7 @@ public class JDialogConsCidade extends javax.swing.JDialog {
 
         jLabelPesquisa.setText("Consulta por:");
 
-        jComboBoxCampos.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Geral", "Codigo", "Nome" }));
+        jComboBoxCampos.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Geral", "Código", "Nome", "Estado" }));
         jComboBoxCampos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboBoxCamposActionPerformed(evt);
@@ -333,6 +333,14 @@ public class JDialogConsCidade extends javax.swing.JDialog {
                 try {
 
                     cidades = daoCidade.list(new Filter("nome", Operator.LIKE, jFormattedTextFieldPesquisaFuncionario.getText()));
+                } catch (SQLException ex) {
+                    Logger.getLogger(JDialogConsCidade.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                break;
+                case 3:
+                try {
+
+                    cidades = daoCidade.list(new Filter("estado", Operator.LIKE, jFormattedTextFieldPesquisaFuncionario.getText()));
                 } catch (SQLException ex) {
                     Logger.getLogger(JDialogConsCidade.class.getName()).log(Level.SEVERE, null, ex);
                 }

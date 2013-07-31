@@ -4,6 +4,16 @@
  */
 package br.edu.utfpr.cwsmanager.model.telas;
 
+import br.edu.utfpr.cwsmanager.model.daos.DaoCliente;
+import br.edu.utfpr.cwsmanager.model.daos.Filter;
+import br.edu.utfpr.cwsmanager.model.daos.Operator;
+import br.edu.utfpr.cwsmanager.model.pessoa.Cliente;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.ComboBoxModel;
+
 /**
  *
  * @author EduardoGreco
@@ -13,9 +23,16 @@ public class JDialogSolicitacaoServico extends javax.swing.JDialog {
     /**
      * Creates new form JDialogSolicitacaoServico
      */
+    private DaoCliente daoCliente;
+    private List<Cliente> clientes;
+    public Cliente cliente;
+
     public JDialogSolicitacaoServico(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        clientes = new ArrayList<>();
+        daoCliente = new DaoCliente();
+        preencherClientes();
     }
 
     /**
@@ -50,7 +67,7 @@ public class JDialogSolicitacaoServico extends javax.swing.JDialog {
         jComboBox2 = new javax.swing.JComboBox();
         jComboBox3 = new javax.swing.JComboBox();
         jLabel1 = new javax.swing.JLabel();
-        jComboBox4 = new javax.swing.JComboBox();
+        jComboBoxCliente = new javax.swing.JComboBox();
         jComboBox5 = new javax.swing.JComboBox();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTextArea1 = new javax.swing.JTextArea();
@@ -179,9 +196,19 @@ public class JDialogSolicitacaoServico extends javax.swing.JDialog {
 
         jLabel1.setText("Observaçao:");
 
-        jComboBox4.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBoxCliente.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "teste" }));
+        jComboBoxCliente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBoxClienteActionPerformed(evt);
+            }
+        });
 
         jComboBox5.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBox5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox5ActionPerformed(evt);
+            }
+        });
 
         jTextArea1.setColumns(20);
         jTextArea1.setRows(5);
@@ -208,7 +235,7 @@ public class JDialogSolicitacaoServico extends javax.swing.JDialog {
                     .add(jPanel1Layout.createSequentialGroup()
                         .add(jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
                             .add(jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING, false)
-                                .add(org.jdesktop.layout.GroupLayout.LEADING, jComboBox4, 0, 247, Short.MAX_VALUE)
+                                .add(org.jdesktop.layout.GroupLayout.LEADING, jComboBoxCliente, 0, 247, Short.MAX_VALUE)
                                 .add(org.jdesktop.layout.GroupLayout.LEADING, jComboBox3, 0, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .add(org.jdesktop.layout.GroupLayout.LEADING, jComboBox2, 0, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                             .add(jPanel1Layout.createSequentialGroup()
@@ -265,7 +292,7 @@ public class JDialogSolicitacaoServico extends javax.swing.JDialog {
                 .add(22, 22, 22)
                 .add(jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
                     .add(jLabelTelComercialCliente)
-                    .add(jComboBox4, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                    .add(jComboBoxCliente, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
                 .add(17, 17, 17)
                 .add(jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
                     .add(jLabelEmailCliente)
@@ -420,6 +447,18 @@ public class JDialogSolicitacaoServico extends javax.swing.JDialog {
         // TODO add your handling code here:
     }//GEN-LAST:event_jButtonIncluir1ActionPerformed
 
+    private void jComboBox5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox5ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jComboBox5ActionPerformed
+
+    private void jComboBoxClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxClienteActionPerformed
+        if (jComboBoxCliente.getSelectedItem()instanceof Cliente){
+        Cliente c = (Cliente) jComboBoxCliente.getSelectedItem();
+        
+        //preencher combo box de veiculo
+        }
+    }//GEN-LAST:event_jComboBoxClienteActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -474,8 +513,8 @@ public class JDialogSolicitacaoServico extends javax.swing.JDialog {
     private javax.swing.JComboBox jComboBox1;
     private javax.swing.JComboBox jComboBox2;
     private javax.swing.JComboBox jComboBox3;
-    private javax.swing.JComboBox jComboBox4;
     private javax.swing.JComboBox jComboBox5;
+    private javax.swing.JComboBox jComboBoxCliente;
     private javax.swing.JComboBox jComboBoxTipoConsultaSS;
     private javax.swing.JFormattedTextField jFormattedTextFieldDataNascCliente;
     private javax.swing.JFormattedTextField jFormattedTextFieldPlaca;
@@ -499,4 +538,17 @@ public class JDialogSolicitacaoServico extends javax.swing.JDialog {
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextFieldIdCliente;
     // End of variables declaration//GEN-END:variables
+
+    private void preencherClientes() {
+        
+        jComboBoxCliente.removeAllItems();
+        try {
+            clientes = daoCliente.list();
+        } catch (Exception ex) {
+            Logger.getLogger(JDialogSolicitacaoServico.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        for (Cliente cl : clientes) {
+            jComboBoxCliente.addItem(cl);
+        }
+    }
 }

@@ -129,8 +129,9 @@ public class Cliente {
 
     @Override
     public String toString() {
-        return "Cliente{" + "id=" + id + ", nome=" + nome + ", cpf=" + cpf + ", sexo=" + sexo + ", dataNascimento=" + dataNascimento + ", telPessoal=" + telPessoal + ", celular=" + celular + ", telComercial=" + telComercial + ", email=" + email + ", login=" + login + ", senha=" + senha + ", veiculos=" + veiculos + '}';
+        return nome;
     }
+
 
     public void setVeiculos(List<Veiculo> veiculos) {
         this.veiculos = veiculos;

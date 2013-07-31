@@ -42,4 +42,10 @@ public class UtilDatas {
 
         return data;
     }
+    
+      public static String getDate() {
+        Date data = new Date();
+        SimpleDateFormat formatador = new SimpleDateFormat("dd/MM/yyyy");
+        return formatador.format(data);
+    }
 }

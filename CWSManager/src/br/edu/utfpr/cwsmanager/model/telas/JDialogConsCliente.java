@@ -64,6 +64,11 @@ public class JDialogConsCliente extends javax.swing.JDialog {
         jLabelPesquisa.setText("Consulta por:");
 
         jComboBoxCampos.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Geral", "Codigo", "Nome" }));
+        jComboBoxCampos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBoxCamposActionPerformed(evt);
+            }
+        });
 
         jFormattedTextFieldPesquisa.setMinimumSize(new java.awt.Dimension(42, 28));
         jFormattedTextFieldPesquisa.setPreferredSize(new java.awt.Dimension(42, 28));
@@ -228,6 +233,10 @@ public class JDialogConsCliente extends javax.swing.JDialog {
         // TODO add your handling code here:
         dispose();
     }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jComboBoxCamposActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxCamposActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jComboBoxCamposActionPerformed
 
     /**
      * @param args the command line arguments

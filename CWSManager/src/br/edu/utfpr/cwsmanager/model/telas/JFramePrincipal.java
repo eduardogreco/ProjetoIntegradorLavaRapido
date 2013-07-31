@@ -4,6 +4,7 @@
  */
 package br.edu.utfpr.cwsmanager.model.telas;
 
+import br.edu.utfpr.cwsmanager.model.util.UtilDatas;
 import java.awt.Desktop;
 import static java.awt.Frame.MAXIMIZED_BOTH;
 import java.io.File;
@@ -63,7 +64,7 @@ public class JFramePrincipal extends javax.swing.JFrame {
         jButtonCompra = new javax.swing.JButton();
         jButtonManual = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
+        jLabelStatus = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenuCadastros = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
@@ -431,7 +432,7 @@ public class JFramePrincipal extends javax.swing.JFrame {
 
         jPanel1.setBorder(javax.swing.BorderFactory.createEtchedBorder(null, new java.awt.Color(102, 102, 102)));
 
-        jLabel1.setText("Barra de Status:");
+        jLabelStatus.setText("Barra de Status:");
 
         org.jdesktop.layout.GroupLayout jPanel1Layout = new org.jdesktop.layout.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -439,14 +440,14 @@ public class JFramePrincipal extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
             .add(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .add(jLabel1)
+                .add(jLabelStatus)
                 .addContainerGap(org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
             .add(org.jdesktop.layout.GroupLayout.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .add(jLabel1)
+                .addContainerGap(12, Short.MAX_VALUE)
+                .add(jLabelStatus)
                 .addContainerGap())
         );
 
@@ -689,7 +690,7 @@ public class JFramePrincipal extends javax.swing.JFrame {
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
             .add(layout.createSequentialGroup()
                 .add(jtAtalho, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 536, Short.MAX_VALUE)
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 530, Short.MAX_VALUE)
                 .add(jPanel1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
         );
 
@@ -1115,7 +1116,7 @@ public class JFramePrincipal extends javax.swing.JFrame {
     private javax.swing.JButton jButtonSobreMENU;
     private javax.swing.JButton jButtonSolicitacaoService;
     private javax.swing.JButton jButtonVenda;
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabelStatus;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu10;
     private javax.swing.JMenu jMenu3;
@@ -1164,6 +1165,10 @@ public void AbreTelaGerarOrdem(){
 JDialogCadOrdemServico jdCadOrdemServico = new JDialogCadOrdemServico(this, true);
         jdCadOrdemServico.setLocationRelativeTo(jdCadOrdemServico);
         jdCadOrdemServico.setVisible(true);
+}
+
+public void status(){
+jLabelStatus.setText(UtilDatas.getDate());
 }
 
 }

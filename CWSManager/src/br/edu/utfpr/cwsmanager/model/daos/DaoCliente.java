@@ -78,17 +78,17 @@ public class DaoCliente implements Dao<Cliente> {
 
     @Override
     public List<Cliente> list() throws Exception {
-        List<Cliente> Clientes = new ArrayList<Cliente>();
+        List<Cliente> clientes = new ArrayList<Cliente>();
 
         Statement st = ConnectionFactory.prepareConnection().createStatement();
         ResultSet rs = st.executeQuery("SELECT * FROM Cliente");
 
         while (rs.next()) {
             Cliente p = converteRsParaCliente(rs);
-            Clientes.add(p);
+            clientes.add(p);
         }
 
-        return Clientes;
+        return clientes;
     }
 
     public Integer insert(Cliente c) throws SQLException {
@@ -155,8 +155,10 @@ public class DaoCliente implements Dao<Cliente> {
                 System.out.println(f);
                 switch(f.getOperator()){
                     case IS_NULL: sql += f.getAttribute() + " IS NULL"; break;
+                    case IS_NOT_NULL: sql += f.getAttribute() + " IS NOT NULL"; break;
                     case LIKE: sql += f.getAttribute() + " LIKE '%" + f.getValue()+ "%'"; break;
                     case EQUAL: sql += f.getAttribute() + "='" + f.getValue()+ "'"; break;
+                        case MORE_THAN: sql += f.getAttribute() + " >" + f.getValue()+ ""; break;
                     default:
                         throw new RuntimeException("Tipo de operador não suportado:" + f.getOperator());
                 }
