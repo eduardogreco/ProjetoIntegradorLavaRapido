@@ -8,8 +8,10 @@ package br.edu.utfpr.cwsmanager.model.telas;
 import br.edu.utfpr.cwsmanager.model.daos.DaoFuncionario;
 import br.edu.utfpr.cwsmanager.model.pessoa.Funcionario;
 import br.edu.utfpr.cwsmanager.model.util.UtilDatas;
+import br.edu.utfpr.cwsmanager.model.util.Validacao;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 
 
@@ -24,7 +26,7 @@ public class JDialogFuncionario extends javax.swing.JDialog {
 
     private UtilDatas converteData = new UtilDatas();
     private DaoFuncionario daoFuncionario = new DaoFuncionario();
-   
+    private Validacao validacao;
    
 
     /**
@@ -257,7 +259,7 @@ public class JDialogFuncionario extends javax.swing.JDialog {
                                                 .add(jButtonPesquisarFuncionario, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 40, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
                                             .add(jFormattedTextFieldCPF, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 247, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
                                         .add(0, 0, Short.MAX_VALUE)))))
-                        .addContainerGap(100, Short.MAX_VALUE))))
+                        .addContainerGap(74, Short.MAX_VALUE))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
@@ -297,7 +299,7 @@ public class JDialogFuncionario extends javax.swing.JDialog {
                 .add(jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
                     .add(jLabelEmailCliente)
                     .add(jTextFieldEmailFuncionario, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(135, Short.MAX_VALUE))
+                .addContainerGap(92, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Pessoal", jPanel1);
@@ -375,7 +377,7 @@ public class JDialogFuncionario extends javax.swing.JDialog {
                         .add(jLabel22)
                         .add(18, 18, 18)
                         .add(jTextFieldUFCidade, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 114, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(105, Short.MAX_VALUE))
+                .addContainerGap(59, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
@@ -410,7 +412,7 @@ public class JDialogFuncionario extends javax.swing.JDialog {
                 .add(jPanel2Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
                     .add(jLabelCep)
                     .add(jTextFieldCep, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(215, Short.MAX_VALUE))
+                .addContainerGap(157, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Endereço", jPanel2);
@@ -475,7 +477,7 @@ public class JDialogFuncionario extends javax.swing.JDialog {
                 .add(jPanel4Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
                     .add(jLabel13)
                     .add(jTextFieldConfirmaSenhaFuncionario, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(346, Short.MAX_VALUE))
+                .addContainerGap(304, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Login Sistema", jPanel4);
@@ -789,7 +791,7 @@ public class JDialogFuncionario extends javax.swing.JDialog {
         }
 
         funcionario.setNome(jTextFieldNomeFuncionario.getText().trim());
-        funcionario.setCpf(jFormattedTextFieldCPFFuncionario.getText().trim());
+        funcionario.setCpf(jFormattedTextFieldCPF.getText().trim());
         funcionario.setSexo((jRadioButtonMasculinoFuncionario.isSelected()) ? "M" : "F");
      //   funcionario.setDataNascimento(converteData.toDate(jFormattedTextFieldDataNascimentoFuncionario.getText().trim()));
         funcionario.setTelPessoal(jFormattedTextFieldTelefonePessoalFuncionario.getText().trim());
@@ -806,7 +808,7 @@ public class JDialogFuncionario extends javax.swing.JDialog {
 
     private void setFuncionario(Funcionario funcionario) {
         jTextFieldNomeFuncionario.setText(funcionario.getNome());
-        jFormattedTextFieldCPFFuncionario.setText(funcionario.getCpf());
+        jFormattedTextFieldCPF.setText(funcionario.getCpf());
         jRadioButtonMasculinoFuncionario.setSelected((funcionario.getSexo().equals("M") ? true : false));
         jComboBoxEstadoCivil.setSelectedItem(funcionario);
         jFormattedTextFieldTelefonePessoalFuncionario.setText(funcionario.getTelPessoal());
@@ -821,7 +823,7 @@ public class JDialogFuncionario extends javax.swing.JDialog {
     private void clearCampos() {
         jTextFieldIdFuncionario.setText("");
         jTextFieldNomeFuncionario.setText("");
-        jFormattedTextFieldCPFFuncionario.setText("");
+        jFormattedTextFieldCPF.setText("");
         jRadioButtonMasculinoFuncionario.setSelected(true);
         jFormattedTextFieldTelefonePessoalFuncionario.setText("");
         jFormattedTextFieldCelularFuncionario.setText("");  
@@ -844,7 +846,7 @@ public class JDialogFuncionario extends javax.swing.JDialog {
         jTextFieldIdFuncionario.setEnabled(!comando);
         jButtonPesquisarFuncionario.setEnabled(!comando);
         jTextFieldNomeFuncionario.setEnabled(comando);
-        jFormattedTextFieldCPFFuncionario.setEnabled(comando);
+        jFormattedTextFieldCPF.setEnabled(comando);
         jRadioButtonMasculinoFuncionario.setEnabled(comando);
         jRadioButtonFemininoFuncionario.setEnabled(comando);
         
