@@ -5,10 +5,14 @@
 package br.edu.utfpr.cwsmanager.model.telas;
 
 import br.edu.utfpr.cwsmanager.model.daos.DaoCliente;
+import br.edu.utfpr.cwsmanager.model.daos.DaoFuncionario;
 import br.edu.utfpr.cwsmanager.model.daos.Filter;
 import br.edu.utfpr.cwsmanager.model.daos.Operator;
 import br.edu.utfpr.cwsmanager.model.pessoa.Cliente;
+import br.edu.utfpr.cwsmanager.model.pessoa.Funcionario;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -24,14 +28,22 @@ public class JDialogSolicitacaoServico extends javax.swing.JDialog {
      * Creates new form JDialogSolicitacaoServico
      */
     private DaoCliente daoCliente;
+    private DaoFuncionario daoFuncionario;
     private List<Cliente> clientes;
+    private List<Funcionario> funcionarios;
     public Cliente cliente;
+    public Funcionario funcionario;
 
     public JDialogSolicitacaoServico(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
         clientes = new ArrayList<>();
+        funcionarios = new ArrayList<>();
         daoCliente = new DaoCliente();
+        daoFuncionario = new DaoFuncionario();
+        HoraData(); 
+        habilitaCampos(modal);
+        preencherFuncionario();
         preencherClientes();
     }
 
@@ -61,25 +73,25 @@ public class JDialogSolicitacaoServico extends javax.swing.JDialog {
         jLabelTelComercialCliente = new javax.swing.JLabel();
         jLabelEmailCliente = new javax.swing.JLabel();
         jTextFieldIdCliente = new javax.swing.JTextField();
-        jFormattedTextFieldDataNascCliente = new javax.swing.JFormattedTextField();
+        jFormattedTextFieldData = new javax.swing.JFormattedTextField();
         jButtonPesquisarCliente = new javax.swing.JButton();
         jComboBox1 = new javax.swing.JComboBox();
-        jComboBox2 = new javax.swing.JComboBox();
-        jComboBox3 = new javax.swing.JComboBox();
+        jComboBoxTipoServico = new javax.swing.JComboBox();
+        jComboBoxFuncionario = new javax.swing.JComboBox();
         jLabel1 = new javax.swing.JLabel();
         jComboBoxCliente = new javax.swing.JComboBox();
-        jComboBox5 = new javax.swing.JComboBox();
+        jComboBoxVeiculo = new javax.swing.JComboBox();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTextArea1 = new javax.swing.JTextArea();
         jLabel2 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        jTextFieldHora = new javax.swing.JTextField();
         jButton3 = new javax.swing.JButton();
         jButtonGravar = new javax.swing.JButton();
         jButtonCancelar = new javax.swing.JButton();
         jButtonGerarOrdem = new javax.swing.JButton();
         jButtonAlterar = new javax.swing.JButton();
         jButtonExcluir = new javax.swing.JButton();
-        jButtonIncluir1 = new javax.swing.JButton();
+        jButtonIncluir = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Solicitação de Serviço");
@@ -165,15 +177,15 @@ public class JDialogSolicitacaoServico extends javax.swing.JDialog {
         jLabelEmailCliente.setText("Veículo:");
 
         try {
-            jFormattedTextFieldDataNascCliente.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
+            jFormattedTextFieldData.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
-        jFormattedTextFieldDataNascCliente.setMinimumSize(new java.awt.Dimension(42, 28));
-        jFormattedTextFieldDataNascCliente.setPreferredSize(new java.awt.Dimension(42, 28));
-        jFormattedTextFieldDataNascCliente.addActionListener(new java.awt.event.ActionListener() {
+        jFormattedTextFieldData.setMinimumSize(new java.awt.Dimension(42, 28));
+        jFormattedTextFieldData.setPreferredSize(new java.awt.Dimension(42, 28));
+        jFormattedTextFieldData.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jFormattedTextFieldDataNascClienteActionPerformed(evt);
+                jFormattedTextFieldDataActionPerformed(evt);
             }
         });
 
@@ -190,9 +202,9 @@ public class JDialogSolicitacaoServico extends javax.swing.JDialog {
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Aberto", "Em Andamento", "Encerrado" }));
 
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBoxTipoServico.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
-        jComboBox3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBoxFuncionario.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         jLabel1.setText("Observaçao:");
 
@@ -203,10 +215,10 @@ public class JDialogSolicitacaoServico extends javax.swing.JDialog {
             }
         });
 
-        jComboBox5.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        jComboBox5.addActionListener(new java.awt.event.ActionListener() {
+        jComboBoxVeiculo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBoxVeiculo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBox5ActionPerformed(evt);
+                jComboBoxVeiculoActionPerformed(evt);
             }
         });
 
@@ -236,15 +248,15 @@ public class JDialogSolicitacaoServico extends javax.swing.JDialog {
                         .add(jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
                             .add(jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING, false)
                                 .add(org.jdesktop.layout.GroupLayout.LEADING, jComboBoxCliente, 0, 247, Short.MAX_VALUE)
-                                .add(org.jdesktop.layout.GroupLayout.LEADING, jComboBox3, 0, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .add(org.jdesktop.layout.GroupLayout.LEADING, jComboBox2, 0, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .add(org.jdesktop.layout.GroupLayout.LEADING, jComboBoxFuncionario, 0, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .add(org.jdesktop.layout.GroupLayout.LEADING, jComboBoxTipoServico, 0, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                             .add(jPanel1Layout.createSequentialGroup()
                                 .add(jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
                                     .add(jPanel1Layout.createSequentialGroup()
                                         .add(jTextFieldIdCliente, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 97, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                                         .add(18, 18, 18)
                                         .add(jButtonPesquisarCliente, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 40, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                                    .add(jFormattedTextFieldDataNascCliente, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 134, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                                    .add(jFormattedTextFieldData, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 134, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
                                 .add(208, 208, 208)
                                 .add(jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
                                     .add(jLabel2)
@@ -252,11 +264,11 @@ public class JDialogSolicitacaoServico extends javax.swing.JDialog {
                                 .add(18, 18, 18)
                                 .add(jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
                                     .add(jComboBox1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                                    .add(jTextField1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 119, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))))
+                                    .add(jTextFieldHora, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 119, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))))
                         .addContainerGap(115, Short.MAX_VALUE))
                     .add(jPanel1Layout.createSequentialGroup()
                         .add(jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                            .add(jComboBox5, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 247, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                            .add(jComboBoxVeiculo, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 247, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                             .add(jScrollPane2, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 332, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
                         .add(0, 0, Short.MAX_VALUE))))
         );
@@ -277,18 +289,18 @@ public class JDialogSolicitacaoServico extends javax.swing.JDialog {
                         .add(4, 4, 4)))
                 .add(14, 14, 14)
                 .add(jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
-                    .add(jFormattedTextFieldDataNascCliente, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                    .add(jFormattedTextFieldData, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                     .add(jLabelDataNascCliente)
                     .add(jLabel2)
-                    .add(jTextField1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                    .add(jTextFieldHora, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
                 .add(18, 18, 18)
                 .add(jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
                     .add(jLabelNomeCliente)
-                    .add(jComboBox3, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                    .add(jComboBoxFuncionario, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
                 .add(22, 22, 22)
                 .add(jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
                     .add(jLabelTelPessoalCliente)
-                    .add(jComboBox2, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                    .add(jComboBoxTipoServico, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
                 .add(22, 22, 22)
                 .add(jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
                     .add(jLabelTelComercialCliente)
@@ -296,7 +308,7 @@ public class JDialogSolicitacaoServico extends javax.swing.JDialog {
                 .add(17, 17, 17)
                 .add(jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
                     .add(jLabelEmailCliente)
-                    .add(jComboBox5, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                    .add(jComboBoxVeiculo, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 29, Short.MAX_VALUE)
                 .add(jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
                     .add(jScrollPane2, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 125, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
@@ -354,11 +366,11 @@ public class JDialogSolicitacaoServico extends javax.swing.JDialog {
             }
         });
 
-        jButtonIncluir1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icones/incluir.png"))); // NOI18N
-        jButtonIncluir1.setText("Incluir");
-        jButtonIncluir1.addActionListener(new java.awt.event.ActionListener() {
+        jButtonIncluir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icones/incluir.png"))); // NOI18N
+        jButtonIncluir.setText("Incluir");
+        jButtonIncluir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonIncluir1ActionPerformed(evt);
+                jButtonIncluirActionPerformed(evt);
             }
         });
 
@@ -371,7 +383,7 @@ public class JDialogSolicitacaoServico extends javax.swing.JDialog {
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING, false)
                     .add(jTabbedPane1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 907, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                     .add(layout.createSequentialGroup()
-                        .add(jButtonIncluir1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 95, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                        .add(jButtonIncluir, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 95, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                         .add(jButtonAlterar, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 95, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
@@ -393,7 +405,7 @@ public class JDialogSolicitacaoServico extends javax.swing.JDialog {
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
                     .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
-                        .add(jButtonIncluir1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 34, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                        .add(jButtonIncluir, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 34, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                         .add(jButtonAlterar, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 34, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                         .add(jButtonExcluir, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 34, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
                     .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
@@ -407,9 +419,9 @@ public class JDialogSolicitacaoServico extends javax.swing.JDialog {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jFormattedTextFieldDataNascClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jFormattedTextFieldDataNascClienteActionPerformed
+    private void jFormattedTextFieldDataActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jFormattedTextFieldDataActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jFormattedTextFieldDataNascClienteActionPerformed
+    }//GEN-LAST:event_jFormattedTextFieldDataActionPerformed
 
     private void jButtonPesquisarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonPesquisarClienteActionPerformed
     }//GEN-LAST:event_jButtonPesquisarClienteActionPerformed
@@ -443,19 +455,20 @@ public class JDialogSolicitacaoServico extends javax.swing.JDialog {
     private void jButtonExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonExcluirActionPerformed
     }//GEN-LAST:event_jButtonExcluirActionPerformed
 
-    private void jButtonIncluir1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonIncluir1ActionPerformed
+    private void jButtonIncluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonIncluirActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButtonIncluir1ActionPerformed
+    }//GEN-LAST:event_jButtonIncluirActionPerformed
 
-    private void jComboBox5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox5ActionPerformed
+    private void jComboBoxVeiculoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxVeiculoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jComboBox5ActionPerformed
+    }//GEN-LAST:event_jComboBoxVeiculoActionPerformed
 
     private void jComboBoxClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxClienteActionPerformed
         if (jComboBoxCliente.getSelectedItem()instanceof Cliente){
         Cliente c = (Cliente) jComboBoxCliente.getSelectedItem();
-        
-        //preencher combo box de veiculo
+        c.getVeiculos();
+        //buscar veiculos do cliente c
+        //preencher o combox veiculo com os nomes do veiculo cliente
         }
     }//GEN-LAST:event_jComboBoxClienteActionPerformed
 
@@ -507,16 +520,16 @@ public class JDialogSolicitacaoServico extends javax.swing.JDialog {
     private javax.swing.JButton jButtonExcluir;
     private javax.swing.JButton jButtonGerarOrdem;
     private javax.swing.JButton jButtonGravar;
-    private javax.swing.JButton jButtonIncluir1;
+    private javax.swing.JButton jButtonIncluir;
     private javax.swing.JButton jButtonPesquisarCliente;
     private javax.swing.JButton jButtonPesquisarCliente1;
     private javax.swing.JComboBox jComboBox1;
-    private javax.swing.JComboBox jComboBox2;
-    private javax.swing.JComboBox jComboBox3;
-    private javax.swing.JComboBox jComboBox5;
     private javax.swing.JComboBox jComboBoxCliente;
+    private javax.swing.JComboBox jComboBoxFuncionario;
     private javax.swing.JComboBox jComboBoxTipoConsultaSS;
-    private javax.swing.JFormattedTextField jFormattedTextFieldDataNascCliente;
+    private javax.swing.JComboBox jComboBoxTipoServico;
+    private javax.swing.JComboBox jComboBoxVeiculo;
+    private javax.swing.JFormattedTextField jFormattedTextFieldData;
     private javax.swing.JFormattedTextField jFormattedTextFieldPlaca;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel12;
@@ -535,7 +548,7 @@ public class JDialogSolicitacaoServico extends javax.swing.JDialog {
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTable jTableVeiculo;
     private javax.swing.JTextArea jTextArea1;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JTextField jTextFieldHora;
     private javax.swing.JTextField jTextFieldIdCliente;
     // End of variables declaration//GEN-END:variables
 
@@ -550,5 +563,38 @@ public class JDialogSolicitacaoServico extends javax.swing.JDialog {
         for (Cliente cl : clientes) {
             jComboBoxCliente.addItem(cl);
         }
+    }
+    
+    private void preencherFuncionario() {
+        jComboBoxFuncionario.removeAllItems();
+        try {
+            funcionarios = daoFuncionario.list();
+        } catch (Exception ex) {
+            Logger.getLogger(JDialogSolicitacaoServico.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        for(Funcionario fr : funcionarios){
+            jComboBoxFuncionario.addItem(fr);
+        }
+    }
+    
+    private void HoraData(){
+        SimpleDateFormat hora = new SimpleDateFormat("HH:mm:aa");   
+    SimpleDateFormat data = new SimpleDateFormat("dd/MM/yyyy");
+    
+    jTextFieldHora.setText(hora.format(Calendar.getInstance().getTime()));  
+    jFormattedTextFieldData.setText(data.format(Calendar.getInstance().getTime()));
+    }
+    
+    private void habilitaCampos(boolean comando) {
+        jButtonAlterar.setEnabled(!comando);
+        jButtonExcluir.setEnabled(!comando);
+        jButtonIncluir.setEnabled(!comando);
+
+        jButtonCancelar.setEnabled(comando);
+        jButtonGravar.setEnabled(comando);
+
+        jTextFieldIdCliente.setEnabled(!comando);
+        jButtonPesquisarCliente.setEnabled(!comando);
+        
     }
 }

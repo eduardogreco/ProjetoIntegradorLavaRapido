@@ -26,7 +26,7 @@ public class DaoFuncionario implements Dao<Funcionario> {
 
     private static Funcionario converteRsParaFuncionario(ResultSet rs) throws SQLException {
         Funcionario f = new Funcionario();
-        f.setIdFuncionario(rs.getInt("idFuncionario"));
+        f.setIdFuncionario(rs.getInt("id"));
         f.setNome(rs.getString("nome"));
         f.setCpf(rs.getString("cpf"));
         f.setDataNascimento(rs.getDate("dataNascimento"));
@@ -53,13 +53,13 @@ public class DaoFuncionario implements Dao<Funcionario> {
         Statement st = ConnectionFactory.prepareConnection().createStatement();
 
 
-        st.execute("DELETE FROM Funcionario WHERE idFuncionario = " + f.getIdFuncionario());
+        st.execute("DELETE FROM Funcionario WHERE id = " + f.getIdFuncionario());
     }
 
     @Override
     public Funcionario retrieve(int id) throws Exception {
         Statement st = ConnectionFactory.prepareConnection().createStatement();
-        st.execute("SELECT * FROM Funcionario WHERE idFuncionario =" + id);
+        st.execute("SELECT * FROM Funcionario WHERE id =" + id);
         ResultSet rs = st.getResultSet();
 
         rs.next();
