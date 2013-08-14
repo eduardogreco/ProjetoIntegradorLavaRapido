@@ -5,13 +5,23 @@
 package br.edu.utfpr.cwsmanager.model.veiculo;
 
 import br.edu.utfpr.cwsmanager.model.pessoa.Cliente;
-
+import java.io.Serializable;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 
 /**
  *
  * @author EduardoGreco
  */
-public class Veiculo {
+@Entity
+@Table(name = "Veiculo")
+public class Veiculo implements Serializable {
+
     private int id;
     private String placa;
     private String modelo;
@@ -19,36 +29,39 @@ public class Veiculo {
     private String tipoVeiculo;
     private Cliente cliente = new Cliente();
 
-    public Veiculo() {
-    }
-
-    public void setCliente(Cliente cliente) {
-        this.cliente = cliente;
-    }
-
-    public Cliente getCliente() {
-        return cliente;
-    }
-    
-
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     public int getId() {
         return id;
     }
 
+    @Column(length = 10)
     public String getPlaca() {
         return placa;
     }
 
+    @Column(length = 100)
     public String getModelo() {
         return modelo;
     }
 
+    @Column(length = 50)
     public String getCor() {
         return cor;
     }
 
+    @Column(length = 50)
     public String getTipoVeiculo() {
         return tipoVeiculo;
+    }
+
+    @ManyToOne
+    public Cliente getCliente() {
+        return cliente;
+    }
+
+    public void setCliente(Cliente cliente) {
+        this.cliente = cliente;
     }
 
     public void setId(int id) {
@@ -75,6 +88,4 @@ public class Veiculo {
     public String toString() {
         return "Veiculo{" + "id=" + id + ", placa=" + placa + ", modelo=" + modelo + ", cor=" + cor + ", tipoVeiculo=" + tipoVeiculo + '}';
     }
-    
-   
 }

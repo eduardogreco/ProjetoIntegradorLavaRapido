@@ -6,16 +6,31 @@ package br.edu.utfpr.cwsmanager.model.pessoa;
 
 import br.edu.utfpr.cwsmanager.model.endereco.Endereco;
 import br.edu.utfpr.cwsmanager.model.veiculo.Veiculo;
+import com.sun.istack.internal.NotNull;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
+import javax.persistence.Temporal;
 
 /**
  *
  * @author EduardoGreco
  */
-public class Cliente {
+@Entity
+@Table(name = "Cliente")
+public class Cliente implements Serializable {
+
     private int id;
     private String nome;
     private String cpf;
@@ -27,68 +42,73 @@ public class Cliente {
     private String email;
     private String login;
     private String senha;
-    private List<Veiculo> veiculos = new ArrayList<Veiculo>();
+    private List<Veiculo> veiculos;
     private Endereco endereco = new Endereco();
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     public int getId() {
         return id;
     }
 
-    public Endereco getEndereco() {
-        return endereco;
-    }
-
-    public void setEndereco(Endereco endereco) {
-        this.endereco = endereco;
-    }
-
-    
-    public String getLogin() {
-        return login;
-    }
-
-    public void setLogin(String login) {
-        this.login = login;
-    }
-
-    public String getSenha() {
-        return senha;
-    }
-
-    public void setSenha(String senha) {
-        this.senha = senha;
-    }
-
+    @Column(length = 200)
     public String getNome() {
         return nome;
     }
 
+    @Column(length = 16)
     public String getCpf() {
         return cpf;
     }
 
+    @Column(length = 10)
     public String getSexo() {
         return sexo;
     }
 
+    @Temporal(javax.persistence.TemporalType.DATE)
     public Date getDataNascimento() {
         return dataNascimento;
     }
 
+    @Column(length = 20)
     public String getTelPessoal() {
         return telPessoal;
     }
 
+    @Column(length = 20)
     public String getCelular() {
         return celular;
     }
 
+    @Column(length = 20)
     public String getTelComercial() {
         return telComercial;
     }
 
+    @Column(length = 100)
     public String getEmail() {
         return email;
+    }
+
+    @Column(length = 40)
+    public String getLogin() {
+        return login;
+    }
+
+    @Column(length = 40)
+    public String getSenha() {
+        return senha;
+    }
+
+    @OneToMany(mappedBy = "cliente")
+    public List<Veiculo> getVeiculos() {
+        return veiculos;
+    }
+
+    @OneToOne(cascade = CascadeType.ALL)
+    public Endereco getEndereco() {
+        return endereco;
     }
 
     public void setId(int id) {
@@ -105,6 +125,10 @@ public class Cliente {
 
     public void setSexo(String sexo) {
         this.sexo = sexo;
+    }
+
+    public void setSenha(String senha) {
+        this.senha = senha;
     }
 
     public void setDataNascimento(Date dataNascimento) {
@@ -127,18 +151,20 @@ public class Cliente {
         this.email = email;
     }
 
-    @Override
-    public String toString() {
-        return nome;
-    }
-
-
     public void setVeiculos(List<Veiculo> veiculos) {
         this.veiculos = veiculos;
     }
 
-    public List<Veiculo> getVeiculos() {
-        return veiculos;
+    public void setEndereco(Endereco endereco) {
+        this.endereco = endereco;
     }
-   
+
+    public void setLogin(String login) {
+        this.login = login;
+    }
+
+    @Override
+    public String toString() {
+        return nome;
+    }
 }

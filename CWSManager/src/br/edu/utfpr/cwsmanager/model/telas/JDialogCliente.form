@@ -224,12 +224,12 @@
             </Component>
             <Component class="javax.swing.JLabel" name="jLabelNomeCliente">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Nome:"/>
+                <Property name="text" type="java.lang.String" value="Nome:*"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabelCpfCliente">
               <Properties>
-                <Property name="text" type="java.lang.String" value="CPF:"/>
+                <Property name="text" type="java.lang.String" value="CPF:*"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabelSexoCliente">
@@ -258,12 +258,12 @@
             </Component>
             <Component class="javax.swing.JLabel" name="jLabelDataNascCliente">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Data de Nascimento:"/>
+                <Property name="text" type="java.lang.String" value="Data de Nascimento:*"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabelTelPessoalCliente">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Telefone Pessoal:"/>
+                <Property name="text" type="java.lang.String" value="Telefone Pessoal:*"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabelTelComercialCliente">
@@ -492,7 +492,7 @@
           <SubComponents>
             <Component class="javax.swing.JLabel" name="jLabelNomeEndereco">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Endere&#xe7;o:"/>
+                <Property name="text" type="java.lang.String" value="Endere&#xe7;o:*"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JTextField" name="jTextFieldNomeEndreco">
@@ -513,17 +513,17 @@
             </Component>
             <Component class="javax.swing.JLabel" name="jLabelBairro">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Bairro:"/>
+                <Property name="text" type="java.lang.String" value="Bairro:*"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabelCidadeEnd">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Cidade:"/>
+                <Property name="text" type="java.lang.String" value="Cidade:*"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabelCep">
               <Properties>
-                <Property name="text" type="java.lang.String" value="CEP:"/>
+                <Property name="text" type="java.lang.String" value="CEP:*"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JTextField" name="jTextFieldBairro">
@@ -536,7 +536,7 @@
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel22">
               <Properties>
-                <Property name="text" type="java.lang.String" value="UF:"/>
+                <Property name="text" type="java.lang.String" value="UF:*"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JButton" name="jButtonPesquisarCidade">
@@ -646,7 +646,7 @@
                               <Component id="jButtonExcluirVeiculo" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
-                      <EmptySpace pref="108" max="32767" attributes="0"/>
+                      <EmptySpace pref="102" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -701,7 +701,7 @@
           <SubComponents>
             <Component class="javax.swing.JLabel" name="jLabel12">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Placa:"/>
+                <Property name="text" type="java.lang.String" value="Placa:*"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JFormattedTextField" name="jFormattedTextFieldPlaca">
@@ -725,7 +725,7 @@
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel15">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Tipo do Ve&#xed;culo:"/>
+                <Property name="text" type="java.lang.String" value="Tipo do Ve&#xed;culo:*"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JComboBox" name="jComboBoxTipoVeiculo">
