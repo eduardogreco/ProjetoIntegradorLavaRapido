@@ -132,9 +132,9 @@ public class JDialogCliente extends javax.swing.JDialog {
 
         jLabelCodCliente.setText("Código:");
 
-        jLabelNomeCliente.setText("Nome:");
+        jLabelNomeCliente.setText("Nome:*");
 
-        jLabelCpfCliente.setText("CPF:");
+        jLabelCpfCliente.setText("CPF:*");
 
         jLabelSexoCliente.setText("Sexo:");
 
@@ -149,9 +149,9 @@ public class JDialogCliente extends javax.swing.JDialog {
         GroupSexo.add(jRadioButtonFemininoCliente);
         jRadioButtonFemininoCliente.setText("Feminino");
 
-        jLabelDataNascCliente.setText("Data de Nascimento:");
+        jLabelDataNascCliente.setText("Data de Nascimento:*");
 
-        jLabelTelPessoalCliente.setText("Telefone Pessoal:");
+        jLabelTelPessoalCliente.setText("Telefone Pessoal:*");
 
         jLabelTelComercialCliente.setText("Telefone Comercial:");
 
@@ -346,17 +346,17 @@ public class JDialogCliente extends javax.swing.JDialog {
 
         jTabbedPane1.addTab("Pessoal", jPanel1);
 
-        jLabelNomeEndereco.setText("Endereço:");
+        jLabelNomeEndereco.setText("Endereço:*");
 
         jLabel17.setText("N");
 
         jLabelComplemento.setText("Complemento:");
 
-        jLabelBairro.setText("Bairro:");
+        jLabelBairro.setText("Bairro:*");
 
-        jLabelCidadeEnd.setText("Cidade:");
+        jLabelCidadeEnd.setText("Cidade:*");
 
-        jLabelCep.setText("CEP:");
+        jLabelCep.setText("CEP:*");
 
         jTextFieldPesquisaCodCidade.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -369,7 +369,7 @@ public class JDialogCliente extends javax.swing.JDialog {
             }
         });
 
-        jLabel22.setText("UF:");
+        jLabel22.setText("UF:*");
 
         jButtonPesquisarCidade.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icones/pesquisa.png"))); // NOI18N
         jButtonPesquisarCidade.setToolTipText("Pesquisar Cliente");
@@ -483,7 +483,7 @@ public class JDialogCliente extends javax.swing.JDialog {
 
         jTabbedPane1.addTab("Endereço", jPanel2);
 
-        jLabel12.setText("Placa:");
+        jLabel12.setText("Placa:*");
 
         jFormattedTextFieldPlaca.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -495,7 +495,7 @@ public class JDialogCliente extends javax.swing.JDialog {
 
         jLabel14.setText("Cor:");
 
-        jLabel15.setText("Tipo do Veículo:");
+        jLabel15.setText("Tipo do Veículo:*");
 
         jComboBoxTipoVeiculo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Carro", "Caminhao", "Caminhonete", "Moto", "Onibus" }));
 
@@ -576,7 +576,7 @@ public class JDialogCliente extends javax.swing.JDialog {
                         .add(jButtonAlterarVeiculo)
                         .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                         .add(jButtonExcluirVeiculo)))
-                .addContainerGap(108, Short.MAX_VALUE))
+                .addContainerGap(102, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)

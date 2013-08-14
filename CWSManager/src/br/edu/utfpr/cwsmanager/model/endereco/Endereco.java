@@ -4,13 +4,22 @@
  */
 package br.edu.utfpr.cwsmanager.model.endereco;
 
-import br.edu.utfpr.cwsmanager.model.pessoa.Cliente;
+import java.io.Serializable;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 
 /**
  *
  * @author EduardoGreco
  */
-public class Endereco {
+@Entity
+@Table(name = "Endereco")
+public class Endereco implements Serializable {
 
     private int id;
     private String logradouro;
@@ -20,59 +29,64 @@ public class Endereco {
     private String cep;
     private Cidade cidade = new Cidade();
 
-    public Endereco() {
-    }
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     public int getId() {
         return id;
     }
 
-    public void setId(int id) {
-        this.id = id;
-    }
-
+    @Column(length = 220)
     public String getNomeEndereco() {
         return logradouro;
-    }
-
-    public void setNomeEndereco(String nomeEndereco) {
-        this.logradouro = nomeEndereco;
     }
 
     public int getNumero() {
         return numero;
     }
 
-    public void setNumero(int numero) {
-        this.numero = numero;
-    }
-
+    @Column(length = 150)
     public String getComplemento() {
         return complemento;
+    }
+
+    @Column(length = 150)
+    public String getBairro() {
+        return bairro;
+    }
+
+    @Column(length = 20)
+    public String getCep() {
+        return cep;
+    }
+
+    @ManyToOne
+    public Cidade getCidade() {
+        return cidade;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public void setNomeEndereco(String nomeEndereco) {
+        this.logradouro = nomeEndereco;
+    }
+
+    public void setNumero(int numero) {
+        this.numero = numero;
     }
 
     public void setComplemento(String complemento) {
         this.complemento = complemento;
     }
 
-    public String getBairro() {
-        return bairro;
-    }
-
     public void setBairro(String bairro) {
         this.bairro = bairro;
     }
 
-    public String getCep() {
-        return cep;
-    }
-
     public void setCep(String cep) {
         this.cep = cep;
-    }
-
-    public Cidade getCidade() {
-        return cidade;
     }
 
     public void setCidade(Cidade cidade) {
@@ -83,5 +97,4 @@ public class Endereco {
     public String toString() {
         return "Endereco{" + "id=" + id + ", nomeEndereco=" + logradouro + ", numero=" + numero + ", complemento=" + complemento + ", bairro=" + bairro + ", cep=" + cep + ", cidade=" + cidade + '}';
     }
-
 }

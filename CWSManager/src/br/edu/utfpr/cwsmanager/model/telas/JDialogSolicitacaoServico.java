@@ -41,10 +41,9 @@ public class JDialogSolicitacaoServico extends javax.swing.JDialog {
         funcionarios = new ArrayList<>();
         daoCliente = new DaoCliente();
         daoFuncionario = new DaoFuncionario();
-        HoraData(); 
+
         habilitaCampos(modal);
-        preencherFuncionario();
-        preencherClientes();
+
     }
 
     /**
@@ -75,7 +74,7 @@ public class JDialogSolicitacaoServico extends javax.swing.JDialog {
         jTextFieldIdCliente = new javax.swing.JTextField();
         jFormattedTextFieldData = new javax.swing.JFormattedTextField();
         jButtonPesquisarCliente = new javax.swing.JButton();
-        jComboBox1 = new javax.swing.JComboBox();
+        jComboBoxStatus = new javax.swing.JComboBox();
         jComboBoxTipoServico = new javax.swing.JComboBox();
         jComboBoxFuncionario = new javax.swing.JComboBox();
         jLabel1 = new javax.swing.JLabel();
@@ -200,7 +199,7 @@ public class JDialogSolicitacaoServico extends javax.swing.JDialog {
             }
         });
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Aberto", "Em Andamento", "Encerrado" }));
+        jComboBoxStatus.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Aberto", "Em Andamento", "Encerrado" }));
 
         jComboBoxTipoServico.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
@@ -263,7 +262,7 @@ public class JDialogSolicitacaoServico extends javax.swing.JDialog {
                                     .add(jLabelCpfCliente))
                                 .add(18, 18, 18)
                                 .add(jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                                    .add(jComboBox1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                                    .add(jComboBoxStatus, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                                     .add(jTextFieldHora, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 119, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))))
                         .addContainerGap(115, Short.MAX_VALUE))
                     .add(jPanel1Layout.createSequentialGroup()
@@ -279,7 +278,7 @@ public class JDialogSolicitacaoServico extends javax.swing.JDialog {
                 .add(jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
                     .add(org.jdesktop.layout.GroupLayout.TRAILING, jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
                         .add(jLabelCpfCliente)
-                        .add(jComboBox1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                        .add(jComboBoxStatus, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
                     .add(org.jdesktop.layout.GroupLayout.TRAILING, jPanel1Layout.createSequentialGroup()
                         .add(jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
                             .add(jButtonPesquisarCliente, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 30, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
@@ -456,7 +455,10 @@ public class JDialogSolicitacaoServico extends javax.swing.JDialog {
     }//GEN-LAST:event_jButtonExcluirActionPerformed
 
     private void jButtonIncluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonIncluirActionPerformed
-        // TODO add your handling code here:
+        habilitaCampos(false);
+        HoraData();
+        preencherFuncionario();
+        preencherClientes();        // TODO add your handling code here:
     }//GEN-LAST:event_jButtonIncluirActionPerformed
 
     private void jComboBoxVeiculoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxVeiculoActionPerformed
@@ -464,11 +466,11 @@ public class JDialogSolicitacaoServico extends javax.swing.JDialog {
     }//GEN-LAST:event_jComboBoxVeiculoActionPerformed
 
     private void jComboBoxClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxClienteActionPerformed
-        if (jComboBoxCliente.getSelectedItem()instanceof Cliente){
-        Cliente c = (Cliente) jComboBoxCliente.getSelectedItem();
-        c.getVeiculos();
-        //buscar veiculos do cliente c
-        //preencher o combox veiculo com os nomes do veiculo cliente
+        if (jComboBoxCliente.getSelectedItem() instanceof Cliente) {
+            Cliente c = (Cliente) jComboBoxCliente.getSelectedItem();
+            c.getVeiculos();
+            //buscar veiculos do cliente c
+            //preencher o combox veiculo com os nomes do veiculo cliente
         }
     }//GEN-LAST:event_jComboBoxClienteActionPerformed
 
@@ -523,9 +525,9 @@ public class JDialogSolicitacaoServico extends javax.swing.JDialog {
     private javax.swing.JButton jButtonIncluir;
     private javax.swing.JButton jButtonPesquisarCliente;
     private javax.swing.JButton jButtonPesquisarCliente1;
-    private javax.swing.JComboBox jComboBox1;
     private javax.swing.JComboBox jComboBoxCliente;
     private javax.swing.JComboBox jComboBoxFuncionario;
+    private javax.swing.JComboBox jComboBoxStatus;
     private javax.swing.JComboBox jComboBoxTipoConsultaSS;
     private javax.swing.JComboBox jComboBoxTipoServico;
     private javax.swing.JComboBox jComboBoxVeiculo;
@@ -553,7 +555,7 @@ public class JDialogSolicitacaoServico extends javax.swing.JDialog {
     // End of variables declaration//GEN-END:variables
 
     private void preencherClientes() {
-        
+
         jComboBoxCliente.removeAllItems();
         try {
             clientes = daoCliente.list();
@@ -564,7 +566,7 @@ public class JDialogSolicitacaoServico extends javax.swing.JDialog {
             jComboBoxCliente.addItem(cl);
         }
     }
-    
+
     private void preencherFuncionario() {
         jComboBoxFuncionario.removeAllItems();
         try {
@@ -572,29 +574,37 @@ public class JDialogSolicitacaoServico extends javax.swing.JDialog {
         } catch (Exception ex) {
             Logger.getLogger(JDialogSolicitacaoServico.class.getName()).log(Level.SEVERE, null, ex);
         }
-        for(Funcionario fr : funcionarios){
+        for (Funcionario fr : funcionarios) {
             jComboBoxFuncionario.addItem(fr);
         }
     }
-    
-    private void HoraData(){
-        SimpleDateFormat hora = new SimpleDateFormat("HH:mm:aa");   
-    SimpleDateFormat data = new SimpleDateFormat("dd/MM/yyyy");
-    
-    jTextFieldHora.setText(hora.format(Calendar.getInstance().getTime()));  
-    jFormattedTextFieldData.setText(data.format(Calendar.getInstance().getTime()));
+
+    private void HoraData() {
+        SimpleDateFormat hora = new SimpleDateFormat("HH:mm:aa");
+        SimpleDateFormat data = new SimpleDateFormat("dd/MM/yyyy");
+
+        jTextFieldHora.setText(hora.format(Calendar.getInstance().getTime()));
+        jFormattedTextFieldData.setText(data.format(Calendar.getInstance().getTime()));
     }
-    
+
     private void habilitaCampos(boolean comando) {
-        jButtonAlterar.setEnabled(!comando);
-        jButtonExcluir.setEnabled(!comando);
-        jButtonIncluir.setEnabled(!comando);
+        jButtonAlterar.setEnabled(comando);
+        jButtonExcluir.setEnabled(comando);
+        jButtonIncluir.setEnabled(comando);
 
-        jButtonCancelar.setEnabled(comando);
-        jButtonGravar.setEnabled(comando);
-
+        jButtonCancelar.setEnabled(!comando);
+        jButtonGravar.setEnabled(!comando);
+        jButtonGerarOrdem.setEnabled(comando);
         jTextFieldIdCliente.setEnabled(!comando);
         jButtonPesquisarCliente.setEnabled(!comando);
-        
+        jTextFieldHora.setEnabled(!comando);
+        jComboBoxStatus.setEnabled(!comando);
+        jFormattedTextFieldData.setEnabled(!comando);
+        jComboBoxFuncionario.setEnabled(!comando);
+        jComboBoxTipoServico.setEnabled(!comando);
+        jComboBoxCliente.setEnabled(!comando);
+        jComboBoxVeiculo.setEnabled(!comando);
+        jTextArea1.setEnabled(!comando);
+
     }
 }

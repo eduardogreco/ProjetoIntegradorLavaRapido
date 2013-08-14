@@ -4,33 +4,48 @@
  */
 package br.edu.utfpr.cwsmanager.model.endereco;
 
+import java.io.Serializable;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
 /**
  *
  * @author EduardoGreco
  */
-public class Cidade {
+@Entity
+@Table(name="Cidade")
+public class Cidade implements Serializable{
+    
     private int id;
     private String nome;
     private String estado;
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     public int getId() {
         return id;
     }
 
+    @Column(length = 100)
+    public String getNome() {
+        return nome;
+    }
+    
+     @Column(length = 100)
+    public String getEstado() {
+        return estado;
+    }
+    
     public void setId(int id) {
         this.id = id;
     }
 
-    public String getNome() {
-        return nome;
-    }
-
     public void setNome(String nome) {
         this.nome = nome;
-    }
-
-    public String getEstado() {
-        return estado;
     }
 
     public void setEstado(String estado) {

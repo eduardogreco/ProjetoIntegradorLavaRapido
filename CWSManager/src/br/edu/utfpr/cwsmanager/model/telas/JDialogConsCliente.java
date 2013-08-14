@@ -296,7 +296,7 @@ public class JDialogConsCliente extends javax.swing.JDialog {
         int linha = jTableResult.getSelectedRow();
 
         if (linha < 0) {
-            JOptionPane.showMessageDialog(null, "Selecion um registro.", "Atenção", JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Selecione um registro.", "Atenção", JOptionPane.WARNING_MESSAGE);
             return;
         }
         
