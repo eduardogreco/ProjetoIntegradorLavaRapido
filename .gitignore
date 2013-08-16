@@ -13,3 +13,6 @@ CWSManager/src/br/edu/utfpr/cwsmanager/model/telas/JDialogCadSolicitacaoServico.
 >>>>>>> c092cce0b4be022c756c45d7ea438ec8061b7c08
 /CWSManagerWeb/nbproject/private/
 /CWSManagerWeb/build/
+/CalculadoraEngSoftware/nbproject/private/
+/CalculadoraEngSoftware/build/
+CWSManager/src/META-INF/persistence.xml
