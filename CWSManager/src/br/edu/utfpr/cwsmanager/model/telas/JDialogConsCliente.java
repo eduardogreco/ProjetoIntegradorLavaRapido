@@ -4,7 +4,7 @@
  */
 package br.edu.utfpr.cwsmanager.model.telas;
 
-import br.edu.utfpr.cwsmanager.model.daos.DaoCliente;
+import br.edu.utfpr.cwsmanager.model.daos.DaoGenerics;
 import br.edu.utfpr.cwsmanager.model.daos.Filter;
 import br.edu.utfpr.cwsmanager.model.daos.Operator;
 import br.edu.utfpr.cwsmanager.model.pessoa.Cliente;
@@ -22,7 +22,6 @@ import javax.swing.table.DefaultTableModel;
  */
 public class JDialogConsCliente extends javax.swing.JDialog {
 
-    private DaoCliente daoCliente;
     private List<Cliente> clientes;
     private DefaultTableModel modeloCliente;
     public Cliente cliente;
@@ -31,7 +30,6 @@ public class JDialogConsCliente extends javax.swing.JDialog {
         super(parent, modal);
         initComponents();
         
-        daoCliente = new DaoCliente();
         cliente    = new Cliente();
         
         modeloCliente = (DefaultTableModel) jTableResult.getModel(); 
@@ -310,7 +308,7 @@ public class JDialogConsCliente extends javax.swing.JDialog {
         switch (jComboBoxCampos.getSelectedIndex()){
             case 0:
             try {
-                clientes = daoCliente.list();
+                clientes = new DaoGenerics<Cliente>(Cliente.class).list();
             } catch (Exception ex) {
                 Logger.getLogger(JDialogConsCliente.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -319,7 +317,7 @@ public class JDialogConsCliente extends javax.swing.JDialog {
                 
             case 1:
         try {
-            clientes = daoCliente.list(new Filter("id", Operator.LIKE, jFormattedTextFieldPesquisa.getText()));
+          //  clientes = daoCliente.list(new Filter("id", Operator.LIKE, jFormattedTextFieldPesquisa.getText()));
         } catch (Exception ex) {
             Logger.getLogger(JDialogConsCliente.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -327,7 +325,7 @@ public class JDialogConsCliente extends javax.swing.JDialog {
               
             case 2:
         try {
-            clientes = daoCliente.list(new Filter("nome", Operator.LIKE, jFormattedTextFieldPesquisa.getText()));
+      //      clientes = daoCliente.list(new Filter("nome", Operator.LIKE, jFormattedTextFieldPesquisa.getText()));
         } catch (Exception ex) {
             Logger.getLogger(JDialogConsCliente.class.getName()).log(Level.SEVERE, null, ex);
         }

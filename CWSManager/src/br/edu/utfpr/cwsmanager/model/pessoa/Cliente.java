@@ -51,12 +51,12 @@ public class Cliente implements Serializable {
         return id;
     }
 
-    @Column(length = 200)
+    @Column(length = 200, nullable = false)
     public String getNome() {
         return nome;
     }
 
-    @Column(length = 16)
+    @Column(length = 16, nullable = false)
     public String getCpf() {
         return cpf;
     }
@@ -71,7 +71,7 @@ public class Cliente implements Serializable {
         return dataNascimento;
     }
 
-    @Column(length = 20)
+    @Column(length = 20, nullable = false)
     public String getTelPessoal() {
         return telPessoal;
     }
@@ -101,7 +101,7 @@ public class Cliente implements Serializable {
         return senha;
     }
 
-    @OneToMany(mappedBy = "cliente")
+    @OneToMany(mappedBy = "cliente", cascade = CascadeType.ALL)
     public List<Veiculo> getVeiculos() {
         return veiculos;
     }

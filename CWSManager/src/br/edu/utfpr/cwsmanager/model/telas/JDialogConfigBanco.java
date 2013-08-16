@@ -4,6 +4,8 @@
  */
 package br.edu.utfpr.cwsmanager.model.telas;
 
+import br.edu.utfpr.cwsmanager.model.daos.HibernateConfiguration;
+
 /**
  *
  * @author EduardoGreco
@@ -156,7 +158,9 @@ public class JDialogConfigBanco extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonRecriarDBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRecriarDBActionPerformed
-        // TODO add your handling code here:
+
+        HibernateConfiguration h = new HibernateConfiguration();
+        h.createSchema();// TODO add your handling code here:
     }//GEN-LAST:event_jButtonRecriarDBActionPerformed
 
     private void jButtonOkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonOkActionPerformed

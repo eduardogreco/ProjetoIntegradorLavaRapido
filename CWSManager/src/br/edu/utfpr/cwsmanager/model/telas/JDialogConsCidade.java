@@ -4,7 +4,7 @@
  */
 package br.edu.utfpr.cwsmanager.model.telas;
 
-import br.edu.utfpr.cwsmanager.model.daos.DaoCidade;
+import br.edu.utfpr.cwsmanager.model.daos.DaoGenerics;
 import br.edu.utfpr.cwsmanager.model.daos.Filter;
 import br.edu.utfpr.cwsmanager.model.daos.Operator;
 import br.edu.utfpr.cwsmanager.model.endereco.Cidade;
@@ -22,7 +22,6 @@ import javax.swing.table.DefaultTableModel;
  */
 public class JDialogConsCidade extends javax.swing.JDialog {
 
-    private DaoCidade daoCidade;
     private List<Cidade> cidades;
     private DefaultTableModel modeloCidade;
     public Cidade cidade;
@@ -34,7 +33,6 @@ public class JDialogConsCidade extends javax.swing.JDialog {
         super(parent, modal);
         initComponents();
 
-        daoCidade = new DaoCidade();
         cidade = new Cidade();
 
         modeloCidade = (DefaultTableModel) jTableResultConsultaCidade.getModel();
@@ -314,7 +312,7 @@ public class JDialogConsCidade extends javax.swing.JDialog {
         switch (jComboBoxCampos.getSelectedIndex()) {
             case 0:
                 try {
-                    cidades = daoCidade.list();
+                    cidades = new DaoGenerics<Cidade>(Cidade.class).list();
                 } catch (Exception ex) {
                     Logger.getLogger(JDialogConsCidade.class.getName()).log(Level.SEVERE, null, ex);
                 }
@@ -322,28 +320,28 @@ public class JDialogConsCidade extends javax.swing.JDialog {
                 break;
 
             case 1:
-        try {
-            cidades = daoCidade.list(new Filter("id", Operator.LIKE, jFormattedTextFieldPesquisaFuncionario.getText()));
-        } catch (SQLException ex) {
-            Logger.getLogger(JDialogConsCidade.class.getName()).log(Level.SEVERE, null, ex);
-        }
+  //      try {
+  //          cidades = daoCidade.list(new Filter("id", Operator.LIKE, jFormattedTextFieldPesquisaFuncionario.getText()));
+  //      } catch (SQLException ex) {
+  //          Logger.getLogger(JDialogConsCidade.class.getName()).log(Level.SEVERE, null, ex);
+  //      }
                 break;
 
             case 2:
-                try {
+     //           try {
 
-                    cidades = daoCidade.list(new Filter("nome", Operator.LIKE, jFormattedTextFieldPesquisaFuncionario.getText()));
-                } catch (SQLException ex) {
-                    Logger.getLogger(JDialogConsCidade.class.getName()).log(Level.SEVERE, null, ex);
-                }
+     //               cidades = daoCidade.list(new Filter("nome", Operator.LIKE, jFormattedTextFieldPesquisaFuncionario.getText()));
+    //            } catch (SQLException ex) {
+     //               Logger.getLogger(JDialogConsCidade.class.getName()).log(Level.SEVERE, null, ex);
+     //           }
                 break;
                 case 3:
-                try {
+      //          try {
 
-                    cidades = daoCidade.list(new Filter("estado", Operator.LIKE, jFormattedTextFieldPesquisaFuncionario.getText()));
-                } catch (SQLException ex) {
-                    Logger.getLogger(JDialogConsCidade.class.getName()).log(Level.SEVERE, null, ex);
-                }
+      //              cidades = daoCidade.list(new Filter("estado", Operator.LIKE, jFormattedTextFieldPesquisaFuncionario.getText()));
+      //          } catch (SQLException ex) {
+      //              Logger.getLogger(JDialogConsCidade.class.getName()).log(Level.SEVERE, null, ex);
+    //            }
                 break;
         }
 

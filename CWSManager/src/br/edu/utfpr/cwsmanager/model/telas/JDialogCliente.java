@@ -4,22 +4,18 @@
  */
 package br.edu.utfpr.cwsmanager.model.telas;
 
-import br.edu.utfpr.cwsmanager.model.daos.DaoCidade;
-import br.edu.utfpr.cwsmanager.model.daos.DaoCliente;
-import br.edu.utfpr.cwsmanager.model.daos.DaoVeiculo;
+import br.edu.utfpr.cwsmanager.model.daos.DaoGenerics;
 import br.edu.utfpr.cwsmanager.model.endereco.Cidade;
 import br.edu.utfpr.cwsmanager.model.pessoa.Cliente;
 import br.edu.utfpr.cwsmanager.model.util.UtilDatas;
 import br.edu.utfpr.cwsmanager.model.veiculo.Veiculo;
 import br.edu.utfpr.cwsmanager.model.util.Validacao;
-import java.awt.event.WindowEvent;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-import sun.awt.WindowClosingListener;
 
 /**
  *
@@ -28,10 +24,8 @@ import sun.awt.WindowClosingListener;
 public class JDialogCliente extends javax.swing.JDialog {
 
     private UtilDatas converteData = new UtilDatas();
-    private DaoCliente daoCliente = new DaoCliente();
     private DefaultTableModel modeloVeiculo;
     private List<Veiculo> veiculos = new ArrayList<Veiculo>();
-    private DaoCidade daoCidade = new DaoCidade();
     private Cliente cliente;
     private Cidade cidade;
     private Validacao validacao;
@@ -772,14 +766,6 @@ public class JDialogCliente extends javax.swing.JDialog {
     }//GEN-LAST:event_jFormattedTextFieldDataNascClienteActionPerformed
 
     private void jButtonPesquisarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonPesquisarClienteActionPerformed
-//        int id = Integer.parseInt(jTextFieldIdCliente.getText().trim());
-//        try {
-//            cliente = daoCliente.retrieve(id);
-//            setCliente();
-//        } catch (Exception ex) {
-//            Logger.getLogger(JDialogCliente.class.getName()).log(Level.SEVERE, null, ex);
-//        }
-
         final JDialogConsCliente consulta = new JDialogConsCliente(this, true);
         consulta.setVisible(true);
 
@@ -787,7 +773,7 @@ public class JDialogCliente extends javax.swing.JDialog {
             public void windowClosed(java.awt.event.WindowEvent evt) {
                 cliente = consulta.cliente;
                 try {
-                    cliente = daoCliente.retrieve(cliente.getId());
+                    cliente = new DaoGenerics<Cliente>(Cliente.class).retrieve(cliente.getId());
                 } catch (Exception ex) {
                     Logger.getLogger(JDialogCliente.class.getName()).log(Level.SEVERE, null, ex);
                 }
@@ -807,7 +793,7 @@ public class JDialogCliente extends javax.swing.JDialog {
 
     private void jButtonExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonExcluirActionPerformed
         try {
-            daoCliente.delete(getCliente());
+            new DaoGenerics<Cliente>(Cliente.class).delete(getCliente());
         } catch (Exception ex) {
             Logger.getLogger(JDialogCliente.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -832,23 +818,17 @@ public class JDialogCliente extends javax.swing.JDialog {
     }//GEN-LAST:event_jFormattedTextFieldPlacaActionPerformed
 
     private void jButtonGravarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonGravarActionPerformed
-        try {
             // TODO add your handling code here:
             if (!validaCampos()) {
                 return;
             }
-            if (cliente.getId() != 0) {
-                daoCliente.update(getCliente());
-                JOptionPane.showMessageDialog(null, "Registro alterado com sucesso.", "Alteração", JOptionPane.INFORMATION_MESSAGE);
-            } else {
-                int idCliente = daoCliente.insert(getCliente());
-                jTextFieldIdCliente.setText(Integer.toString(idCliente));
-                JOptionPane.showMessageDialog(null, "Registro gravado com sucesso.", "Gravação", JOptionPane.INFORMATION_MESSAGE);
-            }
-
+        try {            
+            new DaoGenerics<Cliente>(Cliente.class).persist(getCliente());
         } catch (Exception ex) {
             Logger.getLogger(JDialogCliente.class.getName()).log(Level.SEVERE, null, ex);
         }
+                JOptionPane.showMessageDialog(null, "Registro gravado com sucesso.", "Gravar", JOptionPane.INFORMATION_MESSAGE);
+ 
 
         habilitaCampos(false);
     }//GEN-LAST:event_jButtonGravarActionPerformed
@@ -866,9 +846,8 @@ public class JDialogCliente extends javax.swing.JDialog {
         consultaCidade.addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowClosed(java.awt.event.WindowEvent evt) {
                 cidade = consultaCidade.cidade;
-
                 try {
-                    cidade = daoCidade.retrieve(cidade.getId());
+                    new DaoGenerics<Cliente>(Cliente.class).retrieve(cidade.getId());
                 } catch (Exception ex) {
                     Logger.getLogger(JDialogCliente.class.getName()).log(Level.SEVERE, null, ex);
                 }
@@ -931,13 +910,12 @@ public class JDialogCliente extends javax.swing.JDialog {
         }
 
         Veiculo v = new Veiculo();
-        DaoVeiculo daoVeiculo = new DaoVeiculo();
 
         v = veiculos.get(linha);
 
         if (v.getId() != 0) {
             try {
-                daoVeiculo.delete(v);
+                new DaoGenerics<Veiculo>(Veiculo.class).delete(v);
             } catch (Exception ex) {
                 Logger.getLogger(JDialogCliente.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -957,7 +935,7 @@ public class JDialogCliente extends javax.swing.JDialog {
         }
 
         try {
-            cidade = daoCidade.retrieve(id_cidade);
+            cidade = new DaoGenerics<Cidade>(Cidade.class).retrieve(id_cidade);
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Código da cidade não cadastrado", "Atenção", JOptionPane.WARNING_MESSAGE);
             jTextFieldPesquisaCodCidade.setText("");

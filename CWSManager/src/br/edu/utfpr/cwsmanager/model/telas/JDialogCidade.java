@@ -4,7 +4,7 @@
  */
 package br.edu.utfpr.cwsmanager.model.telas;
 
-import br.edu.utfpr.cwsmanager.model.daos.DaoCidade;
+import br.edu.utfpr.cwsmanager.model.daos.DaoGenerics;
 import br.edu.utfpr.cwsmanager.model.endereco.Cidade;
 import java.sql.SQLException;
 import java.util.logging.Level;
@@ -16,7 +16,6 @@ import java.util.logging.Logger;
  */
 public class JDialogCidade extends javax.swing.JDialog {
 
-    private DaoCidade daoCidade = new DaoCidade();
     /**
      * Creates new form JDialogCidade
      */
@@ -214,21 +213,24 @@ public class JDialogCidade extends javax.swing.JDialog {
     }//GEN-LAST:event_jTextFieldNomeCidadeActionPerformed
 
     private void jButtonPesquisarCidadeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonPesquisarCidadeActionPerformed
-int id = Integer.parseInt(jTextFieldIdCidade.getText().trim());
+        int id = Integer.parseInt(jTextFieldIdCidade.getText().trim());
+        Cidade cidade;
         try {
-            setCidade(daoCidade.retrieve(id));
+            cidade = new DaoGenerics<Cidade>(Cidade.class).retrieve(id);
+            setCidade(cidade);
         } catch (Exception ex) {
             Logger.getLogger(JDialogCidade.class.getName()).log(Level.SEVERE, null, ex);
         }
+
     }//GEN-LAST:event_jButtonPesquisarCidadeActionPerformed
 
     private void jButtonAlterarCidadeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAlterarCidadeActionPerformed
-habilitaCampos(true);
+        habilitaCampos(true);
     }//GEN-LAST:event_jButtonAlterarCidadeActionPerformed
 
     private void jButtonExcluirCidadeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonExcluirCidadeActionPerformed
         try {
-            daoCidade.delete(getCidade());
+            new DaoGenerics<Cidade>(Cidade.class).delete(getCidade());
         } catch (Exception ex) {
             Logger.getLogger(JDialogCidade.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -246,28 +248,19 @@ habilitaCampos(true);
     }//GEN-LAST:event_jButtonSairCidadeActionPerformed
 
     private void jButtonGravarCidadeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonGravarCidadeActionPerformed
-        Cidade cidade = new Cidade();
-        
-        cidade = getCidade();
-        
-        try {
-            // TODO add your handling code here:
-            if (cidade.getId() != 0) {
-                daoCidade.update(cidade);
-            } else {
-                daoCidade.insert(getCidade());
-            }
 
+        Cidade cidade = getCidade();
+        try {
+            new DaoGenerics<Cidade>(Cidade.class).persist(cidade);
         } catch (Exception ex) {
             Logger.getLogger(JDialogCidade.class.getName()).log(Level.SEVERE, null, ex);
         }
-
         clearCampos();
         habilitaCampos(false);
     }//GEN-LAST:event_jButtonGravarCidadeActionPerformed
 
     private void jButtonCancelarCidadeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCancelarCidadeActionPerformed
-habilitaCampos(false);
+        habilitaCampos(false);
         clearCampos();        // TODO add your handling code here:
     }//GEN-LAST:event_jButtonCancelarCidadeActionPerformed
 
@@ -328,32 +321,33 @@ habilitaCampos(false);
     private javax.swing.JTextField jTextFieldIdCidade;
     private javax.swing.JTextField jTextFieldNomeCidade;
     // End of variables declaration//GEN-END:variables
+
     public Cidade getCidade() {
         Cidade cidade = new Cidade();
-        
+
         try {
             cidade.setId(Integer.parseInt(jTextFieldIdCidade.getText().trim()));
         } catch (Exception e) {
             cidade.setId(0);
         }
-        
+
         cidade.setNome(jTextFieldNomeCidade.getText().trim());
         cidade.setEstado(jComboBoxEstadoCidade.getSelectedItem().toString());
-        
+
         return cidade;
     }
-    
-    private void setCidade(Cidade cidade){
-    jTextFieldNomeCidade.setText(cidade.getNome());
-    jComboBoxEstadoCidade.setSelectedItem(cidade.getEstado());
+
+    private void setCidade(Cidade cidade) {
+        jTextFieldNomeCidade.setText(cidade.getNome());
+        jComboBoxEstadoCidade.setSelectedItem(cidade.getEstado());
     }
-    
+
     private void clearCampos() {
         jTextFieldIdCidade.setText("");
         jTextFieldNomeCidade.setText("");
 
     }
-    
+
     private void habilitaCampos(boolean comando) {
         jButtonAlterarCidade.setEnabled(!comando);
         jButtonExcluirCidade.setEnabled(!comando);
@@ -367,4 +361,4 @@ habilitaCampos(false);
         jTextFieldNomeCidade.setEnabled(comando);
         jComboBoxEstadoCidade.setEnabled(comando);
     }
-    }
+}

@@ -27,7 +27,7 @@ public class Veiculo implements Serializable {
     private String modelo;
     private String cor;
     private String tipoVeiculo;
-    private Cliente cliente = new Cliente();
+    private Cliente cliente;
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
