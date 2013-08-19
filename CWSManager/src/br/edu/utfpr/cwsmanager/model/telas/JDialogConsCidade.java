@@ -140,7 +140,7 @@ public class JDialogConsCidade extends javax.swing.JDialog {
         );
 
         jButtonOkConsultaFuncionario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icones/ok.png"))); // NOI18N
-        jButtonOkConsultaFuncionario.setText("Ok");
+        jButtonOkConsultaFuncionario.setText("Visualizar");
         jButtonOkConsultaFuncionario.setMaximumSize(new java.awt.Dimension(42, 28));
         jButtonOkConsultaFuncionario.setMinimumSize(new java.awt.Dimension(42, 28));
         jButtonOkConsultaFuncionario.setPreferredSize(new java.awt.Dimension(42, 28));
@@ -304,6 +304,7 @@ public class JDialogConsCidade extends javax.swing.JDialog {
 
         cidade = cidades.get(linha);
         dispose();
+
     }
 
     private void pesquisa() {
@@ -320,28 +321,26 @@ public class JDialogConsCidade extends javax.swing.JDialog {
                 break;
 
             case 1:
-  //      try {
-  //          cidades = daoCidade.list(new Filter("id", Operator.LIKE, jFormattedTextFieldPesquisaFuncionario.getText()));
-  //      } catch (SQLException ex) {
-  //          Logger.getLogger(JDialogConsCidade.class.getName()).log(Level.SEVERE, null, ex);
-  //      }
+                try {
+                    cidades = new DaoGenerics<Cidade>(Cidade.class).list(new Filter("id", Operator.LIKE, jFormattedTextFieldPesquisaFuncionario.getText()));
+                } catch (Exception ex) {
+                    Logger.getLogger(JDialogConsCidade.class.getName()).log(Level.SEVERE, null, ex);
+                }
                 break;
 
             case 2:
-     //           try {
-
-     //               cidades = daoCidade.list(new Filter("nome", Operator.LIKE, jFormattedTextFieldPesquisaFuncionario.getText()));
-    //            } catch (SQLException ex) {
-     //               Logger.getLogger(JDialogConsCidade.class.getName()).log(Level.SEVERE, null, ex);
-     //           }
+                try {
+                    cidades = new DaoGenerics<Cidade>(Cidade.class).list(new Filter("nome", Operator.LIKE, jFormattedTextFieldPesquisaFuncionario.getText()));
+                } catch (Exception ex) {
+                    Logger.getLogger(JDialogConsCidade.class.getName()).log(Level.SEVERE, null, ex);
+                }
                 break;
-                case 3:
-      //          try {
-
-      //              cidades = daoCidade.list(new Filter("estado", Operator.LIKE, jFormattedTextFieldPesquisaFuncionario.getText()));
-      //          } catch (SQLException ex) {
-      //              Logger.getLogger(JDialogConsCidade.class.getName()).log(Level.SEVERE, null, ex);
-    //            }
+            case 3:
+                try {
+                    cidades = new DaoGenerics<Cidade>(Cidade.class).list(new Filter("estado", Operator.LIKE, jFormattedTextFieldPesquisaFuncionario.getText()));
+                } catch (Exception ex) {
+                    Logger.getLogger(JDialogConsCidade.class.getName()).log(Level.SEVERE, null, ex);
+                }
                 break;
         }
 

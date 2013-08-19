@@ -33,9 +33,10 @@
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" attributes="0">
-              <EmptySpace pref="17" max="32767" attributes="0"/>
+          <Group type="102" alignment="1" attributes="0">
+              <EmptySpace max="32767" attributes="0"/>
               <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -50,25 +51,28 @@
                   <EmptySpace min="-2" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace min="-2" pref="8" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Group type="102" attributes="0">
-                                  <EmptySpace min="-2" pref="11" max="-2" attributes="0"/>
+                              <Group type="102" alignment="0" attributes="0">
                                   <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="jLabelEstadoCidade" min="-2" max="-2" attributes="0"/>
-                                      <Component id="jLabelNomeCidade" min="-2" max="-2" attributes="0"/>
+                                      <Component id="jLabelCodCidade" alignment="1" min="-2" max="-2" attributes="0"/>
+                                      <Group type="103" alignment="1" groupAlignment="0" attributes="0">
+                                          <Component id="jLabelNomeCidade" min="-2" max="-2" attributes="0"/>
+                                          <Component id="jLabelEstadoCidade" min="-2" max="-2" attributes="0"/>
+                                      </Group>
+                                  </Group>
+                                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Group type="102" alignment="0" attributes="0">
+                                          <Component id="jTextFieldIdCidade" min="-2" pref="61" max="-2" attributes="0"/>
+                                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                          <Component id="jButtonPesquisarCidade" min="-2" pref="40" max="-2" attributes="0"/>
+                                      </Group>
+                                      <Component id="jComboBoxEstadoCidade" alignment="0" min="-2" pref="180" max="-2" attributes="0"/>
+                                      <Component id="jTextFieldNomeCidade" alignment="0" min="-2" pref="264" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
-                              <Component id="jLabelCodCidade" alignment="1" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="jTextFieldNomeCidade" alignment="0" min="-2" pref="264" max="-2" attributes="0"/>
-                              <Group type="102" alignment="0" attributes="0">
-                                  <Component id="jTextFieldIdCidade" min="-2" pref="61" max="-2" attributes="0"/>
-                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                  <Component id="jButtonPesquisarCidade" min="-2" pref="40" max="-2" attributes="0"/>
-                              </Group>
-                              <Component id="jComboBoxEstadoCidade" alignment="0" min="-2" pref="180" max="-2" attributes="0"/>
+                              <Component id="jLabel3" alignment="0" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace max="32767" attributes="0"/>
                       </Group>
@@ -78,11 +82,11 @@
                           <Component id="jButtonAlterarCidade" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="jButtonExcluirCidade" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace pref="53" max="32767" attributes="0"/>
-                          <Component id="jButtonGravarCidade" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace pref="100" max="32767" attributes="0"/>
+                          <Component id="jButtonGravarCidade" min="-2" pref="88" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="jButtonCancelarCidade" min="-2" pref="98" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
+                          <Component id="jButtonCancelarCidade" min="-2" pref="101" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                   <Component id="jButtonSairCidade" min="-2" pref="87" max="-2" attributes="0"/>
@@ -102,15 +106,17 @@
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="jLabelNomeCidade" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="jTextFieldNomeCidade" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jLabelNomeCidade" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace min="-2" pref="19" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="jComboBoxEstadoCidade" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jLabelEstadoCidade" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="jLabelEstadoCidade" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jComboBoxEstadoCidade" alignment="3" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <EmptySpace pref="47" max="32767" attributes="0"/>
+                  <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace pref="24" max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="jButtonIncluirCidade" alignment="3" min="-2" pref="34" max="-2" attributes="0"/>
                       <Component id="jButtonAlterarCidade" alignment="3" min="-2" pref="34" max="-2" attributes="0"/>
@@ -132,15 +138,18 @@
         </Component>
         <Component class="javax.swing.JLabel" name="jLabelNomeCidade">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Nome:"/>
+            <Property name="text" type="java.lang.String" value="Nome:*"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabelEstadoCidade">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Estado:"/>
+            <Property name="text" type="java.lang.String" value="Estado:*"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="jTextFieldIdCidade">
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextFieldIdCidadeActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JTextField" name="jTextFieldNomeCidade">
           <Events>
@@ -267,6 +276,11 @@
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonSairCidadeActionPerformed"/>
           </Events>
+        </Component>
+        <Component class="javax.swing.JLabel" name="jLabel3">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="* Campos Obrigat&#xf3;rios"/>
+          </Properties>
         </Component>
       </SubComponents>
     </Container>

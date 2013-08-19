@@ -5,10 +5,11 @@
 package br.edu.utfpr.cwsmanager.model.telas;
 
 import br.edu.utfpr.cwsmanager.model.daos.DaoGenerics;
+import br.edu.utfpr.cwsmanager.model.daos.TransactionManager;
 import br.edu.utfpr.cwsmanager.model.endereco.Cidade;
-import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -16,12 +17,16 @@ import java.util.logging.Logger;
  */
 public class JDialogCidade extends javax.swing.JDialog {
 
+    private Cidade cidade;
+
     /**
      * Creates new form JDialogCidade
      */
     public JDialogCidade(java.awt.Dialog parent, boolean modal) {
         super(parent, modal);
         initComponents();
+
+        habilitaCampos(false);
     }
 
     /**
@@ -47,15 +52,22 @@ public class JDialogCidade extends javax.swing.JDialog {
         jButtonGravarCidade = new javax.swing.JButton();
         jButtonCancelarCidade = new javax.swing.JButton();
         jButtonSairCidade = new javax.swing.JButton();
+        jLabel3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Cadastro de Cidades");
 
         jLabelCodCidade.setText("Código:");
 
-        jLabelNomeCidade.setText("Nome:");
+        jLabelNomeCidade.setText("Nome:*");
 
-        jLabelEstadoCidade.setText("Estado:");
+        jLabelEstadoCidade.setText("Estado:*");
+
+        jTextFieldIdCidade.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextFieldIdCidadeActionPerformed(evt);
+            }
+        });
 
         jTextFieldNomeCidade.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -124,6 +136,8 @@ public class JDialogCidade extends javax.swing.JDialog {
             }
         });
 
+        jLabel3.setText("* Campos Obrigatórios");
+
         org.jdesktop.layout.GroupLayout jPanel1Layout = new org.jdesktop.layout.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -132,21 +146,23 @@ public class JDialogCidade extends javax.swing.JDialog {
                 .addContainerGap()
                 .add(jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
                     .add(jPanel1Layout.createSequentialGroup()
+                        .add(8, 8, 8)
                         .add(jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
                             .add(jPanel1Layout.createSequentialGroup()
-                                .add(11, 11, 11)
                                 .add(jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                                    .add(jLabelEstadoCidade)
-                                    .add(jLabelNomeCidade)))
-                            .add(org.jdesktop.layout.GroupLayout.TRAILING, jLabelCodCidade))
-                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
-                        .add(jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                            .add(jTextFieldNomeCidade, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 264, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                            .add(jPanel1Layout.createSequentialGroup()
-                                .add(jTextFieldIdCidade, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 61, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
-                                .add(jButtonPesquisarCidade, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 40, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                            .add(jComboBoxEstadoCidade, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 180, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                                    .add(org.jdesktop.layout.GroupLayout.TRAILING, jLabelCodCidade)
+                                    .add(org.jdesktop.layout.GroupLayout.TRAILING, jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                                        .add(jLabelNomeCidade)
+                                        .add(jLabelEstadoCidade)))
+                                .add(18, 18, 18)
+                                .add(jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                                    .add(jPanel1Layout.createSequentialGroup()
+                                        .add(jTextFieldIdCidade, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 61, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
+                                        .add(jButtonPesquisarCidade, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 40, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                                    .add(jComboBoxEstadoCidade, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 180, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                                    .add(jTextFieldNomeCidade, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 264, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)))
+                            .add(jLabel3))
                         .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .add(jPanel1Layout.createSequentialGroup()
                         .add(jButtonIncluirCidade)
@@ -154,11 +170,11 @@ public class JDialogCidade extends javax.swing.JDialog {
                         .add(jButtonAlterarCidade)
                         .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                         .add(jButtonExcluirCidade)
-                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 53, Short.MAX_VALUE)
-                        .add(jButtonGravarCidade)
+                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 100, Short.MAX_VALUE)
+                        .add(jButtonGravarCidade, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 88, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                        .add(jButtonCancelarCidade, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 98, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                        .add(35, 35, 35)))
+                        .add(jButtonCancelarCidade, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 101, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                        .add(20, 20, 20)))
                 .add(jButtonSairCidade, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 87, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -172,13 +188,15 @@ public class JDialogCidade extends javax.swing.JDialog {
                     .add(jButtonPesquisarCidade, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 30, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
                 .add(18, 18, 18)
                 .add(jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
-                    .add(jLabelNomeCidade)
-                    .add(jTextFieldNomeCidade, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                .add(18, 18, 18)
+                    .add(jTextFieldNomeCidade, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                    .add(jLabelNomeCidade))
+                .add(19, 19, 19)
                 .add(jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
-                    .add(jLabelEstadoCidade)
-                    .add(jComboBoxEstadoCidade, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 47, Short.MAX_VALUE)
+                    .add(jComboBoxEstadoCidade, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                    .add(jLabelEstadoCidade))
+                .add(18, 18, 18)
+                .add(jLabel3)
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 24, Short.MAX_VALUE)
                 .add(jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
                     .add(jButtonIncluirCidade, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 34, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                     .add(jButtonAlterarCidade, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 34, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
@@ -200,9 +218,10 @@ public class JDialogCidade extends javax.swing.JDialog {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(layout.createSequentialGroup()
-                .addContainerGap(17, Short.MAX_VALUE)
-                .add(jPanel1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+            .add(org.jdesktop.layout.GroupLayout.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .add(jPanel1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
         pack();
@@ -213,33 +232,75 @@ public class JDialogCidade extends javax.swing.JDialog {
     }//GEN-LAST:event_jTextFieldNomeCidadeActionPerformed
 
     private void jButtonPesquisarCidadeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonPesquisarCidadeActionPerformed
-        int id = Integer.parseInt(jTextFieldIdCidade.getText().trim());
-        Cidade cidade;
-        try {
-            cidade = new DaoGenerics<Cidade>(Cidade.class).retrieve(id);
-            setCidade(cidade);
-        } catch (Exception ex) {
-            Logger.getLogger(JDialogCidade.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        final JDialogConsCidade consulta = new JDialogConsCidade(this, true);
+        consulta.setVisible(true);
+
+        consulta.addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosed(java.awt.event.WindowEvent evt) {
+                cidade = consulta.cidade;
+                try {
+                    //  cliente = DaoCliente.retrieve(cliente.getId());
+                    cidade = new DaoGenerics<Cidade>(Cidade.class).retrieve(cidade.getId());
+                } catch (Exception ex) {
+                    Logger.getLogger(JDialogCidade.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                setCidade(cidade);
+
+                jButtonAlterarCidade.setEnabled(true);
+                jButtonExcluirCidade.setEnabled(true);
+                jButtonIncluirCidade.setEnabled(true);
+
+                jButtonCancelarCidade.setEnabled(true);
+                jButtonGravarCidade.setEnabled(false);
+
+                jTextFieldIdCidade.setEnabled(false);
+                jButtonPesquisarCidade.setEnabled(true);
+                jTextFieldNomeCidade.setEnabled(false);
+                jComboBoxEstadoCidade.setEnabled(false);
+            }
+        });
 
     }//GEN-LAST:event_jButtonPesquisarCidadeActionPerformed
 
     private void jButtonAlterarCidadeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAlterarCidadeActionPerformed
-        habilitaCampos(true);
+        jButtonAlterarCidade.setEnabled(false);
+        jButtonExcluirCidade.setEnabled(true);
+        jButtonIncluirCidade.setEnabled(false);
+
+        jButtonCancelarCidade.setEnabled(true);
+        jButtonGravarCidade.setEnabled(true);
+
+        jTextFieldIdCidade.setEnabled(false);
+        jButtonPesquisarCidade.setEnabled(false);
+        jTextFieldNomeCidade.setEnabled(true);
+        jComboBoxEstadoCidade.setEnabled(true);
     }//GEN-LAST:event_jButtonAlterarCidadeActionPerformed
 
     private void jButtonExcluirCidadeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonExcluirCidadeActionPerformed
-        try {
-            new DaoGenerics<Cidade>(Cidade.class).delete(getCidade());
-        } catch (Exception ex) {
-            Logger.getLogger(JDialogCidade.class.getName()).log(Level.SEVERE, null, ex);
+        String[] opcoes = {"Sim", "Não"};
+        int opcao = JOptionPane.showOptionDialog(null, "Tem certeza que deseja excluir?", "Confirmação",
+                JOptionPane.YES_OPTION, JOptionPane.QUESTION_MESSAGE, null, opcoes, opcoes[1]);
+
+        if (JOptionPane.OK_OPTION == opcao) {
+            try {
+                DaoGenerics<Cidade> daoCidade = new DaoGenerics<>(Cidade.class);
+                cidade = null;
+                cidade = daoCidade.retrieve(Integer.parseInt(jTextFieldIdCidade.getText().trim()));
+                TransactionManager.beginTransaction();
+                daoCidade.delete(cidade);
+                TransactionManager.commit();
+            } catch (Exception ex) {
+                Logger.getLogger(JDialogCidade.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            JOptionPane.showMessageDialog(null, "O registro foi excluido com sucesso!", "Mensagem", JOptionPane.INFORMATION_MESSAGE);
         }
+
         clearCampos();
     }//GEN-LAST:event_jButtonExcluirCidadeActionPerformed
 
     private void jButtonIncluirCidadeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonIncluirCidadeActionPerformed
         clearCampos();
-        habilitaCampos(true);
+        habilitaCampos(false);
     }//GEN-LAST:event_jButtonIncluirCidadeActionPerformed
 
     private void jButtonSairCidadeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSairCidadeActionPerformed
@@ -248,21 +309,27 @@ public class JDialogCidade extends javax.swing.JDialog {
     }//GEN-LAST:event_jButtonSairCidadeActionPerformed
 
     private void jButtonGravarCidadeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonGravarCidadeActionPerformed
-
-        Cidade cidade = getCidade();
+        if (!validaCampos()) {
+            return;
+        }
         try {
-            new DaoGenerics<Cidade>(Cidade.class).persist(cidade);
+            gravar();
         } catch (Exception ex) {
             Logger.getLogger(JDialogCidade.class.getName()).log(Level.SEVERE, null, ex);
         }
-        clearCampos();
-        habilitaCampos(false);
+        JOptionPane.showMessageDialog(null, "Registro gravado com sucesso.", "Gravar", JOptionPane.INFORMATION_MESSAGE);
+        habilitaCampos(true);
+        jButtonPesquisarCidade.setEnabled(true);
     }//GEN-LAST:event_jButtonGravarCidadeActionPerformed
 
     private void jButtonCancelarCidadeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCancelarCidadeActionPerformed
         habilitaCampos(false);
         clearCampos();        // TODO add your handling code here:
     }//GEN-LAST:event_jButtonCancelarCidadeActionPerformed
+
+    private void jTextFieldIdCidadeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldIdCidadeActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextFieldIdCidadeActionPerformed
 
     /**
      * @param args the command line arguments
@@ -314,6 +381,7 @@ public class JDialogCidade extends javax.swing.JDialog {
     private javax.swing.JButton jButtonPesquisarCidade;
     private javax.swing.JButton jButtonSairCidade;
     private javax.swing.JComboBox jComboBoxEstadoCidade;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabelCodCidade;
     private javax.swing.JLabel jLabelEstadoCidade;
     private javax.swing.JLabel jLabelNomeCidade;
@@ -322,22 +390,25 @@ public class JDialogCidade extends javax.swing.JDialog {
     private javax.swing.JTextField jTextFieldNomeCidade;
     // End of variables declaration//GEN-END:variables
 
-    public Cidade getCidade() {
-        Cidade cidade = new Cidade();
+    public void gravar() throws Exception {
+        cidade = null;
 
-        try {
-            cidade.setId(Integer.parseInt(jTextFieldIdCidade.getText().trim()));
-        } catch (Exception e) {
-            cidade.setId(0);
+        if (jTextFieldIdCidade.getText().isEmpty()) {
+            cidade = new Cidade();
+        } else {
+            cidade = new DaoGenerics<Cidade>(Cidade.class).retrieve(Integer.parseInt(jTextFieldIdCidade.getText().trim()));
         }
 
+        TransactionManager.beginTransaction();
         cidade.setNome(jTextFieldNomeCidade.getText().trim());
         cidade.setEstado(jComboBoxEstadoCidade.getSelectedItem().toString());
+        new DaoGenerics<Cidade>(Cidade.class).persist(cidade);
+        TransactionManager.commit();
 
-        return cidade;
     }
 
     private void setCidade(Cidade cidade) {
+        jTextFieldIdCidade.setText(Integer.toString(cidade.getId()));
         jTextFieldNomeCidade.setText(cidade.getNome());
         jComboBoxEstadoCidade.setSelectedItem(cidade.getEstado());
     }
@@ -349,16 +420,25 @@ public class JDialogCidade extends javax.swing.JDialog {
     }
 
     private void habilitaCampos(boolean comando) {
-        jButtonAlterarCidade.setEnabled(!comando);
-        jButtonExcluirCidade.setEnabled(!comando);
-        jButtonIncluirCidade.setEnabled(!comando);
+        jButtonAlterarCidade.setEnabled(comando);
+        jButtonExcluirCidade.setEnabled(comando);
+        jButtonIncluirCidade.setEnabled(comando);
 
         jButtonCancelarCidade.setEnabled(comando);
-        jButtonGravarCidade.setEnabled(comando);
+        jButtonGravarCidade.setEnabled(!comando);
 
-        jTextFieldIdCidade.setEnabled(!comando);
+        jTextFieldIdCidade.setEnabled(comando);
         jButtonPesquisarCidade.setEnabled(!comando);
-        jTextFieldNomeCidade.setEnabled(comando);
-        jComboBoxEstadoCidade.setEnabled(comando);
+        jTextFieldNomeCidade.setEnabled(!comando);
+        jComboBoxEstadoCidade.setEnabled(!comando);
+    }
+
+    private boolean validaCampos() {
+        if (jTextFieldNomeCidade.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Nome é Obrigatório!", "Atençao!", JOptionPane.WARNING_MESSAGE);
+            jTextFieldNomeCidade.grabFocus();
+            return false;
+        }
+        return true;
     }
 }
