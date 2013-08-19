@@ -5,6 +5,7 @@
 package br.edu.utfpr.cwsmanager.model.telas;
 
 import br.edu.utfpr.cwsmanager.model.daos.HibernateConfiguration;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -38,7 +39,6 @@ public class JDialogConfigBanco extends javax.swing.JDialog {
         jLabel6 = new javax.swing.JLabel();
         jTextField5 = new javax.swing.JTextField();
         jButtonRecriarDB = new javax.swing.JButton();
-        jButtonOk = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -59,11 +59,13 @@ public class JDialogConfigBanco extends javax.swing.JDialog {
 
         jLabel5.setText("Usuário:");
 
+        jTextField4.setText("root");
         jTextField4.setMinimumSize(new java.awt.Dimension(42, 28));
         jTextField4.setPreferredSize(new java.awt.Dimension(42, 28));
 
         jLabel6.setText("Password:");
 
+        jTextField5.setText("******");
         jTextField5.setMinimumSize(new java.awt.Dimension(42, 28));
         jTextField5.setPreferredSize(new java.awt.Dimension(42, 28));
 
@@ -75,17 +77,6 @@ public class JDialogConfigBanco extends javax.swing.JDialog {
         jButtonRecriarDB.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonRecriarDBActionPerformed(evt);
-            }
-        });
-
-        jButtonOk.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icones/ok.png"))); // NOI18N
-        jButtonOk.setText("OK");
-        jButtonOk.setMaximumSize(null);
-        jButtonOk.setMinimumSize(new java.awt.Dimension(42, 28));
-        jButtonOk.setPreferredSize(new java.awt.Dimension(42, 28));
-        jButtonOk.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonOkActionPerformed(evt);
             }
         });
 
@@ -106,9 +97,7 @@ public class JDialogConfigBanco extends javax.swing.JDialog {
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
                     .add(layout.createSequentialGroup()
                         .add(jButtonRecriarDB, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 178, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                        .add(jButtonOk, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 96, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 83, Short.MAX_VALUE)
+                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 185, Short.MAX_VALUE)
                         .add(jButton3, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 98, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
                     .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING, false)
                         .add(layout.createSequentialGroup()
@@ -149,7 +138,6 @@ public class JDialogConfigBanco extends javax.swing.JDialog {
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 47, Short.MAX_VALUE)
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
                     .add(jButtonRecriarDB, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 37, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                    .add(jButtonOk, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 37, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                     .add(jButton3, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 37, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
                 .add(17, 17, 17))
         );
@@ -159,13 +147,13 @@ public class JDialogConfigBanco extends javax.swing.JDialog {
 
     private void jButtonRecriarDBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRecriarDBActionPerformed
 
-        HibernateConfiguration h = new HibernateConfiguration();
-        h.createSchema();// TODO add your handling code here:
-    }//GEN-LAST:event_jButtonRecriarDBActionPerformed
+        int res = JOptionPane.showConfirmDialog(this, "Tem certeza que deseja recriar o banco de dados?", "Mensagem", JOptionPane.OK_CANCEL_OPTION);
 
-    private void jButtonOkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonOkActionPerformed
-        dispose();
-    }//GEN-LAST:event_jButtonOkActionPerformed
+        if (JOptionPane.OK_OPTION == res) {
+            HibernateConfiguration.createSchema();
+            JOptionPane.showMessageDialog(this, "O banco de dados foi recriado com sucesso!");
+        }
+    }//GEN-LAST:event_jButtonRecriarDBActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
@@ -215,7 +203,6 @@ public class JDialogConfigBanco extends javax.swing.JDialog {
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButtonOk;
     private javax.swing.JButton jButtonRecriarDB;
     private javax.swing.JFormattedTextField jFormattedTextField1;
     private javax.swing.JLabel jLabel3;
