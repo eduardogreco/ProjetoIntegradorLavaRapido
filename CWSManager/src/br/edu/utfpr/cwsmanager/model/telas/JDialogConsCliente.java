@@ -15,7 +15,6 @@ import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
-
 /**
  *
  * @author EduardoGreco
@@ -25,14 +24,14 @@ public class JDialogConsCliente extends javax.swing.JDialog {
     private List<Cliente> clientes;
     private DefaultTableModel modeloCliente;
     public Cliente cliente;
-    
+
     public JDialogConsCliente(java.awt.Dialog parent, boolean modal) {
         super(parent, modal);
         initComponents();
-        
-        cliente    = new Cliente();
-        
-        modeloCliente = (DefaultTableModel) jTableResult.getModel(); 
+
+        cliente = new Cliente();
+
+        modeloCliente = (DefaultTableModel) jTableResult.getModel();
         modeloCliente.setNumRows(0);
     }
 
@@ -61,7 +60,7 @@ public class JDialogConsCliente extends javax.swing.JDialog {
 
         jLabelPesquisa.setText("Consulta por:");
 
-        jComboBoxCampos.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Geral", "Codigo", "Nome" }));
+        jComboBoxCampos.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Geral", "Codigo", "Nome", "CPF", "Email" }));
         jComboBoxCampos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboBoxCamposActionPerformed(evt);
@@ -136,7 +135,7 @@ public class JDialogConsCliente extends javax.swing.JDialog {
         );
 
         jButtonOk.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icones/ok.png"))); // NOI18N
-        jButtonOk.setText("Ok");
+        jButtonOk.setText("Visualizar");
         jButtonOk.setMaximumSize(new java.awt.Dimension(42, 28));
         jButtonOk.setMinimumSize(new java.awt.Dimension(42, 28));
         jButtonOk.setPreferredSize(new java.awt.Dimension(42, 28));
@@ -290,58 +289,74 @@ public class JDialogConsCliente extends javax.swing.JDialog {
     private javax.swing.JTable jTableResult;
     // End of variables declaration//GEN-END:variables
 
-    private void selecionar(){
+    private void selecionar() {
         int linha = jTableResult.getSelectedRow();
 
         if (linha < 0) {
             JOptionPane.showMessageDialog(null, "Selecione um registro.", "Atenção", JOptionPane.WARNING_MESSAGE);
             return;
         }
-        
+
         cliente = clientes.get(linha);
         dispose();
     }
-    
-    private void pesquisa(){
-        clientes   = new ArrayList<>();
-        
-        switch (jComboBoxCampos.getSelectedIndex()){
+
+    private void pesquisa() {
+        clientes = new ArrayList<>();
+
+        switch (jComboBoxCampos.getSelectedIndex()) {
             case 0:
-            try {
-                clientes = new DaoGenerics<Cliente>(Cliente.class).list();
-            } catch (Exception ex) {
-                Logger.getLogger(JDialogConsCliente.class.getName()).log(Level.SEVERE, null, ex);
-            }
-               
-               break;
-                
+                try {
+                    clientes = new DaoGenerics<Cliente>(Cliente.class).list();
+                } catch (Exception ex) {
+                    Logger.getLogger(JDialogConsCliente.class.getName()).log(Level.SEVERE, null, ex);
+                }
+
+                break;
+
             case 1:
-        try {
-          //  clientes = daoCliente.list(new Filter("id", Operator.LIKE, jFormattedTextFieldPesquisa.getText()));
-        } catch (Exception ex) {
-            Logger.getLogger(JDialogConsCliente.class.getName()).log(Level.SEVERE, null, ex);
-        }
+                try {
+                    clientes = new DaoGenerics<Cliente>(Cliente.class).list(new Filter("id", Operator.LIKE, jFormattedTextFieldPesquisa.getText()));
+                } catch (Exception ex) {
+                    Logger.getLogger(JDialogConsCliente.class.getName()).log(Level.SEVERE, null, ex);
+                }
                 break;
-              
+
             case 2:
-        try {
-      //      clientes = daoCliente.list(new Filter("nome", Operator.LIKE, jFormattedTextFieldPesquisa.getText()));
-        } catch (Exception ex) {
-            Logger.getLogger(JDialogConsCliente.class.getName()).log(Level.SEVERE, null, ex);
-        }
+                try {
+                    clientes = new DaoGenerics<Cliente>(Cliente.class).list(new Filter("nome", Operator.LIKE, jFormattedTextFieldPesquisa.getText()));
+                } catch (Exception ex) {
+                    Logger.getLogger(JDialogConsCliente.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                break;
+                
+            case 3:
+                try {
+                    clientes = new DaoGenerics<Cliente>(Cliente.class).list(new Filter("cpf", Operator.LIKE, jFormattedTextFieldPesquisa.getText()));
+                } catch (Exception ex) {
+                    Logger.getLogger(JDialogConsCliente.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                break;
+                
+            case 4:
+                try {
+                    clientes = new DaoGenerics<Cliente>(Cliente.class).list(new Filter("email", Operator.LIKE, jFormattedTextFieldPesquisa.getText()));
+                } catch (Exception ex) {
+                    Logger.getLogger(JDialogConsCliente.class.getName()).log(Level.SEVERE, null, ex);
+                }
                 break;
         }
-        
         preencherjTable();
     }
+
     private void preencherjTable() {
         modeloCliente.setNumRows(0);
-        
-        if (clientes.isEmpty()){
+
+        if (clientes.isEmpty()) {
             JOptionPane.showMessageDialog(null, "Registros não encontrados.", "Atenção", JOptionPane.WARNING_MESSAGE);
             return;
         }
-        
+
         for (Cliente obj : clientes) {
             modeloCliente.addRow(new Object[]{
                 obj.getId(),
@@ -351,5 +366,4 @@ public class JDialogConsCliente extends javax.swing.JDialog {
             });
         }
     }
-
 }

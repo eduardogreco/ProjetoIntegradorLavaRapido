@@ -354,7 +354,7 @@ public class JDialogCliente extends javax.swing.JDialog {
 
         jLabelNomeEndereco.setText("Endereço:*");
 
-        jLabel17.setText("N");
+        jLabel17.setText("Nº");
 
         jLabelComplemento.setText("Complemento:");
 
@@ -427,31 +427,30 @@ public class JDialogCliente extends javax.swing.JDialog {
                     .add(jLabelCep))
                 .add(18, 18, 18)
                 .add(jPanel2Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                    .add(jPanel2Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING, false)
-                        .add(jPanel2Layout.createSequentialGroup()
-                            .add(jTextFieldNomeEndreco, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 338, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                            .add(jLabel17)
-                            .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
-                            .add(jTextFieldNumEndereco, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 69, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                        .add(jPanel2Layout.createSequentialGroup()
-                            .add(jPanel2Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING)
-                                .add(org.jdesktop.layout.GroupLayout.LEADING, jTextFieldBairro)
-                                .add(org.jdesktop.layout.GroupLayout.LEADING, jTextFieldComplemento)
-                                .add(org.jdesktop.layout.GroupLayout.LEADING, jPanel2Layout.createSequentialGroup()
-                                    .add(jTextFieldPesquisaCodCidade, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 54, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                                    .add(jButtonPesquisarCidade, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 40, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                                    .add(jButtonIncluirCidade, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 40, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                                    .add(0, 0, Short.MAX_VALUE))
-                                .add(org.jdesktop.layout.GroupLayout.LEADING, jTextFieldNomeCidade))
-                            .add(18, 18, 18)
-                            .add(jLabel22)
-                            .add(18, 18, 18)
-                            .add(jTextFieldUFCidade, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 114, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)))
+                    .add(jPanel2Layout.createSequentialGroup()
+                        .add(jTextFieldNomeEndreco, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 338, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                        .add(jLabel17)
+                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                        .add(jTextFieldNumEndereco, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 69, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                    .add(jPanel2Layout.createSequentialGroup()
+                        .add(jPanel2Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING, false)
+                            .add(org.jdesktop.layout.GroupLayout.LEADING, jTextFieldBairro)
+                            .add(org.jdesktop.layout.GroupLayout.LEADING, jTextFieldComplemento)
+                            .add(org.jdesktop.layout.GroupLayout.LEADING, jPanel2Layout.createSequentialGroup()
+                                .add(jTextFieldPesquisaCodCidade, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 54, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                                .add(jButtonPesquisarCidade, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 40, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                                .add(jButtonIncluirCidade, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 40, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                                .add(0, 119, Short.MAX_VALUE))
+                            .add(org.jdesktop.layout.GroupLayout.LEADING, jTextFieldNomeCidade))
+                        .add(18, 18, 18)
+                        .add(jLabel22)
+                        .add(18, 18, 18)
+                        .add(jTextFieldUFCidade, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 114, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
                     .add(jTextFieldCep, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 265, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(142, Short.MAX_VALUE))
+                .addContainerGap(136, Short.MAX_VALUE))
             .add(jPanel2Layout.createSequentialGroup()
                 .add(jLabel3)
                 .add(0, 0, Short.MAX_VALUE))
@@ -786,6 +785,7 @@ public class JDialogCliente extends javax.swing.JDialog {
     private void jButtonPesquisarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonPesquisarClienteActionPerformed
 
         final JDialogConsCliente consulta = new JDialogConsCliente(this, true);
+        consulta.setLocationRelativeTo(consulta);
         consulta.setVisible(true);
 
         consulta.addWindowListener(new java.awt.event.WindowAdapter() {
@@ -903,22 +903,29 @@ public class JDialogCliente extends javax.swing.JDialog {
         try {
             gravar();
         } catch (Exception ex) {
-            JOptionPane.showMessageDialog(null, ex.getMessage());
+   //         JOptionPane.showMessageDialog(null, ex.getMessage());
             Logger.getLogger(JDialogCliente.class.getName()).log(Level.SEVERE, null, ex);
         }
         JOptionPane.showMessageDialog(null, "Registro gravado com sucesso.", "Gravar", JOptionPane.INFORMATION_MESSAGE);
 
         habilitaCampos(true);
         jButtonPesquisarCliente.setEnabled(true);
+        jTextFieldIdVeiculo.setEnabled(false);
     }//GEN-LAST:event_jButtonGravarActionPerformed
 
     private void jButtonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCancelarActionPerformed
-        habilitaCampos(false);
+        try {
+            TransactionManager.rollback();
+        } catch (Exception e) {
+        }
+        habilitaCampos(true);
+        jTextFieldIdVeiculo.setEnabled(false);
         clearCampos();
     }//GEN-LAST:event_jButtonCancelarActionPerformed
 
     private void jButtonPesquisarCidadeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonPesquisarCidadeActionPerformed
         final JDialogConsCidade consultaCidade = new JDialogConsCidade(this, true);
+        consultaCidade.setLocationRelativeTo(consultaCidade);
         consultaCidade.setVisible(true);
 
 
@@ -945,6 +952,7 @@ public class JDialogCliente extends javax.swing.JDialog {
     private void jButtonIncluirCidadeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonIncluirCidadeActionPerformed
         // TODO add your handling code here:
         JDialogCidade cadCidade = new JDialogCidade(this, true);
+         cadCidade.setLocationRelativeTo(cadCidade);
         cadCidade.setVisible(true);
     }//GEN-LAST:event_jButtonIncluirCidadeActionPerformed
 
@@ -997,8 +1005,9 @@ public class JDialogCliente extends javax.swing.JDialog {
 
         if (v.getId() != 0) {
             try {
-                //   daoVeiculo.delete(v);
+                TransactionManager.beginTransaction();
                 new DaoGenerics<Veiculo>(Veiculo.class).delete(v);
+                  TransactionManager.commit();
             } catch (Exception ex) {
                 Logger.getLogger(JDialogCliente.class.getName()).log(Level.SEVERE, null, ex);
             }
