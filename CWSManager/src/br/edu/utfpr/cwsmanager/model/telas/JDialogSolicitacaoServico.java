@@ -4,8 +4,7 @@
  */
 package br.edu.utfpr.cwsmanager.model.telas;
 
-import br.edu.utfpr.cwsmanager.model.daos.DaoCliente;
-import br.edu.utfpr.cwsmanager.model.daos.DaoFuncionario;
+import br.edu.utfpr.cwsmanager.model.daos.DaoGenerics;
 import br.edu.utfpr.cwsmanager.model.daos.Filter;
 import br.edu.utfpr.cwsmanager.model.daos.Operator;
 import br.edu.utfpr.cwsmanager.model.pessoa.Cliente;
@@ -27,8 +26,6 @@ public class JDialogSolicitacaoServico extends javax.swing.JDialog {
     /**
      * Creates new form JDialogSolicitacaoServico
      */
-    private DaoCliente daoCliente;
-    private DaoFuncionario daoFuncionario;
     private List<Cliente> clientes;
     private List<Funcionario> funcionarios;
     public Cliente cliente;
@@ -39,8 +36,6 @@ public class JDialogSolicitacaoServico extends javax.swing.JDialog {
         initComponents();
         clientes = new ArrayList<>();
         funcionarios = new ArrayList<>();
-        daoCliente = new DaoCliente();
-        daoFuncionario = new DaoFuncionario();
 
         habilitaCampos(modal);
 
@@ -558,7 +553,7 @@ public class JDialogSolicitacaoServico extends javax.swing.JDialog {
 
         jComboBoxCliente.removeAllItems();
         try {
-            clientes = daoCliente.list();
+            clientes = new DaoGenerics<Cliente>(Cliente.class).list();
         } catch (Exception ex) {
             Logger.getLogger(JDialogSolicitacaoServico.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -569,8 +564,8 @@ public class JDialogSolicitacaoServico extends javax.swing.JDialog {
 
     private void preencherFuncionario() {
         jComboBoxFuncionario.removeAllItems();
-        try {
-            funcionarios = daoFuncionario.list();
+        try { 
+            funcionarios = new DaoGenerics<Funcionario>(Funcionario.class).list();
         } catch (Exception ex) {
             Logger.getLogger(JDialogSolicitacaoServico.class.getName()).log(Level.SEVERE, null, ex);
         }

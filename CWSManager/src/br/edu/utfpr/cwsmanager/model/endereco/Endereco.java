@@ -27,7 +27,7 @@ public class Endereco implements Serializable {
     private String complemento;
     private String bairro;
     private String cep;
-    private Cidade cidade = new Cidade();
+    private Cidade cidade;
 
 
     @Id

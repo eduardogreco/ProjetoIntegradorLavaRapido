@@ -62,13 +62,13 @@
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="jButtonIncluir" alignment="3" min="-2" pref="34" max="-2" attributes="0"/>
                       <Component id="jButtonAlterar" alignment="3" min="-2" pref="34" max="-2" attributes="0"/>
+                      <Component id="jButtonExcluir" alignment="3" min="-2" pref="36" max="-2" attributes="0"/>
                   </Group>
                   <Group type="103" alignment="0" groupAlignment="3" attributes="0">
                       <Component id="jButton3" alignment="3" min="-2" pref="37" max="-2" attributes="0"/>
                       <Component id="jButtonCancelar" alignment="3" min="-2" pref="37" max="-2" attributes="0"/>
                       <Component id="jButtonGravar" alignment="3" min="-2" pref="37" max="-2" attributes="0"/>
                   </Group>
-                  <Component id="jButtonExcluir" alignment="0" min="-2" pref="36" max="-2" attributes="0"/>
               </Group>
               <EmptySpace pref="26" max="32767" attributes="0"/>
           </Group>
@@ -160,6 +160,11 @@
                           </Group>
                       </Group>
                   </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                  </Group>
               </Group>
             </DimensionLayout>
             <DimensionLayout dim="1">
@@ -211,7 +216,8 @@
                           <Component id="jLabelEmailCliente" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="jTextFieldEmailCliente" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace pref="81" max="32767" attributes="0"/>
+                      <EmptySpace pref="65" max="32767" attributes="0"/>
+                      <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -385,6 +391,11 @@
                 </Property>
               </Properties>
             </Component>
+            <Component class="javax.swing.JLabel" name="jLabel2">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="* Campos Obrigat&#xf3;rios"/>
+              </Properties>
+            </Component>
           </SubComponents>
         </Container>
         <Container class="javax.swing.JPanel" name="jPanel2">
@@ -442,6 +453,10 @@
                       </Group>
                       <EmptySpace pref="142" max="32767" attributes="0"/>
                   </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                  </Group>
               </Group>
             </DimensionLayout>
             <DimensionLayout dim="1">
@@ -484,7 +499,8 @@
                           <Component id="jLabelCep" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="jTextFieldCep" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace pref="157" max="32767" attributes="0"/>
+                      <EmptySpace pref="141" max="32767" attributes="0"/>
+                      <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -544,7 +560,7 @@
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                   <Image iconType="3" name="/icones/pesquisa.png"/>
                 </Property>
-                <Property name="toolTipText" type="java.lang.String" value="Pesquisar Cliente"/>
+                <Property name="toolTipText" type="java.lang.String" value="Pesquisar Cidade"/>
                 <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                   <Dimension value="[42, 28]"/>
                 </Property>
@@ -591,6 +607,11 @@
                 <Property name="formatterFactory" type="javax.swing.JFormattedTextField$AbstractFormatterFactory" editor="org.netbeans.modules.form.editors.AbstractFormatterFactoryEditor" preCode="try {" postCode="} catch (java.text.ParseException ex) {&#xa;ex.printStackTrace();&#xa;}">
                   <Format format="#####-###" subtype="-1" type="5"/>
                 </Property>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="jLabel3">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="* Campos Obrigat&#xf3;rios"/>
               </Properties>
             </Component>
           </SubComponents>
@@ -701,7 +722,7 @@
           <SubComponents>
             <Component class="javax.swing.JLabel" name="jLabel12">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Placa:*"/>
+                <Property name="text" type="java.lang.String" value="Placa:"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JFormattedTextField" name="jFormattedTextFieldPlaca">

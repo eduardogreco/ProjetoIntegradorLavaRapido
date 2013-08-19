@@ -5,17 +5,20 @@
 package br.edu.utfpr.cwsmanager.model.telas;
 
 import br.edu.utfpr.cwsmanager.model.daos.DaoGenerics;
+import br.edu.utfpr.cwsmanager.model.daos.TransactionManager;
 import br.edu.utfpr.cwsmanager.model.endereco.Cidade;
 import br.edu.utfpr.cwsmanager.model.pessoa.Cliente;
 import br.edu.utfpr.cwsmanager.model.util.UtilDatas;
 import br.edu.utfpr.cwsmanager.model.veiculo.Veiculo;
 import br.edu.utfpr.cwsmanager.model.util.Validacao;
+import java.awt.event.WindowEvent;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import sun.awt.WindowClosingListener;
 
 /**
  *
@@ -75,6 +78,7 @@ public class JDialogCliente extends javax.swing.JDialog {
         jLabelCelCliente = new javax.swing.JLabel();
         jFormattedTextFieldCelularCliente = new javax.swing.JFormattedTextField();
         jFormattedTextFieldTelComecialCliente = new javax.swing.JFormattedTextField();
+        jLabel2 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jLabelNomeEndereco = new javax.swing.JLabel();
         jTextFieldNomeEndreco = new javax.swing.JTextField();
@@ -93,6 +97,7 @@ public class JDialogCliente extends javax.swing.JDialog {
         jTextFieldNomeCidade = new javax.swing.JTextField();
         jTextFieldUFCidade = new javax.swing.JTextField();
         jTextFieldCep = new javax.swing.JFormattedTextField();
+        jLabel3 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         jLabel12 = new javax.swing.JLabel();
         jFormattedTextFieldPlaca = new javax.swing.JFormattedTextField();
@@ -240,6 +245,8 @@ public class JDialogCliente extends javax.swing.JDialog {
         jFormattedTextFieldTelComecialCliente.setMinimumSize(new java.awt.Dimension(42, 28));
         jFormattedTextFieldTelComecialCliente.setPreferredSize(new java.awt.Dimension(42, 28));
 
+        jLabel2.setText("* Campos Obrigatórios");
+
         org.jdesktop.layout.GroupLayout jPanel1Layout = new org.jdesktop.layout.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -294,6 +301,10 @@ public class JDialogCliente extends javax.swing.JDialog {
                         .add(18, 18, 18)
                         .add(jFormattedTextFieldCelularCliente, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 150, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                         .add(0, 0, Short.MAX_VALUE))))
+            .add(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .add(jLabel2)
+                .add(0, 0, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
@@ -335,7 +346,8 @@ public class JDialogCliente extends javax.swing.JDialog {
                 .add(jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
                     .add(jLabelEmailCliente)
                     .add(jTextFieldEmailCliente, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(81, Short.MAX_VALUE))
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 65, Short.MAX_VALUE)
+                .add(jLabel2))
         );
 
         jTabbedPane1.addTab("Pessoal", jPanel1);
@@ -366,7 +378,7 @@ public class JDialogCliente extends javax.swing.JDialog {
         jLabel22.setText("UF:*");
 
         jButtonPesquisarCidade.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icones/pesquisa.png"))); // NOI18N
-        jButtonPesquisarCidade.setToolTipText("Pesquisar Cliente");
+        jButtonPesquisarCidade.setToolTipText("Pesquisar Cidade");
         jButtonPesquisarCidade.setMaximumSize(new java.awt.Dimension(42, 28));
         jButtonPesquisarCidade.setMinimumSize(new java.awt.Dimension(42, 28));
         jButtonPesquisarCidade.setPreferredSize(new java.awt.Dimension(42, 28));
@@ -398,6 +410,8 @@ public class JDialogCliente extends javax.swing.JDialog {
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
+
+        jLabel3.setText("* Campos Obrigatórios");
 
         org.jdesktop.layout.GroupLayout jPanel2Layout = new org.jdesktop.layout.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -438,6 +452,9 @@ public class JDialogCliente extends javax.swing.JDialog {
                             .add(jTextFieldUFCidade, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 114, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)))
                     .add(jTextFieldCep, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 265, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(142, Short.MAX_VALUE))
+            .add(jPanel2Layout.createSequentialGroup()
+                .add(jLabel3)
+                .add(0, 0, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
@@ -472,12 +489,13 @@ public class JDialogCliente extends javax.swing.JDialog {
                 .add(jPanel2Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
                     .add(jLabelCep)
                     .add(jTextFieldCep, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(157, Short.MAX_VALUE))
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 141, Short.MAX_VALUE)
+                .add(jLabel3))
         );
 
         jTabbedPane1.addTab("Endereço", jPanel2);
 
-        jLabel12.setText("Placa:*");
+        jLabel12.setText("Placa:");
 
         jFormattedTextFieldPlaca.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -737,12 +755,12 @@ public class JDialogCliente extends javax.swing.JDialog {
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
                     .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
                         .add(jButtonIncluir, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 34, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                        .add(jButtonAlterar, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 34, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                        .add(jButtonAlterar, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 34, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                        .add(jButtonExcluir, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 36, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
                     .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
                         .add(jButton3, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 37, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                         .add(jButtonCancelar, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 37, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                        .add(jButtonGravar, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 37, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                    .add(jButtonExcluir, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 36, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                        .add(jButtonGravar, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 37, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(26, Short.MAX_VALUE))
         );
 
@@ -766,6 +784,7 @@ public class JDialogCliente extends javax.swing.JDialog {
     }//GEN-LAST:event_jFormattedTextFieldDataNascClienteActionPerformed
 
     private void jButtonPesquisarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonPesquisarClienteActionPerformed
+
         final JDialogConsCliente consulta = new JDialogConsCliente(this, true);
         consulta.setVisible(true);
 
@@ -773,11 +792,17 @@ public class JDialogCliente extends javax.swing.JDialog {
             public void windowClosed(java.awt.event.WindowEvent evt) {
                 cliente = consulta.cliente;
                 try {
+                    TransactionManager.beginTransaction();
                     cliente = new DaoGenerics<Cliente>(Cliente.class).retrieve(cliente.getId());
+                    TransactionManager.commit();
                 } catch (Exception ex) {
                     Logger.getLogger(JDialogCliente.class.getName()).log(Level.SEVERE, null, ex);
                 }
                 setCliente();
+
+                habilitaCampos(true);
+                jTextFieldIdVeiculo.setEnabled(false);
+                jButtonPesquisarCliente.setEnabled(true);
             }
         });
     }//GEN-LAST:event_jButtonPesquisarClienteActionPerformed
@@ -788,16 +813,69 @@ public class JDialogCliente extends javax.swing.JDialog {
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButtonAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAlterarActionPerformed
-        habilitaCampos(true);
+        jButtonAlterar.setEnabled(false);
+        jButtonExcluir.setEnabled(true);
+        jButtonIncluir.setEnabled(false);
+
+        jButtonCancelar.setEnabled(true);
+        jButtonGravar.setEnabled(true);
+
+        jTextFieldIdCliente.setEnabled(false);
+        jButtonPesquisarCliente.setEnabled(false);
+        jTextFieldNomeCliente.setEnabled(true);
+        jFormattedTextFieldCPFCliente.setEnabled(true);
+        jRadioButtonMasculinoCliente.setEnabled(true);
+        jRadioButtonFemininoCliente.setEnabled(true);
+        jFormattedTextFieldDataNascCliente.setEnabled(true);
+        jFormattedTextFieldTelefonePessoalCliente.setEnabled(true);
+        jFormattedTextFieldCelularCliente.setEnabled(true);
+        jFormattedTextFieldTelComecialCliente.setEnabled(true);
+        jTextFieldEmailCliente.setEnabled(true);
+        jTextFieldLoginCliente.setEnabled(true);
+        jTextFieldSenhaCliente.setEnabled(true);
+        jTextFieldNomeEndreco.setEnabled(true);
+        jTextFieldNumEndereco.setEnabled(true);
+        jTextFieldComplemento.setEnabled(true);
+        jTextFieldBairro.setEnabled(true);
+        jTextFieldPesquisaCodCidade.setEnabled(true);
+        jButtonPesquisarCidade.setEnabled(true);
+        jButtonIncluirCidade.setEnabled(true);
+        jTextFieldNomeCidade.setEnabled(true);
+        jTextFieldUFCidade.setEnabled(true);
+        jTextFieldCep.setEnabled(true);
+
+        jTextFieldIdVeiculo.setEnabled(false);
+        jFormattedTextFieldPlaca.setEnabled(true);
+        jTextFieldModelo.setEnabled(true);
+        jTextFieldCor.setEnabled(true);
+        jComboBoxTipoVeiculo.setEnabled(true);
+        jTableVeiculo.setEnabled(true);
+        jButtonAdicionarVeiculo.setEnabled(true);
+        jButtonAlterarVeiculo.setEnabled(true);
+        jButtonExcluirVeiculo.setEnabled(true);
+
     }//GEN-LAST:event_jButtonAlterarActionPerformed
 
     private void jButtonExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonExcluirActionPerformed
-        try {
-            new DaoGenerics<Cliente>(Cliente.class).delete(getCliente());
-        } catch (Exception ex) {
-            Logger.getLogger(JDialogCliente.class.getName()).log(Level.SEVERE, null, ex);
+        String[] opcoes = {"Sim", "Não"};
+        int opcao = JOptionPane.showOptionDialog(null, "Tem certeza que deseja excluir?", "Confirmação",
+                JOptionPane.YES_OPTION, JOptionPane.QUESTION_MESSAGE, null, opcoes, opcoes[1]);
+
+        if (JOptionPane.OK_OPTION == opcao) {
+            try {
+                TransactionManager.beginTransaction();
+                DaoGenerics<Cliente> daoCliente = new DaoGenerics<>(Cliente.class);
+                daoCliente.delete(daoCliente.retrieve(Integer.parseInt(jTextFieldIdCliente.getText())));
+                JOptionPane.showMessageDialog(null, "O registro foi excluido com sucesso!", "Mensagem", JOptionPane.INFORMATION_MESSAGE);
+                TransactionManager.commit();
+            } catch (Exception ex) {
+                TransactionManager.rollback();
+                Logger.getLogger(JDialogCliente.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
         clearCampos();
+
+
     }//GEN-LAST:event_jButtonExcluirActionPerformed
 
     private void jButtonIncluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonIncluirActionPerformed
@@ -818,19 +896,20 @@ public class JDialogCliente extends javax.swing.JDialog {
     }//GEN-LAST:event_jFormattedTextFieldPlacaActionPerformed
 
     private void jButtonGravarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonGravarActionPerformed
-            // TODO add your handling code here:
-            if (!validaCampos()) {
-                return;
-            }
-        try {            
-            new DaoGenerics<Cliente>(Cliente.class).persist(getCliente());
+        // TODO add your handling code here:
+        if (!validaCampos()) {
+            return;
+        }
+        try {
+            gravar();
         } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, ex.getMessage());
             Logger.getLogger(JDialogCliente.class.getName()).log(Level.SEVERE, null, ex);
         }
-                JOptionPane.showMessageDialog(null, "Registro gravado com sucesso.", "Gravar", JOptionPane.INFORMATION_MESSAGE);
- 
+        JOptionPane.showMessageDialog(null, "Registro gravado com sucesso.", "Gravar", JOptionPane.INFORMATION_MESSAGE);
 
-        habilitaCampos(false);
+        habilitaCampos(true);
+        jButtonPesquisarCliente.setEnabled(true);
     }//GEN-LAST:event_jButtonGravarActionPerformed
 
     private void jButtonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCancelarActionPerformed
@@ -846,8 +925,11 @@ public class JDialogCliente extends javax.swing.JDialog {
         consultaCidade.addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowClosed(java.awt.event.WindowEvent evt) {
                 cidade = consultaCidade.cidade;
+
                 try {
-                    new DaoGenerics<Cliente>(Cliente.class).retrieve(cidade.getId());
+                    TransactionManager.beginTransaction();
+                    cidade = new DaoGenerics<Cidade>(Cidade.class).retrieve(cidade.getId());
+                    TransactionManager.commit();
                 } catch (Exception ex) {
                     Logger.getLogger(JDialogCliente.class.getName()).log(Level.SEVERE, null, ex);
                 }
@@ -915,6 +997,7 @@ public class JDialogCliente extends javax.swing.JDialog {
 
         if (v.getId() != 0) {
             try {
+                //   daoVeiculo.delete(v);
                 new DaoGenerics<Veiculo>(Veiculo.class).delete(v);
             } catch (Exception ex) {
                 Logger.getLogger(JDialogCliente.class.getName()).log(Level.SEVERE, null, ex);
@@ -935,6 +1018,7 @@ public class JDialogCliente extends javax.swing.JDialog {
         }
 
         try {
+            //     cidade = daoCidade.retrieve(id_cidade);
             cidade = new DaoGenerics<Cidade>(Cidade.class).retrieve(id_cidade);
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Código da cidade não cadastrado", "Atenção", JOptionPane.WARNING_MESSAGE);
@@ -1050,7 +1134,9 @@ public class JDialogCliente extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel17;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel22;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabelBairro;
     private javax.swing.JLabel jLabelCelCliente;
     private javax.swing.JLabel jLabelCep;
@@ -1092,13 +1178,15 @@ public class JDialogCliente extends javax.swing.JDialog {
     private javax.swing.JTextField jTextFieldUFCidade;
     // End of variables declaration//GEN-END:variables
 
-    public Cliente getCliente() {
-        try {
-            cliente.setId(Integer.parseInt(jTextFieldIdCliente.getText().trim()));
-        } catch (Exception e) {
-            cliente.setId(0);
-        }
+    public void gravar() throws Exception {
+        cliente = null;
 
+        if (jTextFieldIdCliente.getText().isEmpty()) {
+            cliente = new Cliente();
+        } else {
+            cliente = new DaoGenerics<Cliente>(Cliente.class).retrieve(Integer.parseInt(jTextFieldIdCliente.getText()));
+        }
+        TransactionManager.beginTransaction();
         cliente.setNome(jTextFieldNomeCliente.getText().trim());
         cliente.setCpf(jFormattedTextFieldCPFCliente.getText().trim());
         cliente.setSexo((jRadioButtonMasculinoCliente.isSelected()) ? "M" : "F");
@@ -1114,12 +1202,16 @@ public class JDialogCliente extends javax.swing.JDialog {
         cliente.getEndereco().setNumero(Integer.parseInt(jTextFieldNumEndereco.getText().trim()));
         cliente.getEndereco().setComplemento(jTextFieldComplemento.getText().trim());
         cliente.getEndereco().setBairro(jTextFieldBairro.getText().trim());
-        cliente.getEndereco().getCidade().setId(Integer.parseInt(jTextFieldPesquisaCodCidade.getText().trim()));
+        //cliente.getEndereco().getCidade().setId(Integer.parseInt(jTextFieldPesquisaCodCidade.getText().trim()));
+        cidade = new Cidade();
+        cidade.setId(Integer.parseInt(jTextFieldPesquisaCodCidade.getText().trim()));
+        cliente.getEndereco().setCidade(cidade);
         cliente.getEndereco().setCep(jTextFieldCep.getText().trim());
 
         cliente.setVeiculos(veiculos);
 
-        return cliente;
+        new DaoGenerics<Cliente>(Cliente.class).persist(cliente);
+        TransactionManager.commit();
     }
 
     private void setCliente() {
@@ -1175,46 +1267,46 @@ public class JDialogCliente extends javax.swing.JDialog {
     }
 
     private void habilitaCampos(boolean comando) {
-        jButtonAlterar.setEnabled(!comando);
-        jButtonExcluir.setEnabled(!comando);
-        jButtonIncluir.setEnabled(!comando);
+        jButtonAlterar.setEnabled(comando);
+        jButtonExcluir.setEnabled(comando);
+        jButtonIncluir.setEnabled(comando);
 
-        jButtonCancelar.setEnabled(comando);
-        jButtonGravar.setEnabled(comando);
+        jButtonCancelar.setEnabled(!comando);
+        jButtonGravar.setEnabled(!comando);
 
-        jTextFieldIdCliente.setEnabled(!comando);
+        jTextFieldIdCliente.setEnabled(comando);
         jButtonPesquisarCliente.setEnabled(!comando);
-        jTextFieldNomeCliente.setEnabled(comando);
-        jFormattedTextFieldCPFCliente.setEnabled(comando);
-        jRadioButtonMasculinoCliente.setEnabled(comando);
-        jRadioButtonFemininoCliente.setEnabled(comando);
-        jFormattedTextFieldDataNascCliente.setEnabled(comando);
-        jFormattedTextFieldTelefonePessoalCliente.setEnabled(comando);
-        jFormattedTextFieldCelularCliente.setEnabled(comando);
-        jFormattedTextFieldTelComecialCliente.setEnabled(comando);
-        jTextFieldEmailCliente.setEnabled(comando);
-        jTextFieldLoginCliente.setEnabled(comando);
-        jTextFieldSenhaCliente.setEnabled(comando);
-        jTextFieldNomeEndreco.setEnabled(comando);
-        jTextFieldNumEndereco.setEnabled(comando);
-        jTextFieldComplemento.setEnabled(comando);
-        jTextFieldBairro.setEnabled(comando);
-        jTextFieldPesquisaCodCidade.setEnabled(comando);
-        jButtonPesquisarCidade.setEnabled(comando);
-        jButtonIncluirCidade.setEnabled(comando);
-        jTextFieldNomeCidade.setEnabled(comando);
-        jTextFieldUFCidade.setEnabled(comando);
-        jTextFieldCep.setEnabled(comando);
+        jTextFieldNomeCliente.setEnabled(!comando);
+        jFormattedTextFieldCPFCliente.setEnabled(!comando);
+        jRadioButtonMasculinoCliente.setEnabled(!comando);
+        jRadioButtonFemininoCliente.setEnabled(!comando);
+        jFormattedTextFieldDataNascCliente.setEnabled(!comando);
+        jFormattedTextFieldTelefonePessoalCliente.setEnabled(!comando);
+        jFormattedTextFieldCelularCliente.setEnabled(!comando);
+        jFormattedTextFieldTelComecialCliente.setEnabled(!comando);
+        jTextFieldEmailCliente.setEnabled(!comando);
+        jTextFieldLoginCliente.setEnabled(!comando);
+        jTextFieldSenhaCliente.setEnabled(!comando);
+        jTextFieldNomeEndreco.setEnabled(!comando);
+        jTextFieldNumEndereco.setEnabled(!comando);
+        jTextFieldComplemento.setEnabled(!comando);
+        jTextFieldBairro.setEnabled(!comando);
+        jTextFieldPesquisaCodCidade.setEnabled(!comando);
+        jButtonPesquisarCidade.setEnabled(!comando);
+        jButtonIncluirCidade.setEnabled(!comando);
+        jTextFieldNomeCidade.setEnabled(!comando);
+        jTextFieldUFCidade.setEnabled(!comando);
+        jTextFieldCep.setEnabled(!comando);
 
         jTextFieldIdVeiculo.setEnabled(comando);
-        jFormattedTextFieldPlaca.setEnabled(comando);
-        jTextFieldModelo.setEnabled(comando);
-        jTextFieldCor.setEnabled(comando);
-        jComboBoxTipoVeiculo.setEnabled(comando);
-        jTableVeiculo.setEnabled(comando);
-        jButtonAdicionarVeiculo.setEnabled(comando);
-        jButtonAlterarVeiculo.setEnabled(comando);
-        jButtonExcluirVeiculo.setEnabled(comando);
+        jFormattedTextFieldPlaca.setEnabled(!comando);
+        jTextFieldModelo.setEnabled(!comando);
+        jTextFieldCor.setEnabled(!comando);
+        jComboBoxTipoVeiculo.setEnabled(!comando);
+        jTableVeiculo.setEnabled(!comando);
+        jButtonAdicionarVeiculo.setEnabled(!comando);
+        jButtonAlterarVeiculo.setEnabled(!comando);
+        jButtonExcluirVeiculo.setEnabled(!comando);
 
     }
 
@@ -1283,11 +1375,6 @@ public class JDialogCliente extends javax.swing.JDialog {
         if (jTextFieldCep.getText().replaceAll("[ -]", "").isEmpty()) {
             JOptionPane.showMessageDialog(null, "CEP é Obrigatório!", "Atençao!", JOptionPane.WARNING_MESSAGE);
             jTextFieldCep.grabFocus();
-            return false;
-        }
-        if (jFormattedTextFieldPlaca.getText().isEmpty()) {
-            JOptionPane.showMessageDialog(null, "Placa é Obrigatório!", "Atençao!", JOptionPane.WARNING_MESSAGE);
-            jFormattedTextFieldPlaca.grabFocus();
             return false;
         }
         return true;

@@ -101,12 +101,12 @@ public class Cliente implements Serializable {
         return senha;
     }
 
-    @OneToMany(mappedBy = "cliente", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "cliente", cascade = {CascadeType.ALL, CascadeType.REMOVE})
     public List<Veiculo> getVeiculos() {
         return veiculos;
     }
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne(cascade = {CascadeType.ALL, CascadeType.REMOVE})
     public Endereco getEndereco() {
         return endereco;
     }
@@ -153,6 +153,9 @@ public class Cliente implements Serializable {
 
     public void setVeiculos(List<Veiculo> veiculos) {
         this.veiculos = veiculos;
+        for (Veiculo v : veiculos) {
+            v.setCliente(this);
+        }
     }
 
     public void setEndereco(Endereco endereco) {

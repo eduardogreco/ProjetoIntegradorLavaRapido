@@ -441,12 +441,12 @@ public class JFramePrincipal extends javax.swing.JFrame {
             .add(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .add(jLabelStatus)
-                .addContainerGap(org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(1323, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
             .add(org.jdesktop.layout.GroupLayout.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(12, Short.MAX_VALUE)
+                .addContainerGap(14, Short.MAX_VALUE)
                 .add(jLabelStatus)
                 .addContainerGap())
         );
@@ -690,7 +690,7 @@ public class JFramePrincipal extends javax.swing.JFrame {
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
             .add(layout.createSequentialGroup()
                 .add(jtAtalho, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 530, Short.MAX_VALUE)
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 528, Short.MAX_VALUE)
                 .add(jPanel1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
         );
 
@@ -857,7 +857,7 @@ public class JFramePrincipal extends javax.swing.JFrame {
 
     private void jButtonSolicitacaoServiceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSolicitacaoServiceActionPerformed
         // TODO add your handling code here:
-         JDialogSolicitacaoServico jdSolicitacaoServico = new JDialogSolicitacaoServico(this, true);
+        JDialogSolicitacaoServico jdSolicitacaoServico = new JDialogSolicitacaoServico(this, true);
         jdSolicitacaoServico.setLocationRelativeTo(jdSolicitacaoServico);
         jdSolicitacaoServico.setVisible(true);
     }//GEN-LAST:event_jButtonSolicitacaoServiceActionPerformed
@@ -995,7 +995,7 @@ public class JFramePrincipal extends javax.swing.JFrame {
 
     private void jMenuItem19ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem19ActionPerformed
         // TODO add your handling code here:
-         JDialogOrdemServico jdOrdemServico = new JDialogOrdemServico(this, true);
+        JDialogOrdemServico jdOrdemServico = new JDialogOrdemServico(this, true);
         jdOrdemServico.setLocationRelativeTo(jdOrdemServico);
         jdOrdemServico.setVisible(true);
     }//GEN-LAST:event_jMenuItem19ActionPerformed
@@ -1009,9 +1009,9 @@ public class JFramePrincipal extends javax.swing.JFrame {
 
     private void jMenuItem15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem15ActionPerformed
         // TODO add your handling code here:
-        JDialogConsFuncionario jDialogConsFunc = new JDialogConsFuncionario(this, true);
-        jDialogConsFunc.setLocationRelativeTo(null);
-        jDialogConsFunc.setVisible(true);
+        //      JDialogConsFuncionario jDialogConsFunc = new JDialogConsFuncionario(this, true);
+        //      jDialogConsFunc.setLocationRelativeTo(null);
+        //     jDialogConsFunc.setVisible(true);
     }//GEN-LAST:event_jMenuItem15ActionPerformed
 
     private void jMenuItemConsultaCidadeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemConsultaCidadeActionPerformed
@@ -1024,7 +1024,7 @@ public class JFramePrincipal extends javax.swing.JFrame {
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
         // TODO add your handling code here:
         JDialogConsTipoDeServico jdConsTipoDeServico = new JDialogConsTipoDeServico(this, true);
-       jdConsTipoDeServico.setLocationRelativeTo(null);
+        jdConsTipoDeServico.setLocationRelativeTo(null);
         jdConsTipoDeServico.setVisible(true);
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
@@ -1161,14 +1161,13 @@ public class JFramePrincipal extends javax.swing.JFrame {
     private javax.swing.JToolBar jtAtalho;
     // End of variables declaration//GEN-END:variables
 
-public void AbreTelaGerarOrdem(){
-JDialogCadOrdemServico jdCadOrdemServico = new JDialogCadOrdemServico(this, true);
+    public void AbreTelaGerarOrdem() {
+        JDialogCadOrdemServico jdCadOrdemServico = new JDialogCadOrdemServico(this, true);
         jdCadOrdemServico.setLocationRelativeTo(jdCadOrdemServico);
         jdCadOrdemServico.setVisible(true);
-}
+    }
 
-public void status(){
-jLabelStatus.setText(UtilDatas.getDate());
-}
-
+    public void status() {
+        jLabelStatus.setText(UtilDatas.getDate());
+    }
 }
