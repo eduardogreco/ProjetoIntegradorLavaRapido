@@ -6,24 +6,36 @@ package br.edu.utfpr.cwsmanager.model.telas;
 
 import br.edu.utfpr.cwsmanager.model.util.UtilDatas;
 import java.awt.Desktop;
+import java.awt.Font;
 import static java.awt.Frame.MAXIMIZED_BOTH;
+import java.awt.Rectangle;
 import java.io.File;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import javax.swing.SwingUtilities;
+import javax.swing.UIManager;
 
 /**
  *
  * @author EduardoGreco
  */
 public class JFramePrincipal extends javax.swing.JFrame {
-
+    
+private final UIManager.LookAndFeelInfo[] looks;
     /**
      * Creates new form JFramePrincipal
      */
     public JFramePrincipal() {
         initComponents();
         setExtendedState(MAXIMIZED_BOTH);
+        
+        looks = UIManager.getInstalledLookAndFeels();
+        for (UIManager.LookAndFeelInfo lookAndFeelInfo : looks) {
+            jComboBoxLookAndFeel.addItem(lookAndFeelInfo.getClassName());
+        }
     }
 
     /**
@@ -65,6 +77,8 @@ public class JFramePrincipal extends javax.swing.JFrame {
         jButtonManual = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         jLabelStatus = new javax.swing.JLabel();
+        jComboBoxLookAndFeel = new javax.swing.JComboBox();
+        jLabel1 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenuCadastros = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
@@ -432,7 +446,15 @@ public class JFramePrincipal extends javax.swing.JFrame {
 
         jPanel1.setBorder(javax.swing.BorderFactory.createEtchedBorder(null, new java.awt.Color(102, 102, 102)));
 
-        jLabelStatus.setText("Barra de Status:");
+        jLabelStatus.setText("Barra de Status");
+
+        jComboBoxLookAndFeel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBoxLookAndFeelActionPerformed(evt);
+            }
+        });
+
+        jLabel1.setText("Tema:");
 
         org.jdesktop.layout.GroupLayout jPanel1Layout = new org.jdesktop.layout.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -441,14 +463,22 @@ public class JFramePrincipal extends javax.swing.JFrame {
             .add(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .add(jLabelStatus)
-                .addContainerGap(1323, Short.MAX_VALUE))
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .add(jLabel1)
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                .add(jComboBoxLookAndFeel, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 343, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
             .add(org.jdesktop.layout.GroupLayout.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(14, Short.MAX_VALUE)
+                .addContainerGap(7, Short.MAX_VALUE)
                 .add(jLabelStatus)
                 .addContainerGap())
+            .add(jPanel1Layout.createSequentialGroup()
+                .add(jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
+                    .add(jComboBoxLookAndFeel, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                    .add(jLabel1))
+                .add(0, 0, Short.MAX_VALUE))
         );
 
         jMenuCadastros.setText("Cadastros");
@@ -690,7 +720,7 @@ public class JFramePrincipal extends javax.swing.JFrame {
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
             .add(layout.createSequentialGroup()
                 .add(jtAtalho, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 528, Short.MAX_VALUE)
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 535, Short.MAX_VALUE)
                 .add(jPanel1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
         );
 
@@ -1049,6 +1079,15 @@ public class JFramePrincipal extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jMenuItem9ActionPerformed
 
+    private void jComboBoxLookAndFeelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxLookAndFeelActionPerformed
+        try {
+            UIManager.setLookAndFeel(looks[jComboBoxLookAndFeel.getSelectedIndex()].getClassName());
+            SwingUtilities.updateComponentTreeUI(this);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+    }//GEN-LAST:event_jComboBoxLookAndFeelActionPerformed
+
     private void Sair() {
         String[] opcoes = {"Sim", "Não"};
         int opcao = JOptionPane.showOptionDialog(null, "Tem certeza que deseja sair?", "Mensagem",
@@ -1116,6 +1155,8 @@ public class JFramePrincipal extends javax.swing.JFrame {
     private javax.swing.JButton jButtonSobreMENU;
     private javax.swing.JButton jButtonSolicitacaoService;
     private javax.swing.JButton jButtonVenda;
+    private javax.swing.JComboBox jComboBoxLookAndFeel;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabelStatus;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu10;
@@ -1166,8 +1207,4 @@ public class JFramePrincipal extends javax.swing.JFrame {
         jdCadOrdemServico.setLocationRelativeTo(jdCadOrdemServico);
         jdCadOrdemServico.setVisible(true);
     }
-
-    public void status() {
-        jLabelStatus.setText(UtilDatas.getDate());
     }
-}

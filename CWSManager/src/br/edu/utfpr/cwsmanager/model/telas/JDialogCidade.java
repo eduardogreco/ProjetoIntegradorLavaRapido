@@ -233,6 +233,7 @@ public class JDialogCidade extends javax.swing.JDialog {
 
     private void jButtonPesquisarCidadeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonPesquisarCidadeActionPerformed
         final JDialogConsCidade consulta = new JDialogConsCidade(this, true);
+        consulta.setLocationRelativeTo(consulta);
         consulta.setVisible(true);
 
         consulta.addWindowListener(new java.awt.event.WindowAdapter() {
