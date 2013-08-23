@@ -12,6 +12,7 @@
 <html>
     <head>
          <link rel="stylesheet" type="text/css" href="estilo.css"/>
+         <link rel="stylesheet" type="text/css" href="table.css"/>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JSP Page</title>
     </head>
@@ -26,7 +27,7 @@
                         <li class='last'><a href='#'><span>Products</span></a></li>
                     </ul> -->
                 </li>
-                <li class='has-sub'><a href='#'><span>Agendar</span></a>
+                <li class='has-sub'><a href='AgendarHorariosServlets'><span>Agendar</span></a>
              <!--       <ul>
                         <li><a href='#'><span>About</span></a></li>
                         <li class='last'><a href='#'><span>Location</span></a></li>
@@ -35,7 +36,7 @@
                 <li class='last'><a href='#'><span>Sair</span></a></li>
             </ul>
         </div>
-        <h1>Palpites da copa</h1>
+        <h1>Consultar Horarios</h1>
         <hr>
         <%
             List<Palpite> listaPalpites = (List<Palpite>) session.getAttribute("listaPalpites");
@@ -44,22 +45,37 @@
         Não há palpites!
         <% } else {
         %>
+       <div class="CSS_Table_Example" style="width:800px;height:650px;">
         <table>
+            <center>
             <tr>
-                <th class="esquerda">Usuário</th>
-                <th>Campeão</th>
-                <th>Vice</th>
+                <th class="centro">Cliente</th>
+                <th>Tipo de Servico</th>
+                <th>Horarios</th>
             </tr>
             <%
+                
                 for (Palpite p : listaPalpites) {
-                    out.println("<tr>");
+                   out.println("<tr>");
                     out.println("<td class=\"esquerda\">"+UsuarioDAO.find(p.getId_usuario()).getNome()+"</td>");
                     out.println("<td>"+p.getCampeao()+"</td>");
                     out.println("<td>"+p.getVice()+"</td>");
-                    out.println("</tr>");
+                   out.println("</tr>");
                 }
+                
+                for (Palpite p : listaPalpites) {
+                   out.println("<tr>");
+                    out.println("<td class=\"esquerda\">"+UsuarioDAO.find(p.getId_usuario()).getNome()+"</td>");
+                    out.println("<td>"+p.getCampeao()+"</td>");
+                    out.println("<td>"+p.getVice()+"</td>");
+                   out.println("</tr>");
+                }
+                
             %>
+            <center>
         </table>
+        		</div>
+
         <%
             }
         %>

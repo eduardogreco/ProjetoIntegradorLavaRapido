@@ -9,6 +9,7 @@
 <html>
     <head>
         <link rel="stylesheet" type="text/css" href="estilo.css"/>
+        <link rel="stylesheet" type="text/css" href="style.css"/>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>CWS Manager - Web</title>
     </head>
@@ -23,7 +24,7 @@
                         <li class='last'><a href='#'><span>Products</span></a></li>
                     </ul> -->
                 </li>
-                <li class='has-sub'><a href='#'><span>Agendar</span></a>
+                <li class='has-sub'><a href='AgendarHorariosServlets'><span>Agendar</span></a>
           <!--          <ul>
                         <li><a href='#'><span>About</span></a></li>
                         <li class='last'><a href='#'><span>Location</span></a></li>
