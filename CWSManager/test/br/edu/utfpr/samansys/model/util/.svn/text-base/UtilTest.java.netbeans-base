@@ -1,0 +1,299 @@
+/*
+ * To change this template, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package br.edu.utfpr.samansys.model.util;
+
+import java.io.IOException;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.GregorianCalendar;
+import javax.swing.ImageIcon;
+import org.junit.After;
+import org.junit.AfterClass;
+import org.junit.Before;
+import org.junit.BeforeClass;
+import org.junit.Test;
+import static org.junit.Assert.*;
+
+/**
+ *
+ * @author Eduardo Greco
+ */
+public class UtilTest {
+
+    public UtilTest() {
+    }
+
+    @BeforeClass
+    public static void setUpClass() throws Exception {
+    }
+
+    @AfterClass
+    public static void tearDownClass() throws Exception {
+    }
+
+    @Before
+    public void setUp() {
+        testIsValidCpfCnpj();
+    }
+
+    @After
+    public void tearDown() {
+    }
+
+    /**
+     * Test of selecionarIconeParaLabel method, of class Util.
+     */
+//    @Test
+//    public void testSelecionarIconeParaLabel() throws IOException {
+//        System.out.println("selecionarIconeParaLabel");
+//        int larguraParaImagem = 16;
+//        int alturaParaImagem = 16;
+//        ImageIcon expResult = null;
+//        ImageIcon result = Util.selecionarIconeParaLabel(larguraParaImagem, alturaParaImagem);
+//        assertEquals(expResult, result);
+//    }
+
+    /**
+     * Test of isValidCpfCnpj method, of class Util.
+     */
+    @Test
+    public void testIsValidCpfCnpj() {
+        System.out.println("isValidCpfCnpj");
+        String str = "05668679000105";
+        boolean expResult = true;
+        boolean result = Util.isValidCpfCnpj(str);
+
+        assertEquals(expResult, result);
+    }
+
+    /**
+     * Test of isValidDate method, of class Util.
+     */
+    @Test
+    public void testIsValidDate() {
+        System.out.println("isValidDate");
+        String stg = "10/11/2011";
+        boolean expResult = true;
+        boolean result = Util.isValidDate(stg);
+        assertEquals(expResult, result);
+
+    }
+
+    /**
+     * Test of padronizaNome method, of class Util.
+     */
+    @Test
+    public void testPadronizaNome() {
+        System.out.println("padronizaNome");
+        String s = "JUNIOR";
+        String expResult = "Junior";
+        String result = Util.padronizaNome(s);
+        assertEquals(expResult, result);
+    }
+
+    /**
+     * Test of isValidNome method, of class Util.
+     */
+    @Test
+    public void testIsValidNome() {
+        System.out.println("isValidNome");
+        String nome = "Junior123";
+        boolean expResult = false;
+        boolean result = Util.isValidNome(nome);
+        assertEquals(expResult, result);
+    }
+
+    /**
+     * Test of isValidPalavra method, of class Util.
+     */
+    @Test
+    public void testIsValidPalavra() {
+        System.out.println("isValidPalavra");
+        String palavra = "Junior Oliveira";
+        boolean expResult = true;
+        boolean result = Util.isValidPalavra(palavra);
+        assertEquals(expResult, result);
+    }
+
+    /**
+     * Test of padronizaPalavra method, of class Util.
+     */
+    @Test
+    public void testPadronizaPalavra() {
+        System.out.println("padronizaPalavra");
+        String palavra = "TESTANDO";
+        String expResult = "Testando";
+        System.out.println(Util.padronizaPalavra(palavra));
+        String result = Util.padronizaPalavra(palavra);
+        assertEquals(expResult, result);
+    }
+
+    /**
+     * Test of isValidaNumero method, of class Util.
+     */
+    @Test
+    public void testIsValidaNumero() {
+        System.out.println("isValidaNumero");
+        String numero = "A123";
+        boolean expResult = false;
+        boolean result = Util.isValidaNumero(numero);
+        assertEquals(expResult, result);
+    }
+
+    /**
+     * Test of convertCalendar method, of class Util.
+     */
+    @Test
+    public void testConvertDate() {
+        System.out.println("convertDate");
+        String stg = "10/11/2011";
+        Calendar expResult = new GregorianCalendar(2011, 10, 10);
+        Calendar result = Util.convertCalendar(stg);
+        assertEquals(expResult, result);
+    }
+
+    /**
+     * Test of convertDateMySql method, of class Util.
+     */
+    @Test
+    public void testConvertDateMySql() {
+        System.out.println("convertDateMySql");
+        String data = "10/11/2011";
+        String expResult = "2011-11-10";
+        String result = Util.convertDateMySql(data);
+        assertEquals(expResult, result);
+    }
+
+    /**
+     * Test of isValidPalavraNumero method, of class Util.
+     */
+    @Test
+    public void testIsValidPalavraNumero() {
+        System.out.println("isValidPalavraNumero");
+        String palavra = "Junior";
+        boolean expResult = true;
+        boolean result = Util.isValidPalavraNumero(palavra);
+        assertEquals(expResult, result);
+    }
+
+    /**
+     * Test of isValidEmail method, of class Util.
+     */
+    @Test
+    public void testIsValidEmail() {
+        System.out.println("isValidEmail");
+        String email = "junior@hotmail.com";
+        boolean expResult = true;
+        boolean result = Util.isValidEmail(email);
+        assertEquals(expResult, result);
+    }
+
+    /**
+     * Test of convertDateCalender method, of class Util.
+     */
+    @Test
+    public void testConvertDateCalender() {
+        System.out.println("convertDateCalender");
+        Calendar date = new GregorianCalendar(2011, 10, 25);
+        String expResult = "25/11/2011";
+        String result = Util.convertDateCalender(date);
+        assertEquals(expResult, result);
+    }
+
+    /**
+     * Test of getDate method, of class Util.
+     */
+    @Test
+    public void testGetDate() {
+        System.out.println("getDate");
+        String expResult = "18/11/2011";
+        String result = Util.getDate();
+        assertEquals(expResult, result);
+    }
+
+    /**
+     * Test of getDateSQL method, of class Util.
+     */
+    @Test
+    public void testGetDateSQL_Calendar() {
+        System.out.println("getDateSQL");
+        Calendar c = new GregorianCalendar(2011, 10, 18);
+        String expResult = "2011-11-18";
+        String result = Util.getDateSQL(c);
+        assertEquals(expResult, result);
+    }
+
+    /**
+     * Test of getDateSQL method, of class Util.
+     */
+    @Test
+    public void testGetDateSQL_Date() {
+        System.out.println("getDateSQL");
+        Date d = new Date(2011, 11, 15);
+        String expResult = "3911-12-15";
+        String result = Util.getDateSQL(d);
+        assertEquals(expResult, result);
+    }
+
+    /**
+     * Test of removeMaskCpf method, of class Util.
+     */
+    @Test
+    public void testRemoveMaskCpf() {
+        System.out.println("removeMaskCpf");
+        String cpf = "069.014.519-54";
+        String expResult = "06901451954";
+        String result = Util.removeMaskCpfCnpj(cpf);
+        assertEquals(expResult, result);
+    }
+
+    /**
+     * Test of tiraMaskaraData method, of class Util.
+     */
+    @Test
+    public void testTiraMaskaraData() {
+        System.out.println("tiraMaskaraData");
+        String data = "15/10/2011";
+        String expResult = "15102011";
+        String result = Util.tiraMaskaraData(data);
+        assertEquals(expResult, result);
+    }
+    /**
+     * Test of removeMaskTelefone method, of class Util.
+     */
+    @Test
+    public void testRemoveMaskTelefone() {
+        System.out.println("removeMaskTelefone");
+        String t = "(44)9935-7426";
+        String expResult = "4499357426";
+        String result = Util.removeMaskTelefone(t);
+        assertEquals(expResult, result);
+    }
+
+    /**
+     * Test of removeMaskCnpj method, of class Util.
+     */
+    @Test
+    public void testRemoveMaskCnpj() {
+        System.out.println("removeMaskCnpj");
+        String cnpj1 = "05.668.679/0001-05";
+        String expResult = "05668679000105";
+        String result = Util.removeMaskCnpj(cnpj1);
+        assertEquals(expResult, result);
+    }
+
+    /**
+     * Test of removeSpace method, of class Util.
+     */
+    @Test
+    public void testRemoveSpace() {
+        System.out.println("removeSpace");
+        String text = "Junior Cesar";
+        String expResult = "JuniorCesar";
+        String result = Util.removeSpace(text);
+        assertEquals(expResult, result);
+    }
+
+}
