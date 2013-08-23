@@ -6,7 +6,6 @@ package br.edu.utfpr.cwsmanager.model.pessoa;
 
 import br.edu.utfpr.cwsmanager.model.endereco.Endereco;
 import java.io.Serializable;
-//import br.edu.utfpr.cwsmanager.model.endereco.EnderecoFuncionario;
 import java.util.Calendar;
 import java.util.Date;
 import javax.persistence.CascadeType;
@@ -16,6 +15,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 
@@ -29,6 +29,7 @@ public class Funcionario implements Serializable {
 
     private int id;
     private String nome;
+    private Date dataNascimento = Calendar.getInstance().getTime();
     private String cpf;
     private String sexo;
     private String estadoCivil;
@@ -36,121 +37,122 @@ public class Funcionario implements Serializable {
     private String email;
     private String login;
     private String senha;
-    private int celular;
+    private String celular;
     private Endereco endereco = new Endereco();
 
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Id
-    public int getId() {
+   public int getId() {
         return id;
     }
-
-    @ManyToOne(cascade = CascadeType.ALL)
-    public Endereco getEndereco() {
-        return endereco;
+    
+    
+    
+    @Column(length = 200, nullable = false)public String getNome() {
+        return nome;
     }
 
-    public void setEndereco(Endereco endereco) {
-        this.endereco = endereco;
+    @Column(length = 16, nullable = false)
+    public String getCpf() {
+        return cpf;
     }
-    private Date dataNascimento = Calendar.getInstance().getTime();
+
+    @Column(length = 10)
+    public String getSexo() {
+        return sexo;
+    }
 
     @Temporal(javax.persistence.TemporalType.DATE)
     public Date getDataNascimento() {
         return dataNascimento;
     }
-
-    public void setDataNascimento(Date dataNascimento) {
-        this.dataNascimento = dataNascimento;
+    @Column(length = 50)
+    public String getEstadoCivil() {
+        return estadoCivil;
     }
 
+    @Column(length = 20, nullable = false)
+    public String getTelPessoal() {
+        return telPessoal;
+    }
+
+    @Column(length = 200, nullable = false)
+    public String getEmail() {
+        return email;
+    }
+
+    @Column(length = 40)
     public String getLogin() {
         return login;
     }
 
-    public void setLogin(String login) {
-        this.login = login;
-    }
-
+    @Column(length = 40)
     public String getSenha() {
         return senha;
     }
 
-    public void setSenha(String senha) {
-        this.senha = senha;
+    @Column(length = 40)
+    public String getCelular() {
+        return celular;
+    }
+
+    @OneToOne(cascade = CascadeType.ALL)
+    public Endereco getEndereco() {
+        return endereco;
     }
 
     public void setId(int id) {
         this.id = id;
     }
 
-    @Column(length = 100)
-    public String getNome() {
-        return nome;
-    }
-
     public void setNome(String nome) {
         this.nome = nome;
-    }
-
-    @Column(length = 11, unique = true)
-    public String getCpf() {
-        return cpf;
     }
 
     public void setCpf(String cpf) {
         this.cpf = cpf;
     }
 
-    @Column(length = 100)
-    public String getSexo() {
-        return sexo;
-    }
-
     public void setSexo(String sexo) {
         this.sexo = sexo;
-    }
-
-    @Column(length = 100)
-    public String getEstadoCivil() {
-        return estadoCivil;
     }
 
     public void setEstadoCivil(String estadoCivil) {
         this.estadoCivil = estadoCivil;
     }
 
-    @Column(length = 15)
-    public String getTelPessoal() {
-        return telPessoal;
-    }
-
     public void setTelPessoal(String telPessoal) {
         this.telPessoal = telPessoal;
-    }
-
-    @Column(length = 15)
-    public int getCelular() {
-        return celular;
-    }
-
-    public void setCelular(int celular) {
-        this.celular = celular;
-    }
-
-    @Column(length = 100)
-    public String getEmail() {
-        return email;
     }
 
     public void setEmail(String email) {
         this.email = email;
     }
 
+    public void setLogin(String login) {
+        this.login = login;
+    }
+
+    public void setSenha(String senha) {
+        this.senha = senha;
+    }
+
+    public void setCelular(String celular) {
+        this.celular = celular;
+    }
+
+    public void setEndereco(Endereco endereco) {
+        this.endereco = endereco;
+    }
+
+    public void setDataNascimento(Date dataNascimento) {
+        this.dataNascimento = dataNascimento;
+    }
+    
+    
     @Override
     public String toString() {
-
         return nome;
-//        return "Funcionario{" + "id=" + id + ", nome=" + nome + ", cpf=" + cpf + ", sexo=" + sexo + ", estadoCivil=" + estadoCivil + ", telPessoal=" + telPessoal + ", celular=" + celular + ", email=" + email + ", login=" + login + ", senha=" + senha + ",  dataNascimento=" + dataNascimento + '}';
     }
 }
+
