@@ -880,7 +880,7 @@ public class JDialogCliente extends javax.swing.JDialog {
 
     private void jButtonIncluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonIncluirActionPerformed
         clearCampos();
-        habilitaCampos(true);
+        habilitaCampos(false);
     }//GEN-LAST:event_jButtonIncluirActionPerformed
 
     private void jTextFieldLoginClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldLoginClienteActionPerformed

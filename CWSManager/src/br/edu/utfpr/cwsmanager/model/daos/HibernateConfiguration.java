@@ -6,7 +6,11 @@ package br.edu.utfpr.cwsmanager.model.daos;
 
 import br.edu.utfpr.cwsmanager.model.endereco.Cidade;
 import br.edu.utfpr.cwsmanager.model.endereco.Endereco;
+import br.edu.utfpr.cwsmanager.model.movimentacao.OrdemServico;
+import br.edu.utfpr.cwsmanager.model.movimentacao.SolicitacaoServico;
+import br.edu.utfpr.cwsmanager.model.movimentacao.TipoServico;
 import br.edu.utfpr.cwsmanager.model.pessoa.Cliente;
+import br.edu.utfpr.cwsmanager.model.pessoa.Funcionario;
 import br.edu.utfpr.cwsmanager.model.veiculo.Veiculo;
 import java.sql.Connection;
 import org.hibernate.Session;
@@ -33,10 +37,14 @@ public class HibernateConfiguration {
             cfg.setProperty("hibernate.show_sql", "true");
             cfg.setProperty("hibernate.dialect", "org.hibernate.dialect.MySQL5InnoDBDialect");
             cfg.setProperty("hibernate.connection.autocommit", "true");
+            cfg.addAnnotatedClass(Funcionario.class);
             cfg.addAnnotatedClass(Cliente.class); // classes para serem mapeadas
             cfg.addAnnotatedClass(Endereco.class); // classes para serem mapeadas
             cfg.addAnnotatedClass(Cidade.class); // classes para serem mapeadas
             cfg.addAnnotatedClass(Veiculo.class); // classes para serem mapeadas
+            cfg.addAnnotatedClass(TipoServico.class);
+            cfg.addAnnotatedClass(SolicitacaoServico.class);
+            cfg.addAnnotatedClass(OrdemServico.class);
 
             factory = cfg.buildSessionFactory();// construindo uma fabrica de sessão
 

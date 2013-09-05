@@ -4,8 +4,17 @@
  */
 package br.edu.utfpr.cwsmanager.model.telas;
 
+import br.edu.utfpr.cwsmanager.model.movimentacao.TipoServico;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import br.edu.utfpr.cwsmanager.model.daos.DaoGenerics;
+import br.edu.utfpr.cwsmanager.model.daos.Filter;
+import br.edu.utfpr.cwsmanager.model.daos.Operator;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -13,12 +22,23 @@ import java.util.logging.Logger;
  */
 public class JDialogConsTipoDeServico extends javax.swing.JDialog {
 
+    
+    private List<TipoServico> servicos;
+    private DefaultTableModel modeloServicos;
+    public TipoServico servico;
+
     /**
      * Creates new form JDialogConsCliente
      */
-    public JDialogConsTipoDeServico(java.awt.Frame parent, boolean modal) {
+    public JDialogConsTipoDeServico(java.awt.Dialog parent, boolean modal) {
         super(parent, modal);
         initComponents();
+
+        servico = new TipoServico();
+
+        modeloServicos = (DefaultTableModel) jTableResultConsultaTipoServico.getModel();
+        modeloServicos.setNumRows(0);
+
     }
 
     /**
@@ -32,11 +52,11 @@ public class JDialogConsTipoDeServico extends javax.swing.JDialog {
 
         jLabelPesquisa = new javax.swing.JLabel();
         jComboBoxCampos = new javax.swing.JComboBox();
-        jFormattedTextFieldPesquisaFuncionario = new javax.swing.JFormattedTextField();
+        jFormattedTextFieldPesquisaTipoServico = new javax.swing.JFormattedTextField();
         jButtonPesquisar = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTableResultConsultaFuncionario = new javax.swing.JTable();
+        jTableResultConsultaTipoServico = new javax.swing.JTable();
         jButtonOkConsultaFuncionario = new javax.swing.JButton();
         jButtonCancelarConsultaFuncionario = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
@@ -46,10 +66,10 @@ public class JDialogConsTipoDeServico extends javax.swing.JDialog {
 
         jLabelPesquisa.setText("Consulta por:");
 
-        jComboBoxCampos.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Codigo", "Nome" }));
+        jComboBoxCampos.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Codigo", "Nome", "Valor" }));
 
-        jFormattedTextFieldPesquisaFuncionario.setMinimumSize(new java.awt.Dimension(42, 28));
-        jFormattedTextFieldPesquisaFuncionario.setPreferredSize(new java.awt.Dimension(42, 28));
+        jFormattedTextFieldPesquisaTipoServico.setMinimumSize(new java.awt.Dimension(42, 28));
+        jFormattedTextFieldPesquisaTipoServico.setPreferredSize(new java.awt.Dimension(42, 28));
 
         jButtonPesquisar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icones/pesquisa.png"))); // NOI18N
         jButtonPesquisar.setToolTipText("Pesquisar Cidade");
@@ -64,7 +84,7 @@ public class JDialogConsTipoDeServico extends javax.swing.JDialog {
 
         jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder("Resultado:"));
 
-        jTableResultConsultaFuncionario.setModel(new javax.swing.table.DefaultTableModel(
+        jTableResultConsultaTipoServico.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null},
                 {null, null, null},
@@ -78,7 +98,7 @@ public class JDialogConsTipoDeServico extends javax.swing.JDialog {
                 {null, null, null}
             },
             new String [] {
-                "Código", "Nome", "valor"
+                "Código", "Nome", "Valor"
             }
         ) {
             Class[] types = new Class [] {
@@ -96,7 +116,7 @@ public class JDialogConsTipoDeServico extends javax.swing.JDialog {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(jTableResultConsultaFuncionario);
+        jScrollPane1.setViewportView(jTableResultConsultaTipoServico);
 
         org.jdesktop.layout.GroupLayout jPanel3Layout = new org.jdesktop.layout.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -116,7 +136,7 @@ public class JDialogConsTipoDeServico extends javax.swing.JDialog {
         );
 
         jButtonOkConsultaFuncionario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icones/ok.png"))); // NOI18N
-        jButtonOkConsultaFuncionario.setText("Ok");
+        jButtonOkConsultaFuncionario.setText("Visualizar");
         jButtonOkConsultaFuncionario.setMaximumSize(new java.awt.Dimension(42, 28));
         jButtonOkConsultaFuncionario.setMinimumSize(new java.awt.Dimension(42, 28));
         jButtonOkConsultaFuncionario.setPreferredSize(new java.awt.Dimension(42, 28));
@@ -157,7 +177,7 @@ public class JDialogConsTipoDeServico extends javax.swing.JDialog {
                         .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                         .add(jComboBoxCampos, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 120, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                         .add(27, 27, 27)
-                        .add(jFormattedTextFieldPesquisaFuncionario, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 330, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                        .add(jFormattedTextFieldPesquisaTipoServico, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 330, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                         .add(18, 18, 18)
                         .add(jButtonPesquisar, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 40, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
                     .add(layout.createSequentialGroup()
@@ -181,7 +201,7 @@ public class JDialogConsTipoDeServico extends javax.swing.JDialog {
                     .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
                         .add(jLabelPesquisa, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 20, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                         .add(jComboBoxCampos, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                        .add(jFormattedTextFieldPesquisaFuncionario, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)))
+                        .add(jFormattedTextFieldPesquisaTipoServico, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)))
                 .add(31, 31, 31)
                 .add(jPanel3, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                 .add(18, 18, 18)
@@ -196,15 +216,16 @@ public class JDialogConsTipoDeServico extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonPesquisarActionPerformed
-        // TODO add your handling code here:
+        pesquisa();
+// TODO add your handling code here:
     }//GEN-LAST:event_jButtonPesquisarActionPerformed
 
     private void jButtonOkConsultaFuncionarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonOkConsultaFuncionarioActionPerformed
-        // TODO add your handling code here:
+        selecionar();        // TODO add your handling code here:
     }//GEN-LAST:event_jButtonOkConsultaFuncionarioActionPerformed
 
     private void jButtonCancelarConsultaFuncionarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCancelarConsultaFuncionarioActionPerformed
-        // TODO add your handling code here:
+        modeloServicos.setNumRows(0);        // TODO add your handling code here:
     }//GEN-LAST:event_jButtonCancelarConsultaFuncionarioActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
@@ -242,7 +263,7 @@ public class JDialogConsTipoDeServico extends javax.swing.JDialog {
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                JDialogConsTipoDeServico dialog = new JDialogConsTipoDeServico(new javax.swing.JFrame(), true);
+                JDialogConsTipoDeServico dialog = new JDialogConsTipoDeServico(new javax.swing.JDialog(), true);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {
@@ -259,10 +280,80 @@ public class JDialogConsTipoDeServico extends javax.swing.JDialog {
     private javax.swing.JButton jButtonOkConsultaFuncionario;
     private javax.swing.JButton jButtonPesquisar;
     private javax.swing.JComboBox jComboBoxCampos;
-    private javax.swing.JFormattedTextField jFormattedTextFieldPesquisaFuncionario;
+    private javax.swing.JFormattedTextField jFormattedTextFieldPesquisaTipoServico;
     private javax.swing.JLabel jLabelPesquisa;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTableResultConsultaFuncionario;
+    private javax.swing.JTable jTableResultConsultaTipoServico;
     // End of variables declaration//GEN-END:variables
+
+    private void selecionar() {
+        int linha = jTableResultConsultaTipoServico.getSelectedRow();
+
+        if (linha < 0) {
+            JOptionPane.showMessageDialog(null, "Selecione um registro.", "Atenção", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+
+        servico = servicos.get(linha);
+        dispose();
+
+    }
+
+    private void pesquisa() {
+
+        servicos = new ArrayList<>();
+
+        switch (jComboBoxCampos.getSelectedIndex()) {
+            case 0:
+                try {
+                    servicos = new DaoGenerics<TipoServico>(TipoServico.class).list();
+                } catch (Exception ex) {
+                    Logger.getLogger(JDialogConsTipoDeServico.class.getName()).log(Level.SEVERE, null, ex);
+                }
+
+                break;
+
+            case 1:
+                try {
+                    servicos = new DaoGenerics<TipoServico>(TipoServico.class).list(new Filter("id", Operator.LIKE, jFormattedTextFieldPesquisaTipoServico.getText()));
+                } catch (Exception ex) {
+                    Logger.getLogger(JDialogConsTipoDeServico.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                break;
+
+            case 2:
+                try {
+                    servicos = new DaoGenerics<TipoServico>(TipoServico.class).list(new Filter("nome", Operator.LIKE, jFormattedTextFieldPesquisaTipoServico.getText()));
+                } catch (Exception ex) {
+                    Logger.getLogger(JDialogConsTipoDeServico.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                break;
+            case 3:
+                try {
+                    servicos = new DaoGenerics<TipoServico>(TipoServico.class).list(new Filter("valor", Operator.LIKE, jFormattedTextFieldPesquisaTipoServico.getText()));
+                } catch (Exception ex) {
+                    Logger.getLogger(JDialogConsTipoDeServico.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                break;
+        }
+
+        preencherjTable();
+    }
+
+    private void preencherjTable() {
+        modeloServicos.setNumRows(0);
+
+        if (servicos.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Registros não encontrados.", "Atenção", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+
+        for (TipoServico obj : servicos) {
+            modeloServicos.addRow(new Object[]{
+                obj.getId(),
+                obj.getNome(),
+                obj.getValor(),});
+        }
+    }
 }

@@ -32,7 +32,7 @@
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="jComboBoxCampos" min="-2" pref="120" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
-                      <Component id="jFormattedTextFieldPesquisaFuncionario" min="-2" pref="330" max="-2" attributes="0"/>
+                      <Component id="jFormattedTextFieldPesquisaTipoServico" min="-2" pref="330" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="jButtonPesquisar" min="-2" pref="40" max="-2" attributes="0"/>
                   </Group>
@@ -63,7 +63,7 @@
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="jLabelPesquisa" alignment="3" min="-2" pref="20" max="-2" attributes="0"/>
                       <Component id="jComboBoxCampos" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jFormattedTextFieldPesquisaFuncionario" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jFormattedTextFieldPesquisaTipoServico" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
               <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
@@ -88,14 +88,15 @@
     <Component class="javax.swing.JComboBox" name="jComboBoxCampos">
       <Properties>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-          <StringArray count="2">
+          <StringArray count="3">
             <StringItem index="0" value="Codigo"/>
             <StringItem index="1" value="Nome"/>
+            <StringItem index="2" value="Valor"/>
           </StringArray>
         </Property>
       </Properties>
     </Component>
-    <Component class="javax.swing.JFormattedTextField" name="jFormattedTextFieldPesquisaFuncionario">
+    <Component class="javax.swing.JFormattedTextField" name="jFormattedTextFieldPesquisaTipoServico">
       <Properties>
         <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
           <Dimension value="[42, 28]"/>
@@ -162,13 +163,13 @@
 
           <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
           <SubComponents>
-            <Component class="javax.swing.JTable" name="jTableResultConsultaFuncionario">
+            <Component class="javax.swing.JTable" name="jTableResultConsultaTipoServico">
               <Properties>
                 <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
                   <Table columnCount="3" rowCount="10">
                     <Column editable="false" title="C&#xf3;digo" type="java.lang.Integer"/>
                     <Column editable="false" title="Nome" type="java.lang.String"/>
-                    <Column editable="false" title="valor" type="java.lang.Integer"/>
+                    <Column editable="false" title="Valor" type="java.lang.Integer"/>
                   </Table>
                 </Property>
                 <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
@@ -204,7 +205,7 @@
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
           <Image iconType="3" name="/icones/ok.png"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="Ok"/>
+        <Property name="text" type="java.lang.String" value="Visualizar"/>
         <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
           <Dimension value="[42, 28]"/>
         </Property>

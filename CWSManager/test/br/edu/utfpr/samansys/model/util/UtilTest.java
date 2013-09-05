@@ -53,7 +53,7 @@ public class UtilTest {
     @Test
     public void testIsValidEmail() {
         System.out.println("isValidEmail");
-        String email = "eduardo@hotmail.com";
+        String email = "eduardogreco@gmail.com";
         boolean expResult = true;
         boolean result = Util.validarEmail(email);
         assertEquals(expResult, result);

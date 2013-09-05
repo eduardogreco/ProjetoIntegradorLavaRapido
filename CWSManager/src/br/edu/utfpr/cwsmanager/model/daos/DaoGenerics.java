@@ -9,7 +9,6 @@ import static br.edu.utfpr.cwsmanager.model.daos.Operator.IS_NOT_NULL;
 import static br.edu.utfpr.cwsmanager.model.daos.Operator.IS_NULL;
 import static br.edu.utfpr.cwsmanager.model.daos.Operator.LIKE;
 import static br.edu.utfpr.cwsmanager.model.daos.Operator.MORE_THAN;
-import br.edu.utfpr.cwsmanager.model.veiculo.Veiculo;
 import java.util.ArrayList;
 import java.util.List;
 import org.hibernate.Query;

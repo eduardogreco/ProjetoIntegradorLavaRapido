@@ -24,7 +24,7 @@ import javax.persistence.Temporal;
  * @author RAFAEL
  */
 @Entity
-@Table(name="Funcionario")
+@Table(name = "Funcionario")
 public class Funcionario implements Serializable {
 
     private int id;
@@ -42,13 +42,12 @@ public class Funcionario implements Serializable {
 
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Id
-   public int getId() {
+    public int getId() {
         return id;
     }
-    
-    
-    
-    @Column(length = 200, nullable = false)public String getNome() {
+
+    @Column(length = 200, nullable = false)
+    public String getNome() {
         return nome;
     }
 
@@ -66,6 +65,7 @@ public class Funcionario implements Serializable {
     public Date getDataNascimento() {
         return dataNascimento;
     }
+
     @Column(length = 50)
     public String getEstadoCivil() {
         return estadoCivil;
@@ -148,11 +148,9 @@ public class Funcionario implements Serializable {
     public void setDataNascimento(Date dataNascimento) {
         this.dataNascimento = dataNascimento;
     }
-    
-    
+
     @Override
     public String toString() {
         return nome;
     }
 }
-

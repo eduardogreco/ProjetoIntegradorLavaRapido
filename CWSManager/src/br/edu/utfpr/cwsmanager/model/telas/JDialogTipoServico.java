@@ -4,11 +4,20 @@
  */
 package br.edu.utfpr.cwsmanager.model.telas;
 
+import br.edu.utfpr.cwsmanager.model.daos.DaoGenerics;
+import br.edu.utfpr.cwsmanager.model.daos.TransactionManager;
+import br.edu.utfpr.cwsmanager.model.movimentacao.TipoServico;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author EduardoGreco
  */
 public class JDialogTipoServico extends javax.swing.JDialog {
+
+    private TipoServico servico;
 
     /**
      * Creates new form JDialogCidade
@@ -16,6 +25,10 @@ public class JDialogTipoServico extends javax.swing.JDialog {
     public JDialogTipoServico(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+
+        habilitaCampos(false);
+
+
     }
 
     /**
@@ -110,6 +123,11 @@ public class JDialogTipoServico extends javax.swing.JDialog {
 
         jButtonCancelarTipoServico.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icones/cancelar.png"))); // NOI18N
         jButtonCancelarTipoServico.setText("Cancelar");
+        jButtonCancelarTipoServico.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonCancelarTipoServicoActionPerformed(evt);
+            }
+        });
 
         org.jdesktop.layout.GroupLayout jPanel1Layout = new org.jdesktop.layout.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -196,19 +214,77 @@ public class JDialogTipoServico extends javax.swing.JDialog {
     }//GEN-LAST:event_jTextFieldNomeTipoServicoActionPerformed
 
     private void jButtonPesquisarTipoServicoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonPesquisarTipoServicoActionPerformed
-        
+        final JDialogConsTipoDeServico consulta = new JDialogConsTipoDeServico(this, true);
+        consulta.setLocationRelativeTo(consulta);
+        consulta.setVisible(true);
+
+        consulta.addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosed(java.awt.event.WindowEvent evt) {
+                servico = consulta.servico;
+                try {
+                    //  cliente = DaoCliente.retrieve(cliente.getId());
+                    servico = new DaoGenerics<TipoServico>(TipoServico.class).retrieve(servico.getId());
+                } catch (Exception ex) {
+                    Logger.getLogger(JDialogCidade.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                setServico(servico);
+
+                jButtonAlterarTipoServico.setEnabled(true);
+                jButtonExcluirTipoServico.setEnabled(true);
+                jButtonIncluirTipoServico.setEnabled(true);
+
+                jButtonCancelarTipoServico.setEnabled(true);
+                jButtonGravarTipoServico.setEnabled(false);
+
+                jTextFieldIdTipoServico.setEnabled(false);
+                jButtonPesquisarTipoServico.setEnabled(true);
+                jTextFieldNomeTipoServico.setEnabled(false);
+                jTextFieldValorTipoServico.setEnabled(false);
+            }
+             });
     }//GEN-LAST:event_jButtonPesquisarTipoServicoActionPerformed
 
     private void jButtonAlterarTipoServicoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAlterarTipoServicoActionPerformed
+        jButtonAlterarTipoServico.setEnabled(false);
+        jButtonExcluirTipoServico.setEnabled(true);
+        jButtonIncluirTipoServico.setEnabled(false);
+
+        jButtonCancelarTipoServico.setEnabled(true);
+        jButtonGravarTipoServico.setEnabled(true);
+
+        jTextFieldIdTipoServico.setEnabled(false);
+        jButtonPesquisarTipoServico.setEnabled(false);
+        jTextFieldNomeTipoServico.setEnabled(true);
+        jTextFieldValorTipoServico.setEnabled(true);
 
     }//GEN-LAST:event_jButtonAlterarTipoServicoActionPerformed
 
     private void jButtonExcluirTipoServicoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonExcluirTipoServicoActionPerformed
+        String[] opcoes = {"Sim", "Não"};
+        int opcao = JOptionPane.showOptionDialog(null, "Tem certeza que deseja excluir?", "Confirmação",
+                JOptionPane.YES_OPTION, JOptionPane.QUESTION_MESSAGE, null, opcoes, opcoes[1]);
+
+        if (JOptionPane.OK_OPTION == opcao) {
+            try {
+                DaoGenerics<TipoServico> daoServico = new DaoGenerics<>(TipoServico.class);
+                servico = null;
+                servico = daoServico.retrieve(Integer.parseInt(jTextFieldIdTipoServico.getText().trim()));
+                TransactionManager.beginTransaction();
+                daoServico.delete(servico);
+                TransactionManager.commit();
+            } catch (Exception ex) {
+                Logger.getLogger(JDialogCidade.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            JOptionPane.showMessageDialog(null, "O registro foi excluido com sucesso!", "Mensagem", JOptionPane.INFORMATION_MESSAGE);
+        }
+
+        clearCampos();
 
     }//GEN-LAST:event_jButtonExcluirTipoServicoActionPerformed
 
     private void jButtonIncluirTipoServicoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonIncluirTipoServicoActionPerformed
-
+        clearCampos();
+        habilitaCampos(false);
     }//GEN-LAST:event_jButtonIncluirTipoServicoActionPerformed
 
     private void jButtonSairTipoServicoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSairTipoServicoActionPerformed
@@ -217,8 +293,24 @@ public class JDialogTipoServico extends javax.swing.JDialog {
     }//GEN-LAST:event_jButtonSairTipoServicoActionPerformed
 
     private void jButtonGravarTipoServicoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonGravarTipoServicoActionPerformed
+        if (!validaCampos()) {
+            return;
+        }
+        try {
+            gravar();
+        } catch (Exception ex) {
+            Logger.getLogger(JDialogCidade.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        JOptionPane.showMessageDialog(null, "Registro gravado com sucesso.", "Gravar", JOptionPane.INFORMATION_MESSAGE);
+        habilitaCampos(true);
+        jButtonPesquisarTipoServico.setEnabled(true);
 
     }//GEN-LAST:event_jButtonGravarTipoServicoActionPerformed
+
+    private void jButtonCancelarTipoServicoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCancelarTipoServicoActionPerformed
+        habilitaCampos(false);
+        clearCampos();         // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonCancelarTipoServicoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -277,4 +369,63 @@ public class JDialogTipoServico extends javax.swing.JDialog {
     private javax.swing.JTextField jTextFieldNomeTipoServico;
     private javax.swing.JTextField jTextFieldValorTipoServico;
     // End of variables declaration//GEN-END:variables
+
+    public void gravar() throws Exception {
+        servico = null;
+
+        if (jTextFieldIdTipoServico.getText().isEmpty()) {
+            servico = new TipoServico();
+        } else {
+            servico = new DaoGenerics<TipoServico>(TipoServico.class).retrieve(Integer.parseInt(jTextFieldIdTipoServico.getText().trim()));
+        }
+
+        TransactionManager.beginTransaction();
+        servico.setNome(jTextFieldNomeTipoServico.getText().trim());
+        servico.setValor(jTextFieldValorTipoServico.getText().trim());
+        new DaoGenerics<TipoServico>(TipoServico.class).persist(servico);
+        TransactionManager.commit();
+
+    }
+
+    private void setServico(TipoServico servico) {
+        jTextFieldIdTipoServico.setText(Integer.toString(servico.getId()));
+        jTextFieldNomeTipoServico.setText(servico.getNome());
+        jTextFieldValorTipoServico.setText(servico.getValor());
+    }
+
+    private void clearCampos() {
+        jTextFieldIdTipoServico.setText("");
+        jTextFieldNomeTipoServico.setText("");
+        jTextFieldValorTipoServico.setText("");
+    }
+
+    private void habilitaCampos(boolean comando) {
+        jButtonAlterarTipoServico.setEnabled(comando);
+        jButtonExcluirTipoServico.setEnabled(comando);
+        jButtonIncluirTipoServico.setEnabled(comando);
+
+        jButtonCancelarTipoServico.setEnabled(comando);
+        jButtonGravarTipoServico.setEnabled(!comando);
+
+        jTextFieldIdTipoServico.setEnabled(comando);
+        jButtonPesquisarTipoServico.setEnabled(!comando);
+        jTextFieldNomeTipoServico.setEnabled(!comando);
+        jTextFieldValorTipoServico.setEnabled(!comando);
+    }
+
+    private boolean validaCampos() {
+        if (jTextFieldNomeTipoServico.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Nome é Obrigatório!", "Atençao!", JOptionPane.WARNING_MESSAGE);
+            jTextFieldNomeTipoServico.grabFocus();
+            return false;
+        }
+
+        if (jTextFieldValorTipoServico.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Valor é Obrigatório!", "Atençao!", JOptionPane.WARNING_MESSAGE);
+            jTextFieldValorTipoServico.grabFocus();
+            return false;
+        }
+
+        return true;
+    }
 }
