@@ -1,7 +1,0 @@
-table { background-color: white; text-align: center;}
-table, th, td { border: 1px solid black; }
-th { background-color:silver; color:black; }
-td { text-align: center; }
-td.esquerda { text-align: left; }
-td.centro { text-align: center; }
-ul.erro { color: red; }

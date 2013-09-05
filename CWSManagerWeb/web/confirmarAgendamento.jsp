@@ -1,10 +1,11 @@
+<%@page import="forms.NovoPalpiteFormBean"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
-    "http://www.w3.org/TR/html4/loose.dtd">
-<c:remove var="novoPalpite" />
+   "http://www.w3.org/TR/html4/loose.dtd">
+
 <html>
     <head>
-        <title>Bolão da copa</title>
+        <title>CWS - MANAGER</title>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link rel="stylesheet" type="text/css" href="estilo.css" />
     </head>
@@ -28,7 +29,26 @@
                 <li class='last'><a href='#'><span>Sair</span></a></li>
             </ul>
         </div>
-        
-        <hr>
+        <h1>Novo Agendamento</h1>
+        Atenção! Deseja realmente enviar seu agendamento?
+        <br/><br/>
+        <% NovoPalpiteFormBean palpite = (NovoPalpiteFormBean) session.getAttribute("novoPalpite"); 
+            String nome = palpite.getNome();
+            String telefone = palpite.getTelefone();
+            String email = palpite.getEmail();
+            String data = palpite.getDataDeNascimento();
+            String campeao = palpite.getCampeao();
+            String vice = palpite.getVice();
+        %>
+        Nome: <%=nome%><br/>
+        Telefone: <%=email%><br/>
+        E-mail: <%=telefone%><br/>
+        Endereço: <%=data%><br/>
+        Tipo de Serviço: <%=campeao%><br/>
+        Horário: <%=vice%><br/>
+        <br/>
+        <a href="GravarPalpiteServlet">Confirmar</a>
+        <a href="palpiteForm.jsp">Modificar</a>
+        <a href="index.jsp?cancelar=sim" >Cancelar</a>
     </body>
 </html>

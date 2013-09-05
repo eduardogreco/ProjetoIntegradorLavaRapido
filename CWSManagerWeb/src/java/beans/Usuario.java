@@ -1,11 +1,10 @@
 package beans;
 
-import java.util.Date;
 
 public class Usuario {
     private int id;
     private String nome, email, telefone;
-    private Date dataDeNascimento;
+    private String dataDeNascimento;
 
     /**
      * @return the id
@@ -66,15 +65,16 @@ public class Usuario {
     /**
      * @return the dataDeNascimento
      */
-    public Date getDataDeNascimento() {
+    public String getDataDeNascimento() {
         return dataDeNascimento;
     }
 
     /**
      * @param dataDeNascimento the dataDeNascimento to set
      */
-    public void setDataDeNascimento(Date dataDeNascimento) {
+    public void setDataDeNascimento(String dataDeNascimento) {
         this.dataDeNascimento = dataDeNascimento;
     }
+
 
 }

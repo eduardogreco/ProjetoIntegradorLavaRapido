@@ -15,7 +15,7 @@ public class UsuarioDAO {
             ps.setString(1, u.getNome());
             ps.setString(2, u.getEmail());
             ps.setString(3, u.getTelefone());
-            ps.setDate(4, new java.sql.Date(u.getDataDeNascimento().getTime()));
+            ps.setString(4, u.getDataDeNascimento());
             ps.executeUpdate();
             rs = ps.getGeneratedKeys();
             rs.next();
@@ -49,7 +49,7 @@ public class UsuarioDAO {
                 usuario.setNome(rs.getString("nome"));
                 usuario.setEmail(rs.getString("email"));
                 usuario.setTelefone(rs.getString("telefone"));
-                usuario.setDataDeNascimento(rs.getDate("dataNascimento"));
+                usuario.setDataDeNascimento(rs.getString("dataNascimento"));
             }
             return usuario;
 
