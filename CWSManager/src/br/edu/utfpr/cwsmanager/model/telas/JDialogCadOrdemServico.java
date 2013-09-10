@@ -13,7 +13,7 @@ public class JDialogCadOrdemServico extends javax.swing.JDialog {
     /**
      * Creates new form JDialogCadOrdemServico
      */
-    public JDialogCadOrdemServico(java.awt.Frame parent, boolean modal) {
+    public JDialogCadOrdemServico(java.awt.Dialog parent, boolean modal) {
         super(parent, modal);
         initComponents();
     }
@@ -367,7 +367,7 @@ public class JDialogCadOrdemServico extends javax.swing.JDialog {
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                JDialogCadOrdemServico dialog = new JDialogCadOrdemServico(new javax.swing.JFrame(), true);
+                JDialogCadOrdemServico dialog = new JDialogCadOrdemServico(new javax.swing.JDialog(), true);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {

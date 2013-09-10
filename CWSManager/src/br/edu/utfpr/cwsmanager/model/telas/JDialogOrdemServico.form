@@ -30,7 +30,7 @@
               <EmptySpace max="-2" attributes="0"/>
               <Component id="jButtonExcluir" min="-2" pref="95" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="163" max="-2" attributes="0"/>
-              <Component id="jButtonIncluir" min="-2" pref="149" max="-2" attributes="0"/>
+              <Component id="jButtonEncerrarOrdem" min="-2" pref="149" max="-2" attributes="0"/>
               <EmptySpace pref="275" max="32767" attributes="0"/>
               <Component id="jButton3" min="-2" pref="95" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
@@ -51,7 +51,7 @@
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="jButtonAlterar" alignment="3" min="-2" pref="34" max="-2" attributes="0"/>
                   <Component id="jButtonExcluir" alignment="3" min="-2" pref="34" max="-2" attributes="0"/>
-                  <Component id="jButtonIncluir" alignment="3" min="-2" pref="34" max="-2" attributes="0"/>
+                  <Component id="jButtonEncerrarOrdem" alignment="3" min="-2" pref="34" max="-2" attributes="0"/>
                   <Component id="jButton3" alignment="3" min="-2" pref="34" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
@@ -214,7 +214,7 @@
         <Property name="text" type="java.lang.String" value="Exluir"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JButton" name="jButtonIncluir">
+    <Component class="javax.swing.JButton" name="jButtonEncerrarOrdem">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
           <Image iconType="3" name="/icones/sair.png"/>
@@ -222,7 +222,7 @@
         <Property name="text" type="java.lang.String" value="Encerrar Ordem"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonIncluirActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonEncerrarOrdemActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JButton" name="jButton3">

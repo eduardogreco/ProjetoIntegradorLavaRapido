@@ -801,6 +801,7 @@ public class JDialogCliente extends javax.swing.JDialog {
                 setCliente();
 
                 habilitaCampos(true);
+                jTextFieldIdCliente.setEnabled(false);
                 jTextFieldIdVeiculo.setEnabled(false);
                 jButtonPesquisarCliente.setEnabled(true);
             }

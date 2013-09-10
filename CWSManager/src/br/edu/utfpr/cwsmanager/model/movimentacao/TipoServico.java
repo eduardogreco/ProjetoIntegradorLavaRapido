@@ -51,6 +51,11 @@ public class TipoServico implements Serializable {
     public void setValor(String valor) {
         this.valor = valor;
     }
+
+    @Override
+    public String toString() {
+        return nome;
+    }
     
     
 }

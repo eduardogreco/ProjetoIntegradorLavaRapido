@@ -37,11 +37,11 @@ public class HibernateConfiguration {
             cfg.setProperty("hibernate.show_sql", "true");
             cfg.setProperty("hibernate.dialect", "org.hibernate.dialect.MySQL5InnoDBDialect");
             cfg.setProperty("hibernate.connection.autocommit", "true");
-            cfg.addAnnotatedClass(Funcionario.class);
             cfg.addAnnotatedClass(Cliente.class); // classes para serem mapeadas
             cfg.addAnnotatedClass(Endereco.class); // classes para serem mapeadas
             cfg.addAnnotatedClass(Cidade.class); // classes para serem mapeadas
             cfg.addAnnotatedClass(Veiculo.class); // classes para serem mapeadas
+            cfg.addAnnotatedClass(Funcionario.class);
             cfg.addAnnotatedClass(TipoServico.class);
             cfg.addAnnotatedClass(SolicitacaoServico.class);
             cfg.addAnnotatedClass(OrdemServico.class);

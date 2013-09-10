@@ -37,7 +37,7 @@ public class JDialogOrdemServico extends javax.swing.JDialog {
         jButtonPesquisarCliente1 = new javax.swing.JButton();
         jButtonAlterar = new javax.swing.JButton();
         jButtonExcluir = new javax.swing.JButton();
-        jButtonIncluir = new javax.swing.JButton();
+        jButtonEncerrarOrdem = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -120,11 +120,11 @@ public class JDialogOrdemServico extends javax.swing.JDialog {
         jButtonExcluir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icones/excluir.png"))); // NOI18N
         jButtonExcluir.setText("Exluir");
 
-        jButtonIncluir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icones/sair.png"))); // NOI18N
-        jButtonIncluir.setText("Encerrar Ordem");
-        jButtonIncluir.addActionListener(new java.awt.event.ActionListener() {
+        jButtonEncerrarOrdem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icones/sair.png"))); // NOI18N
+        jButtonEncerrarOrdem.setText("Encerrar Ordem");
+        jButtonEncerrarOrdem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonIncluirActionPerformed(evt);
+                jButtonEncerrarOrdemActionPerformed(evt);
             }
         });
 
@@ -141,7 +141,7 @@ public class JDialogOrdemServico extends javax.swing.JDialog {
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                 .add(jButtonExcluir, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 95, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                 .add(163, 163, 163)
-                .add(jButtonIncluir, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 149, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                .add(jButtonEncerrarOrdem, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 149, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 275, Short.MAX_VALUE)
                 .add(jButton3, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 95, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                 .add(26, 26, 26))
@@ -158,7 +158,7 @@ public class JDialogOrdemServico extends javax.swing.JDialog {
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
                     .add(jButtonAlterar, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 34, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                     .add(jButtonExcluir, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 34, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                    .add(jButtonIncluir, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 34, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                    .add(jButtonEncerrarOrdem, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 34, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                     .add(jButton3, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 34, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
                 .add(18, 18, 18))
             .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
@@ -183,12 +183,13 @@ public class JDialogOrdemServico extends javax.swing.JDialog {
 
     }//GEN-LAST:event_jButtonAlterarActionPerformed
 
-    private void jButtonIncluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonIncluirActionPerformed
-        // TODO add your handling code here:
-        JFramePrincipal executar = new JFramePrincipal();
-        executar.AbreTelaGerarOrdem();
-    }//GEN-LAST:event_jButtonIncluirActionPerformed
-
+    private void jButtonEncerrarOrdemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEncerrarOrdemActionPerformed
+       JDialogCadOrdemServico finalizarOrdem = new JDialogCadOrdemServico(this, true);
+        finalizarOrdem.setLocationRelativeTo(finalizarOrdem);
+        finalizarOrdem.setVisible(true);
+    }//GEN-LAST:event_jButtonEncerrarOrdemActionPerformed
+ 
+    
     /**
      * @param args the command line arguments
      */
@@ -233,8 +234,8 @@ public class JDialogOrdemServico extends javax.swing.JDialog {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButtonAlterar;
+    private javax.swing.JButton jButtonEncerrarOrdem;
     private javax.swing.JButton jButtonExcluir;
-    private javax.swing.JButton jButtonIncluir;
     private javax.swing.JButton jButtonPesquisarCliente1;
     private javax.swing.JComboBox jComboBoxTipoConsultaSS;
     private javax.swing.JFormattedTextField jFormattedTextFieldPlaca;

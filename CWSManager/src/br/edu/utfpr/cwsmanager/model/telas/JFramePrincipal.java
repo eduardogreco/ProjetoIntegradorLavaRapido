@@ -1202,9 +1202,9 @@ private final UIManager.LookAndFeelInfo[] looks;
     private javax.swing.JToolBar jtAtalho;
     // End of variables declaration//GEN-END:variables
 
-    public void AbreTelaGerarOrdem() {
+ /*   public void AbreTelaGerarOrdem() {
         JDialogCadOrdemServico jdCadOrdemServico = new JDialogCadOrdemServico(this, true);
         jdCadOrdemServico.setLocationRelativeTo(jdCadOrdemServico);
         jdCadOrdemServico.setVisible(true);
-    }
+    } */
     }
