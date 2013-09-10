@@ -1,0 +1,74 @@
+
+body{
+    margin: 0px;
+    padding: 0px;
+}
+img{
+    padding-top: 15px;
+    padding-bottom: 0px;
+    left: 0px;
+
+}
+#centro{
+    background-color:#EEE9E9;
+}
+span.titulo{
+    font-family:sans-serif;
+    font-size: xx-large;
+    color:#171717;
+    font-weight: bold;
+    text-shadow: 5px 5px 5px #464646;
+    text-align: center;
+    margin-top:  200px;
+    margin-left: 250px;
+}
+#centro{
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 50px;
+    padding-right: 50px;
+    text-align: left;
+    color: #2E2E2E;
+}
+#itens li{
+    text-align: left;
+    margin-left: 0px;
+    margin-top: 5px;
+    font-family: Tahoma, Geneva, sans-serif;
+    list-style-image: url("imagens/telas/set.png");
+    color: #171717;
+}
+#itens li:hover{
+    color:#FFFFFF;
+    font-size: 25px;
+    width: 450px;
+    background-color:#9FB6CD;
+}
+#centro h3{
+    text-align: center;
+    margin-top: 5px;
+    font-family: Tahoma, Geneva, sans-serif;
+
+}
+#voltar{
+    text-align: right;
+    font-size: small;
+    font-family: sans-serif;
+    font:caption;
+}
+#centro a{
+    color:black;
+    text-decoration: none;
+}
+#centro a:visited{
+    color: black;
+}
+p{
+    text-align: left;
+    font-style: italic;
+    font-size: smaller;
+    text-indent: 0;
+    margin-top: 0px;
+
+}
+

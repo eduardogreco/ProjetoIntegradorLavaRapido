@@ -1,0 +1,212 @@
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <title></title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <link rel="stylesheet" type="text/css" href="manual-estilo.css">
+    </head>
+    <body>
+        <div id="centro">
+            <p>
+                <span class="titulo" style="text-align: center">Manual do sistema - CWS Manager</span>
+            <h4 id="inicio">Neste manual será descrito todos os passos necessários para à utilização do sistema
+                de gerenciamento de lava-rápido denominado CWS-Manager.</h4>
+            <ul id="itens">
+                <li><a href="#passo1">Primeiros passos</a></li>
+                <li><a href="#inicio">Página inicial</a></li>
+                <li><a href="#cliente">Cadastro de clientes</a></li>
+                <li><a href="#funcionario">Cadastro de funcionários</a></li>
+                <li><a href="#tiposervico">Cadastro de Tipo de Serviço</a></li>
+                <li><a href="#cidade">Cadastro de cidades</a></li>
+                <li><a href="#addss">Incluir Solicitação de Serviço</a></li>
+                <li><a href="#conss">Consultar Solicitação de Serviço</a></li>
+                <li><a href="#geraros">Gerar Ordem de Serviço</a></li>
+                <li><a href="#gerenciaros">Gerenciar Ordem de Serviço</a></li>
+                <li><a href="#consulta">Consultas</a></li>
+                <li><a href="#relatorio">Gerenciador de relatórios</a></li>
+                <li><a href="#bancoDados">Configuração do banco de dados</a></li>
+                <li><a href="#informacao">Informações sobre o sistema</a></li>
+            </ul>
+        </p>
+        <p>
+
+        <h3><a name="passo1">Primeiros passos</a></h3>
+
+        Ao inicializar o sistema será mostrada a tela de login como mostra a figura 1. 
+        Assim o funcionário deve possuir um usuário cadastradado para ter acesso ao sistema.<br />
+        <img src="imagens/telas/1.png"/>
+        <p>Figura 1 - Tela de Login</p>
+        <p id ="voltar"><a href="#centro"> << Voltar ao topo</a></p>
+
+        <h3><a name="inicio">Página inicial</a></h3>
+        Após preencher os campos corretamente, a tela principal do sistema será liberada.
+        De acordo com o tipo do usuário ele terá acesso as funcionalidades respectivas com a sua função no lava-rápido.
+        Essa tela é composta por uma barra de menu, onde se encontram todas as funcionalidades do sistema e uma barra de atalhos que possui 
+        apenas algumas das funcionalidades mais utilizadas.
+
+        <img src="imagens/telas/2.png" />
+        <p>Figura 2 - Tela principal do sistema</p>
+        Essa tela oferece duas opções para sair, a opção de sair do sistema, onde o mesmo será finalizado.
+        E a opção de fazer  logout, onde é encerrada a sessão com um usuário para que outro usuário possa acessar.
+        Se o usuário selecionar logou,  será mosrada a tela de login e se for a opção para sair, ele deve confirmar se deseja realmente sair.<br />
+        <img src="images/telas/sair.png"/>
+        <p>Figura 3 - Mensagem para sair</p>
+
+        <p id ="voltar"><a href="#centro"> << Voltar ao topo</a></p>
+
+        <h3><a name="cliente">Cadastro de clientes</a></h3>
+
+        Este menu diz respeito ao cadastro de clientes. Ao acessá-lo uma tela de cadastro aparecerá como mostra a figura:
+        Nessa tela o usuário irá dispor de quatro opções para gerenciar o cadastro de clientes. O campo código  estará habilitado
+        para o usuário  informar um código e clicando no botão de pesquisa será retorna os dados do cliente correspondente a esse 
+        código. Ou ainda, se assim preferir, clicando diretamente no botão de pesquisa, sem preencher o campo código, será aberta 
+        uma tela de pesquisa de cadastro de cliente como mostra a figura 4:<br />
+
+        <img src="imagens/telas/21.png" />
+        <p>Figura 4 - Tela de Consulta de Cliente</p>
+        
+        Nesta tela o usuário deverá informar os dados necessarios para cadastrar os dados pessoais do cliente.<br />
+        <img src="imagens/telas/6.png" />
+        <p>Figura 5 - Tela de cadastro dos dados pessoais do Cliente</p>
+        
+        Nesta tela o usuário deverá informar os dados necessarios para cadastrar um endereço.E caso a cidade não estiver cadastrada ele 
+        deverá cadastra-la antes de realizar o cadastro. Essa regra vale para todos os outros cadastros que possuem cidade.<br />
+        <img src="imagens/telas/7.png" />
+        <p>Figura 6 - Tela de cadastro do endereço do Cliente</p>
+        
+        Nesta tela o usuário deverá informar os dados necessarios para cadastrar um ou mais veículos para esse cliente.<br />
+        <img src="imagens/telas/8.png" />
+        <p>Figura 7 - Tela de cadastro dos veículos do Cliente</p>
+        
+        Nesta tela o usuário deverá informar os dados necessarios para cadastrar um usuário e senha para o cliente ter acesso a um sistema web.<br />
+        <img src="imagens/telas/9.png" />
+        <p>Figura 8 - Tela de cadastro do usuário e senha do Cliente</p>
+
+        
+        <p id ="voltar"><a href="#centro"> << Voltar ao topo</a></p>
+
+        <h3><a name ="funcionario">Cadastro de funcionários</a></h3>
+
+        Este menu diz respeito ao gerenciamento do cadastrado de funcionários da empresa. Ao clicar neste 
+        menu o usuário terá acesso a tela de cadastrado(como mostra a figura 9), nesta tela o usuário poderá 
+        incluir um novo cadastro de funcionário, alterar, consultar ou excluir. Existem três abas nesta tela 
+        uma para o cadastrado do funcionário, outra para o seu endereço, e outra para usuário e senha.<br />
+
+        <img src="imagens/telas/3.png" />
+        <p>Figura 9 - Tela de cadastro de Funcionário</p>
+
+        <img src="imagens/telas/4.png" />
+        <p>Figura 9 - Tela de cadastro de endereço do Funcionário</p>
+        
+        <img src="imagens/telas/5.png" />
+        <p>Figura 9 - Tela de cadastro do usuário Funcionário</p>
+
+        <p id ="voltar"><a href="#centro"> << Voltar ao topo</a></p>
+
+        <h3><a name="tiposervico">Cadastro de Tipo de Serviço</a></h3>
+
+
+        Este menu diz respeito ao cadastro dos tipos de serviços prestados pela empresa. Ao clicar neste 
+        menu o usuário terá acesso a tela de cadastrado(como mostra a figura 10), nesta tela o usuário poderá 
+        incluir um novo cadastro de tipo de serviço, alterar, consultar ou excluir. Deve preencher todos os campos.<br />
+
+        <img src="imagens/telas/17.png"/>
+        <p>Figura 10 - Tela de cadastro dos Tipo de Serviço</p>
+       
+        <p id ="voltar"><a href="#centro"> << Voltar ao topo</a></p>
+
+        <h3><a name="cidade">Cadastro de cidades</a></h3>
+        Neste menu o usuário poderá cadastrar uma cidade que não esteja na base de dados do sistema,
+        ao clicar no mesmo será apresentada uma tela para efetuar esse cadastro, na figura 11 temos 
+        uma ilustração da referida tela.<br />
+        <img src="imagens/telas/18.png"/>
+        <p>Figura 11 - Tela de cadastro de Cidade</p>
+
+
+        <br/>
+        <p id ="voltar"><a href="#centro"> << Voltar ao topo</a></p>
+        <h3><a name="addss">Incluir Solicitação de Serviço</a></h3>
+        Nesta tela será possivel realizar incluir uma nova solicitação de serviço, onde deverá ser informado alguns dados muito importantes para o gerenciamento das ordens, que é o cliente, o veículo do mesmo e mais o tipo de serviço desejado.
+        A o status da solicitação será preenchida automaticamente quando incluir uma nova. <br />    
+        
+        <img src="imagens/telas/11.png"/>
+        <p>Figura 12 - Tela de cadastro de Solicitação de Serviço</p>
+        
+        
+        <br/>
+        <p id ="voltar"><a href="#centro"> << Voltar ao topo</a></p>
+        <h3><a name="conss">Consultar Solicitação de Serviço</a></h3>
+        Acessando a barra de menus e clicando em venda o usuário terá acesso aos submenus: registrar venda e histórico
+        de vendas. Ao acessar registar venda o sistema retornará a tela para que tal operação seja realizada, a figura 13.
+        <img src="imagens/telas/10.png"/>
+        <p>Figura 13 - Tela de consulta de Solicitação de Serviço</p>
+
+        <p id ="voltar"><a href="#centro"> << Voltar ao topo</a></p>
+
+        <h3><a name="geraros">Gerar Ordem de Serviço</a></h3>
+        <p>
+            Nesta tela poderá ser obtido o histórico do cliente. O usuário deverá informar o código, nome ou cpf 
+            do cliente e clicar no botão de pesquisa. Na tabela abaixo será mostrado todas as compras do cliente e 
+            também todos os receptivos itens de compras. <br />
+            
+            <img src="imagens/telas/12.png"/>
+        <p>Figura 14 - Tela de gerar Ordem de Serviço</p>
+    <p id ="voltar"><a href="#centro"> << Voltar ao topo</a></p>
+    
+    <h3><a name="gerenciaros" >Gerenciar Ordem de Serviço</a></h3>
+    Nesta opção o usuário poderá cadastrar uma compra efetuada pela empresa. O campo "fornecedor" deverá ser 
+    preenchido e também deverá ser informado a forma de pagamento.<br />
+    <img src="imagens/telas/13.png"/>  
+    <p>Figura 15 - Tela de registro de compra</p>
+     
+    <p id ="voltar"><a href="#centro"> << Voltar ao topo</a></p>
+
+    
+
+    <h3><a name="consulta">Consultas</a></h3>
+    As telas abaixo são as mesmas telas de consulta que se encontra ns cadastros.
+    Para utilizá-las basta selecionar um meio de pesquisa e digitar o que deseja buscar.<br />
+    <img src="imagens/telas/19.png" />
+    <p>Figura 20 - Tela de consulta de Fornecedores</p>
+    <img src="imagens/telas/20.png" />
+    <p>Figura 21 - Tela de consulta de Funcionarios</p>
+    <img src="imagens/telas/21.png" />
+    <p>Figura 22 - Tela de consulta de Cidades</p><br />
+        <img src="imagens/telas/22.png" />
+    <p>Figura 23 - Tela de consulta de produtos</p>
+    <p id ="voltar"><a href="#centro"> << Voltar ao topo</a></p>
+
+    <h3><a name="relatorio">Gerenciador de relatórios</a></h3>
+    Este menu normalmente vai estar disponível apenas para o gerente ou administrador. De maneira simples o 
+    usuário irá selecionar um tipo de relatório e escolher uma data de inicio e uma de fim. Então será gerado 
+    o relatório em .pdf.
+
+    <img src="imagens/telas/15.png"/>
+    <p>Figura 24 - Tela de geração de Relatórios</p>
+    <p id ="voltar"><a href="#centro"> << Voltar ao topo</a></p>
+
+    <h3><a name="bancoDados">Configuração do banco de dados</a></h3>
+    Para que o sistema funcione corretamente é necessário que seja configurado o banco a ser usado. Para isso é fornecida uma interface, 
+    onde o administrador do sistema terá de configurar os parâmetros necessários.<br />
+    <img src="images/telas/configBD.png"/>
+    <p>Figura 25 - Tela de configuração do Banco de Dados</p>
+    Caso o banco não esteje funcionando corretamente, o administrador poderá recriar o banco de dados 
+    e será exibida a seguinte mensagem exigindo uma confirmação para que o banco possa ser recriado. <br />
+    <img src="images/telas/recriarBD.png"/>
+    <p>Figura 26 - Tela de recriar Banco de Dados</p>
+    Após a confirmação é exibida uma mensagem informando o sucesso da operação.<br />
+    <img src="images/telas/bdRecriado.png"/><br />
+    <p>Figura 27 - Mensagem exibida ao recriar o Banco</p>
+    Essa é uma tarefa que somente o adminitrador terá acesso, para que o usuário não apague os dados sem querer.    Após a confirmação é exibida uma mensagem informando o sucesso da operação.
+
+    <p id ="voltar"><a href="#centro"> << Voltar ao topo</a></p>
+
+    <h3><a name="informacao">Informações sobre o sistema</a></h3>
+    Essa tela serve somente para exibir os desenvolvedores e algumas informações básicas do sistema.<br />
+    <img src="imagens/telas/16.png"/>
+    <p>Figura 28 - Tela de informações do sistema</p>
+    <p id ="voltar"><a href="#centro"> << Voltar ao topo</a></p>
+</div>
+</body>
+</html>
