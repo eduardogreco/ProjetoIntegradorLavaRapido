@@ -23,15 +23,16 @@ import javax.swing.UIManager;
  * @author EduardoGreco
  */
 public class JFramePrincipal extends javax.swing.JFrame {
-    
-private final UIManager.LookAndFeelInfo[] looks;
+
+    private final UIManager.LookAndFeelInfo[] looks;
+
     /**
      * Creates new form JFramePrincipal
      */
     public JFramePrincipal() {
         initComponents();
         setExtendedState(MAXIMIZED_BOTH);
-        
+
         looks = UIManager.getInstalledLookAndFeels();
         for (UIManager.LookAndFeelInfo lookAndFeelInfo : looks) {
             jComboBoxLookAndFeel.addItem(lookAndFeelInfo.getClassName());
@@ -887,7 +888,7 @@ private final UIManager.LookAndFeelInfo[] looks;
 
     private void jButtonSolicitacaoServiceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSolicitacaoServiceActionPerformed
         // TODO add your handling code here:
-        JDialogSolicitacaoServico jdSolicitacaoServico = new JDialogSolicitacaoServico(this, true);
+        JDialogSolicitacaoServico jdSolicitacaoServico = new JDialogSolicitacaoServico(this, true, false);
         jdSolicitacaoServico.setLocationRelativeTo(jdSolicitacaoServico);
         jdSolicitacaoServico.setVisible(true);
     }//GEN-LAST:event_jButtonSolicitacaoServiceActionPerformed
@@ -1011,14 +1012,14 @@ private final UIManager.LookAndFeelInfo[] looks;
 
     private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
         // TODO add your handling code here:
-        JDialogSolicitacaoServico jdSolicitacaoServico = new JDialogSolicitacaoServico(this, true);
+        JDialogSolicitacaoServico jdSolicitacaoServico = new JDialogSolicitacaoServico(this, true, true);
         jdSolicitacaoServico.setLocationRelativeTo(jdSolicitacaoServico);
         jdSolicitacaoServico.setVisible(true);
     }//GEN-LAST:event_jMenuItem4ActionPerformed
 
     private void jMenuItem16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem16ActionPerformed
         // TODO add your handling code here:
-        JDialogSolicitacaoServico jdSolicitacaoServico = new JDialogSolicitacaoServico(this, true);
+        JDialogSolicitacaoServico jdSolicitacaoServico = new JDialogSolicitacaoServico(this, true, false);
         jdSolicitacaoServico.setLocationRelativeTo(jdSolicitacaoServico);
         jdSolicitacaoServico.setVisible(true);
     }//GEN-LAST:event_jMenuItem16ActionPerformed
@@ -1038,10 +1039,9 @@ private final UIManager.LookAndFeelInfo[] looks;
     }//GEN-LAST:event_jMenuItem6ActionPerformed
 
     private void jMenuItem15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem15ActionPerformed
-        // TODO add your handling code here:
-        //      JDialogConsFuncionario jDialogConsFunc = new JDialogConsFuncionario(this, true);
-        //      jDialogConsFunc.setLocationRelativeTo(null);
-        //     jDialogConsFunc.setVisible(true);
+        JDialogConsFuncionario jDialogConsFunc = new JDialogConsFuncionario(this, true);
+        jDialogConsFunc.setLocationRelativeTo(null);
+        jDialogConsFunc.setVisible(true);
     }//GEN-LAST:event_jMenuItem15ActionPerformed
 
     private void jMenuItemConsultaCidadeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemConsultaCidadeActionPerformed
@@ -1202,9 +1202,9 @@ private final UIManager.LookAndFeelInfo[] looks;
     private javax.swing.JToolBar jtAtalho;
     // End of variables declaration//GEN-END:variables
 
- /*   public void AbreTelaGerarOrdem() {
-        JDialogCadOrdemServico jdCadOrdemServico = new JDialogCadOrdemServico(this, true);
-        jdCadOrdemServico.setLocationRelativeTo(jdCadOrdemServico);
-        jdCadOrdemServico.setVisible(true);
-    } */
-    }
+    /*   public void AbreTelaGerarOrdem() {
+     JDialogCadOrdemServico jdCadOrdemServico = new JDialogCadOrdemServico(this, true);
+     jdCadOrdemServico.setLocationRelativeTo(jdCadOrdemServico);
+     jdCadOrdemServico.setVisible(true);
+     } */
+}

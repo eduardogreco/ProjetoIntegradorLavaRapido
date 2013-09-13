@@ -6,6 +6,7 @@ package br.edu.utfpr.cwsmanager.model.movimentacao;
 
 import br.edu.utfpr.cwsmanager.model.pessoa.Cliente;
 import br.edu.utfpr.cwsmanager.model.pessoa.Funcionario;
+import br.edu.utfpr.cwsmanager.model.veiculo.Veiculo;
 import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.Column;
@@ -14,6 +15,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 
@@ -32,6 +34,7 @@ public class SolicitacaoServico implements Serializable {
     private Funcionario funcionario;
     private TipoServico tipoServico;
     private Cliente cliente;
+    private Veiculo veiculo;
     private String obs;
 
     @Id
@@ -70,6 +73,12 @@ public class SolicitacaoServico implements Serializable {
         return cliente;
     }
 
+    @OneToOne
+    public Veiculo getVeiculo() {
+        return veiculo;
+    }
+    
+
     @Column(length = 200)
     public String getObs() {
         return obs;
@@ -102,6 +111,11 @@ public class SolicitacaoServico implements Serializable {
     public void setCliente(Cliente cliente) {
         this.cliente = cliente;
     }
+
+    public void setVeiculo(Veiculo veiculo) {
+        this.veiculo = veiculo;
+    }
+    
 
     public void setObs(String obs) {
         this.obs = obs;
