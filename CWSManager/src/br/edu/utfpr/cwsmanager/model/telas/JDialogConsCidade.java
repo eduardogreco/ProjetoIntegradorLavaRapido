@@ -37,6 +37,8 @@ public class JDialogConsCidade extends javax.swing.JDialog {
 
         modeloCidade = (DefaultTableModel) jTableResultConsultaCidade.getModel();
         modeloCidade.setNumRows(0);
+        
+        pesquisa();
 
     }
 
@@ -65,7 +67,7 @@ public class JDialogConsCidade extends javax.swing.JDialog {
 
         jLabelPesquisa.setText("Consulta por:");
 
-        jComboBoxCampos.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Geral", "Código", "Nome", "Estado" }));
+        jComboBoxCampos.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Código", "Nome", "Estado" }));
         jComboBoxCampos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboBoxCamposActionPerformed(evt);
@@ -313,29 +315,20 @@ public class JDialogConsCidade extends javax.swing.JDialog {
         switch (jComboBoxCampos.getSelectedIndex()) {
             case 0:
                 try {
-                    cidades = new DaoGenerics<Cidade>(Cidade.class).list();
-                } catch (Exception ex) {
-                    Logger.getLogger(JDialogConsCidade.class.getName()).log(Level.SEVERE, null, ex);
-                }
-
-                break;
-
-            case 1:
-                try {
                     cidades = new DaoGenerics<Cidade>(Cidade.class).list(new Filter("id", Operator.LIKE, jFormattedTextFieldPesquisaFuncionario.getText()));
                 } catch (Exception ex) {
                     Logger.getLogger(JDialogConsCidade.class.getName()).log(Level.SEVERE, null, ex);
                 }
                 break;
 
-            case 2:
+            case 1:
                 try {
                     cidades = new DaoGenerics<Cidade>(Cidade.class).list(new Filter("nome", Operator.LIKE, jFormattedTextFieldPesquisaFuncionario.getText()));
                 } catch (Exception ex) {
                     Logger.getLogger(JDialogConsCidade.class.getName()).log(Level.SEVERE, null, ex);
                 }
                 break;
-            case 3:
+            case 2:
                 try {
                     cidades = new DaoGenerics<Cidade>(Cidade.class).list(new Filter("estado", Operator.LIKE, jFormattedTextFieldPesquisaFuncionario.getText()));
                 } catch (Exception ex) {

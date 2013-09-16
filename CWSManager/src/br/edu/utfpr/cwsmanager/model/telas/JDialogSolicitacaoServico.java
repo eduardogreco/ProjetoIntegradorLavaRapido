@@ -53,7 +53,7 @@ public class JDialogSolicitacaoServico extends javax.swing.JDialog {
             jTabbedPane1.setEnabledAt(0, !consulta);
             jTabbedPane1.setSelectedIndex(1);
         }
-        
+
         habilitaCampos(true);
         HoraData();
         preencherTipoServico();
@@ -63,8 +63,8 @@ public class JDialogSolicitacaoServico extends javax.swing.JDialog {
         tabelaConsulta.setNumRows(0);
 
         pesquisa();
-  //      clientes = new ArrayList<>();
-  //      funcionarios = new ArrayList<>();
+        //      clientes = new ArrayList<>();
+        //      funcionarios = new ArrayList<>();
 
     }
 
@@ -107,7 +107,8 @@ public class JDialogSolicitacaoServico extends javax.swing.JDialog {
         jButtonGravar = new javax.swing.JButton();
         jButtonExcluir = new javax.swing.JButton();
         jButtonIncluir = new javax.swing.JButton();
-        jButtonAlterar = new javax.swing.JButton();
+        jButtonAddFuncionario = new javax.swing.JButton();
+        jButtonAddCliente = new javax.swing.JButton();
         jPanelConsulta = new javax.swing.JPanel();
         jLabel12 = new javax.swing.JLabel();
         jFormattedTextFieldPesquisa = new javax.swing.JFormattedTextField();
@@ -248,11 +249,12 @@ public class JDialogSolicitacaoServico extends javax.swing.JDialog {
             }
         });
 
-        jButtonAlterar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icones/alterar.png"))); // NOI18N
-        jButtonAlterar.setText("Alterar");
-        jButtonAlterar.addActionListener(new java.awt.event.ActionListener() {
+        jButtonAddFuncionario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icones/incluir.png"))); // NOI18N
+
+        jButtonAddCliente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icones/incluir.png"))); // NOI18N
+        jButtonAddCliente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonAlterarActionPerformed(evt);
+                jButtonAddClienteActionPerformed(evt);
             }
         });
 
@@ -261,7 +263,7 @@ public class JDialogSolicitacaoServico extends javax.swing.JDialog {
         jPanelCadastroLayout.setHorizontalGroup(
             jPanelCadastroLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
             .add(jPanelCadastroLayout.createSequentialGroup()
-                .add(jPanelCadastroLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING, false)
+                .add(jPanelCadastroLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
                     .add(jPanelCadastroLayout.createSequentialGroup()
                         .add(34, 34, 34)
                         .add(jPanelCadastroLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
@@ -274,9 +276,9 @@ public class JDialogSolicitacaoServico extends javax.swing.JDialog {
                             .add(jLabelTelComercialCliente)))
                     .add(jPanelCadastroLayout.createSequentialGroup()
                         .add(jButtonIncluir, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 95, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .add(jButtonAlterar, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 95, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                        .add(jButtonExcluir, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 95, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)))
+                .add(6, 6, 6)
                 .add(jPanelCadastroLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
                     .add(jPanelCadastroLayout.createSequentialGroup()
                         .add(0, 0, Short.MAX_VALUE)
@@ -301,85 +303,88 @@ public class JDialogSolicitacaoServico extends javax.swing.JDialog {
                                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                                 .add(jTextFieldNomeCliente, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 244, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                                .add(jButtonPesquisaClient))
+                                .add(jButtonPesquisaClient)
+                                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                                .add(jButtonAddCliente))
                             .add(jScrollPane2, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 332, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                            .add(jComboBoxVeiculo, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 296, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                             .add(jPanelCadastroLayout.createSequentialGroup()
-                                .add(jPanelCadastroLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING)
-                                    .add(jComboBoxTipoServico, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 296, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                                .add(jPanelCadastroLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                                    .add(jPanelCadastroLayout.createSequentialGroup()
+                                        .add(286, 286, 286)
+                                        .add(jButtonGravar, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 95, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
                                     .add(jPanelCadastroLayout.createSequentialGroup()
                                         .add(jTextFieldiDfuncionario, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 46, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                                        .add(jTextFieldNomeFuncionario, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 244, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)))
-                                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                                .add(jButtonPesquisarFuncionario))
-                            .add(jPanelCadastroLayout.createSequentialGroup()
-                                .add(jButtonExcluir, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 95, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                                .add(191, 191, 191)
-                                .add(jButtonGravar, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 95, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                                        .add(jTextFieldNomeFuncionario, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 244, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                                        .add(jButtonPesquisarFuncionario)
+                                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                                        .add(jButtonAddFuncionario)))
                                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                                 .add(jButtonCancelar, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 107, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                            .add(jComboBoxVeiculo, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 296, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                            .add(jComboBoxTipoServico, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 296, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
                         .addContainerGap(190, Short.MAX_VALUE))))
         );
         jPanelCadastroLayout.setVerticalGroup(
             jPanelCadastroLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
             .add(jPanelCadastroLayout.createSequentialGroup()
+                .addContainerGap()
+                .add(jPanelCadastroLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
+                    .add(jTextFieldIdSS, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                    .add(jLabelCodCliente)
+                    .add(jLabelCpfCliente)
+                    .add(jComboBoxStatus, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                .add(18, 18, 18)
+                .add(jPanelCadastroLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
+                    .add(jLabelDataNascCliente)
+                    .add(jFormattedTextFieldData, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                    .add(jLabel2)
+                    .add(jTextFieldHora, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                .add(18, 18, 18)
                 .add(jPanelCadastroLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                    .add(jPanelCadastroLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .add(jPanelCadastroLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
-                            .add(jTextFieldIdSS, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                            .add(jLabelCodCliente)
-                            .add(jLabelCpfCliente)
-                            .add(jComboBoxStatus, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                        .add(18, 18, 18)
-                        .add(jPanelCadastroLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
-                            .add(jLabelDataNascCliente)
-                            .add(jFormattedTextFieldData, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                            .add(jLabel2)
-                            .add(jTextFieldHora, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                        .add(18, 18, 18)
-                        .add(jPanelCadastroLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
-                            .add(jTextFieldiDfuncionario, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                            .add(jLabelNomeCliente)
-                            .add(jTextFieldNomeFuncionario, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                        .add(29, 29, 29)
-                        .add(jPanelCadastroLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
-                            .add(jComboBoxTipoServico, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                            .add(jLabelTelPessoalCliente)))
-                    .add(jPanelCadastroLayout.createSequentialGroup()
-                        .add(98, 98, 98)
-                        .add(jButtonPesquisarFuncionario)))
+                    .add(jPanelCadastroLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
+                        .add(jTextFieldiDfuncionario, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                        .add(jLabelNomeCliente)
+                        .add(jTextFieldNomeFuncionario, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                    .add(jButtonPesquisarFuncionario)
+                    .add(jButtonAddFuncionario, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 30, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                .add(27, 27, 27)
+                .add(jPanelCadastroLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
+                    .add(jComboBoxTipoServico, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                    .add(jLabelTelPessoalCliente))
                 .add(20, 20, 20)
                 .add(jPanelCadastroLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
                     .add(jPanelCadastroLayout.createSequentialGroup()
-                        .add(jButtonPesquisaClient)
-                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .add(jButtonAddCliente, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 30, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .add(jPanelCadastroLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
+                            .add(jButtonSairCad, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 34, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                            .add(jButtonCancelar, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 34, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                            .add(jButtonIncluir, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 34, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                            .add(jButtonExcluir, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 34, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                            .add(jButtonGravar, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 34, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                        .addContainerGap())
                     .add(jPanelCadastroLayout.createSequentialGroup()
                         .add(jPanelCadastroLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                            .add(jLabelTelComercialCliente)
-                            .add(jPanelCadastroLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
-                                .add(jTextFieldIdCliente, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                                .add(jTextFieldNomeCliente, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)))
-                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 27, Short.MAX_VALUE)
-                        .add(jPanelCadastroLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
-                            .add(jLabelEmailCliente)
-                            .add(jComboBoxVeiculo, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                        .add(27, 27, 27)))
-                .add(jPanelCadastroLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                    .add(jLabel1)
-                    .add(jScrollPane2, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 125, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(65, Short.MAX_VALUE))
-            .add(org.jdesktop.layout.GroupLayout.TRAILING, jPanelCadastroLayout.createSequentialGroup()
-                .addContainerGap(org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .add(jPanelCadastroLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
-                    .add(jButtonSairCad, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 34, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                    .add(jButtonCancelar, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 34, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                    .add(jButtonAlterar, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 34, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                    .add(jButtonIncluir, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 34, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                    .add(jButtonExcluir, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 34, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                    .add(jButtonGravar, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 34, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap())
+                            .add(jPanelCadastroLayout.createSequentialGroup()
+                                .add(jButtonPesquisaClient)
+                                .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .add(jPanelCadastroLayout.createSequentialGroup()
+                                .add(jPanelCadastroLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                                    .add(jLabelTelComercialCliente)
+                                    .add(jPanelCadastroLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
+                                        .add(jTextFieldIdCliente, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                                        .add(jTextFieldNomeCliente, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)))
+                                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 27, Short.MAX_VALUE)
+                                .add(jPanelCadastroLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
+                                    .add(jLabelEmailCliente)
+                                    .add(jComboBoxVeiculo, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                                .add(27, 27, 27)))
+                        .add(jPanelCadastroLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                            .add(jLabel1)
+                            .add(jScrollPane2, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 125, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                        .addContainerGap(65, Short.MAX_VALUE))))
         );
 
         jTabbedPane1.addTab("Cadastrar", jPanelCadastro);
@@ -392,7 +397,7 @@ public class JDialogSolicitacaoServico extends javax.swing.JDialog {
             }
         });
 
-        jComboBoxTipoConsultaSS.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Cód. Solicitação", "Funcionário Solicitante", "Cliente", "Todas" }));
+        jComboBoxTipoConsultaSS.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Cód. Solicitação", "Funcionário Solicitante", "Cliente" }));
 
         jTableConsultaSS.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -513,7 +518,7 @@ public class JDialogSolicitacaoServico extends javax.swing.JDialog {
     }//GEN-LAST:event_jFormattedTextFieldDataActionPerformed
 
     private void jButtonPesquisarCliente1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonPesquisarCliente1ActionPerformed
-pesquisa();
+        pesquisa();
     }//GEN-LAST:event_jButtonPesquisarCliente1ActionPerformed
 
     private void jButtonSairConsulActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSairConsulActionPerformed
@@ -540,9 +545,6 @@ pesquisa();
         //     gerarOrdem.setLocationRelativeTo(gerarOrdem);
         //     gerarOrdem.setVisible(true);
     }//GEN-LAST:event_jButtonGerarOrdemActionPerformed
-
-    private void jButtonAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAlterarActionPerformed
-    }//GEN-LAST:event_jButtonAlterarActionPerformed
 
     private void jButtonExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonExcluirActionPerformed
     }//GEN-LAST:event_jButtonExcluirActionPerformed
@@ -595,9 +597,9 @@ pesquisa();
         for (Veiculo vr : vei) {
             jComboBoxVeiculo.addItem(vr);
         }
-        
-        
-        
+
+
+
     }//GEN-LAST:event_jTextFieldIdClienteFocusLost
 
     private void jButtonPesquisaClientActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonPesquisaClientActionPerformed
@@ -624,7 +626,7 @@ pesquisa();
                     jComboBoxVeiculo.addItem(vr);
                 }
 
-                
+
 
             }
         });
@@ -694,6 +696,12 @@ pesquisa();
         // TODO add your handling code here:
     }//GEN-LAST:event_jFormattedTextFieldPesquisaActionPerformed
 
+    private void jButtonAddClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAddClienteActionPerformed
+        JDialogCliente cadCliente = new JDialogCliente(this, true);
+        cadCliente.setLocationRelativeTo(cadCliente);
+        cadCliente.setVisible(true);
+    }//GEN-LAST:event_jButtonAddClienteActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -736,7 +744,8 @@ pesquisa();
         });
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButtonAlterar;
+    private javax.swing.JButton jButtonAddCliente;
+    private javax.swing.JButton jButtonAddFuncionario;
     private javax.swing.JButton jButtonCancelar;
     private javax.swing.JButton jButtonExcluir;
     private javax.swing.JButton jButtonGerarOrdem;
@@ -777,7 +786,6 @@ pesquisa();
     private javax.swing.JTextField jTextFieldNomeFuncionario;
     private javax.swing.JTextField jTextFieldiDfuncionario;
     // End of variables declaration//GEN-END:variables
-
 
     public void gravar() {
         solicitacaoServico = null;
@@ -839,16 +847,15 @@ pesquisa();
         switch (jComboBoxTipoConsultaSS.getSelectedIndex()) {
             case 0:
                 try {
-                    solicitacaoServicos = new DaoGenerics<SolicitacaoServico>(SolicitacaoServico.class).list();
+                    solicitacaoServicos = new DaoGenerics<SolicitacaoServico>(SolicitacaoServico.class).list(new Filter("id", Operator.LIKE, jFormattedTextFieldPesquisa.getText()));
                 } catch (Exception ex) {
                     Logger.getLogger(JDialogConsCliente.class.getName()).log(Level.SEVERE, null, ex);
                 }
-
                 break;
 
             case 1:
                 try {
-                    clientes = new DaoGenerics<Cliente>(Cliente.class).list(new Filter("id", Operator.LIKE, jFormattedTextFieldPesquisa.getText()));
+                    solicitacaoServicos = new DaoGenerics<SolicitacaoServico>(SolicitacaoServico.class).execute("select s from SolicitacaoServico s where s.funcionario.nome like '%" + jFormattedTextFieldPesquisa.getText() + "%'");
                 } catch (Exception ex) {
                     Logger.getLogger(JDialogConsCliente.class.getName()).log(Level.SEVERE, null, ex);
                 }
@@ -856,23 +863,7 @@ pesquisa();
 
             case 2:
                 try {
-                    clientes = new DaoGenerics<Cliente>(Cliente.class).list(new Filter("nome", Operator.LIKE, jFormattedTextFieldPesquisa.getText()));
-                } catch (Exception ex) {
-                    Logger.getLogger(JDialogConsCliente.class.getName()).log(Level.SEVERE, null, ex);
-                }
-                break;
-                
-            case 3:
-                try {
-                    clientes = new DaoGenerics<Cliente>(Cliente.class).list(new Filter("cpf", Operator.LIKE, jFormattedTextFieldPesquisa.getText()));
-                } catch (Exception ex) {
-                    Logger.getLogger(JDialogConsCliente.class.getName()).log(Level.SEVERE, null, ex);
-                }
-                break;
-                
-            case 4:
-                try {
-                    clientes = new DaoGenerics<Cliente>(Cliente.class).list(new Filter("email", Operator.LIKE, jFormattedTextFieldPesquisa.getText()));
+                    solicitacaoServicos = new DaoGenerics<SolicitacaoServico>(SolicitacaoServico.class).execute("select s from SolicitacaoServico s where s.cliente.nome like '%" + jFormattedTextFieldPesquisa.getText() + "%'");
                 } catch (Exception ex) {
                     Logger.getLogger(JDialogConsCliente.class.getName()).log(Level.SEVERE, null, ex);
                 }
@@ -880,7 +871,7 @@ pesquisa();
         }
         preencherjTable();
     }
-    
+
     private void preencherjTable() {
         tabelaConsulta.setNumRows(0);
 
@@ -902,10 +893,8 @@ pesquisa();
             });
         }
     }
-    
-    
+
     private void habilitaCampos(boolean comando) {
-        jButtonAlterar.setEnabled(!comando);
         jButtonExcluir.setEnabled(!comando);
         jButtonIncluir.setEnabled(!comando);
 

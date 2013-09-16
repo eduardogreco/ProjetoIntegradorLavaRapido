@@ -729,7 +729,7 @@ public class JFramePrincipal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jMenuCadastroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuCadastroActionPerformed
-        JDialogCliente jdCliente = new JDialogCliente(this, true);
+        JDialogCliente jdCliente = new JDialogCliente(new javax.swing.JDialog(), true);
         jdCliente.setLocationRelativeTo(null);
         jdCliente.setVisible(true);
     }//GEN-LAST:event_jMenuCadastroActionPerformed
@@ -749,9 +749,8 @@ public class JFramePrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonClienteMouseExited
 
     private void jButtonClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonClienteActionPerformed
-        // TODO add your handling code here:
-        JDialogCliente jdCliente = new JDialogCliente(this, true);
-        jdCliente.setLocationRelativeTo(jdCliente);
+       JDialogCliente jdCliente = new JDialogCliente(new javax.swing.JDialog(), true);
+        jdCliente.setLocationRelativeTo(null);
         jdCliente.setVisible(true);
     }//GEN-LAST:event_jButtonClienteActionPerformed
 

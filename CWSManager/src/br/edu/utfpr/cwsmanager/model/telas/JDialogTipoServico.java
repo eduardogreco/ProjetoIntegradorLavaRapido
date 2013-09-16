@@ -302,8 +302,8 @@ public class JDialogTipoServico extends javax.swing.JDialog {
             Logger.getLogger(JDialogCidade.class.getName()).log(Level.SEVERE, null, ex);
         }
         JOptionPane.showMessageDialog(null, "Registro gravado com sucesso.", "Gravar", JOptionPane.INFORMATION_MESSAGE);
-        habilitaCampos(true);
-        jButtonPesquisarTipoServico.setEnabled(true);
+        clearCampos();
+        habilitaCampos(false);
 
     }//GEN-LAST:event_jButtonGravarTipoServicoActionPerformed
 

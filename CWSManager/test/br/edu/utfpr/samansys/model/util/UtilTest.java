@@ -48,6 +48,10 @@ public class UtilTest {
         boolean result = Util.validaCpf(str);
 
         assertEquals(expResult, result);
+        str = "43423432423";
+        expResult = false;
+        result = Util.validaCpf(str);
+        assertEquals(expResult, result);
     }
     
     @Test
@@ -56,6 +60,11 @@ public class UtilTest {
         String email = "eduardogreco@gmail.com";
         boolean expResult = true;
         boolean result = Util.validarEmail(email);
+        assertEquals(expResult, result);
+        
+        email = "fdsfsdf.com";
+        expResult = false;
+        result = Util.validarEmail(email);
         assertEquals(expResult, result);
     }
 

@@ -95,4 +95,10 @@ public class DaoGenerics<T> implements Dao<T> {
         return lista;
     }
     
+     public List<T> execute(String query) throws Exception {
+        session = TransactionManager.getCurrentSession();
+        List<T> lista = session.createQuery(query).list();
+        return lista;
+    }
+    
 }

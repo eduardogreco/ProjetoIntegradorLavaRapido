@@ -33,6 +33,8 @@ public class JDialogConsCliente extends javax.swing.JDialog {
 
         modeloCliente = (DefaultTableModel) jTableResult.getModel();
         modeloCliente.setNumRows(0);
+        
+        pesquisa();
     }
 
     /**
@@ -60,7 +62,7 @@ public class JDialogConsCliente extends javax.swing.JDialog {
 
         jLabelPesquisa.setText("Consulta por:");
 
-        jComboBoxCampos.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Geral", "Codigo", "Nome", "CPF", "Email" }));
+        jComboBoxCampos.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Código", "Nome", "CPF", "E-mail" }));
         jComboBoxCampos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboBoxCamposActionPerformed(evt);
@@ -307,22 +309,13 @@ public class JDialogConsCliente extends javax.swing.JDialog {
         switch (jComboBoxCampos.getSelectedIndex()) {
             case 0:
                 try {
-                    clientes = new DaoGenerics<Cliente>(Cliente.class).list();
-                } catch (Exception ex) {
-                    Logger.getLogger(JDialogConsCliente.class.getName()).log(Level.SEVERE, null, ex);
-                }
-
-                break;
-
-            case 1:
-                try {
                     clientes = new DaoGenerics<Cliente>(Cliente.class).list(new Filter("id", Operator.LIKE, jFormattedTextFieldPesquisa.getText()));
                 } catch (Exception ex) {
                     Logger.getLogger(JDialogConsCliente.class.getName()).log(Level.SEVERE, null, ex);
                 }
                 break;
 
-            case 2:
+            case 1:
                 try {
                     clientes = new DaoGenerics<Cliente>(Cliente.class).list(new Filter("nome", Operator.LIKE, jFormattedTextFieldPesquisa.getText()));
                 } catch (Exception ex) {
@@ -330,7 +323,7 @@ public class JDialogConsCliente extends javax.swing.JDialog {
                 }
                 break;
                 
-            case 3:
+            case 2:
                 try {
                     clientes = new DaoGenerics<Cliente>(Cliente.class).list(new Filter("cpf", Operator.LIKE, jFormattedTextFieldPesquisa.getText()));
                 } catch (Exception ex) {
@@ -338,7 +331,7 @@ public class JDialogConsCliente extends javax.swing.JDialog {
                 }
                 break;
                 
-            case 4:
+            case 3:
                 try {
                     clientes = new DaoGenerics<Cliente>(Cliente.class).list(new Filter("email", Operator.LIKE, jFormattedTextFieldPesquisa.getText()));
                 } catch (Exception ex) {

@@ -22,7 +22,6 @@ import javax.swing.table.DefaultTableModel;
  */
 public class JDialogConsTipoDeServico extends javax.swing.JDialog {
 
-    
     private List<TipoServico> servicos;
     private DefaultTableModel modeloServicos;
     public TipoServico servico;
@@ -38,6 +37,8 @@ public class JDialogConsTipoDeServico extends javax.swing.JDialog {
 
         modeloServicos = (DefaultTableModel) jTableResultConsultaTipoServico.getModel();
         modeloServicos.setNumRows(0);
+
+        pesquisa();
 
     }
 
@@ -66,7 +67,7 @@ public class JDialogConsTipoDeServico extends javax.swing.JDialog {
 
         jLabelPesquisa.setText("Consulta por:");
 
-        jComboBoxCampos.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Codigo", "Nome", "Valor" }));
+        jComboBoxCampos.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Código", "Nome", "Valor" }));
 
         jFormattedTextFieldPesquisaTipoServico.setMinimumSize(new java.awt.Dimension(42, 28));
         jFormattedTextFieldPesquisaTipoServico.setPreferredSize(new java.awt.Dimension(42, 28));
@@ -307,29 +308,20 @@ public class JDialogConsTipoDeServico extends javax.swing.JDialog {
         switch (jComboBoxCampos.getSelectedIndex()) {
             case 0:
                 try {
-                    servicos = new DaoGenerics<TipoServico>(TipoServico.class).list();
-                } catch (Exception ex) {
-                    Logger.getLogger(JDialogConsTipoDeServico.class.getName()).log(Level.SEVERE, null, ex);
-                }
-
-                break;
-
-            case 1:
-                try {
                     servicos = new DaoGenerics<TipoServico>(TipoServico.class).list(new Filter("id", Operator.LIKE, jFormattedTextFieldPesquisaTipoServico.getText()));
                 } catch (Exception ex) {
                     Logger.getLogger(JDialogConsTipoDeServico.class.getName()).log(Level.SEVERE, null, ex);
                 }
                 break;
 
-            case 2:
+            case 1:
                 try {
                     servicos = new DaoGenerics<TipoServico>(TipoServico.class).list(new Filter("nome", Operator.LIKE, jFormattedTextFieldPesquisaTipoServico.getText()));
                 } catch (Exception ex) {
                     Logger.getLogger(JDialogConsTipoDeServico.class.getName()).log(Level.SEVERE, null, ex);
                 }
                 break;
-            case 3:
+            case 2:
                 try {
                     servicos = new DaoGenerics<TipoServico>(TipoServico.class).list(new Filter("valor", Operator.LIKE, jFormattedTextFieldPesquisaTipoServico.getText()));
                 } catch (Exception ex) {
