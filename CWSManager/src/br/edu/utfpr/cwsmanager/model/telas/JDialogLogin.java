@@ -4,15 +4,24 @@
  */
 package br.edu.utfpr.cwsmanager.model.telas;
 
+import br.edu.utfpr.cwsmanager.model.daos.DaoGenerics;
+import br.edu.utfpr.cwsmanager.model.pessoa.Funcionario;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author EduardoGreco
  */
 public class JDialogLogin extends javax.swing.JDialog {
 
-    /**
-     * Creates new form JDialogLogin
-     */
+    private Funcionario funcionario;
+    private List<Funcionario> funcionarios = new ArrayList<Funcionario>();
+    private JFramePrincipal principal;
+
     public JDialogLogin(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
@@ -32,10 +41,10 @@ public class JDialogLogin extends javax.swing.JDialog {
         jTextFielduser = new javax.swing.JTextField();
         jLabelIconLogin = new javax.swing.JLabel();
         jLabelSenha = new javax.swing.JLabel();
-        jTextFieldPassword = new javax.swing.JTextField();
         jLabelIconSenha = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
+        jPasswordFieldPw = new javax.swing.JPasswordField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("<< Car Wash System >>");
@@ -80,8 +89,8 @@ public class JDialogLogin extends javax.swing.JDialog {
                             .add(jLabelSenha))
                         .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                         .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING, false)
-                            .add(jTextFielduser)
-                            .add(jTextFieldPassword, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 213, Short.MAX_VALUE))
+                            .add(jTextFielduser, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 213, Short.MAX_VALUE)
+                            .add(jPasswordFieldPw))
                         .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                         .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
                             .add(jLabelIconLogin, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 40, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
@@ -110,7 +119,7 @@ public class JDialogLogin extends javax.swing.JDialog {
                         .add(18, 18, 18)
                         .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
                             .add(jLabelSenha, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 20, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                            .add(jTextFieldPassword, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))))
+                            .add(jPasswordFieldPw, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))))
                 .add(48, 48, 48)
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
                     .add(jButton1)
@@ -122,8 +131,13 @@ public class JDialogLogin extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-        dispose();
+        try {
+            // TODO add your handling code here:
+            // dispose();
+            fazerLogin();
+        } catch (Exception ex) {
+            Logger.getLogger(JDialogLogin.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
@@ -180,7 +194,35 @@ public class JDialogLogin extends javax.swing.JDialog {
     private javax.swing.JLabel jLabelLogoInicial;
     private javax.swing.JLabel jLabelSenha;
     private javax.swing.JLabel jLabelUsuario;
-    private javax.swing.JTextField jTextFieldPassword;
+    private javax.swing.JPasswordField jPasswordFieldPw;
     private javax.swing.JTextField jTextFielduser;
     // End of variables declaration//GEN-END:variables
+
+    private void fazerLogin() throws Exception {
+
+        String login = jTextFielduser.getText().trim();
+        String pw = jPasswordFieldPw.getText().trim();
+
+        if (login.equals("admin") && pw.equals("admin")) {
+            dispose();
+        } else {
+
+            funcionarios = null;
+            funcionarios = new DaoGenerics<Funcionario>(Funcionario.class).execute("select f.login, f.senha from Funcionario f where f.login = '" + login + "' and f.senha = '" + pw + "'");
+
+            if (funcionarios.isEmpty()) {
+                JOptionPane.showMessageDialog(null, "Usuário ou senha incorreto.", "Erro", JOptionPane.INFORMATION_MESSAGE);
+                clearCampos();
+            } else {
+              principal.UserLogin(login);
+            //    dispose();
+                
+                
+            }
+        }
+    }
+
+    private void clearCampos() {
+        jPasswordFieldPw.setText("");
+    }
 }
