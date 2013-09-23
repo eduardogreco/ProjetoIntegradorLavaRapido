@@ -7,9 +7,11 @@ package br.edu.utfpr.cwsmanager.model.telas;
 import br.edu.utfpr.cwsmanager.model.daos.DaoGenerics;
 import br.edu.utfpr.cwsmanager.model.daos.TransactionManager;
 import br.edu.utfpr.cwsmanager.model.movimentacao.TipoServico;
+import java.awt.Color;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import javax.swing.border.LineBorder;
 
 /**
  *
@@ -279,6 +281,7 @@ public class JDialogTipoServico extends javax.swing.JDialog {
         }
 
         clearCampos();
+        habilitaCampos(false);
 
     }//GEN-LAST:event_jButtonExcluirTipoServicoActionPerformed
 
@@ -414,18 +417,23 @@ public class JDialogTipoServico extends javax.swing.JDialog {
     }
 
     private boolean validaCampos() {
+        StringBuilder msgs = new StringBuilder();
+
         if (jTextFieldNomeTipoServico.getText().isEmpty()) {
-            JOptionPane.showMessageDialog(null, "Nome é Obrigatório!", "Atençao!", JOptionPane.WARNING_MESSAGE);
+            msgs.append("Nome do serviço é Obrigatório!\n");
             jTextFieldNomeTipoServico.grabFocus();
-            return false;
+            jTextFieldNomeTipoServico.setBorder(new LineBorder(Color.red));
         }
-
         if (jTextFieldValorTipoServico.getText().isEmpty()) {
-            JOptionPane.showMessageDialog(null, "Valor é Obrigatório!", "Atençao!", JOptionPane.WARNING_MESSAGE);
+            msgs.append("Valor do serviço é Obrigatório!\n");
             jTextFieldValorTipoServico.grabFocus();
-            return false;
+            jTextFieldValorTipoServico.setBorder(new LineBorder(Color.red));
         }
 
+        if (msgs.length() > 0) {
+            JOptionPane.showMessageDialog(null, msgs.toString(), "Atençao!", JOptionPane.WARNING_MESSAGE);
+            return false;
+        }
         return true;
     }
 }

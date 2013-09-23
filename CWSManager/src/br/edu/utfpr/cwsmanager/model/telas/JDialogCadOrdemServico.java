@@ -4,22 +4,20 @@
  */
 package br.edu.utfpr.cwsmanager.model.telas;
 
+import br.edu.utfpr.cwsmanager.model.movimentacao.SolicitacaoServico;
+
 /**
  *
  * @author EduardoGreco
  */
 public class JDialogCadOrdemServico extends javax.swing.JDialog {
 
-    /**
-     * Creates new form JDialogCadOrdemServico
-     */
+    private SolicitacaoServico solicitacao;
+    
+    
     public JDialogCadOrdemServico(java.awt.Dialog parent, boolean modal) {
         super(parent, modal);
         initComponents();
-    }
-
-    JDialogCadOrdemServico(JDialogSolicitacaoServico aThis, boolean b) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     /**
@@ -40,7 +38,7 @@ public class JDialogCadOrdemServico extends javax.swing.JDialog {
         jLabelTelPessoalCliente = new javax.swing.JLabel();
         jLabelTelComercialCliente = new javax.swing.JLabel();
         jLabelEmailCliente = new javax.swing.JLabel();
-        jTextFieldIdCliente = new javax.swing.JTextField();
+        jTextFieldIdCodOrdem = new javax.swing.JTextField();
         jFormattedTextFieldDataNascCliente = new javax.swing.JFormattedTextField();
         jButtonPesquisarCliente = new javax.swing.JButton();
         jComboBox1 = new javax.swing.JComboBox();
@@ -164,7 +162,7 @@ public class JDialogCadOrdemServico extends javax.swing.JDialog {
                             .add(jPanel1Layout.createSequentialGroup()
                                 .add(jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING, false)
                                     .add(org.jdesktop.layout.GroupLayout.LEADING, jTextField2)
-                                    .add(org.jdesktop.layout.GroupLayout.LEADING, jTextFieldIdCliente, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 97, Short.MAX_VALUE)
+                                    .add(org.jdesktop.layout.GroupLayout.LEADING, jTextFieldIdCodOrdem, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 97, Short.MAX_VALUE)
                                     .add(org.jdesktop.layout.GroupLayout.LEADING, jFormattedTextFieldDataNascCliente, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                 .add(18, 18, 18)
                                 .add(jButtonPesquisarCliente, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 40, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
@@ -198,7 +196,7 @@ public class JDialogCadOrdemServico extends javax.swing.JDialog {
                     .add(org.jdesktop.layout.GroupLayout.TRAILING, jPanel1Layout.createSequentialGroup()
                         .add(jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
                             .add(jButtonPesquisarCliente, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 30, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                            .add(jTextFieldIdCliente, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                            .add(jTextFieldIdCodOrdem, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                             .add(jLabelCodCliente))
                         .add(4, 4, 4)))
                 .add(jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
@@ -408,6 +406,11 @@ public class JDialogCadOrdemServico extends javax.swing.JDialog {
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextFieldIdCliente;
+    private javax.swing.JTextField jTextFieldIdCodOrdem;
     // End of variables declaration//GEN-END:variables
+
+    public void preencherCadOrdem(SolicitacaoServico teste){
+         jTextFieldIdCodOrdem.setText(teste.getObs());
+    }
+
 }

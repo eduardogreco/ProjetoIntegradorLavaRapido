@@ -11,12 +11,14 @@ import br.edu.utfpr.cwsmanager.model.pessoa.Cliente;
 import br.edu.utfpr.cwsmanager.model.util.UtilDatas;
 import br.edu.utfpr.cwsmanager.model.veiculo.Veiculo;
 import br.edu.utfpr.cwsmanager.model.util.Validacao;
+import java.awt.Color;
 import java.awt.event.WindowEvent;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import javax.swing.border.LineBorder;
 import javax.swing.table.DefaultTableModel;
 import sun.awt.WindowClosingListener;
 
@@ -494,8 +496,13 @@ public class JDialogCliente extends javax.swing.JDialog {
 
         jTabbedPane1.addTab("Endereço", jPanel2);
 
-        jLabel12.setText("Placa:");
+        jLabel12.setText("Placa:*");
 
+        try {
+            jFormattedTextFieldPlaca.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("AAA-####")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
         jFormattedTextFieldPlaca.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jFormattedTextFieldPlacaActionPerformed(evt);
@@ -904,11 +911,12 @@ public class JDialogCliente extends javax.swing.JDialog {
         try {
             gravar();
         } catch (Exception ex) {
-   //         JOptionPane.showMessageDialog(null, ex.getMessage());
+            //         JOptionPane.showMessageDialog(null, ex.getMessage());
             Logger.getLogger(JDialogCliente.class.getName()).log(Level.SEVERE, null, ex);
         }
         JOptionPane.showMessageDialog(null, "Registro gravado com sucesso.", "Gravar", JOptionPane.INFORMATION_MESSAGE);
 
+        clearCampos();
         habilitaCampos(true);
         jButtonPesquisarCliente.setEnabled(true);
         jTextFieldIdVeiculo.setEnabled(false);
@@ -920,6 +928,7 @@ public class JDialogCliente extends javax.swing.JDialog {
         } catch (Exception e) {
         }
         habilitaCampos(true);
+        jTextFieldIdCliente.setEnabled(false);
         jTextFieldIdVeiculo.setEnabled(false);
         clearCampos();
     }//GEN-LAST:event_jButtonCancelarActionPerformed
@@ -953,7 +962,7 @@ public class JDialogCliente extends javax.swing.JDialog {
     private void jButtonIncluirCidadeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonIncluirCidadeActionPerformed
         // TODO add your handling code here:
         JDialogCidade cadCidade = new JDialogCidade(this, true);
-         cadCidade.setLocationRelativeTo(cadCidade);
+        cadCidade.setLocationRelativeTo(cadCidade);
         cadCidade.setVisible(true);
     }//GEN-LAST:event_jButtonIncluirCidadeActionPerformed
 
@@ -1008,7 +1017,7 @@ public class JDialogCliente extends javax.swing.JDialog {
             try {
                 TransactionManager.beginTransaction();
                 new DaoGenerics<Veiculo>(Veiculo.class).delete(v);
-                  TransactionManager.commit();
+                TransactionManager.commit();
             } catch (Exception ex) {
                 Logger.getLogger(JDialogCliente.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -1334,57 +1343,64 @@ public class JDialogCliente extends javax.swing.JDialog {
     }
 
     private boolean validaCampos() {
+        StringBuilder msgs = new StringBuilder();
+
         if (jTextFieldNomeCliente.getText().isEmpty()) {
-            JOptionPane.showMessageDialog(null, "Nome é Obrigatório!", "Atençao!", JOptionPane.WARNING_MESSAGE);
+            msgs.append("Nome do cliente é Obrigatório!\n");
             jTextFieldNomeCliente.grabFocus();
-            return false;
+            jTextFieldNomeCliente.setBorder(new LineBorder(Color.red));
         }
         if (jFormattedTextFieldCPFCliente.getText().replaceAll("[ .\\-/()]", "").isEmpty()) {
             JOptionPane.showMessageDialog(null, "CPF é Obrigatório!", "Atençao!", JOptionPane.WARNING_MESSAGE);
             jFormattedTextFieldCPFCliente.grabFocus();
-            return false;
+            jFormattedTextFieldCPFCliente.setBorder(new LineBorder(Color.red));
         }
         if (jFormattedTextFieldDataNascCliente.getText().replaceAll("[ /]", "").isEmpty()) {
             JOptionPane.showMessageDialog(null, "Data de Nascimento é Obrigatório!", "Atençao!", JOptionPane.WARNING_MESSAGE);
             jFormattedTextFieldDataNascCliente.grabFocus();
-            return false;
+            jFormattedTextFieldDataNascCliente.setBorder(new LineBorder(Color.red));
         }
         if (jFormattedTextFieldTelefonePessoalCliente.getText().replaceAll("[ ()-]", "").isEmpty()) {
             JOptionPane.showMessageDialog(null, "Telefone Pessoal é Obrigatório!", "Atençao!", JOptionPane.WARNING_MESSAGE);
             jFormattedTextFieldTelefonePessoalCliente.grabFocus();
-            return false;
+            jFormattedTextFieldTelefonePessoalCliente.setBorder(new LineBorder(Color.red));
         }
         if (!jTextFieldEmailCliente.getText().isEmpty()) {
             validacao = new Validacao();
             if (!validacao.validarEmail(jTextFieldEmailCliente.getText().trim())) {
                 JOptionPane.showMessageDialog(null, "Email nao é valido!", "Atençao!", JOptionPane.WARNING_MESSAGE);
                 jTextFieldEmailCliente.grabFocus();
-                return false;
+                jTextFieldEmailCliente.setBorder(new LineBorder(Color.red));
             }
         }
         if (jTextFieldNomeEndreco.getText().isEmpty()) {
             JOptionPane.showMessageDialog(null, "Endereço é Obrigatório!", "Atençao!", JOptionPane.WARNING_MESSAGE);
             jTextFieldNomeEndreco.grabFocus();
-            return false;
+            jTextFieldNomeEndreco.setBorder(new LineBorder(Color.red));
         }
         if (jTextFieldNumEndereco.getText().isEmpty()) {
             JOptionPane.showMessageDialog(null, "Numero é Obrigatório!", "Atençao!", JOptionPane.WARNING_MESSAGE);
             jTextFieldNumEndereco.grabFocus();
-            return false;
+            jTextFieldNumEndereco.setBorder(new LineBorder(Color.red));
         }
         if (jTextFieldBairro.getText().isEmpty()) {
             JOptionPane.showMessageDialog(null, "Bairro é Obrigatório!", "Atençao!", JOptionPane.WARNING_MESSAGE);
             jTextFieldBairro.grabFocus();
-            return false;
+            jTextFieldBairro.setBorder(new LineBorder(Color.red));
         }
         if (jTextFieldNomeCidade.getText().isEmpty()) {
             JOptionPane.showMessageDialog(null, "Nome da Cidade é Obrigatório!", "Atençao!", JOptionPane.WARNING_MESSAGE);
             jTextFieldNomeCidade.grabFocus();
-            return false;
+            jTextFieldNomeCidade.setBorder(new LineBorder(Color.red));
         }
         if (jTextFieldCep.getText().replaceAll("[ -]", "").isEmpty()) {
             JOptionPane.showMessageDialog(null, "CEP é Obrigatório!", "Atençao!", JOptionPane.WARNING_MESSAGE);
             jTextFieldCep.grabFocus();
+            jTextFieldCep.setBorder(new LineBorder(Color.red));
+        }
+
+        if (msgs.length() > 0) {
+            JOptionPane.showMessageDialog(null, msgs.toString(), "Atençao!", JOptionPane.WARNING_MESSAGE);
             return false;
         }
         return true;

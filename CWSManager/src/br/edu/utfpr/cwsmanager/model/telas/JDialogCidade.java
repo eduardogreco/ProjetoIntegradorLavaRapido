@@ -7,9 +7,11 @@ package br.edu.utfpr.cwsmanager.model.telas;
 import br.edu.utfpr.cwsmanager.model.daos.DaoGenerics;
 import br.edu.utfpr.cwsmanager.model.daos.TransactionManager;
 import br.edu.utfpr.cwsmanager.model.endereco.Cidade;
+import java.awt.Color;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import javax.swing.border.LineBorder;
 
 /**
  *
@@ -319,6 +321,7 @@ public class JDialogCidade extends javax.swing.JDialog {
             Logger.getLogger(JDialogCidade.class.getName()).log(Level.SEVERE, null, ex);
         }
         JOptionPane.showMessageDialog(null, "Registro gravado com sucesso.", "Gravar", JOptionPane.INFORMATION_MESSAGE);
+       clearCampos();
         habilitaCampos(true);
         jButtonPesquisarCidade.setEnabled(true);
     }//GEN-LAST:event_jButtonGravarCidadeActionPerformed
@@ -434,10 +437,17 @@ public class JDialogCidade extends javax.swing.JDialog {
         jComboBoxEstadoCidade.setEnabled(!comando);
     }
 
-    private boolean validaCampos() {
+   private boolean validaCampos() {
+        StringBuilder msgs = new StringBuilder();
+
         if (jTextFieldNomeCidade.getText().isEmpty()) {
-            JOptionPane.showMessageDialog(null, "Nome é Obrigatório!", "Atençao!", JOptionPane.WARNING_MESSAGE);
+            msgs.append("Nome da Cidade é Obrigatório!\n");
             jTextFieldNomeCidade.grabFocus();
+            jTextFieldNomeCidade.setBorder(new LineBorder(Color.red));
+        }
+      
+        if (msgs.length() > 0) {
+            JOptionPane.showMessageDialog(null, msgs.toString(), "Atençao!", JOptionPane.WARNING_MESSAGE);
             return false;
         }
         return true;
