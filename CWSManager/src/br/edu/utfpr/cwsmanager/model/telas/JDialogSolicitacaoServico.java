@@ -14,6 +14,7 @@ import br.edu.utfpr.cwsmanager.model.pessoa.Cliente;
 import br.edu.utfpr.cwsmanager.model.pessoa.Funcionario;
 import br.edu.utfpr.cwsmanager.model.util.UtilDatas;
 import br.edu.utfpr.cwsmanager.model.veiculo.Veiculo;
+import java.awt.Color;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -23,6 +24,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.ComboBoxModel;
 import javax.swing.JOptionPane;
+import javax.swing.border.LineBorder;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -250,6 +252,11 @@ public class JDialogSolicitacaoServico extends javax.swing.JDialog {
         });
 
         jButtonAddFuncionario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icones/incluir.png"))); // NOI18N
+        jButtonAddFuncionario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonAddFuncionarioActionPerformed(evt);
+            }
+        });
 
         jButtonAddCliente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icones/incluir.png"))); // NOI18N
         jButtonAddCliente.addActionListener(new java.awt.event.ActionListener() {
@@ -527,7 +534,12 @@ public class JDialogSolicitacaoServico extends javax.swing.JDialog {
     }//GEN-LAST:event_jButtonSairConsulActionPerformed
 
     private void jButtonGravarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonGravarActionPerformed
+        if (!validaCampos()) {
+            return;
+        }
         gravar();
+        JOptionPane.showMessageDialog(null, "Registro gravado com sucesso.", "Gravar", JOptionPane.INFORMATION_MESSAGE);
+        clearCampos();
         habilitaCampos(false);
         jTextFieldHora.setEnabled(false);
         jFormattedTextFieldData.setEnabled(false);
@@ -538,23 +550,38 @@ public class JDialogSolicitacaoServico extends javax.swing.JDialog {
     }//GEN-LAST:event_jButtonGravarActionPerformed
 
     private void jButtonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCancelarActionPerformed
+        try {
+            TransactionManager.rollback();
+        } catch (Exception e) {
+        }
+        habilitaCampos(true);
+        clearCampos();
     }//GEN-LAST:event_jButtonCancelarActionPerformed
 
     private void jButtonGerarOrdemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonGerarOrdemActionPerformed
-//        JDialogCadOrdemServico gerarOrdem = new JDialogCadOrdemServico(this, true);
-        //     gerarOrdem.setLocationRelativeTo(gerarOrdem);
-        //     gerarOrdem.setVisible(true);
+        int linha = jTableConsultaSS.getSelectedRow();
+
+        if (linha < 0) {
+            JOptionPane.showMessageDialog(null, "Selecione um registro.", "Atenção", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+
+        solicitacaoServico = solicitacaoServicos.get(linha);
+
+        JDialogCadOrdemServico gerarOrdem = new JDialogCadOrdemServico(this, true);
+        gerarOrdem.setLocationRelativeTo(gerarOrdem);
+        gerarOrdem.preencherCadOrdem(solicitacaoServico);
+        gerarOrdem.setVisible(true);
+
+
     }//GEN-LAST:event_jButtonGerarOrdemActionPerformed
 
     private void jButtonExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonExcluirActionPerformed
     }//GEN-LAST:event_jButtonExcluirActionPerformed
 
     private void jButtonIncluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonIncluirActionPerformed
-        //      habilitaCampos(false);
-        HoraData();
-//        preencherFuncionario();
-        preencherTipoServico();
-//        preencherClientes();        // TODO add your handling code here:
+        clearCampos();
+        habilitaCampos(true);
     }//GEN-LAST:event_jButtonIncluirActionPerformed
 
     private void jComboBoxVeiculoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxVeiculoActionPerformed
@@ -701,6 +728,10 @@ public class JDialogSolicitacaoServico extends javax.swing.JDialog {
         cadCliente.setLocationRelativeTo(cadCliente);
         cadCliente.setVisible(true);
     }//GEN-LAST:event_jButtonAddClienteActionPerformed
+
+    private void jButtonAddFuncionarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAddFuncionarioActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonAddFuncionarioActionPerformed
 
     /**
      * @param args the command line arguments
@@ -917,5 +948,38 @@ public class JDialogSolicitacaoServico extends javax.swing.JDialog {
         jComboBoxVeiculo.setEnabled(comando);
         jTextAreaObs.setEnabled(comando);
 
+    }
+
+    private boolean validaCampos() {
+        StringBuilder msgs = new StringBuilder();
+
+        if (jTextFieldiDfuncionario.getText().isEmpty() && jTextFieldNomeFuncionario.getText().isEmpty()) {
+            msgs.append("Funcionário é Obrigatório!\n");
+            jTextFieldiDfuncionario.grabFocus();
+            jTextFieldiDfuncionario.setBorder(new LineBorder(Color.red));
+            jTextFieldNomeFuncionario.setBorder(new LineBorder(Color.red));
+        }
+        if (jTextFieldIdCliente.getText().isEmpty() && jTextFieldNomeCliente.getText().isEmpty()) {
+            msgs.append("Cliente é Obrigatório!\n");
+            jTextFieldIdCliente.grabFocus();
+            jTextFieldIdCliente.setBorder(new LineBorder(Color.red));
+            jTextFieldNomeCliente.setBorder(new LineBorder(Color.red));
+        }
+
+        if (msgs.length() > 0) {
+            JOptionPane.showMessageDialog(null, msgs.toString(), "Atençao!", JOptionPane.WARNING_MESSAGE);
+            return false;
+        }
+        return true;
+    }
+
+    private void clearCampos() {
+        jFormattedTextFieldData.setText("");
+        jTextFieldHora.setText("");
+        jTextFieldiDfuncionario.setText("");
+        jTextFieldNomeFuncionario.setText("");
+        jTextFieldIdCliente.setText("");
+        jTextFieldNomeCliente.setText("");
+        jTextAreaObs.setText("");
     }
 }
