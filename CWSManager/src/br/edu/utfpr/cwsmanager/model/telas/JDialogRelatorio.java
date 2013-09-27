@@ -5,8 +5,10 @@
 package br.edu.utfpr.cwsmanager.model.telas;
 
 import br.edu.utfpr.cwsmanager.model.daos.HibernateConfiguration;
+import br.edu.utfpr.cwsmanager.model.relatorio.JDialogRelatorioExibir;
 import java.net.URL;
 import java.util.HashMap;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import net.sf.jasperreports.engine.JRException;
 import net.sf.jasperreports.engine.JasperFillManager;
@@ -41,10 +43,11 @@ public class JDialogRelatorio extends javax.swing.JDialog {
         buttonGroup1 = new javax.swing.ButtonGroup();
         jLabel1 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
-        jRadioRelSS = new javax.swing.JRadioButton();
+        jRadioRelSSAberto = new javax.swing.JRadioButton();
         jRadioRelOS = new javax.swing.JRadioButton();
         jRadioRelFuncionarios = new javax.swing.JRadioButton();
         jRadioButtonCliente = new javax.swing.JRadioButton();
+        jRadioRelSSEncerradas = new javax.swing.JRadioButton();
         jButtonGerarRel = new javax.swing.JButton();
         jButtonSairRel = new javax.swing.JButton();
 
@@ -56,8 +59,8 @@ public class JDialogRelatorio extends javax.swing.JDialog {
 
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
 
-        buttonGroup1.add(jRadioRelSS);
-        jRadioRelSS.setText("Relatório de Solicitaçao de Serviços em aberto");
+        buttonGroup1.add(jRadioRelSSAberto);
+        jRadioRelSSAberto.setText("Relatório de Solicitaçao de Serviços em aberto");
 
         buttonGroup1.add(jRadioRelOS);
         jRadioRelOS.setText("Relatório de Ordem de serviço encerradas");
@@ -73,6 +76,9 @@ public class JDialogRelatorio extends javax.swing.JDialog {
         buttonGroup1.add(jRadioButtonCliente);
         jRadioButtonCliente.setText("Relatório de Clientes");
 
+        buttonGroup1.add(jRadioRelSSEncerradas);
+        jRadioRelSSEncerradas.setText("Relatório de Solicitaçao de Serviços encerradas");
+
         org.jdesktop.layout.GroupLayout jPanel2Layout = new org.jdesktop.layout.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -81,22 +87,25 @@ public class JDialogRelatorio extends javax.swing.JDialog {
                 .addContainerGap()
                 .add(jPanel2Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
                     .add(jRadioRelOS)
-                    .add(jRadioRelSS)
+                    .add(jRadioRelSSAberto)
                     .add(jRadioRelFuncionarios)
+                    .add(jRadioRelSSEncerradas)
                     .add(jRadioButtonCliente))
-                .addContainerGap(156, Short.MAX_VALUE))
+                .addContainerGap(324, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
             .add(jPanel2Layout.createSequentialGroup()
                 .add(jRadioRelOS)
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                .add(jRadioRelSS)
+                .add(jRadioRelSSAberto)
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                .add(jRadioRelSSEncerradas)
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 7, Short.MAX_VALUE)
                 .add(jRadioButtonCliente)
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                 .add(jRadioRelFuncionarios)
-                .addContainerGap(org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         jButtonGerarRel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icones/gerarReport.png"))); // NOI18N
@@ -125,30 +134,27 @@ public class JDialogRelatorio extends javax.swing.JDialog {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(layout.createSequentialGroup()
-                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                    .add(layout.createSequentialGroup()
-                        .add(37, 37, 37)
-                        .add(jLabel1))
-                    .add(layout.createSequentialGroup()
-                        .add(55, 55, 55)
-                        .add(jPanel2, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .add(org.jdesktop.layout.GroupLayout.TRAILING, layout.createSequentialGroup()
                 .add(0, 0, Short.MAX_VALUE)
                 .add(jButtonGerarRel, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 110, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                 .add(jButtonSairRel, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 120, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                 .add(4, 4, 4))
+            .add(layout.createSequentialGroup()
+                .add(37, 37, 37)
+                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                    .add(jPanel2, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                    .add(jLabel1))
+                .addContainerGap(29, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
             .add(layout.createSequentialGroup()
                 .add(29, 29, 29)
                 .add(jLabel1)
-                .add(35, 35, 35)
+                .add(18, 18, 18)
                 .add(jPanel2, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 39, Short.MAX_VALUE)
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 26, Short.MAX_VALUE)
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
                     .add(jButtonGerarRel, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                     .add(jButtonSairRel, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
@@ -163,13 +169,28 @@ public class JDialogRelatorio extends javax.swing.JDialog {
     }//GEN-LAST:event_jRadioRelFuncionariosActionPerformed
 
     private void jButtonGerarRelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonGerarRelActionPerformed
-       if (jRadioButtonCliente.isSelected()) {
+        if (jRadioButtonCliente.isSelected()) {
             try {
                 relatorioPronto("/br/edu/utfpr/cwsmanager/model/relatorio/relatorioCliente.jasper");
             } catch (JRException ex) {
                 JOptionPane.showMessageDialog(this, "Relatório de clientes não foi encontrado!", "Mensagem", JOptionPane.INFORMATION_MESSAGE);
             }
-        } 
+        }
+        if (jRadioRelSSAberto.isSelected()) {
+            try {
+                relatorioPronto("/br/edu/utfpr/cwsmanager/model/relatorio/relatorioSSAberto.jasper");
+            } catch (JRException ex) {
+                JOptionPane.showMessageDialog(this, "Relatório de Solicitação em Aberto não foi encontrado!", "Mensagem", JOptionPane.INFORMATION_MESSAGE);
+            }
+        }
+        
+        if (jRadioRelSSEncerradas.isSelected()) {
+            try {
+                relatorioPronto("/br/edu/utfpr/cwsmanager/model/relatorio/relatorioSSEncerrado.jasper");
+            } catch (JRException ex) {
+                JOptionPane.showMessageDialog(this, "Relatório de Solicitação encerradas não foi encontrado!", "Mensagem", JOptionPane.INFORMATION_MESSAGE);
+            }
+        }
     }//GEN-LAST:event_jButtonGerarRelActionPerformed
 
     private void jButtonSairRelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSairRelActionPerformed
@@ -227,20 +248,27 @@ public class JDialogRelatorio extends javax.swing.JDialog {
     private javax.swing.JRadioButton jRadioButtonCliente;
     private javax.swing.JRadioButton jRadioRelFuncionarios;
     private javax.swing.JRadioButton jRadioRelOS;
-    private javax.swing.JRadioButton jRadioRelSS;
+    private javax.swing.JRadioButton jRadioRelSSAberto;
+    private javax.swing.JRadioButton jRadioRelSSEncerradas;
     // End of variables declaration//GEN-END:variables
-   
+
     private void relatorioPronto(String nome) throws JRException {
         try {
             URL arquivo = getClass().getResource(nome);
             JasperReport jasperReport = (JasperReport) JRLoader.loadObject(arquivo);
             JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, new HashMap(), HibernateConfiguration.getConnection());
             JasperViewer jrviewer = new JasperViewer(jasperPrint, false);
-            jrviewer.setVisible(true);
-            dispose();
+            JDialogRelatorioExibir dialog = new JDialogRelatorioExibir((JFrame) getParent(), true);
+            dialog.getContentPane().add(jrviewer.getContentPane());
+            dialog.setSize(getParent().getSize());
+            dialog.setVisible(true);
 
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "ERRO: " + e);
         }
+
+
+
+
     }
 }

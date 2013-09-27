@@ -69,7 +69,7 @@ FROM
 			</staticText>
 			<image>
 				<reportElement uuid="a27061ae-704c-47a6-9814-acacf0ba8b2c" x="0" y="-18" width="288" height="88"/>
-				<imageExpression><![CDATA["/Users/eduardogreco/Documents/UTFPR/ProjetoIntegradorLavaRapido/CWSManager/src/br/edu/utfpr/cwsmanager/model/relatorio/carws.png"]]></imageExpression>
+                        <imageExpression><![CDATA["/br/edu/utfpr/cwsmanager/model/relatorio/carws.png"]]></imageExpression>
 			</image>
 		</band>
 	</title>
