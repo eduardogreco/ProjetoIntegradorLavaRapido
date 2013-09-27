@@ -295,10 +295,11 @@ public class JDialogCidade extends javax.swing.JDialog {
             } catch (Exception ex) {
                 Logger.getLogger(JDialogCidade.class.getName()).log(Level.SEVERE, null, ex);
             }
+            clearCampos();
             JOptionPane.showMessageDialog(null, "O registro foi excluido com sucesso!", "Mensagem", JOptionPane.INFORMATION_MESSAGE);
         }
 
-        clearCampos();
+
     }//GEN-LAST:event_jButtonExcluirCidadeActionPerformed
 
     private void jButtonIncluirCidadeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonIncluirCidadeActionPerformed
@@ -317,18 +318,22 @@ public class JDialogCidade extends javax.swing.JDialog {
         }
         try {
             gravar();
+            JOptionPane.showMessageDialog(null, "Registro gravado com sucesso.", "Gravar", JOptionPane.INFORMATION_MESSAGE);
         } catch (Exception ex) {
             Logger.getLogger(JDialogCidade.class.getName()).log(Level.SEVERE, null, ex);
         }
-        JOptionPane.showMessageDialog(null, "Registro gravado com sucesso.", "Gravar", JOptionPane.INFORMATION_MESSAGE);
-       clearCampos();
-        habilitaCampos(true);
+
+        clearCampos();
+        habilitaCampos(false);
         jButtonPesquisarCidade.setEnabled(true);
     }//GEN-LAST:event_jButtonGravarCidadeActionPerformed
 
     private void jButtonCancelarCidadeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCancelarCidadeActionPerformed
-        habilitaCampos(false);
-        clearCampos();        // TODO add your handling code here:
+        try {
+            TransactionManager.rollback();
+        } catch (Exception e) {
+        }
+        habilitaCampos(true);
     }//GEN-LAST:event_jButtonCancelarCidadeActionPerformed
 
     private void jTextFieldIdCidadeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldIdCidadeActionPerformed
@@ -428,7 +433,7 @@ public class JDialogCidade extends javax.swing.JDialog {
         jButtonExcluirCidade.setEnabled(comando);
         jButtonIncluirCidade.setEnabled(comando);
 
-        jButtonCancelarCidade.setEnabled(comando);
+        jButtonCancelarCidade.setEnabled(!comando);
         jButtonGravarCidade.setEnabled(!comando);
 
         jTextFieldIdCidade.setEnabled(comando);
@@ -437,15 +442,15 @@ public class JDialogCidade extends javax.swing.JDialog {
         jComboBoxEstadoCidade.setEnabled(!comando);
     }
 
-   private boolean validaCampos() {
+    private boolean validaCampos() {
         StringBuilder msgs = new StringBuilder();
 
         if (jTextFieldNomeCidade.getText().isEmpty()) {
-            msgs.append("Nome da Cidade é Obrigatório!\n");
+            msgs.append("Nome da Cidade é obrigatório!\n");
             jTextFieldNomeCidade.grabFocus();
             jTextFieldNomeCidade.setBorder(new LineBorder(Color.red));
         }
-      
+
         if (msgs.length() > 0) {
             JOptionPane.showMessageDialog(null, msgs.toString(), "Atençao!", JOptionPane.WARNING_MESSAGE);
             return false;

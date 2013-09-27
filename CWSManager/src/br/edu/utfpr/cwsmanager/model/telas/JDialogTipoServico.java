@@ -301,10 +301,11 @@ public class JDialogTipoServico extends javax.swing.JDialog {
         }
         try {
             gravar();
+            JOptionPane.showMessageDialog(null, "Registro gravado com sucesso.", "Gravar", JOptionPane.INFORMATION_MESSAGE);
         } catch (Exception ex) {
             Logger.getLogger(JDialogCidade.class.getName()).log(Level.SEVERE, null, ex);
         }
-        JOptionPane.showMessageDialog(null, "Registro gravado com sucesso.", "Gravar", JOptionPane.INFORMATION_MESSAGE);
+               
         clearCampos();
         habilitaCampos(false);
 
@@ -420,12 +421,12 @@ public class JDialogTipoServico extends javax.swing.JDialog {
         StringBuilder msgs = new StringBuilder();
 
         if (jTextFieldNomeTipoServico.getText().isEmpty()) {
-            msgs.append("Nome do serviço é Obrigatório!\n");
+            msgs.append("Nome do serviço é obrigatório!\n");
             jTextFieldNomeTipoServico.grabFocus();
             jTextFieldNomeTipoServico.setBorder(new LineBorder(Color.red));
         }
         if (jTextFieldValorTipoServico.getText().isEmpty()) {
-            msgs.append("Valor do serviço é Obrigatório!\n");
+            msgs.append("Valor do serviço é obrigatório!\n");
             jTextFieldValorTipoServico.grabFocus();
             jTextFieldValorTipoServico.setBorder(new LineBorder(Color.red));
         }

@@ -260,17 +260,6 @@
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItem12ActionPerformed"/>
               </Events>
             </MenuItem>
-            <MenuItem class="javax.swing.JMenuItem" name="jMenuItem13">
-              <Properties>
-                <Property name="accelerator" type="javax.swing.KeyStroke" editor="org.netbeans.modules.form.editors.KeyStrokeEditor">
-                  <KeyStroke key="Ctrl+H"/>
-                </Property>
-                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/icones/consultaHQL.png"/>
-                </Property>
-                <Property name="text" type="java.lang.String" value="Consulta HQL"/>
-              </Properties>
-            </MenuItem>
           </SubComponents>
         </Menu>
         <Menu class="javax.swing.JMenu" name="jMenu5">
@@ -679,8 +668,6 @@
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="jLabelStatus" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace max="-2" attributes="0"/>
-                  <Component id="jTextFieldNomeUser" min="-2" pref="116" max="-2" attributes="0"/>
                   <EmptySpace max="32767" attributes="0"/>
                   <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
@@ -694,7 +681,6 @@
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="jComboBoxLookAndFeel" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="jLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jTextFieldNomeUser" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="jLabelStatus" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
@@ -705,7 +691,7 @@
       <SubComponents>
         <Component class="javax.swing.JLabel" name="jLabelStatus">
           <Properties>
-            <Property name="text" type="java.lang.String" value="CWS - MANAGER:"/>
+            <Property name="text" type="java.lang.String" value="CWS - MANAGER"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JComboBox" name="jComboBoxLookAndFeel">
@@ -722,8 +708,6 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="Tema:"/>
           </Properties>
-        </Component>
-        <Component class="javax.swing.JTextField" name="jTextFieldNomeUser">
         </Component>
       </SubComponents>
     </Container>

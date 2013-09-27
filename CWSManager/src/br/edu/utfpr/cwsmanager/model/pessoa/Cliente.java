@@ -6,7 +6,6 @@ package br.edu.utfpr.cwsmanager.model.pessoa;
 
 import br.edu.utfpr.cwsmanager.model.endereco.Endereco;
 import br.edu.utfpr.cwsmanager.model.veiculo.Veiculo;
-import com.sun.istack.internal.NotNull;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Calendar;

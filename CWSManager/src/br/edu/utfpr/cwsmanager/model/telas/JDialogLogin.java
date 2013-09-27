@@ -53,6 +53,8 @@ public class JDialogLogin extends javax.swing.JDialog {
 
         jLabelUsuario.setText("Usuário:");
 
+        jTextFielduser.setText("admin");
+
         jLabelIconLogin.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icones/usuario.png"))); // NOI18N
 
         jLabelSenha.setText("Senha:");
@@ -74,6 +76,8 @@ public class JDialogLogin extends javax.swing.JDialog {
                 jButton2ActionPerformed(evt);
             }
         });
+
+        jPasswordFieldPw.setText("admin");
 
         org.jdesktop.layout.GroupLayout layout = new org.jdesktop.layout.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -214,8 +218,7 @@ public class JDialogLogin extends javax.swing.JDialog {
                 JOptionPane.showMessageDialog(null, "Usuário ou senha incorreto.", "Erro", JOptionPane.INFORMATION_MESSAGE);
                 clearCampos();
             } else {
-              principal.UserLogin(login);
-            //    dispose();
+                dispose();
                 
                 
             }

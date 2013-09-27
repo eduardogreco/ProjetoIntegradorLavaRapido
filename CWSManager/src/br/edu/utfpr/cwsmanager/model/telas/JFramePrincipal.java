@@ -80,7 +80,6 @@ public class JFramePrincipal extends javax.swing.JFrame {
         jLabelStatus = new javax.swing.JLabel();
         jComboBoxLookAndFeel = new javax.swing.JComboBox();
         jLabel1 = new javax.swing.JLabel();
-        jTextFieldNomeUser = new javax.swing.JTextField();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenuCadastros = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
@@ -101,7 +100,6 @@ public class JFramePrincipal extends javax.swing.JFrame {
         jMenuItem14 = new javax.swing.JMenuItem();
         jMenu3 = new javax.swing.JMenu();
         jMenuItem12 = new javax.swing.JMenuItem();
-        jMenuItem13 = new javax.swing.JMenuItem();
         jMenu5 = new javax.swing.JMenu();
         jMenuItem11 = new javax.swing.JMenuItem();
         jMenu6 = new javax.swing.JMenu();
@@ -448,7 +446,7 @@ public class JFramePrincipal extends javax.swing.JFrame {
 
         jPanel1.setBorder(javax.swing.BorderFactory.createEtchedBorder(null, new java.awt.Color(102, 102, 102)));
 
-        jLabelStatus.setText("CWS - MANAGER:");
+        jLabelStatus.setText("CWS - MANAGER");
 
         jComboBoxLookAndFeel.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -465,8 +463,6 @@ public class JFramePrincipal extends javax.swing.JFrame {
             .add(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .add(jLabelStatus)
-                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                .add(jTextFieldNomeUser, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 116, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .add(jLabel1)
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
@@ -478,7 +474,6 @@ public class JFramePrincipal extends javax.swing.JFrame {
                 .add(jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
                     .add(jComboBoxLookAndFeel, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                     .add(jLabel1)
-                    .add(jTextFieldNomeUser, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                     .add(jLabelStatus))
                 .add(0, 0, Short.MAX_VALUE))
         );
@@ -634,11 +629,6 @@ public class JFramePrincipal extends javax.swing.JFrame {
             }
         });
         jMenu3.add(jMenuItem12);
-
-        jMenuItem13.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_H, java.awt.event.InputEvent.CTRL_MASK));
-        jMenuItem13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icones/consultaHQL.png"))); // NOI18N
-        jMenuItem13.setText("Consulta HQL");
-        jMenu3.add(jMenuItem13);
 
         jMenuBar1.add(jMenu3);
 
@@ -1175,7 +1165,6 @@ public class JFramePrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem10;
     private javax.swing.JMenuItem jMenuItem11;
     private javax.swing.JMenuItem jMenuItem12;
-    private javax.swing.JMenuItem jMenuItem13;
     private javax.swing.JMenuItem jMenuItem14;
     private javax.swing.JMenuItem jMenuItem15;
     private javax.swing.JMenuItem jMenuItem16;
@@ -1199,12 +1188,7 @@ public class JFramePrincipal extends javax.swing.JFrame {
     private javax.swing.JToolBar.Separator jSeparator3;
     private javax.swing.JToolBar.Separator jSeparator4;
     private javax.swing.JToolBar.Separator jSeparator5;
-    private javax.swing.JTextField jTextFieldNomeUser;
     private javax.swing.JToolBar jtAtalho;
     // End of variables declaration//GEN-END:variables
 
-    public void UserLogin(String nome){
-      jTextFieldNomeUser.setText(nome);
-   //   jTextFieldNomeUser.setEnabled(false);
-    }
 }

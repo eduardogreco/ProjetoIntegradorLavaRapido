@@ -52,7 +52,6 @@ public class HibernateConfiguration {
 
         return factory;
     }
-    //podemos setar o autocomit como true e nao precisa usar begin tansaction
 
     public static void createSchema() {
         getSessionFactory().close();
