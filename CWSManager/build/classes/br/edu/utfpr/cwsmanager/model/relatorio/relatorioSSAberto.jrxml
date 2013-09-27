@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report1" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="6d5dbe99-ca4a-4a11-a5e5-354202feeff1">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<style name="Title" fontName="Arial" fontSize="26" isBold="true" pdfFontName="Helvetica-Bold"/>
+	<style name="SubTitle" forecolor="#666666" fontName="Arial" fontSize="18"/>
+	<style name="Column header" forecolor="#666666" fontName="Arial" fontSize="12" isBold="true"/>
+	<style name="Detail" fontName="Arial" fontSize="12"/>
+	<queryString language="SQL">
+		<![CDATA[SELECT
+     SolicitacaoServico.`id` AS SolicitacaoServico_id,
+     SolicitacaoServico.`data` AS SolicitacaoServico_data,
+     SolicitacaoServico.`horario` AS SolicitacaoServico_horario,
+     SolicitacaoServico.`obs` AS SolicitacaoServico_obs,
+     SolicitacaoServico.`status` AS SolicitacaoServico_status,
+     SolicitacaoServico.`cliente_id` AS SolicitacaoServico_cliente_id,
+     SolicitacaoServico.`funcionario_id` AS SolicitacaoServico_funcionario_id,
+     SolicitacaoServico.`tipoServico_id` AS SolicitacaoServico_tipoServico_id,
+     SolicitacaoServico.`veiculo_id` AS SolicitacaoServico_veiculo_id
+FROM
+     `SolicitacaoServico` SolicitacaoServico
+WHERE
+     status = "Aberto"]]>
+	</queryString>
+	<field name="SolicitacaoServico_id" class="java.lang.Integer"/>
+	<field name="SolicitacaoServico_data" class="java.sql.Date"/>
+	<field name="SolicitacaoServico_horario" class="java.lang.String"/>
+	<field name="SolicitacaoServico_obs" class="java.lang.String"/>
+	<field name="SolicitacaoServico_status" class="java.lang.String"/>
+	<field name="SolicitacaoServico_cliente_id" class="java.lang.Integer"/>
+	<field name="SolicitacaoServico_funcionario_id" class="java.lang.Integer"/>
+	<field name="SolicitacaoServico_tipoServico_id" class="java.lang.Integer"/>
+	<field name="SolicitacaoServico_veiculo_id" class="java.lang.Integer"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="70" splitType="Stretch">
+			<image>
+				<reportElement uuid="bcdd62c7-cd36-4a1d-a3f9-61d7c0f147b3" x="2" y="-19" width="288" height="88"/>
+				<imageExpression><![CDATA["/br/edu/utfpr/cwsmanager/model/relatorio/carws.png"]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement uuid="5d468b75-51b9-43b9-8b29-d79b94f38551" style="Title" x="212" y="1" width="263" height="33"/>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[CWS - Manager]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="c64cddf0-3509-4292-90eb-72845d2cfcdb" style="SubTitle" x="169" y="38" width="323" height="22"/>
+				<textElement/>
+				<text><![CDATA[Relatório de Solicitações em Aberto]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="36" splitType="Stretch">
+			<line>
+				<reportElement uuid="f264ab63-013c-4f9b-96aa-48556a5ef596" positionType="FixRelativeToBottom" x="0" y="35" width="555" height="1"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+			<staticText>
+				<reportElement uuid="dc909dfd-0cff-4257-aea6-0dba27dd768e" style="Column header" x="0" y="19" width="61" height="15"/>
+				<textElement/>
+				<text><![CDATA[ID]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="67bce6c0-4792-416b-851a-b03393c28fd6" style="Column header" x="61" y="19" width="74" height="15"/>
+				<textElement/>
+				<text><![CDATA[Data]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="6fb27b0e-7f00-44af-a7de-a14fbed8e859" style="Column header" x="136" y="20" width="86" height="15"/>
+				<textElement/>
+				<text><![CDATA[Horario]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="465781e7-dd7f-4b12-9058-243d6412d9b3" style="Column header" x="222" y="19" width="61" height="15"/>
+				<textElement/>
+				<text><![CDATA[Status]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="34af49fb-a0f5-4296-a875-750a06fb7c94" style="Column header" x="283" y="19" width="61" height="15"/>
+				<textElement/>
+				<text><![CDATA[Cliente]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="f30c397a-6ac8-4875-997c-cb285b89be67" style="Column header" x="344" y="20" width="83" height="15"/>
+				<textElement/>
+				<text><![CDATA[Funcionário]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="e32217d5-96e5-4de6-a079-3e3dfe9af1b1" style="Column header" x="427" y="20" width="96" height="15"/>
+				<textElement/>
+				<text><![CDATA[Tipo de Serviço]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="0cae94f4-34b2-4acf-be56-2681459b76c4" style="Column header" x="523" y="21" width="61" height="15"/>
+				<textElement/>
+				<text><![CDATA[Veículo]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="16" splitType="Stretch">
+			<line>
+				<reportElement uuid="d909d087-3610-42cf-b598-38aa192a009c" positionType="FixRelativeToBottom" x="0" y="15" width="555" height="1"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+			<textField>
+				<reportElement uuid="5e30e049-d3cf-4884-ad92-e8284d43f0f8" style="Detail" x="0" y="0" width="61" height="15"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{SolicitacaoServico_id}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="58411dd9-0b30-421c-8ae2-025969229ade" style="Detail" x="61" y="0" width="61" height="15"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{SolicitacaoServico_data}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="232eb5a9-79cb-4068-bf74-f170131a70e5" style="Detail" x="136" y="0" width="86" height="15"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{SolicitacaoServico_horario}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="a03f2f12-9ab7-48db-a04c-732ef8334b53" style="Detail" x="222" y="0" width="61" height="15"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{SolicitacaoServico_status}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="2cf2aac1-7785-4ec6-a552-ef7535bb13bc" style="Detail" x="283" y="0" width="61" height="15"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{SolicitacaoServico_cliente_id}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="9a7790d5-1de3-4da8-b616-f3bf5fe35b82" style="Detail" x="344" y="0" width="83" height="15"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{SolicitacaoServico_funcionario_id}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="37fe4858-c590-4b1e-b61e-ebab0d187884" style="Detail" x="427" y="0" width="96" height="15"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{SolicitacaoServico_tipoServico_id}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="3908951c-1571-48cf-a182-3aa33c529c7f" style="Detail" x="523" y="1" width="38" height="15"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{SolicitacaoServico_veiculo_id}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch">
+			<line>
+				<reportElement uuid="a7dfab09-8232-4590-8148-b85a152e150d" positionType="FixRelativeToBottom" x="0" y="3" width="555" height="1"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+		</band>
+	</columnFooter>
+	<pageFooter>
+		<band height="20" splitType="Stretch">
+			<textField>
+				<reportElement uuid="3a1fb2ae-191f-47e1-99e3-420367133754" style="Column header" x="433" y="0" width="80" height="20"/>
+				<textElement textAlignment="Right">
+					<font size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement uuid="303ac8aa-c2fd-4f74-8520-e413dd3c340f" style="Column header" x="513" y="0" width="40" height="20"/>
+				<textElement>
+					<font size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement uuid="8aef9e8c-d953-4b8e-a044-62ca98c7df3e" style="Column header" x="0" y="0" width="197" height="20"/>
+				<textElement>
+					<font size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

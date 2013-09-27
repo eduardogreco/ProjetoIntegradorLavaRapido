@@ -65,8 +65,6 @@ public class JDialogSolicitacaoServico extends javax.swing.JDialog {
         tabelaConsulta.setNumRows(0);
 
         pesquisa();
-        //      clientes = new ArrayList<>();
-        //      funcionarios = new ArrayList<>();
 
     }
 
@@ -107,7 +105,6 @@ public class JDialogSolicitacaoServico extends javax.swing.JDialog {
         jButtonSairCad = new javax.swing.JButton();
         jButtonCancelar = new javax.swing.JButton();
         jButtonGravar = new javax.swing.JButton();
-        jButtonExcluir = new javax.swing.JButton();
         jButtonIncluir = new javax.swing.JButton();
         jButtonAddFuncionario = new javax.swing.JButton();
         jButtonAddCliente = new javax.swing.JButton();
@@ -120,6 +117,7 @@ public class JDialogSolicitacaoServico extends javax.swing.JDialog {
         jButtonPesquisarCliente1 = new javax.swing.JButton();
         jButtonGerarOrdem = new javax.swing.JButton();
         jButtonSairConsul = new javax.swing.JButton();
+        jButtonExcluirSSAberto = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Solicitação de Serviço");
@@ -235,14 +233,6 @@ public class JDialogSolicitacaoServico extends javax.swing.JDialog {
             }
         });
 
-        jButtonExcluir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icones/excluir.png"))); // NOI18N
-        jButtonExcluir.setText("Exluir");
-        jButtonExcluir.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonExcluirActionPerformed(evt);
-            }
-        });
-
         jButtonIncluir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icones/incluir.png"))); // NOI18N
         jButtonIncluir.setText("Incluir");
         jButtonIncluir.addActionListener(new java.awt.event.ActionListener() {
@@ -281,11 +271,8 @@ public class JDialogSolicitacaoServico extends javax.swing.JDialog {
                             .add(jLabelEmailCliente)
                             .add(jLabelTelPessoalCliente)
                             .add(jLabelTelComercialCliente)))
-                    .add(jPanelCadastroLayout.createSequentialGroup()
-                        .add(jButtonIncluir, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 95, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                        .add(jButtonExcluir, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 95, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)))
-                .add(6, 6, 6)
+                    .add(jButtonIncluir, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 95, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                .add(20, 20, 20)
                 .add(jPanelCadastroLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
                     .add(jPanelCadastroLayout.createSequentialGroup()
                         .add(0, 0, Short.MAX_VALUE)
@@ -369,7 +356,6 @@ public class JDialogSolicitacaoServico extends javax.swing.JDialog {
                             .add(jButtonSairCad, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 34, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                             .add(jButtonCancelar, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 34, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                             .add(jButtonIncluir, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 34, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                            .add(jButtonExcluir, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 34, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                             .add(jButtonGravar, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 34, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
                         .addContainerGap())
                     .add(jPanelCadastroLayout.createSequentialGroup()
@@ -404,7 +390,7 @@ public class JDialogSolicitacaoServico extends javax.swing.JDialog {
             }
         });
 
-        jComboBoxTipoConsultaSS.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Cód. Solicitação", "Funcionário Solicitante", "Cliente" }));
+        jComboBoxTipoConsultaSS.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Cód. Solicitação", "Funcionário Solicitante", "Cliente", "Status" }));
 
         jTableConsultaSS.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -420,6 +406,17 @@ public class JDialogSolicitacaoServico extends javax.swing.JDialog {
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
+            }
+        });
+        jTableConsultaSS.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        jTableConsultaSS.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                jTableConsultaSSMousePressed(evt);
+            }
+        });
+        jTableConsultaSS.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jTableConsultaSSKeyPressed(evt);
             }
         });
         jScrollPane1.setViewportView(jTableConsultaSS);
@@ -454,29 +451,38 @@ public class JDialogSolicitacaoServico extends javax.swing.JDialog {
             }
         });
 
+        jButtonExcluirSSAberto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icones/excluir.png"))); // NOI18N
+        jButtonExcluirSSAberto.setText("Exluir");
+        jButtonExcluirSSAberto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonExcluirSSAbertoActionPerformed(evt);
+            }
+        });
+
         org.jdesktop.layout.GroupLayout jPanelConsultaLayout = new org.jdesktop.layout.GroupLayout(jPanelConsulta);
         jPanelConsulta.setLayout(jPanelConsultaLayout);
         jPanelConsultaLayout.setHorizontalGroup(
             jPanelConsultaLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
             .add(jPanelConsultaLayout.createSequentialGroup()
-                .add(jPanelConsultaLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING)
+                .add(25, 25, 25)
+                .add(jPanelConsultaLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
                     .add(jPanelConsultaLayout.createSequentialGroup()
-                        .addContainerGap(org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .add(9, 9, 9)
+                        .add(jButtonExcluirSSAberto, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 95, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                        .add(483, 483, 483)
                         .add(jButtonGerarOrdem, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 135, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                         .add(jButtonSairConsul, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 104, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                    .add(jPanelConsultaLayout.createSequentialGroup()
-                        .add(25, 25, 25)
-                        .add(jPanelConsultaLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                            .add(jPanelConsultaLayout.createSequentialGroup()
-                                .add(jLabel12)
-                                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                                .add(jComboBoxTipoConsultaSS, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
-                                .add(jFormattedTextFieldPesquisa)
-                                .add(18, 18, 18)
-                                .add(jButtonPesquisarCliente1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 40, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                            .add(org.jdesktop.layout.GroupLayout.TRAILING, jScrollPane1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 832, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))))
+                    .add(jPanelConsultaLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                        .add(jPanelConsultaLayout.createSequentialGroup()
+                            .add(jLabel12)
+                            .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                            .add(jComboBoxTipoConsultaSS, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
+                            .add(jFormattedTextFieldPesquisa)
+                            .add(18, 18, 18)
+                            .add(jButtonPesquisarCliente1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 40, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                        .add(org.jdesktop.layout.GroupLayout.TRAILING, jScrollPane1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 832, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(29, Short.MAX_VALUE))
         );
         jPanelConsultaLayout.setVerticalGroup(
@@ -490,11 +496,12 @@ public class JDialogSolicitacaoServico extends javax.swing.JDialog {
                         .add(jFormattedTextFieldPesquisa, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
                     .add(jButtonPesquisarCliente1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 30, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                .add(jScrollPane1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 402, Short.MAX_VALUE)
+                .add(jScrollPane1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 400, Short.MAX_VALUE)
                 .add(18, 18, 18)
                 .add(jPanelConsultaLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
                     .add(jButtonGerarOrdem, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 34, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                    .add(jButtonSairConsul, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 34, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                    .add(jButtonSairConsul, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 34, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                    .add(jButtonExcluirSSAberto, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 36, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
 
@@ -576,12 +583,17 @@ public class JDialogSolicitacaoServico extends javax.swing.JDialog {
 
     }//GEN-LAST:event_jButtonGerarOrdemActionPerformed
 
-    private void jButtonExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonExcluirActionPerformed
-    }//GEN-LAST:event_jButtonExcluirActionPerformed
-
     private void jButtonIncluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonIncluirActionPerformed
         clearCampos();
         habilitaCampos(true);
+        HoraData();
+        preencherTipoServico();
+        jComboBoxVeiculo.removeAllItems();
+
+        tabelaConsulta = (DefaultTableModel) jTableConsultaSS.getModel();
+        tabelaConsulta.setNumRows(0);
+
+        pesquisa();
     }//GEN-LAST:event_jButtonIncluirActionPerformed
 
     private void jComboBoxVeiculoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxVeiculoActionPerformed
@@ -733,6 +745,64 @@ public class JDialogSolicitacaoServico extends javax.swing.JDialog {
         // TODO add your handling code here:
     }//GEN-LAST:event_jButtonAddFuncionarioActionPerformed
 
+    private void jTableConsultaSSMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableConsultaSSMousePressed
+        // TODO add your handling code here:
+        int linha = jTableConsultaSS.getSelectedRow();
+        solicitacaoServico = solicitacaoServicos.get(linha);
+        if (solicitacaoServico.getStatus().equals("Em Andamento") || solicitacaoServico.getStatus().equals("Encerrado")) {
+            jButtonGerarOrdem.setEnabled(false);
+            jButtonExcluirSSAberto.setEnabled(false);
+        } else {
+            jButtonGerarOrdem.setEnabled(true);
+            jButtonExcluirSSAberto.setEnabled(true);
+        }
+
+    }//GEN-LAST:event_jTableConsultaSSMousePressed
+
+    private void jButtonExcluirSSAbertoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonExcluirSSAbertoActionPerformed
+        String[] opcoes = {"Sim", "Não"};
+        int opcao = JOptionPane.showOptionDialog(null, "Tem certeza que deseja excluir?", "Confirmação",
+                JOptionPane.YES_OPTION, JOptionPane.QUESTION_MESSAGE, null, opcoes, opcoes[1]);
+
+        if (JOptionPane.OK_OPTION == opcao) {
+            int linha = jTableConsultaSS.getSelectedRow();
+
+            if (linha < 0) {
+                return;
+            }
+
+            SolicitacaoServico ss = new SolicitacaoServico();
+
+            ss = solicitacaoServicos.get(linha);
+
+            if (ss.getId() != 0) {
+                try {
+                    TransactionManager.beginTransaction();
+                    new DaoGenerics<SolicitacaoServico>(SolicitacaoServico.class).delete(ss);
+                    TransactionManager.commit();
+                } catch (Exception ex) {
+                    Logger.getLogger(JDialogCliente.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+
+            solicitacaoServicos.remove(linha);
+        }
+        preencherjTable();
+
+    }//GEN-LAST:event_jButtonExcluirSSAbertoActionPerformed
+
+    private void jTableConsultaSSKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTableConsultaSSKeyPressed
+        int linha = jTableConsultaSS.getSelectedRow();
+        solicitacaoServico = solicitacaoServicos.get(linha);
+        if (solicitacaoServico.getStatus().equals("Em Andamento") || solicitacaoServico.getStatus().equals("Encerrado")) {
+            jButtonGerarOrdem.setEnabled(false);
+            jButtonExcluirSSAberto.setEnabled(false);
+        } else {
+            jButtonGerarOrdem.setEnabled(true);
+            jButtonExcluirSSAberto.setEnabled(true);
+        }
+    }//GEN-LAST:event_jTableConsultaSSKeyPressed
+
     /**
      * @param args the command line arguments
      */
@@ -778,7 +848,7 @@ public class JDialogSolicitacaoServico extends javax.swing.JDialog {
     private javax.swing.JButton jButtonAddCliente;
     private javax.swing.JButton jButtonAddFuncionario;
     private javax.swing.JButton jButtonCancelar;
-    private javax.swing.JButton jButtonExcluir;
+    private javax.swing.JButton jButtonExcluirSSAberto;
     private javax.swing.JButton jButtonGerarOrdem;
     private javax.swing.JButton jButtonGravar;
     private javax.swing.JButton jButtonIncluir;
@@ -899,6 +969,14 @@ public class JDialogSolicitacaoServico extends javax.swing.JDialog {
                     Logger.getLogger(JDialogConsCliente.class.getName()).log(Level.SEVERE, null, ex);
                 }
                 break;
+                
+                case 3:
+                try {
+                    solicitacaoServicos = new DaoGenerics<SolicitacaoServico>(SolicitacaoServico.class).execute("select s from SolicitacaoServico s where status = '" + jFormattedTextFieldPesquisa.getText() + "'");
+                } catch (Exception ex) {
+                    Logger.getLogger(JDialogConsCliente.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                break;
         }
         preencherjTable();
     }
@@ -926,7 +1004,6 @@ public class JDialogSolicitacaoServico extends javax.swing.JDialog {
     }
 
     private void habilitaCampos(boolean comando) {
-        jButtonExcluir.setEnabled(!comando);
         jButtonIncluir.setEnabled(!comando);
 
         jButtonCancelar.setEnabled(comando);
@@ -941,9 +1018,11 @@ public class JDialogSolicitacaoServico extends javax.swing.JDialog {
         jTextFieldiDfuncionario.setEnabled(comando);
         jTextFieldNomeFuncionario.setEnabled(comando);
         jButtonPesquisarFuncionario.setEnabled(comando);
+        jButtonAddFuncionario.setEnabled(comando);
         jTextFieldIdCliente.setEnabled(comando);
         jTextFieldNomeCliente.setEnabled(comando);
         jButtonPesquisaClient.setEnabled(comando);
+        jButtonAddCliente.setEnabled(comando);
         jComboBoxTipoServico.setEnabled(comando);
         jComboBoxVeiculo.setEnabled(comando);
         jTextAreaObs.setEnabled(comando);
