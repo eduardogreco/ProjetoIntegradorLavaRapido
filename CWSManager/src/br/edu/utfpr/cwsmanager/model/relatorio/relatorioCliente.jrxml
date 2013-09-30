@@ -69,7 +69,10 @@ FROM
 			</staticText>
 			<image>
 				<reportElement uuid="a27061ae-704c-47a6-9814-acacf0ba8b2c" x="0" y="-18" width="288" height="88"/>
-                        <imageExpression><![CDATA["/br/edu/utfpr/cwsmanager/model/relatorio/carws.png"]]></imageExpression>
+			</image>
+			<image>
+				<reportElement uuid="2ed3fa53-5f35-4efa-b8eb-a4f2cb0876ae" x="1" y="-18" width="268" height="88"/>
+				<imageExpression><![CDATA["/Users/eduardogreco/Documents/UTFPR/CWS-Manager/ProjetoIntegradorLavaRapido/CWSManager/src/br/edu/utfpr/cwsmanager/model/relatorio/carws.png"]]></imageExpression>
 			</image>
 		</band>
 	</title>

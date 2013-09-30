@@ -104,9 +104,9 @@
                   <Component id="jRadioRelSSAberto" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="jRadioRelSSEncerradas" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace pref="7" max="32767" attributes="0"/>
-                  <Component id="jRadioButtonCliente" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
+                  <Component id="jRadioButtonCliente" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace pref="7" max="32767" attributes="0"/>
                   <Component id="jRadioRelFuncionarios" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
@@ -127,7 +127,7 @@
             <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
               <ComponentRef name="buttonGroup1"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Relat&#xf3;rio de Ordem de servi&#xe7;o encerradas"/>
+            <Property name="text" type="java.lang.String" value="Relat&#xf3;rio de Ordem de servi&#xe7;o concluidas"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JRadioButton" name="jRadioRelFuncionarios">
