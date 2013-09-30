@@ -4,17 +4,17 @@
  */
 package br.edu.utfpr.cwsmanager.model.telas;
 
-
-
 import br.edu.utfpr.cwsmanager.model.daos.DaoGenerics;
 import br.edu.utfpr.cwsmanager.model.daos.TransactionManager;
 import br.edu.utfpr.cwsmanager.model.endereco.Cidade;
 import br.edu.utfpr.cwsmanager.model.pessoa.Funcionario;
 import br.edu.utfpr.cwsmanager.model.util.UtilDatas;
 import br.edu.utfpr.cwsmanager.model.util.Validacao;
+import java.awt.Color;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import javax.swing.border.LineBorder;
 
 /**
  *
@@ -71,6 +71,7 @@ public class JDialogFuncionario extends javax.swing.JDialog {
         jFormattedTextFieldDataNascFuncionario = new javax.swing.JFormattedTextField();
         jLabelDataNascCliente = new javax.swing.JLabel();
         jFormattedTextFieldCpfFuncionario = new javax.swing.JFormattedTextField();
+        jLabel1 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jLabelNomeEndereco = new javax.swing.JLabel();
         jTextFieldNomeEnderecoFuncionario = new javax.swing.JTextField();
@@ -89,13 +90,13 @@ public class JDialogFuncionario extends javax.swing.JDialog {
         jTextFieldNomeCidade = new javax.swing.JTextField();
         jTextFieldUFCidade = new javax.swing.JTextField();
         jTextFieldCep = new javax.swing.JFormattedTextField();
+        jLabel2 = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
         jLabel10 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
         jTextFieldLoginFuncionario = new javax.swing.JTextField();
-        jLabel13 = new javax.swing.JLabel();
         jPasswordFieldFuncionario = new javax.swing.JPasswordField();
-        jPasswordFieldConfirmaSenhaFuncionario = new javax.swing.JPasswordField();
+        jLabel3 = new javax.swing.JLabel();
         jButtonGravarFuncionario = new javax.swing.JButton();
         jButtonCancelarFuncionario = new javax.swing.JButton();
         jButtonSair = new javax.swing.JButton();
@@ -203,6 +204,13 @@ public class JDialogFuncionario extends javax.swing.JDialog {
                 jFormattedTextFieldCpfFuncionarioActionPerformed(evt);
             }
         });
+        jFormattedTextFieldCpfFuncionario.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                jFormattedTextFieldCpfFuncionarioFocusLost(evt);
+            }
+        });
+
+        jLabel1.setText("* Campos Obrigatórios");
 
         org.jdesktop.layout.GroupLayout jPanel1Layout = new org.jdesktop.layout.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -212,30 +220,7 @@ public class JDialogFuncionario extends javax.swing.JDialog {
                 .add(34, 34, 34)
                 .add(jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
                     .add(jPanel1Layout.createSequentialGroup()
-                        .add(jLabelTelPessoalCliente)
-                        .add(28, 28, 28)
-                        .add(jFormattedTextFieldTelefonePessoalFuncionario, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 125, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                        .add(51, 51, 51)
-                        .add(jLabelCelCliente)
-                        .add(18, 18, 18)
-                        .add(jFormattedTextFieldCelularFuncionario, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 150, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                        .add(0, 0, Short.MAX_VALUE))
-                    .add(jPanel1Layout.createSequentialGroup()
-                        .add(jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING, false)
-                            .add(jPanel1Layout.createSequentialGroup()
-                                .add(jLabelDataNascCliente)
-                                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                                .add(jFormattedTextFieldDataNascFuncionario, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 134, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .add(jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                                    .add(jLabel12)
-                                    .add(jPanel1Layout.createSequentialGroup()
-                                        .add(110, 110, 110)
-                                        .add(jComboBoxEstadoCivil, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 125, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))))
-                            .add(org.jdesktop.layout.GroupLayout.LEADING, jPanel1Layout.createSequentialGroup()
-                                .add(jLabelEmailCliente)
-                                .add(99, 99, 99)
-                                .add(jTextFieldEmailFuncionario, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 399, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                        .add(jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING)
                             .add(org.jdesktop.layout.GroupLayout.LEADING, jPanel1Layout.createSequentialGroup()
                                 .add(jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
                                     .add(jLabelCodCliente)
@@ -244,18 +229,48 @@ public class JDialogFuncionario extends javax.swing.JDialog {
                                     .add(jLabelSexoCliente))
                                 .add(18, 18, 18)
                                 .add(jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                                    .add(jFormattedTextFieldCpfFuncionario, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 247, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                                    .add(jTextFieldNomeFuncionario)
+                                    .add(jFormattedTextFieldCpfFuncionario)
+                                    .add(jPanel1Layout.createSequentialGroup()
+                                        .add(jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                                            .add(jPanel1Layout.createSequentialGroup()
+                                                .add(jRadioButtonMasculinoFuncionario)
+                                                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                                                .add(jRadioButtonFemininoFuncionario))
+                                            .add(jPanel1Layout.createSequentialGroup()
+                                                .add(jTextFieldIdFuncionario, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 61, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                                                .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
+                                                .add(jButtonPesquisarFuncionario, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 40, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)))
+                                        .add(0, 0, Short.MAX_VALUE))))
+                            .add(org.jdesktop.layout.GroupLayout.LEADING, jPanel1Layout.createSequentialGroup()
+                                .add(jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                                    .add(jLabelDataNascCliente)
+                                    .add(jLabelTelPessoalCliente))
+                                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                                .add(jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                                    .add(jFormattedTextFieldTelefonePessoalFuncionario, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 135, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                                    .add(jFormattedTextFieldDataNascFuncionario, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 134, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))))
+                        .add(262, 262, 262))
+                    .add(jPanel1Layout.createSequentialGroup()
+                        .add(jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING, false)
+                            .add(jPanel1Layout.createSequentialGroup()
+                                .add(jLabelEmailCliente)
+                                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .add(jTextFieldEmailFuncionario, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 399, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                            .add(jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                                .add(jLabel1)
+                                .add(jPanel1Layout.createSequentialGroup()
+                                    .add(319, 319, 319)
                                     .add(jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
                                         .add(jPanel1Layout.createSequentialGroup()
-                                            .add(jRadioButtonMasculinoFuncionario)
-                                            .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                                            .add(jRadioButtonFemininoFuncionario))
+                                            .add(jLabel12)
+                                            .add(18, 18, 18)
+                                            .add(jComboBoxEstadoCivil, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 125, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
                                         .add(jPanel1Layout.createSequentialGroup()
-                                            .add(jTextFieldIdFuncionario, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 61, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                                            .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
-                                            .add(jButtonPesquisarFuncionario, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 40, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                                        .add(jTextFieldNomeFuncionario)))))
-                        .addContainerGap(92, Short.MAX_VALUE))))
+                                            .add(jLabelCelCliente)
+                                            .add(18, 18, 18)
+                                            .add(jFormattedTextFieldCelularFuncionario, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 150, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))))))
+                        .add(0, 69, Short.MAX_VALUE))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
@@ -279,23 +294,25 @@ public class JDialogFuncionario extends javax.swing.JDialog {
                     .add(jLabelSexoCliente)
                     .add(jRadioButtonMasculinoFuncionario)
                     .add(jRadioButtonFemininoFuncionario))
-                .add(14, 14, 14)
+                .add(32, 32, 32)
                 .add(jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
                     .add(jLabelDataNascCliente)
                     .add(jFormattedTextFieldDataNascFuncionario, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                     .add(jLabel12)
                     .add(jComboBoxEstadoCivil, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                .add(56, 56, 56)
+                .add(26, 26, 26)
                 .add(jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
-                    .add(jLabelTelPessoalCliente)
                     .add(jFormattedTextFieldTelefonePessoalFuncionario, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                    .add(jLabelTelPessoalCliente)
                     .add(jLabelCelCliente)
                     .add(jFormattedTextFieldCelularFuncionario, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                .add(18, 18, 18)
+                .add(24, 24, 24)
                 .add(jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
-                    .add(jLabelEmailCliente)
-                    .add(jTextFieldEmailFuncionario, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(113, Short.MAX_VALUE))
+                    .add(jTextFieldEmailFuncionario, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                    .add(jLabelEmailCliente))
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 64, Short.MAX_VALUE)
+                .add(jLabel1)
+                .addContainerGap())
         );
 
         jTabbedPane1.addTab("Pessoal", jPanel1);
@@ -321,6 +338,11 @@ public class JDialogFuncionario extends javax.swing.JDialog {
         jTextFieldPesquisaCodCidadeFuncionario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextFieldPesquisaCodCidadeFuncionarioActionPerformed(evt);
+            }
+        });
+        jTextFieldPesquisaCodCidadeFuncionario.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                jTextFieldPesquisaCodCidadeFuncionarioFocusLost(evt);
             }
         });
 
@@ -359,6 +381,8 @@ public class JDialogFuncionario extends javax.swing.JDialog {
             }
         });
 
+        jLabel2.setText("* Campos Obrigatórios");
+
         org.jdesktop.layout.GroupLayout jPanel2Layout = new org.jdesktop.layout.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -366,38 +390,41 @@ public class JDialogFuncionario extends javax.swing.JDialog {
             .add(jPanel2Layout.createSequentialGroup()
                 .add(40, 40, 40)
                 .add(jPanel2Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                    .add(jLabelNomeEndereco)
-                    .add(jLabelComplemento)
-                    .add(jLabelBairro)
-                    .add(jLabelCidadeEnd)
-                    .add(jLabelCep))
-                .add(18, 18, 18)
-                .add(jPanel2Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                    .add(jPanel2Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING, false)
-                        .add(jPanel2Layout.createSequentialGroup()
-                            .add(jTextFieldNomeEnderecoFuncionario, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 338, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                            .add(jLabel17)
-                            .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
-                            .add(jTextFieldNumEnderecoFuncionario, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 69, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                        .add(jPanel2Layout.createSequentialGroup()
-                            .add(jPanel2Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING)
-                                .add(org.jdesktop.layout.GroupLayout.LEADING, jTextFieldBairroFuncionario)
-                                .add(org.jdesktop.layout.GroupLayout.LEADING, jTextFieldComplementoFuncionario)
-                                .add(org.jdesktop.layout.GroupLayout.LEADING, jPanel2Layout.createSequentialGroup()
-                                    .add(jTextFieldPesquisaCodCidadeFuncionario, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 54, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                    .add(jLabel2)
+                    .add(jPanel2Layout.createSequentialGroup()
+                        .add(jPanel2Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                            .add(jLabelNomeEndereco)
+                            .add(jLabelComplemento)
+                            .add(jLabelBairro)
+                            .add(jLabelCidadeEnd)
+                            .add(jLabelCep))
+                        .add(18, 18, 18)
+                        .add(jPanel2Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                            .add(jPanel2Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING, false)
+                                .add(jPanel2Layout.createSequentialGroup()
+                                    .add(jTextFieldNomeEnderecoFuncionario, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 338, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                                     .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                                    .add(jButtonPesquisarCidade, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 40, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                                    .add(jButtonIncluirCidade, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 40, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                                    .add(0, 0, Short.MAX_VALUE))
-                                .add(org.jdesktop.layout.GroupLayout.LEADING, jTextFieldNomeCidade))
-                            .add(18, 18, 18)
-                            .add(jLabel22)
-                            .add(18, 18, 18)
-                            .add(jTextFieldUFCidade, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 114, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)))
-                    .add(jTextFieldCep, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 265, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(86, Short.MAX_VALUE))
+                                    .add(jLabel17)
+                                    .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
+                                    .add(jTextFieldNumEnderecoFuncionario, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 69, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                                .add(jPanel2Layout.createSequentialGroup()
+                                    .add(jPanel2Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING)
+                                        .add(org.jdesktop.layout.GroupLayout.LEADING, jTextFieldBairroFuncionario)
+                                        .add(org.jdesktop.layout.GroupLayout.LEADING, jTextFieldComplementoFuncionario)
+                                        .add(org.jdesktop.layout.GroupLayout.LEADING, jPanel2Layout.createSequentialGroup()
+                                            .add(jTextFieldPesquisaCodCidadeFuncionario, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 54, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                                            .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                                            .add(jButtonPesquisarCidade, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 40, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                                            .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                                            .add(jButtonIncluirCidade, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 40, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                                            .add(0, 0, Short.MAX_VALUE))
+                                        .add(org.jdesktop.layout.GroupLayout.LEADING, jTextFieldNomeCidade))
+                                    .add(18, 18, 18)
+                                    .add(jLabel22)
+                                    .add(18, 18, 18)
+                                    .add(jTextFieldUFCidade, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 114, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)))
+                            .add(jTextFieldCep, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 265, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(59, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
@@ -432,14 +459,16 @@ public class JDialogFuncionario extends javax.swing.JDialog {
                 .add(jPanel2Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
                     .add(jLabelCep)
                     .add(jTextFieldCep, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(200, Short.MAX_VALUE))
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 132, Short.MAX_VALUE)
+                .add(jLabel2)
+                .addContainerGap())
         );
 
         jTabbedPane1.addTab("Endereço", jPanel2);
 
-        jLabel10.setText("Login:");
+        jLabel10.setText("Login:*");
 
-        jLabel11.setText("Senha:");
+        jLabel11.setText("Senha:*");
 
         jTextFieldLoginFuncionario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -447,19 +476,13 @@ public class JDialogFuncionario extends javax.swing.JDialog {
             }
         });
 
-        jLabel13.setText("Confirmar Senha:");
-
         jPasswordFieldFuncionario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jPasswordFieldFuncionarioActionPerformed(evt);
             }
         });
 
-        jPasswordFieldConfirmaSenhaFuncionario.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jPasswordFieldConfirmaSenhaFuncionarioActionPerformed(evt);
-            }
-        });
+        jLabel3.setText("* Campos Obrigatórios");
 
         org.jdesktop.layout.GroupLayout jPanel4Layout = new org.jdesktop.layout.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -468,14 +491,15 @@ public class JDialogFuncionario extends javax.swing.JDialog {
             .add(jPanel4Layout.createSequentialGroup()
                 .add(45, 45, 45)
                 .add(jPanel4Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                    .add(jLabel10)
-                    .add(jLabel11)
-                    .add(jLabel13))
-                .add(27, 27, 27)
-                .add(jPanel4Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING, false)
-                    .add(jTextFieldLoginFuncionario, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 197, Short.MAX_VALUE)
-                    .add(jPasswordFieldFuncionario)
-                    .add(jPasswordFieldConfirmaSenhaFuncionario))
+                    .add(jLabel3)
+                    .add(jPanel4Layout.createSequentialGroup()
+                        .add(jPanel4Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                            .add(jLabel10)
+                            .add(jLabel11))
+                        .add(77, 77, 77)
+                        .add(jPanel4Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING, false)
+                            .add(jTextFieldLoginFuncionario, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 197, Short.MAX_VALUE)
+                            .add(jPasswordFieldFuncionario))))
                 .addContainerGap())
         );
         jPanel4Layout.setVerticalGroup(
@@ -486,20 +510,19 @@ public class JDialogFuncionario extends javax.swing.JDialog {
                     .add(jLabel10)
                     .add(jTextFieldLoginFuncionario, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
                 .add(18, 18, 18)
-                .add(jPanel4Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                    .add(jLabel11)
-                    .add(jPasswordFieldFuncionario, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                .add(18, 18, 18)
                 .add(jPanel4Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
-                    .add(jLabel13)
-                    .add(jPasswordFieldConfirmaSenhaFuncionario, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(335, Short.MAX_VALUE))
+                    .add(jPasswordFieldFuncionario, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                    .add(jLabel11))
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 325, Short.MAX_VALUE)
+                .add(jLabel3)
+                .addContainerGap())
         );
 
         jTabbedPane1.addTab("Login Sistema", jPanel4);
 
         jButtonGravarFuncionario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icones/gravar.png"))); // NOI18N
         jButtonGravarFuncionario.setText("Gravar");
+        jButtonGravarFuncionario.setToolTipText("Gravar Funcionario");
         jButtonGravarFuncionario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonGravarFuncionarioActionPerformed(evt);
@@ -516,6 +539,7 @@ public class JDialogFuncionario extends javax.swing.JDialog {
 
         jButtonSair.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icones/remove.png"))); // NOI18N
         jButtonSair.setText("Sair");
+        jButtonSair.setToolTipText("Sair da Tela");
         jButtonSair.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonSairActionPerformed(evt);
@@ -524,6 +548,7 @@ public class JDialogFuncionario extends javax.swing.JDialog {
 
         jButtonIncluirFuncionario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icones/incluir.png"))); // NOI18N
         jButtonIncluirFuncionario.setText("Incluir");
+        jButtonIncluirFuncionario.setToolTipText("Incluir");
         jButtonIncluirFuncionario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonIncluirFuncionarioActionPerformed(evt);
@@ -532,6 +557,7 @@ public class JDialogFuncionario extends javax.swing.JDialog {
 
         jButtonAlterarFuncionario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icones/alterar.png"))); // NOI18N
         jButtonAlterarFuncionario.setText("Alterar");
+        jButtonAlterarFuncionario.setToolTipText("Alterar");
         jButtonAlterarFuncionario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonAlterarFuncionarioActionPerformed(evt);
@@ -540,6 +566,7 @@ public class JDialogFuncionario extends javax.swing.JDialog {
 
         jButtonExcluirFuncionario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icones/excluir.png"))); // NOI18N
         jButtonExcluirFuncionario.setText("Exluir");
+        jButtonExcluirFuncionario.setToolTipText("Excluir");
         jButtonExcluirFuncionario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonExcluirFuncionarioActionPerformed(evt);
@@ -594,7 +621,7 @@ public class JDialogFuncionario extends javax.swing.JDialog {
 
     private void jButtonAlterarFuncionarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAlterarFuncionarioActionPerformed
         habilitaCampos(true);
-        
+
         jButtonAlterarFuncionario.setEnabled(false);
         jButtonExcluirFuncionario.setEnabled(true);
         jButtonIncluirFuncionario.setEnabled(false);
@@ -613,7 +640,7 @@ public class JDialogFuncionario extends javax.swing.JDialog {
         jFormattedTextFieldCelularFuncionario.setEnabled(true);
         jTextFieldEmailFuncionario.setEnabled(true);
         jTextFieldLoginFuncionario.setEnabled(true);
-        jPasswordFieldConfirmaSenhaFuncionario.setEnabled(true);
+        jPasswordFieldFuncionario.setEnabled(true);
         jTextFieldNomeEnderecoFuncionario.setEnabled(true);
         jTextFieldNumEnderecoFuncionario.setEnabled(true);
         jTextFieldComplementoFuncionario.setEnabled(true);
@@ -632,58 +659,62 @@ public class JDialogFuncionario extends javax.swing.JDialog {
         int opcao = JOptionPane.showOptionDialog(null, "Tem certeza que deseja excluir?", "Confirmação",
                 JOptionPane.YES_OPTION, JOptionPane.QUESTION_MESSAGE, null, opcoes, opcoes[1]);
 
-       if (JOptionPane.OK_OPTION == opcao) 
-        try {
-            TransactionManager.beginTransaction();
+        if (JOptionPane.OK_OPTION == opcao) {
+            try {
+                TransactionManager.beginTransaction();
                 DaoGenerics<Funcionario> daoFuncionario = new DaoGenerics<>(Funcionario.class);
                 daoFuncionario.delete(daoFuncionario.retrieve(Integer.parseInt(jTextFieldIdFuncionario.getText())));
                 JOptionPane.showMessageDialog(null, "O registro foi excluido com sucesso!", "Mensagem", JOptionPane.INFORMATION_MESSAGE);
                 TransactionManager.commit();
-        } catch (Exception ex) {
-             TransactionManager.rollback();
-            Logger.getLogger(JDialogFuncionario.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (Exception ex) {
+                TransactionManager.rollback();
+                Logger.getLogger(JDialogFuncionario.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
         clearCampos();
     }//GEN-LAST:event_jButtonExcluirFuncionarioActionPerformed
 
     private void jButtonIncluirFuncionarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonIncluirFuncionarioActionPerformed
         clearCampos();
-        habilitaCampos(true);
+        habilitaCampos(false);
     }//GEN-LAST:event_jButtonIncluirFuncionarioActionPerformed
 
     private void jButtonGravarFuncionarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonGravarFuncionarioActionPerformed
-
-               // TODO add your handling code here:
-            if (!validaCampos()) {
+        if (!validaCampos()) {
             return;
         }
         try {
             gravar();
+            JOptionPane.showMessageDialog(null, "Registro gravado com sucesso.", "Gravar", JOptionPane.INFORMATION_MESSAGE);
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(null, ex.getMessage());
             Logger.getLogger(JDialogFuncionario.class.getName()).log(Level.SEVERE, null, ex);
         }
-        JOptionPane.showMessageDialog(null, "Registro gravado com sucesso.", "Gravar", JOptionPane.INFORMATION_MESSAGE);
 
-        habilitaCampos(true);
+        clearCampos();
+        habilitaCampos(false);
         jButtonPesquisarFuncionario.setEnabled(true);
 
     }//GEN-LAST:event_jButtonGravarFuncionarioActionPerformed
 
     private void jButtonCancelarFuncionarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCancelarFuncionarioActionPerformed
-        habilitaCampos(false);
+        habilitaCampos(true);
         clearCampos();
+        jTextFieldIdFuncionario.setEnabled(false);
+        jButtonPesquisarFuncionario.setEnabled(true);
     }//GEN-LAST:event_jButtonCancelarFuncionarioActionPerformed
 
     private void jButtonIncluirCidadeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonIncluirCidadeActionPerformed
 
         JDialogCidade cadCidade = new JDialogCidade(this, true);
+        cadCidade.setLocationRelativeTo(cadCidade);
         cadCidade.setVisible(true);
     }//GEN-LAST:event_jButtonIncluirCidadeActionPerformed
 
     private void jButtonPesquisarCidadeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonPesquisarCidadeActionPerformed
 
         final JDialogConsCidade consultaCidade = new JDialogConsCidade(this, true);
+        consultaCidade.setLocationRelativeTo(consultaCidade);
         consultaCidade.setVisible(true);
 
         consultaCidade.addWindowListener(new java.awt.event.WindowAdapter() {
@@ -694,7 +725,9 @@ public class JDialogFuncionario extends javax.swing.JDialog {
                     cidade = new DaoGenerics<Cidade>(Cidade.class).retrieve(cidade.getId());
                     TransactionManager.commit();
                 } catch (Exception ex) {
-                    Logger.getLogger(JDialogFuncionario.class.getName()).log(Level.SEVERE, null, ex);
+                    JOptionPane.showMessageDialog(null, "Código da cidade não cadastrado", "Atenção", JOptionPane.WARNING_MESSAGE);
+                    jTextFieldPesquisaCodCidadeFuncionario.setText("");
+                    jTextFieldPesquisaCodCidadeFuncionario.grabFocus();
                 }
                 jTextFieldPesquisaCodCidadeFuncionario.setText(Integer.toString(cidade.getId()));
                 jTextFieldNomeCidade.setText(cidade.getNome());
@@ -709,8 +742,8 @@ public class JDialogFuncionario extends javax.swing.JDialog {
 
     private void jButtonPesquisarFuncionarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonPesquisarFuncionarioActionPerformed
 
-
         final JDialogConsFuncionario consulta = new JDialogConsFuncionario(this, true);
+        consulta.setLocationRelativeTo(consulta);
         consulta.setVisible(true);
 
         consulta.addWindowListener(new java.awt.event.WindowAdapter() {
@@ -723,13 +756,13 @@ public class JDialogFuncionario extends javax.swing.JDialog {
                 } catch (Exception ex) {
                     Logger.getLogger(JDialogFuncionario.class.getName()).log(Level.SEVERE, null, ex);
                 }
-               setFuncionario(funcionario);
-               
-               habilitaCampos(true);
-               jButtonPesquisarFuncionario.setEnabled(true);
-            }
+                setFuncionario();
 
-            
+                habilitaCampos(true);
+                jButtonPesquisarFuncionario.setEnabled(true);
+                jTextFieldIdFuncionario.setEnabled(false);
+                jButtonPesquisarFuncionario.setEnabled(true);
+            }
         });
 
 
@@ -758,7 +791,6 @@ public class JDialogFuncionario extends javax.swing.JDialog {
     }//GEN-LAST:event_jFormattedTextFieldDataNascFuncionarioActionPerformed
 
     private void jFormattedTextFieldCpfFuncionarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jFormattedTextFieldCpfFuncionarioActionPerformed
-        // TODO add your handling code here:
     }//GEN-LAST:event_jFormattedTextFieldCpfFuncionarioActionPerformed
 
     private void jTextFieldComplementoFuncionarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldComplementoFuncionarioActionPerformed
@@ -781,9 +813,49 @@ public class JDialogFuncionario extends javax.swing.JDialog {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextFieldLoginFuncionarioActionPerformed
 
-    private void jPasswordFieldConfirmaSenhaFuncionarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jPasswordFieldConfirmaSenhaFuncionarioActionPerformed
+    private void jFormattedTextFieldCpfFuncionarioFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jFormattedTextFieldCpfFuncionarioFocusLost
+        if (!evt.isTemporary()) {
+            if (!jFormattedTextFieldCpfFuncionario.getText().replaceAll("[ .\\-/()]", "").isEmpty()) {
+                validacao = new Validacao();
+                if (!validacao.validaCpf(jFormattedTextFieldCpfFuncionario.getText().trim())) {
+                    JOptionPane.showMessageDialog(null, "CPF é inválido!", "Atençao!", JOptionPane.WARNING_MESSAGE);
+                    jFormattedTextFieldCpfFuncionario.setText("");
+                    jFormattedTextFieldCpfFuncionario.grabFocus();
+                }
+            }
+        }
+
+
         // TODO add your handling code here:
-    }//GEN-LAST:event_jPasswordFieldConfirmaSenhaFuncionarioActionPerformed
+    }//GEN-LAST:event_jFormattedTextFieldCpfFuncionarioFocusLost
+
+    private void jTextFieldPesquisaCodCidadeFuncionarioFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextFieldPesquisaCodCidadeFuncionarioFocusLost
+        Cidade cidade = new Cidade();
+        int id_Cidade = 0;
+
+        try {
+            id_Cidade = Integer.parseInt(jTextFieldPesquisaCodCidadeFuncionario.getText().trim());
+        } catch (Exception e) {
+            return;
+        }
+
+        try {
+            cidade = new DaoGenerics<Cidade>(Cidade.class).retrieve(id_Cidade);
+            if (cidade.getId() == 0) {
+                JOptionPane.showMessageDialog(null, "Código da cidade não cadastrado", "Atenção", JOptionPane.WARNING_MESSAGE);
+                jTextFieldPesquisaCodCidadeFuncionario.setText("");
+                jTextFieldPesquisaCodCidadeFuncionario.grabFocus();
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Código da cidade não cadastrado", "Atenção", JOptionPane.WARNING_MESSAGE);
+            jTextFieldPesquisaCodCidadeFuncionario.setText("");
+            jTextFieldPesquisaCodCidadeFuncionario.grabFocus();
+            return;
+        }
+
+        jTextFieldNomeCidade.setText(cidade.getNome());
+        jTextFieldUFCidade.setText(cidade.getEstado());
+    }//GEN-LAST:event_jTextFieldPesquisaCodCidadeFuncionarioFocusLost
 
     /**
      * @param args the command line arguments
@@ -842,12 +914,14 @@ public class JDialogFuncionario extends javax.swing.JDialog {
     private javax.swing.JFormattedTextField jFormattedTextFieldCpfFuncionario;
     private javax.swing.JFormattedTextField jFormattedTextFieldDataNascFuncionario;
     private javax.swing.JFormattedTextField jFormattedTextFieldTelefonePessoalFuncionario;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
-    private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel17;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel22;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabelBairro;
     private javax.swing.JLabel jLabelCelCliente;
     private javax.swing.JLabel jLabelCep;
@@ -864,7 +938,6 @@ public class JDialogFuncionario extends javax.swing.JDialog {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel4;
-    private javax.swing.JPasswordField jPasswordFieldConfirmaSenhaFuncionario;
     private javax.swing.JPasswordField jPasswordFieldFuncionario;
     private javax.swing.JRadioButton jRadioButtonFemininoFuncionario;
     private javax.swing.JRadioButton jRadioButtonMasculinoFuncionario;
@@ -883,7 +956,7 @@ public class JDialogFuncionario extends javax.swing.JDialog {
     private javax.swing.JTextField jTextFieldUFCidade;
     // End of variables declaration//GEN-END:variables
 
-   public void gravar() throws Exception {
+    public void gravar() throws Exception {
         funcionario = null;
 
         if (jTextFieldIdFuncionario.getText().isEmpty()) {
@@ -895,7 +968,7 @@ public class JDialogFuncionario extends javax.swing.JDialog {
         funcionario.setNome(jTextFieldNomeFuncionario.getText().trim());
         funcionario.setCpf(jFormattedTextFieldCpfFuncionario.getText().trim());
         funcionario.setSexo((jRadioButtonMasculinoFuncionario.isSelected()) ? "M" : "F");
-        //funcionario.setEstadoCivil(jComboBoxEstadoCivil.getKeySelectionManager();
+        funcionario.setEstadoCivil(jComboBoxEstadoCivil.getSelectedItem().toString());
         funcionario.setDataNascimento(converteData.toDate(jFormattedTextFieldDataNascFuncionario.getText().trim()));
         funcionario.setTelPessoal(jFormattedTextFieldTelefonePessoalFuncionario.getText().trim());
         funcionario.setCelular(jFormattedTextFieldCelularFuncionario.getText().trim());
@@ -908,16 +981,19 @@ public class JDialogFuncionario extends javax.swing.JDialog {
         funcionario.getEndereco().setNumero(Integer.parseInt(jTextFieldNumEnderecoFuncionario.getText().trim()));
         funcionario.getEndereco().setComplemento(jTextFieldComplementoFuncionario.getText().trim());
         funcionario.getEndereco().setBairro(jTextFieldBairroFuncionario.getText().trim());
-        funcionario.getEndereco().getCidade().setId(Integer.parseInt(jTextFieldPesquisaCodCidadeFuncionario.getText().trim()));
+
+         cidade = new Cidade();
+        cidade.setId(Integer.parseInt(jTextFieldPesquisaCodCidadeFuncionario.getText().trim()));
+        funcionario.getEndereco().setCidade(cidade);
         funcionario.getEndereco().setCep(jTextFieldCep.getText().trim());
 
 
         new DaoGenerics<Funcionario>(Funcionario.class).persist(funcionario);
         TransactionManager.commit();
-       
+
     }
 
-    private void setFuncionario(Funcionario funcionario) {
+    private void setFuncionario() {
         jTextFieldIdFuncionario.setText(Integer.toString(funcionario.getId()));
         jTextFieldNomeFuncionario.setText(funcionario.getNome());
         jFormattedTextFieldCpfFuncionario.setText(funcionario.getCpf());
@@ -928,6 +1004,7 @@ public class JDialogFuncionario extends javax.swing.JDialog {
         jTextFieldEmailFuncionario.setText(funcionario.getEmail());
         jTextFieldLoginFuncionario.setText(funcionario.getLogin());
         jPasswordFieldFuncionario.setText(funcionario.getSenha());
+        jFormattedTextFieldDataNascFuncionario.setText(converteData.toString(funcionario.getDataNascimento()));
 
         jTextFieldNomeEnderecoFuncionario.setText(funcionario.getEndereco().getNomeEndereco());
         jTextFieldNumEnderecoFuncionario.setText(Integer.toString(funcionario.getEndereco().getNumero()));
@@ -945,6 +1022,7 @@ public class JDialogFuncionario extends javax.swing.JDialog {
         jTextFieldIdFuncionario.setText("");
         jTextFieldNomeFuncionario.setText("");
         jFormattedTextFieldCpfFuncionario.setText("");
+        jFormattedTextFieldDataNascFuncionario.setText("");
         jRadioButtonMasculinoFuncionario.setSelected(true);
         jFormattedTextFieldTelefonePessoalFuncionario.setText("");
         jFormattedTextFieldCelularFuncionario.setText("");
@@ -981,7 +1059,7 @@ public class JDialogFuncionario extends javax.swing.JDialog {
         jRadioButtonFemininoFuncionario.setEnabled(!comando);
 
         jComboBoxEstadoCivil.setEnabled(!comando);
-        
+
         jFormattedTextFieldTelefonePessoalFuncionario.setEnabled(!comando);
         jFormattedTextFieldCelularFuncionario.setEnabled(!comando);
         jFormattedTextFieldDataNascFuncionario.setEnabled(!comando);
@@ -1006,79 +1084,82 @@ public class JDialogFuncionario extends javax.swing.JDialog {
     }
 
     private boolean validaCampos() {
+
+        StringBuilder msgs = new StringBuilder();
+
         if (jTextFieldNomeFuncionario.getText().isEmpty()) {
-            JOptionPane.showMessageDialog(null, "Nome é Obrigatório!", "Atençao!", JOptionPane.WARNING_MESSAGE);
+            msgs.append("Nome é Obrigatório\n");
             jTextFieldNomeFuncionario.grabFocus();
-            return false;
+            jTextFieldNomeFuncionario.setBorder(new LineBorder(Color.red));
         }
 
 
-         if (jFormattedTextFieldCpfFuncionario.getText().replaceAll("[ .\\-/()]", "").isEmpty()) {
-            JOptionPane.showMessageDialog(null, "CPF é Obrigatório!", "Atençao!", JOptionPane.WARNING_MESSAGE);
+        if (jFormattedTextFieldCpfFuncionario.getText().replaceAll("[ .\\-/()]", "").isEmpty()) {
+            msgs.append("CPF é Obrigatório\n");
             jFormattedTextFieldCpfFuncionario.grabFocus();
-            return false;
+            jFormattedTextFieldCpfFuncionario.setBorder(new LineBorder(Color.red));
         }
- 
+
 
         if (jFormattedTextFieldDataNascFuncionario.getText().replaceAll("[ /]", "").isEmpty()) {
-            JOptionPane.showMessageDialog(null, "Data de Nascimento é Obrigatório!", "Atençao!", JOptionPane.WARNING_MESSAGE);
+            msgs.append("Data de Nascimento é Obrigatório\n");
             jFormattedTextFieldDataNascFuncionario.grabFocus();
-            return false;
+            jFormattedTextFieldDataNascFuncionario.setBorder(new LineBorder(Color.red));
         }
- 
-         
-         if (jFormattedTextFieldTelefonePessoalFuncionario.getText().replaceAll("[ ()-]", "").isEmpty()) {
-            JOptionPane.showMessageDialog(null, "Telefone Pessoal é Obrigatório!", "Atençao!", JOptionPane.WARNING_MESSAGE);
+
+
+        if (jFormattedTextFieldTelefonePessoalFuncionario.getText().replaceAll("[ ()-]", "").isEmpty()) {
+            msgs.append("Telefone Pessoal é Obrigatório\n");
             jFormattedTextFieldTelefonePessoalFuncionario.grabFocus();
-            return false;
+            jFormattedTextFieldTelefonePessoalFuncionario.setBorder(new LineBorder(Color.red));
         }
- 
+
 
         if (jFormattedTextFieldCelularFuncionario.getText().replaceAll("[ ()-]", "").isEmpty()) {
-            JOptionPane.showMessageDialog(null, "Celular é Obrigatório!", "Atençao!", JOptionPane.WARNING_MESSAGE);
+            msgs.append("Celular é Obrigatório\n");
             jFormattedTextFieldCelularFuncionario.grabFocus();
-            return false;
+            jFormattedTextFieldCelularFuncionario.setBorder(new LineBorder(Color.red));
         }
 
-        
+
         if (!jTextFieldEmailFuncionario.getText().isEmpty()) {
             validacao = new Validacao();
             if (!validacao.validarEmail(jTextFieldEmailFuncionario.getText().trim())) {
-                JOptionPane.showMessageDialog(null, "Email nao é valido!", "Atençao!", JOptionPane.WARNING_MESSAGE);
+                msgs.append("E-mail não é válido\n");
                 jTextFieldEmailFuncionario.grabFocus();
-                return false;
+                jTextFieldEmailFuncionario.setBorder(new LineBorder(Color.red));
             }
-            if (jTextFieldNomeEnderecoFuncionario.getText().isEmpty()) {
-                JOptionPane.showMessageDialog(null, "Endereço é Obrigatório!", "Atençao!", JOptionPane.WARNING_MESSAGE);
-                jTextFieldNomeEnderecoFuncionario.grabFocus();
-                return false;
-            }
+        }
+        if (jTextFieldNomeEnderecoFuncionario.getText().isEmpty()) {
+            msgs.append("Endereço é Obrigatório\n");
+            jTextFieldNomeEnderecoFuncionario.grabFocus();
+            jTextFieldNomeEnderecoFuncionario.setBorder(new LineBorder(Color.red));
+        }
 
-            if (jTextFieldNumEnderecoFuncionario.getText().isEmpty()) {
-                JOptionPane.showMessageDialog(null, "Numero é Obrigatório!", "Atençao!", JOptionPane.WARNING_MESSAGE);
-                jTextFieldNumEnderecoFuncionario.grabFocus();
-                return false;
-            }
-            if (jTextFieldBairroFuncionario.getText().isEmpty()) {
-                JOptionPane.showMessageDialog(null, "Bairro é Obrigatório!", "Atençao!", JOptionPane.WARNING_MESSAGE);
-                jTextFieldBairroFuncionario.grabFocus();
-                return false;
-            }
+        if (jTextFieldNumEnderecoFuncionario.getText().isEmpty()) {
+            msgs.append("Numero é Obrigatório\n");
+            jTextFieldNumEnderecoFuncionario.grabFocus();
+            jTextFieldNumEnderecoFuncionario.setBorder(new LineBorder(Color.red));
+        }
+        if (jTextFieldBairroFuncionario.getText().isEmpty()) {
+            msgs.append("Bairro é Obrigatório\n");
+            jTextFieldBairroFuncionario.grabFocus();
+            jTextFieldBairroFuncionario.setBorder(new LineBorder(Color.red));
+        }
 
-           if (jTextFieldBairroFuncionario.getText().isEmpty()) {
-            JOptionPane.showMessageDialog(null, "Bairro é Obrigatório!", "Atençao!", JOptionPane.WARNING_MESSAGE);
-           jTextFieldBairroFuncionario.grabFocus();
-           return false;
-        }  
 
-            if (jTextFieldCep.getText().replaceAll("[ -]", "").isEmpty()) {
-                JOptionPane.showMessageDialog(null, "CEP é Obrigatório!", "Atençao!", JOptionPane.WARNING_MESSAGE);
-                jTextFieldCep.grabFocus();
-                return false;
+        if (jTextFieldCep.getText().replaceAll("[ -]", "").isEmpty()) {
+            msgs.append("CEP é Obrigatório\n");
+            jTextFieldCep.grabFocus();
+            jTextFieldCep.setBorder(new LineBorder(Color.red));
 
-            };
+        }
+
+        if (msgs.length() > 0) {
+            JOptionPane.showMessageDialog(null, msgs.toString(), "Atençao!", JOptionPane.WARNING_MESSAGE);
+            return false;
         }
         return true;
-       
+
     }
 }

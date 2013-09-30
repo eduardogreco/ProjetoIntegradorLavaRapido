@@ -875,8 +875,8 @@
                       </Group>
                       <EmptySpace min="-2" pref="38" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Component id="jTextFieldLoginCliente" max="32767" attributes="0"/>
-                          <Component id="jTextFieldSenhaCliente" pref="243" max="32767" attributes="0"/>
+                          <Component id="jTextFieldLoginCliente" pref="243" max="32767" attributes="0"/>
+                          <Component id="jPasswordFieldSenhaCliente" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace pref="360" max="32767" attributes="0"/>
                   </Group>
@@ -893,7 +893,7 @@
                       <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="jLabel11" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jTextFieldSenhaCliente" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jPasswordFieldSenhaCliente" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace pref="350" max="32767" attributes="0"/>
                   </Group>
@@ -916,10 +916,7 @@
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextFieldLoginClienteActionPerformed"/>
               </Events>
             </Component>
-            <Component class="javax.swing.JTextField" name="jTextFieldSenhaCliente">
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextFieldSenhaClienteActionPerformed"/>
-              </Events>
+            <Component class="javax.swing.JPasswordField" name="jPasswordFieldSenhaCliente">
             </Component>
           </SubComponents>
         </Container>

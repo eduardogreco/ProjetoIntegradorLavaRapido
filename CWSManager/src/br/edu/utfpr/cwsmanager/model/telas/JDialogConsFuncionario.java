@@ -4,9 +4,9 @@
  */
 package br.edu.utfpr.cwsmanager.model.telas;
 
-
 import br.edu.utfpr.cwsmanager.model.daos.DaoGenerics;
-import br.edu.utfpr.cwsmanager.model.pessoa.Cliente;
+import br.edu.utfpr.cwsmanager.model.daos.Filter;
+import br.edu.utfpr.cwsmanager.model.daos.Operator;
 import br.edu.utfpr.cwsmanager.model.pessoa.Funcionario;
 import java.util.ArrayList;
 import java.util.List;
@@ -15,32 +15,27 @@ import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
-
 /**
  *
  * @author raphaellira
  */
 public class JDialogConsFuncionario extends javax.swing.JDialog {
 
-   
     private List<Funcionario> funcionarios;
     private DefaultTableModel modeloFuncionario;
     public Funcionario funcionario;
-    private List<Funcionario> DaoGenerics;
-    
+
     public JDialogConsFuncionario(java.awt.Dialog parent, boolean modal) {
         super(parent, modal);
         initComponents();
-        
-      
-        funcionario    = new Funcionario();
-        
-        modeloFuncionario = (DefaultTableModel) jTableResult.getModel(); 
-        modeloFuncionario.setNumRows(0);
-    }
 
-    JDialogConsFuncionario(JFramePrincipal aThis, boolean b) {
-       
+
+        funcionario = new Funcionario();
+
+        modeloFuncionario = (DefaultTableModel) jTableResult.getModel();
+        modeloFuncionario.setNumRows(0);
+        
+        pesquisa();
     }
 
     /**
@@ -64,11 +59,11 @@ public class JDialogConsFuncionario extends javax.swing.JDialog {
         jButton3 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("Consulta de Clientes");
+        setTitle("Consulta de Funcionários");
 
         jLabelPesquisa.setText("Consulta por:");
 
-        jComboBoxCampos.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Geral", "Codigo", "Nome" }));
+        jComboBoxCampos.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Código", "Nome", "CPF", "E-mail" }));
         jComboBoxCampos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboBoxCamposActionPerformed(evt);
@@ -143,7 +138,7 @@ public class JDialogConsFuncionario extends javax.swing.JDialog {
         );
 
         jButtonOk.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icones/ok.png"))); // NOI18N
-        jButtonOk.setText("Ok");
+        jButtonOk.setText("Visualizar");
         jButtonOk.setMaximumSize(new java.awt.Dimension(42, 28));
         jButtonOk.setMinimumSize(new java.awt.Dimension(42, 28));
         jButtonOk.setPreferredSize(new java.awt.Dimension(42, 28));
@@ -297,59 +292,65 @@ public class JDialogConsFuncionario extends javax.swing.JDialog {
     private javax.swing.JTable jTableResult;
     // End of variables declaration//GEN-END:variables
 
-    private void selecionar(){
+    private void selecionar() {
         int linha = jTableResult.getSelectedRow();
 
         if (linha < 0) {
-            JOptionPane.showMessageDialog(null, "Selecion um registro.", "Atenção", JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Selecione um registro.", "Atenção", JOptionPane.WARNING_MESSAGE);
             return;
         }
-        
+
         funcionario = funcionarios.get(linha);
         dispose();
     }
-    
-    private void pesquisa(){
-        funcionarios   = new ArrayList<>();
-        
-        switch (jComboBoxCampos.getSelectedIndex()){
-            case 0:
-            try {
-            funcionarios = new DaoGenerics<Funcionario>(Funcionario.class).list();
 
-            } catch (Exception ex) {
-                Logger.getLogger(JDialogConsFuncionario.class.getName()).log(Level.SEVERE, null, ex);
-            }
-               
-               break;
-                
+    private void pesquisa() {
+        funcionarios = new ArrayList<>();
+
+        switch (jComboBoxCampos.getSelectedIndex()) {
+            case 0:
+                try {
+                    funcionarios = new DaoGenerics<Funcionario>(Funcionario.class).list(new Filter("id", Operator.LIKE, jFormattedTextFieldPesquisa.getText()));
+                } catch (Exception ex) {
+                    Logger.getLogger(JDialogConsFuncionario.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                break;
+
             case 1:
-        try {
-        //    funcionarios = daoFuncionario.list(new Filter("id", Operator.LIKE, jFormattedTextFieldPesquisa.getText()));
-        } catch (Exception ex) {
-            Logger.getLogger(JDialogConsFuncionario.class.getName()).log(Level.SEVERE, null, ex);
-        }
+                try {
+                    funcionarios = new DaoGenerics<Funcionario>(Funcionario.class).list(new Filter("nome", Operator.LIKE, jFormattedTextFieldPesquisa.getText()));
+                } catch (Exception ex) {
+                    Logger.getLogger(JDialogConsFuncionario.class.getName()).log(Level.SEVERE, null, ex);
+                }
                 break;
-              
+                
             case 2:
-        try {
-         //   funcionarios = daoFuncionario.list(new Filter("nome", Operator.LIKE, jFormattedTextFieldPesquisa.getText()));
-        } catch (Exception ex) {
-            Logger.getLogger(JDialogConsFuncionario.class.getName()).log(Level.SEVERE, null, ex);
-        }
+                try {
+                    funcionarios = new DaoGenerics<Funcionario>(Funcionario.class).list(new Filter("cpf", Operator.LIKE, jFormattedTextFieldPesquisa.getText()));
+                } catch (Exception ex) {
+                    Logger.getLogger(JDialogConsFuncionario.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                break;
+                
+            case 3:
+                try {
+                    funcionarios = new DaoGenerics<Funcionario>(Funcionario.class).list(new Filter("email", Operator.LIKE, jFormattedTextFieldPesquisa.getText()));
+                } catch (Exception ex) {
+                    Logger.getLogger(JDialogConsFuncionario.class.getName()).log(Level.SEVERE, null, ex);
+                }
                 break;
         }
-        
         preencherjTable();
     }
+
     private void preencherjTable() {
         modeloFuncionario.setNumRows(0);
-        
-        if (funcionarios.isEmpty()){
+
+        if (funcionarios.isEmpty()) {
             JOptionPane.showMessageDialog(null, "Registros não encontrados.", "Atenção", JOptionPane.WARNING_MESSAGE);
             return;
         }
-        
+
         for (Funcionario obj : funcionarios) {
             modeloFuncionario.addRow(new Object[]{
                 obj.getId(),
@@ -359,5 +360,4 @@ public class JDialogConsFuncionario extends javax.swing.JDialog {
             });
         }
     }
-
 }

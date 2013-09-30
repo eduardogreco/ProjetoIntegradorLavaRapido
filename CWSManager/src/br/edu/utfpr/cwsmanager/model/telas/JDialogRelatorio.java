@@ -63,7 +63,7 @@ public class JDialogRelatorio extends javax.swing.JDialog {
         jRadioRelSSAberto.setText("Relatório de Solicitaçao de Serviços em aberto");
 
         buttonGroup1.add(jRadioRelOS);
-        jRadioRelOS.setText("Relatório de Ordem de serviço encerradas");
+        jRadioRelOS.setText("Relatório de Ordem de serviço concluidas");
 
         buttonGroup1.add(jRadioRelFuncionarios);
         jRadioRelFuncionarios.setText("Relatório de Funcionários");
@@ -101,9 +101,9 @@ public class JDialogRelatorio extends javax.swing.JDialog {
                 .add(jRadioRelSSAberto)
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                 .add(jRadioRelSSEncerradas)
-                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 7, Short.MAX_VALUE)
-                .add(jRadioButtonCliente)
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                .add(jRadioButtonCliente)
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 7, Short.MAX_VALUE)
                 .add(jRadioRelFuncionarios)
                 .addContainerGap())
         );
@@ -169,6 +169,14 @@ public class JDialogRelatorio extends javax.swing.JDialog {
     }//GEN-LAST:event_jRadioRelFuncionariosActionPerformed
 
     private void jButtonGerarRelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonGerarRelActionPerformed
+         if (jRadioRelOS.isSelected()) {
+            try {
+                relatorioPronto("/br/edu/utfpr/cwsmanager/model/relatorio/relatorioOrdensConcluidas.jasper");
+            } catch (JRException ex) {
+                JOptionPane.showMessageDialog(this, "Relatório de ordens não foi encontrado!", "Mensagem", JOptionPane.INFORMATION_MESSAGE);
+            }
+        }
+        
         if (jRadioButtonCliente.isSelected()) {
             try {
                 relatorioPronto("/br/edu/utfpr/cwsmanager/model/relatorio/relatorioCliente.jasper");
@@ -176,6 +184,15 @@ public class JDialogRelatorio extends javax.swing.JDialog {
                 JOptionPane.showMessageDialog(this, "Relatório de clientes não foi encontrado!", "Mensagem", JOptionPane.INFORMATION_MESSAGE);
             }
         }
+        
+        if (jRadioRelFuncionarios.isSelected()) {
+            try {
+                relatorioPronto("/br/edu/utfpr/cwsmanager/model/relatorio/relatorioFuncionarios.jasper");
+            } catch (JRException ex) {
+                JOptionPane.showMessageDialog(this, "Relatório de funcionários não foi encontrado!", "Mensagem", JOptionPane.INFORMATION_MESSAGE);
+            }
+        }
+        
         if (jRadioRelSSAberto.isSelected()) {
             try {
                 relatorioPronto("/br/edu/utfpr/cwsmanager/model/relatorio/relatorioSSAberto.jasper");

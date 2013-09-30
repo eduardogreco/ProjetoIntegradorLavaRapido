@@ -12,7 +12,6 @@ import br.edu.utfpr.cwsmanager.model.util.UtilDatas;
 import br.edu.utfpr.cwsmanager.model.veiculo.Veiculo;
 import br.edu.utfpr.cwsmanager.model.util.Validacao;
 import java.awt.Color;
-import java.awt.event.WindowEvent;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
@@ -119,7 +118,7 @@ public class JDialogCliente extends javax.swing.JDialog {
         jLabel10 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
         jTextFieldLoginCliente = new javax.swing.JTextField();
-        jTextFieldSenhaCliente = new javax.swing.JTextField();
+        jPasswordFieldSenhaCliente = new javax.swing.JPasswordField();
         jButtonGravar = new javax.swing.JButton();
         jButtonCancelar = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
@@ -643,12 +642,6 @@ public class JDialogCliente extends javax.swing.JDialog {
             }
         });
 
-        jTextFieldSenhaCliente.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextFieldSenhaClienteActionPerformed(evt);
-            }
-        });
-
         org.jdesktop.layout.GroupLayout jPanel4Layout = new org.jdesktop.layout.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
@@ -660,8 +653,8 @@ public class JDialogCliente extends javax.swing.JDialog {
                     .add(jLabel11))
                 .add(38, 38, 38)
                 .add(jPanel4Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING, false)
-                    .add(jTextFieldLoginCliente)
-                    .add(jTextFieldSenhaCliente, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 243, Short.MAX_VALUE))
+                    .add(jTextFieldLoginCliente, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 243, Short.MAX_VALUE)
+                    .add(jPasswordFieldSenhaCliente))
                 .addContainerGap(360, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
@@ -674,7 +667,7 @@ public class JDialogCliente extends javax.swing.JDialog {
                 .add(15, 15, 15)
                 .add(jPanel4Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
                     .add(jLabel11)
-                    .add(jTextFieldSenhaCliente, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                    .add(jPasswordFieldSenhaCliente, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(350, Short.MAX_VALUE))
         );
 
@@ -809,6 +802,8 @@ public class JDialogCliente extends javax.swing.JDialog {
                 habilitaCampos(true);
                 jTextFieldIdCliente.setEnabled(false);
                 jTextFieldIdVeiculo.setEnabled(false);
+                jTextFieldNomeCidade.setEnabled(false);
+                jTextFieldUFCidade.setEnabled(false);
                 jButtonPesquisarCliente.setEnabled(true);
             }
         });
@@ -839,7 +834,7 @@ public class JDialogCliente extends javax.swing.JDialog {
         jFormattedTextFieldTelComecialCliente.setEnabled(true);
         jTextFieldEmailCliente.setEnabled(true);
         jTextFieldLoginCliente.setEnabled(true);
-        jTextFieldSenhaCliente.setEnabled(true);
+        jPasswordFieldSenhaCliente.setEnabled(true);
         jTextFieldNomeEndreco.setEnabled(true);
         jTextFieldNumEndereco.setEnabled(true);
         jTextFieldComplemento.setEnabled(true);
@@ -847,8 +842,8 @@ public class JDialogCliente extends javax.swing.JDialog {
         jTextFieldPesquisaCodCidade.setEnabled(true);
         jButtonPesquisarCidade.setEnabled(true);
         jButtonIncluirCidade.setEnabled(true);
-        jTextFieldNomeCidade.setEnabled(true);
-        jTextFieldUFCidade.setEnabled(true);
+        jTextFieldNomeCidade.setEnabled(false);
+        jTextFieldUFCidade.setEnabled(false);
         jTextFieldCep.setEnabled(true);
 
         jTextFieldIdVeiculo.setEnabled(false);
@@ -894,16 +889,11 @@ public class JDialogCliente extends javax.swing.JDialog {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextFieldLoginClienteActionPerformed
 
-    private void jTextFieldSenhaClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldSenhaClienteActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextFieldSenhaClienteActionPerformed
-
     private void jFormattedTextFieldPlacaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jFormattedTextFieldPlacaActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jFormattedTextFieldPlacaActionPerformed
 
     private void jButtonGravarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonGravarActionPerformed
-        // TODO add your handling code here:
         if (!validaCampos()) {
             return;
         }
@@ -1173,6 +1163,7 @@ public class JDialogCliente extends javax.swing.JDialog {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
+    private javax.swing.JPasswordField jPasswordFieldSenhaCliente;
     private javax.swing.JRadioButton jRadioButtonFemininoCliente;
     private javax.swing.JRadioButton jRadioButtonMasculinoCliente;
     private javax.swing.JScrollPane jScrollPane1;
@@ -1192,7 +1183,6 @@ public class JDialogCliente extends javax.swing.JDialog {
     private javax.swing.JTextField jTextFieldNomeEndreco;
     private javax.swing.JTextField jTextFieldNumEndereco;
     private javax.swing.JTextField jTextFieldPesquisaCodCidade;
-    private javax.swing.JTextField jTextFieldSenhaCliente;
     private javax.swing.JTextField jTextFieldUFCidade;
     // End of variables declaration//GEN-END:variables
 
@@ -1214,7 +1204,7 @@ public class JDialogCliente extends javax.swing.JDialog {
         cliente.setTelComercial(jFormattedTextFieldTelComecialCliente.getText().trim());
         cliente.setEmail(jTextFieldEmailCliente.getText().trim());
         cliente.setLogin(jTextFieldLoginCliente.getText().trim());
-        cliente.setSenha(jTextFieldSenhaCliente.getText().trim());
+        cliente.setSenha(jPasswordFieldSenhaCliente.getText().trim());
 
         cliente.getEndereco().setNomeEndereco(jTextFieldNomeEndreco.getText().trim());
         cliente.getEndereco().setNumero(Integer.parseInt(jTextFieldNumEndereco.getText().trim()));
@@ -1243,7 +1233,7 @@ public class JDialogCliente extends javax.swing.JDialog {
         jFormattedTextFieldTelComecialCliente.setText(cliente.getTelComercial());
         jTextFieldEmailCliente.setText(cliente.getEmail());
         jTextFieldLoginCliente.setText(cliente.getLogin());
-        jTextFieldSenhaCliente.setText(cliente.getSenha());
+        jPasswordFieldSenhaCliente.setText(cliente.getSenha());
 
         jTextFieldNomeEndreco.setText(cliente.getEndereco().getNomeEndereco());
         jTextFieldNumEndereco.setText(Integer.toString(cliente.getEndereco().getNumero()));
@@ -1270,7 +1260,7 @@ public class JDialogCliente extends javax.swing.JDialog {
         jFormattedTextFieldTelComecialCliente.setText("");
         jTextFieldEmailCliente.setText("");
         jTextFieldLoginCliente.setText("");
-        jTextFieldSenhaCliente.setText("");
+        jPasswordFieldSenhaCliente.setText("");
         jTextFieldNomeEndreco.setText("");
         jTextFieldNumEndereco.setText("");
         jTextFieldComplemento.setText("");
@@ -1308,7 +1298,7 @@ public class JDialogCliente extends javax.swing.JDialog {
         jFormattedTextFieldTelComecialCliente.setEnabled(!comando);
         jTextFieldEmailCliente.setEnabled(!comando);
         jTextFieldLoginCliente.setEnabled(!comando);
-        jTextFieldSenhaCliente.setEnabled(!comando);
+        jPasswordFieldSenhaCliente.setEnabled(!comando);
         jTextFieldNomeEndreco.setEnabled(!comando);
         jTextFieldNumEndereco.setEnabled(!comando);
         jTextFieldComplemento.setEnabled(!comando);
@@ -1316,8 +1306,8 @@ public class JDialogCliente extends javax.swing.JDialog {
         jTextFieldPesquisaCodCidade.setEnabled(!comando);
         jButtonPesquisarCidade.setEnabled(!comando);
         jButtonIncluirCidade.setEnabled(!comando);
-        jTextFieldNomeCidade.setEnabled(!comando);
-        jTextFieldUFCidade.setEnabled(!comando);
+        jTextFieldNomeCidade.setEnabled(comando);
+        jTextFieldUFCidade.setEnabled(comando);
         jTextFieldCep.setEnabled(!comando);
 
         jTextFieldIdVeiculo.setEnabled(comando);
