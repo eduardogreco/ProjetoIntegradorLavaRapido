@@ -554,6 +554,7 @@ public class JDialogSolicitacaoServico extends javax.swing.JDialog {
         jComboBoxStatus.setEnabled(false);
         jButtonGerarOrdem.setEnabled(true);
         jButtonSairConsul.setEnabled(true);
+        pesquisa();
     }//GEN-LAST:event_jButtonGravarActionPerformed
 
     private void jButtonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCancelarActionPerformed
@@ -563,6 +564,7 @@ public class JDialogSolicitacaoServico extends javax.swing.JDialog {
         }
         habilitaCampos(true);
         clearCampos();
+        HoraData();
     }//GEN-LAST:event_jButtonCancelarActionPerformed
 
     private void jButtonGerarOrdemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonGerarOrdemActionPerformed
@@ -579,6 +581,8 @@ public class JDialogSolicitacaoServico extends javax.swing.JDialog {
         gerarOrdem.setLocationRelativeTo(gerarOrdem);
         gerarOrdem.preencherCadOrdem(solicitacaoServico);
         gerarOrdem.setVisible(true);
+        
+        dispose();
 
 
     }//GEN-LAST:event_jButtonGerarOrdemActionPerformed
@@ -983,11 +987,6 @@ public class JDialogSolicitacaoServico extends javax.swing.JDialog {
 
     private void preencherjTable() {
         tabelaConsulta.setNumRows(0);
-
-        if (solicitacaoServicos.isEmpty()) {
-            JOptionPane.showMessageDialog(null, "Registros não encontrados.", "Atenção", JOptionPane.WARNING_MESSAGE);
-            return;
-        }
 
         for (SolicitacaoServico obj : solicitacaoServicos) {
             tabelaConsulta.addRow(new Object[]{
