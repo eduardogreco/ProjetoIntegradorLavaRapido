@@ -4,7 +4,25 @@
  */
 package br.edu.utfpr.cwsmanager.model.telas;
 
+import br.edu.utfpr.cwsmanager.model.daos.DaoGenerics;
+import br.edu.utfpr.cwsmanager.model.daos.TransactionManager;
+import br.edu.utfpr.cwsmanager.model.movimentacao.OrdemServico;
 import br.edu.utfpr.cwsmanager.model.movimentacao.SolicitacaoServico;
+import br.edu.utfpr.cwsmanager.model.movimentacao.TipoServico;
+import br.edu.utfpr.cwsmanager.model.pessoa.Cliente;
+import br.edu.utfpr.cwsmanager.model.pessoa.Funcionario;
+import br.edu.utfpr.cwsmanager.model.util.UtilDatas;
+import br.edu.utfpr.cwsmanager.model.veiculo.Veiculo;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JDialog;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -12,12 +30,35 @@ import br.edu.utfpr.cwsmanager.model.movimentacao.SolicitacaoServico;
  */
 public class JDialogCadOrdemServico extends javax.swing.JDialog {
 
-    private SolicitacaoServico solicitacao;
-    
-    
+    private List<Cliente> clientes;
+    private UtilDatas converteData = new UtilDatas();
+    private List<Funcionario> funcionarios;
+    private List<TipoServico> tipoServicos;
+    public Cliente cliente;
+    public Veiculo veiculo = null;
+    public Funcionario funcionario;
+    public TipoServico tipoServico;
+    public OrdemServico ordemServico;
+    private List<OrdemServico> ordemServicos = new ArrayList<OrdemServico>();
+    public SolicitacaoServico solicitacaoServico;
+    private List<SolicitacaoServico> solicitacaoServicos = new ArrayList<SolicitacaoServico>();
+    public DefaultTableModel tabelaConsulta;
+    private JDialogOrdemServico telaOrdem;
+
     public JDialogCadOrdemServico(java.awt.Dialog parent, boolean modal) {
         super(parent, modal);
         initComponents();
+
+
+
+        habilitaCampos(true);
+        HoraData();
+
+
+    }
+
+    private JDialogCadOrdemServico(JDialogSolicitacaoServico jDialogSolicitacaoServico, boolean b) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     /**
@@ -31,39 +72,36 @@ public class JDialogCadOrdemServico extends javax.swing.JDialog {
 
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jPanel1 = new javax.swing.JPanel();
-        jLabelCodCliente = new javax.swing.JLabel();
         jLabelNomeCliente = new javax.swing.JLabel();
         jLabelCpfCliente = new javax.swing.JLabel();
         jLabelDataNascCliente = new javax.swing.JLabel();
         jLabelTelPessoalCliente = new javax.swing.JLabel();
         jLabelTelComercialCliente = new javax.swing.JLabel();
         jLabelEmailCliente = new javax.swing.JLabel();
-        jTextFieldIdCodOrdem = new javax.swing.JTextField();
-        jFormattedTextFieldDataNascCliente = new javax.swing.JFormattedTextField();
-        jButtonPesquisarCliente = new javax.swing.JButton();
-        jComboBox1 = new javax.swing.JComboBox();
-        jComboBox2 = new javax.swing.JComboBox();
-        jComboBox3 = new javax.swing.JComboBox();
+        jFormattedTextFieldDataInicioOrdem = new javax.swing.JFormattedTextField();
+        jComboBoxStatus = new javax.swing.JComboBox();
         jLabel1 = new javax.swing.JLabel();
-        jComboBox4 = new javax.swing.JComboBox();
-        jComboBox5 = new javax.swing.JComboBox();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
+        jTextAreaDescricao = new javax.swing.JTextArea();
         jLabel2 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        jTextFieldCodSolicitacao = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
+        jTextFieldHoraInicial = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
-        jTextField3 = new javax.swing.JTextField();
+        jTextFieldHoraFinal = new javax.swing.JTextField();
+        jTextFieldNomeFuncionarioOrdem = new javax.swing.JTextField();
+        jTextFieldNomeCliente = new javax.swing.JTextField();
+        jComboBoxVeiculo = new javax.swing.JComboBox();
+        jComboBoxTipoServico = new javax.swing.JComboBox();
+        jLabelCódigpOrdem = new javax.swing.JLabel();
+        jTextFieldIdOrdem = new javax.swing.JTextField();
         jButtonGravar = new javax.swing.JButton();
         jButtonCancelar = new javax.swing.JButton();
-        jButtonIncluir = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        jButtonConcluir = new javax.swing.JButton();
+        jButtonSair = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Cadastrar Ordem de Serviço");
-
-        jLabelCodCliente.setText("Código:");
 
         jLabelNomeCliente.setText("Funcionário Solicitante:");
 
@@ -78,166 +116,155 @@ public class JDialogCadOrdemServico extends javax.swing.JDialog {
         jLabelEmailCliente.setText("Veículo:");
 
         try {
-            jFormattedTextFieldDataNascCliente.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
+            jFormattedTextFieldDataInicioOrdem.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
-        jFormattedTextFieldDataNascCliente.setMinimumSize(new java.awt.Dimension(42, 28));
-        jFormattedTextFieldDataNascCliente.setPreferredSize(new java.awt.Dimension(42, 28));
-        jFormattedTextFieldDataNascCliente.addActionListener(new java.awt.event.ActionListener() {
+        jFormattedTextFieldDataInicioOrdem.setMinimumSize(new java.awt.Dimension(42, 28));
+        jFormattedTextFieldDataInicioOrdem.setPreferredSize(new java.awt.Dimension(42, 28));
+        jFormattedTextFieldDataInicioOrdem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jFormattedTextFieldDataNascClienteActionPerformed(evt);
+                jFormattedTextFieldDataInicioOrdemActionPerformed(evt);
             }
         });
 
-        jButtonPesquisarCliente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icones/pesquisa.png"))); // NOI18N
-        jButtonPesquisarCliente.setToolTipText("Pesquisar Cliente");
-        jButtonPesquisarCliente.setMaximumSize(new java.awt.Dimension(42, 28));
-        jButtonPesquisarCliente.setMinimumSize(new java.awt.Dimension(42, 28));
-        jButtonPesquisarCliente.setPreferredSize(new java.awt.Dimension(42, 28));
-        jButtonPesquisarCliente.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonPesquisarClienteActionPerformed(evt);
-            }
-        });
+        jComboBoxStatus.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Em Andamento", "Concluido" }));
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Aberto", "Em Andamento", "Encerrado" }));
+        jLabel1.setText("Descrição:");
 
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jTextAreaDescricao.setColumns(20);
+        jTextAreaDescricao.setRows(5);
+        jScrollPane2.setViewportView(jTextAreaDescricao);
 
-        jComboBox3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
-        jLabel1.setText("Descriçao:");
-
-        jComboBox4.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
-        jComboBox5.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jScrollPane2.setViewportView(jTextArea1);
-
-        jLabel2.setText("Solicitaçao:");
+        jLabel2.setText("Solicitação:");
 
         jLabel3.setText("Hora inicial:");
 
+        jTextFieldHoraInicial.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextFieldHoraInicialActionPerformed(evt);
+            }
+        });
+
         jLabel4.setText("Hora final:");
+
+        jComboBoxVeiculo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBoxVeiculo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBoxVeiculoActionPerformed(evt);
+            }
+        });
+
+        jComboBoxTipoServico.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBoxTipoServico.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBoxTipoServicoActionPerformed(evt);
+            }
+        });
+
+        jLabelCódigpOrdem.setText("Código:");
 
         org.jdesktop.layout.GroupLayout jPanel1Layout = new org.jdesktop.layout.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
             .add(jPanel1Layout.createSequentialGroup()
+                .add(36, 36, 36)
                 .add(jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
                     .add(jPanel1Layout.createSequentialGroup()
-                        .add(26, 26, 26)
-                        .add(jLabelNomeCliente)
-                        .add(26, 26, 26))
-                    .add(org.jdesktop.layout.GroupLayout.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addContainerGap()
                         .add(jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                            .add(org.jdesktop.layout.GroupLayout.TRAILING, jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                                .add(org.jdesktop.layout.GroupLayout.TRAILING, jPanel1Layout.createSequentialGroup()
-                                    .add(jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                                        .add(jLabel3)
-                                        .add(jLabelDataNascCliente)
-                                        .add(jLabelCodCliente))
-                                    .add(90, 90, 90))
-                                .add(jPanel1Layout.createSequentialGroup()
-                                    .add(jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                                        .add(jLabelEmailCliente)
-                                        .add(jLabel4)
-                                        .add(jLabelTelPessoalCliente)
-                                        .add(jLabel1))
-                                    .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)))
+                            .add(jLabelTelPessoalCliente)
+                            .add(jLabelTelComercialCliente, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 148, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                            .add(jLabelEmailCliente)
+                            .add(jLabel4)
+                            .add(jLabel1))
+                        .add(jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
                             .add(org.jdesktop.layout.GroupLayout.TRAILING, jPanel1Layout.createSequentialGroup()
-                                .add(jLabelTelComercialCliente, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 148, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)))))
-                .add(jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                    .add(jPanel1Layout.createSequentialGroup()
-                        .add(jScrollPane2, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 332, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                        .add(0, 0, Short.MAX_VALUE))
-                    .add(jPanel1Layout.createSequentialGroup()
-                        .add(jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                            .add(jPanel1Layout.createSequentialGroup()
-                                .add(jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING, false)
-                                    .add(org.jdesktop.layout.GroupLayout.LEADING, jTextField2)
-                                    .add(org.jdesktop.layout.GroupLayout.LEADING, jTextFieldIdCodOrdem, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 97, Short.MAX_VALUE)
-                                    .add(org.jdesktop.layout.GroupLayout.LEADING, jFormattedTextFieldDataNascCliente, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .add(jLabelCpfCliente)
                                 .add(18, 18, 18)
-                                .add(jButtonPesquisarCliente, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 40, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                                .add(208, 208, 208)
+                                .add(jComboBoxStatus, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                                .add(212, 212, 212))
+                            .add(jPanel1Layout.createSequentialGroup()
                                 .add(jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
                                     .add(jPanel1Layout.createSequentialGroup()
+                                        .add(357, 357, 357)
                                         .add(jLabel2)
-                                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                                        .add(jTextField1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 101, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
+                                        .add(jTextFieldCodSolicitacao, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 101, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
                                     .add(jPanel1Layout.createSequentialGroup()
-                                        .add(jLabelCpfCliente)
-                                        .add(18, 18, 18)
-                                        .add(jComboBox1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))))
-                            .add(jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING)
-                                .add(jComboBox5, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 247, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                                .add(jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING, false)
-                                    .add(org.jdesktop.layout.GroupLayout.LEADING, jComboBox3, 0, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .add(org.jdesktop.layout.GroupLayout.LEADING, jComboBox4, 0, 247, Short.MAX_VALUE)
-                                    .add(org.jdesktop.layout.GroupLayout.LEADING, jComboBox2, 0, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                            .add(jTextField3, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 96, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                        .addContainerGap(115, Short.MAX_VALUE))))
+                                        .add(43, 43, 43)
+                                        .add(jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                                            .add(jTextFieldNomeCliente, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 244, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                                            .add(jComboBoxTipoServico, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 244, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                                            .add(jComboBoxVeiculo, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 244, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                                            .add(jTextFieldHoraFinal, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 96, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                                            .add(jScrollPane2, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 360, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))))
+                                .addContainerGap(178, Short.MAX_VALUE))))
+                    .add(jPanel1Layout.createSequentialGroup()
+                        .add(jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                            .add(jLabelCódigpOrdem)
+                            .add(jLabel3)
+                            .add(jLabelDataNascCliente)
+                            .add(jLabelNomeCliente))
+                        .add(58, 58, 58)
+                        .add(jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                            .add(jPanel1Layout.createSequentialGroup()
+                                .add(jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                                    .add(jTextFieldIdOrdem, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 101, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                                    .add(jTextFieldHoraInicial, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 97, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                                    .add(jTextFieldNomeFuncionarioOrdem, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 244, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .add(jPanel1Layout.createSequentialGroup()
+                                .add(jFormattedTextFieldDataInicioOrdem, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 97, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                                .add(0, 0, Short.MAX_VALUE)))
+                        .addContainerGap())))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
             .add(jPanel1Layout.createSequentialGroup()
-                .addContainerGap(org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap()
                 .add(jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                    .add(org.jdesktop.layout.GroupLayout.TRAILING, jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
+                    .add(org.jdesktop.layout.GroupLayout.TRAILING, jTextFieldIdOrdem, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                    .add(jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
+                        .add(jLabelCódigpOrdem)
                         .add(jLabelCpfCliente)
-                        .add(jComboBox1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                    .add(org.jdesktop.layout.GroupLayout.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .add(jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                            .add(jButtonPesquisarCliente, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 30, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                            .add(jTextFieldIdCodOrdem, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                            .add(jLabelCodCliente))
-                        .add(4, 4, 4)))
-                .add(jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                    .add(jPanel1Layout.createSequentialGroup()
-                        .add(14, 14, 14)
-                        .add(jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
-                            .add(jLabel2)
-                            .add(jTextField1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)))
-                    .add(jPanel1Layout.createSequentialGroup()
-                        .add(jFormattedTextFieldDataNascCliente, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                        .add(jTextField2, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                    .add(jPanel1Layout.createSequentialGroup()
-                        .add(jLabelDataNascCliente)
-                        .add(18, 18, 18)
-                        .add(jLabel3)))
+                        .add(jComboBoxStatus, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                .add(jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
+                    .add(jFormattedTextFieldDataInicioOrdem, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                    .add(jLabelDataNascCliente)
+                    .add(jLabel2)
+                    .add(jTextFieldCodSolicitacao, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                .add(jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
+                    .add(jTextFieldHoraInicial, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                    .add(jLabel3))
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                .add(jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
+                    .add(jTextFieldNomeFuncionarioOrdem, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                    .add(jLabelNomeCliente))
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
                 .add(jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
-                    .add(jComboBox3, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                    .add(jLabelNomeCliente))
-                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                .add(jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
-                    .add(jComboBox2, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                    .add(jComboBoxTipoServico, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                     .add(jLabelTelPessoalCliente))
-                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 8, Short.MAX_VALUE)
                 .add(jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
-                    .add(jComboBox4, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                    .add(jTextFieldNomeCliente, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                     .add(jLabelTelComercialCliente))
-                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
                 .add(jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
-                    .add(jComboBox5, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                    .add(jLabelEmailCliente))
-                .add(18, 18, 18)
-                .add(jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                    .add(jTextField3, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                    .add(jLabelEmailCliente)
+                    .add(jComboBoxVeiculo, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                .add(10, 10, 10)
+                .add(jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
+                    .add(jTextFieldHoraFinal, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                     .add(jLabel4))
-                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 12, Short.MAX_VALUE)
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
                 .add(jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                    .add(jScrollPane2, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 125, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                    .add(jScrollPane2, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 131, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                     .add(jLabel1))
-                .add(26, 26, 26))
+                .addContainerGap(18, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Cadastrar Ordem de Serviço", jPanel1);
@@ -258,19 +285,19 @@ public class JDialogCadOrdemServico extends javax.swing.JDialog {
             }
         });
 
-        jButtonIncluir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icones/ok.png"))); // NOI18N
-        jButtonIncluir.setText("Concluir Ordem");
-        jButtonIncluir.addActionListener(new java.awt.event.ActionListener() {
+        jButtonConcluir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icones/ok.png"))); // NOI18N
+        jButtonConcluir.setText("Concluir Ordem");
+        jButtonConcluir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonIncluirActionPerformed(evt);
+                jButtonConcluirActionPerformed(evt);
             }
         });
 
-        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icones/remove.png"))); // NOI18N
-        jButton3.setText("Sair");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        jButtonSair.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icones/remove.png"))); // NOI18N
+        jButtonSair.setText("Sair");
+        jButtonSair.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                jButtonSairActionPerformed(evt);
             }
         });
 
@@ -278,19 +305,18 @@ public class JDialogCadOrdemServico extends javax.swing.JDialog {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(org.jdesktop.layout.GroupLayout.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .add(layout.createSequentialGroup()
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                    .add(layout.createSequentialGroup()
-                        .add(348, 348, 348)
+                    .add(org.jdesktop.layout.GroupLayout.TRAILING, layout.createSequentialGroup()
+                        .addContainerGap(org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .add(jButtonGravar, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 95, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                         .add(jButtonCancelar, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 106, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                         .add(61, 61, 61)
-                        .add(jButtonIncluir, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 174, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                        .add(jButtonConcluir, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 174, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                         .add(31, 31, 31)
-                        .add(jButton3, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 104, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                    .add(jTabbedPane1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 907, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                        .add(jButtonSair, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 104, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                    .add(jTabbedPane1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 925, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -299,41 +325,79 @@ public class JDialogCadOrdemServico extends javax.swing.JDialog {
                 .addContainerGap()
                 .add(jTabbedPane1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 495, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
-                    .add(jButtonGravar, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 34, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                    .add(jButtonCancelar, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 34, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                    .add(jButtonIncluir, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 34, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                    .add(jButton3, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 34, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                    .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
+                        .add(jButtonCancelar, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 34, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                        .add(jButtonConcluir, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 34, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                        .add(jButtonSair, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 34, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                    .add(jButtonGravar, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 34, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(27, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jFormattedTextFieldDataNascClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jFormattedTextFieldDataNascClienteActionPerformed
+    private void jFormattedTextFieldDataInicioOrdemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jFormattedTextFieldDataInicioOrdemActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jFormattedTextFieldDataNascClienteActionPerformed
-
-    private void jButtonPesquisarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonPesquisarClienteActionPerformed
-
-    }//GEN-LAST:event_jButtonPesquisarClienteActionPerformed
+    }//GEN-LAST:event_jFormattedTextFieldDataInicioOrdemActionPerformed
 
     private void jButtonGravarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonGravarActionPerformed
+
+
+        try {
+            gravar();
+            JOptionPane.showMessageDialog(null, "Registro gravado com sucesso.", "Gravar", JOptionPane.INFORMATION_MESSAGE);
+            dispose();
+        } catch (Exception ex) {
+            Logger.getLogger(JDialogCadOrdemServico.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        /*    habilitaCampos(false);
+         jTextFieldHoraInicial.setEnabled(false);
+         jFormattedTextFieldDataInicioOrdem.setEnabled(false);
+         jTextFieldIdOrdem.setEnabled(false);
+         jComboBoxStatus.setEnabled(false);
+         jTextFieldCodSolicitacao.setEnabled(false);
+
+         jButtonSair.setEnabled(true);
+         jButtonConcluir.setEnabled(true); */
 
     }//GEN-LAST:event_jButtonGravarActionPerformed
 
     private void jButtonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCancelarActionPerformed
-
+dispose();
     }//GEN-LAST:event_jButtonCancelarActionPerformed
 
-    private void jButtonIncluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonIncluirActionPerformed
+    private void jButtonConcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonConcluirActionPerformed
 
-    }//GEN-LAST:event_jButtonIncluirActionPerformed
+        try {
+            ConcluirOrdem();
+            JOptionPane.showMessageDialog(null, "Ordem Concluída com sucesso.", "Gravar", JOptionPane.INFORMATION_MESSAGE);
+            dispose();
+        } catch (Exception ex) {
+            Logger.getLogger(JDialogCadOrdemServico.class.getName()).log(Level.SEVERE, null, ex);
+        }
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    }//GEN-LAST:event_jButtonConcluirActionPerformed
+
+    private void jButtonSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSairActionPerformed
         // TODO add your handling code here:
         dispose();
-    }//GEN-LAST:event_jButton3ActionPerformed
+    }//GEN-LAST:event_jButtonSairActionPerformed
+
+    private void jComboBoxVeiculoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxVeiculoActionPerformed
+        veiculo = (Veiculo) jComboBoxVeiculo.getModel().getSelectedItem();
+    }//GEN-LAST:event_jComboBoxVeiculoActionPerformed
+
+    private void jComboBoxTipoServicoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxTipoServicoActionPerformed
+        if (jComboBoxTipoServico.getSelectedItem() instanceof TipoServico) {
+            tipoServico = (TipoServico) jComboBoxTipoServico.getSelectedItem();
+        }
+    }//GEN-LAST:event_jComboBoxTipoServicoActionPerformed
+
+    private void jTextFieldHoraInicialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldHoraInicialActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextFieldHoraInicialActionPerformed
 
     /**
      * @param args the command line arguments
@@ -365,7 +429,7 @@ public class JDialogCadOrdemServico extends javax.swing.JDialog {
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                JDialogCadOrdemServico dialog = new JDialogCadOrdemServico(new javax.swing.JDialog(), true);
+                JDialogCadOrdemServico dialog = new JDialogCadOrdemServico((JDialogSolicitacaoServico) new JDialog(), true);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {
@@ -377,23 +441,20 @@ public class JDialogCadOrdemServico extends javax.swing.JDialog {
         });
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton3;
     private javax.swing.JButton jButtonCancelar;
+    private javax.swing.JButton jButtonConcluir;
     private javax.swing.JButton jButtonGravar;
-    private javax.swing.JButton jButtonIncluir;
-    private javax.swing.JButton jButtonPesquisarCliente;
-    private javax.swing.JComboBox jComboBox1;
-    private javax.swing.JComboBox jComboBox2;
-    private javax.swing.JComboBox jComboBox3;
-    private javax.swing.JComboBox jComboBox4;
-    private javax.swing.JComboBox jComboBox5;
-    private javax.swing.JFormattedTextField jFormattedTextFieldDataNascCliente;
+    private javax.swing.JButton jButtonSair;
+    private javax.swing.JComboBox jComboBoxStatus;
+    private javax.swing.JComboBox jComboBoxTipoServico;
+    private javax.swing.JComboBox jComboBoxVeiculo;
+    private javax.swing.JFormattedTextField jFormattedTextFieldDataInicioOrdem;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabelCodCliente;
     private javax.swing.JLabel jLabelCpfCliente;
+    private javax.swing.JLabel jLabelCódigpOrdem;
     private javax.swing.JLabel jLabelDataNascCliente;
     private javax.swing.JLabel jLabelEmailCliente;
     private javax.swing.JLabel jLabelNomeCliente;
@@ -402,15 +463,164 @@ public class JDialogCadOrdemServico extends javax.swing.JDialog {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTabbedPane jTabbedPane1;
-    private javax.swing.JTextArea jTextArea1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextFieldIdCodOrdem;
+    private javax.swing.JTextArea jTextAreaDescricao;
+    private javax.swing.JTextField jTextFieldCodSolicitacao;
+    private javax.swing.JTextField jTextFieldHoraFinal;
+    private javax.swing.JTextField jTextFieldHoraInicial;
+    private javax.swing.JTextField jTextFieldIdOrdem;
+    private javax.swing.JTextField jTextFieldNomeCliente;
+    private javax.swing.JTextField jTextFieldNomeFuncionarioOrdem;
     // End of variables declaration//GEN-END:variables
 
-    public void preencherCadOrdem(SolicitacaoServico teste){
-         jTextFieldIdCodOrdem.setText(teste.getObs());
+    public void HoraData() {
+        SimpleDateFormat hora = new SimpleDateFormat("HH:mm:aa");
+        SimpleDateFormat data = new SimpleDateFormat("dd/MM/yyyy");
+
+        jTextFieldHoraInicial.setText(hora.format(Calendar.getInstance().getTime()));
+        jFormattedTextFieldDataInicioOrdem.setText(data.format(Calendar.getInstance().getTime()));
     }
 
+    public void habilitaCampos(boolean comando) {
+
+        jButtonConcluir.setEnabled(!comando);
+
+        jButtonCancelar.setEnabled(comando);
+        jButtonGravar.setEnabled(comando);
+        jButtonSair.setEnabled(comando);
+        
+        jFormattedTextFieldDataInicioOrdem.setEnabled(!comando);
+        jTextFieldHoraInicial.setEnabled(!comando);
+        jTextFieldIdOrdem.setEnabled(!comando);
+        jTextFieldNomeFuncionarioOrdem.setEnabled(!comando);
+        jTextFieldCodSolicitacao.setEnabled(!comando);
+        jComboBoxStatus.setEnabled(!comando);
+        jTextFieldCodSolicitacao.setEnabled(!comando);
+        jComboBoxTipoServico.setEnabled(!comando);
+        jComboBoxVeiculo.setEnabled(!comando);
+        jTextFieldNomeCliente.setEnabled(!comando);
+
+        jTextAreaDescricao.setEnabled(!comando);
+        jTextFieldHoraFinal.setEnabled(!comando);
+    }
+
+    public void preencherCadOrdem(SolicitacaoServico solicitacao) {
+
+        jTextFieldHoraInicial.setText(solicitacao.getHorario());
+        jTextFieldCodSolicitacao.setText(Integer.toString(solicitacao.getId()));
+        jTextFieldNomeFuncionarioOrdem.setText(solicitacao.getFuncionario().getNome());
+        jTextFieldNomeCliente.setText(solicitacao.getCliente().getNome());
+
+        jComboBoxVeiculo.removeAllItems();
+        jComboBoxVeiculo.addItem(solicitacao.getVeiculo());
+
+        jComboBoxTipoServico.removeAllItems();
+        jComboBoxTipoServico.addItem(solicitacao.getTipoServico());
+
+        solicitacaoServico = solicitacao;
+
+    }
+
+    public void preencherOrdem(OrdemServico ordem) {
+
+        jTextFieldHoraInicial.setText(ordem.getSolicitacaoServico().getHorario());
+        jTextFieldCodSolicitacao.setText(Integer.toString(ordem.getSolicitacaoServico().getId()));
+        jTextFieldNomeFuncionarioOrdem.setText(ordem.getSolicitacaoServico().getFuncionario().getNome());
+        jTextFieldNomeCliente.setText(ordem.getSolicitacaoServico().getCliente().getNome());
+
+        jComboBoxVeiculo.removeAllItems();
+        jComboBoxVeiculo.addItem(ordem.getSolicitacaoServico().getVeiculo());
+
+        jComboBoxTipoServico.removeAllItems();
+        jComboBoxTipoServico.addItem(ordem.getSolicitacaoServico().getTipoServico());
+
+        ordemServico = ordem;
+
+    }
+
+    public void encerrarOrdem(OrdemServico ordem) {
+        jTextFieldIdOrdem.setText(Integer.toString(ordem.getId()));
+
+        jTextFieldCodSolicitacao.setText(Integer.toString(ordem.getSolicitacaoServico().getId()));
+        jTextAreaDescricao.setText(ordem.getDescricao());
+        SimpleDateFormat hora = new SimpleDateFormat("HH:mm:aa");
+        SimpleDateFormat data = new SimpleDateFormat("dd/MM/yyyy");
+        jTextFieldHoraFinal.setText(hora.format(Calendar.getInstance().getTime()));
+        jComboBoxStatus.removeAllItems();
+        jComboBoxStatus.addItem("Concluido");
+        habilitaCampos(true);
+
+        jButtonGravar.setEnabled(false);
+        jButtonCancelar.setEnabled(false);
+        jButtonConcluir.setEnabled(true);
+        
+        jTextAreaDescricao.setEnabled(true);
+        
+
+
+        ordemServico = ordem;
+    }
+        
+    public void ConcluirOrdem() throws Exception {
+        ordemServico = null;
+
+        if (jTextFieldIdOrdem.getText().isEmpty()) {
+            ordemServico = new OrdemServico();
+        } else {
+            ordemServico = new DaoGenerics<OrdemServico>(OrdemServico.class).retrieve(Integer.parseInt(jTextFieldIdOrdem.getText()));
+            solicitacaoServico = new DaoGenerics<SolicitacaoServico>(SolicitacaoServico.class).retrieve(Integer.parseInt(jTextFieldCodSolicitacao.getText()));
+        }
+
+        TransactionManager.beginTransaction();
+        ordemServico.setHoraInicio(jTextFieldHoraInicial.getText().trim());
+        ordemServico.setStatus((String) jComboBoxStatus.getSelectedItem());
+        ordemServico.setData(converteData.toDate(jFormattedTextFieldDataInicioOrdem.getText().trim()));
+        ordemServico.setHoraFinal(jTextFieldHoraFinal.getText().trim());
+        solicitacaoServico.setStatus("Encerrado");
+
+        ordemServico.setDescricao(jTextAreaDescricao.getText().trim());
+
+
+
+        try {
+            new DaoGenerics<OrdemServico>(OrdemServico.class).persist(ordemServico);
+            new DaoGenerics<SolicitacaoServico>(SolicitacaoServico.class).persist(solicitacaoServico);
+        } catch (Exception ex) {
+            Logger.getLogger(JDialogOrdemServico.class.getName()).log(Level.SEVERE, null, ex);
+
+        }
+
+        TransactionManager.commit();
+    }
+
+    public void gravar() throws Exception {
+        ordemServico = null;
+
+        if (jTextFieldIdOrdem.getText().isEmpty()) {
+            ordemServico = new OrdemServico();
+        } else {
+            ordemServico = new DaoGenerics<OrdemServico>(OrdemServico.class).retrieve(Integer.parseInt(jTextFieldIdOrdem.getText()));
+        }
+
+        TransactionManager.beginTransaction();
+        ordemServico.setHoraInicio(jTextFieldHoraInicial.getText().trim());
+        ordemServico.setStatus(jComboBoxStatus.getSelectedItem().toString());
+        ordemServico.setData(converteData.toDate(jFormattedTextFieldDataInicioOrdem.getText().trim()));
+        ordemServico.setHoraFinal(jTextFieldHoraFinal.getText().trim());
+        ordemServico.setSolicitacaoServico(solicitacaoServico);
+        solicitacaoServico.setStatus("Em Andamento");
+        // ordemServico.setHoraFinal(jTextFieldHoraFinal.getText().trim());
+        ordemServico.setDescricao(jTextAreaDescricao.getText().trim());
+
+        try {
+            new DaoGenerics<OrdemServico>(OrdemServico.class).persist(ordemServico);
+            new DaoGenerics<SolicitacaoServico>(SolicitacaoServico.class).persist(solicitacaoServico);
+        } catch (Exception ex) {
+            Logger.getLogger(JDialogOrdemServico.class.getName()).log(Level.SEVERE, null, ex);
+
+        }
+
+
+        TransactionManager.commit();
+
+    }
 }

@@ -95,4 +95,8 @@ public class OrdemServico implements Serializable {
     public void setDescricao(String descricao) {
         this.descricao = descricao;
     }
+
+ //   public void setData(String trim) {
+ //       throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+ //   }
 }
