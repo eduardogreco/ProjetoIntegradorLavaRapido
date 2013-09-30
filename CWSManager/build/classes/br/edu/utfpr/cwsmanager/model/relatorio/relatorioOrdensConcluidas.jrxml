@@ -33,17 +33,13 @@ WHERE
 	</background>
 	<title>
 		<band height="70" splitType="Stretch">
-			<image>
-				<reportElement uuid="3c72ff2b-b5a3-450f-bf56-333b5e5320b8" x="0" y="-18" width="288" height="88"/>
-				<imageExpression><![CDATA["/Users/eduardogreco/Documents/UTFPR/CWS-Manager/ProjetoIntegradorLavaRapido/CWSManager/src/br/edu/utfpr/cwsmanager/model/relatorio/carws.png"]]></imageExpression>
-			</image>
 			<staticText>
-				<reportElement uuid="ec2845a5-55be-49e1-bf12-59964be2aea2" style="Title" x="197" y="0" width="263" height="33"/>
+				<reportElement uuid="ec2845a5-55be-49e1-bf12-59964be2aea2" style="Title" x="170" y="0" width="263" height="33"/>
 				<textElement verticalAlignment="Middle"/>
 				<text><![CDATA[CWS - Manager]]></text>
 			</staticText>
 			<staticText>
-				<reportElement uuid="76528739-12bd-48e8-885e-281e599a4dfe" style="SubTitle" x="162" y="33" width="323" height="22"/>
+				<reportElement uuid="76528739-12bd-48e8-885e-281e599a4dfe" style="SubTitle" x="149" y="33" width="323" height="22"/>
 				<textElement/>
 				<text><![CDATA[Relatório de Ordens concluídas]]></text>
 			</staticText>

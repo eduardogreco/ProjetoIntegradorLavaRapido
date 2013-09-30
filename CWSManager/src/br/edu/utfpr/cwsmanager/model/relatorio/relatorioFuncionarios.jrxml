@@ -36,17 +36,13 @@ FROM
 	</background>
 	<title>
 		<band height="70" splitType="Stretch">
-			<image>
-				<reportElement uuid="b350933a-950c-4f77-b45f-cf888019846d" x="1" y="-18" width="268" height="88"/>
-				<imageExpression><![CDATA["/Users/eduardogreco/Documents/UTFPR/CWS-Manager/ProjetoIntegradorLavaRapido/CWSManager/src/br/edu/utfpr/cwsmanager/model/relatorio/carws.png"]]></imageExpression>
-			</image>
 			<staticText>
-				<reportElement uuid="aa87a7a9-adf8-48bb-92cf-fd9e4af4782f" style="Title" x="223" y="0" width="263" height="33"/>
+				<reportElement uuid="aa87a7a9-adf8-48bb-92cf-fd9e4af4782f" style="Title" x="181" y="0" width="263" height="33"/>
 				<textElement verticalAlignment="Middle"/>
 				<text><![CDATA[CWS - Manager]]></text>
 			</staticText>
 			<staticText>
-				<reportElement uuid="1397828f-8e3f-47da-9146-ddfd58b17cb6" style="SubTitle" x="215" y="33" width="217" height="22"/>
+				<reportElement uuid="1397828f-8e3f-47da-9146-ddfd58b17cb6" style="SubTitle" x="181" y="33" width="217" height="22"/>
 				<textElement/>
 				<text><![CDATA[Relatório de Funcionários]]></text>
 			</staticText>

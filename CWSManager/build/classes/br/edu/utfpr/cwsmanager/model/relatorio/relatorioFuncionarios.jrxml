@@ -36,19 +36,15 @@ FROM
 	</background>
 	<title>
 		<band height="70" splitType="Stretch">
-			<image>
-				<reportElement uuid="c2dd9b36-9d8d-412e-86c9-3da9b5834131" x="275" y="0" width="300" height="64"/>
-				<imageExpression><![CDATA["leaf_banner_gray.png"]]></imageExpression>
-			</image>
 			<staticText>
-				<reportElement uuid="018647c8-444d-400e-b28f-1cad5b353b18" style="Title" x="0" y="13" width="263" height="33"/>
+				<reportElement uuid="aa87a7a9-adf8-48bb-92cf-fd9e4af4782f" style="Title" x="181" y="0" width="263" height="33"/>
 				<textElement verticalAlignment="Middle"/>
-				<text><![CDATA[Leaf Gray Title]]></text>
+				<text><![CDATA[CWS - Manager]]></text>
 			</staticText>
 			<staticText>
-				<reportElement uuid="db372d08-b8e8-4432-a150-73306665580f" style="SubTitle" x="117" y="46" width="157" height="22"/>
+				<reportElement uuid="1397828f-8e3f-47da-9146-ddfd58b17cb6" style="SubTitle" x="181" y="33" width="217" height="22"/>
 				<textElement/>
-				<text><![CDATA[Leaf Gray SubTitle]]></text>
+				<text><![CDATA[Relatório de Funcionários]]></text>
 			</staticText>
 		</band>
 	</title>

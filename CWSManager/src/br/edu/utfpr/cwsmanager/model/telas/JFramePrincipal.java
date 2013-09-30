@@ -39,8 +39,13 @@ public class JFramePrincipal extends javax.swing.JFrame {
         looks = UIManager.getInstalledLookAndFeels();
         for (UIManager.LookAndFeelInfo lookAndFeelInfo : looks) {
           jComboBoxLookAndFeel.addItem(lookAndFeelInfo.getClassName());
-      //    jComboBoxLookAndFeel.setSelectedItem(javax.swing.);
         }
+        try {
+            UIManager.setLookAndFeel("javax.swing.plaf.nimbus.NimbusLookAndFeel");
+        } catch (Exception ex) {
+            Logger.getLogger(JFramePrincipal.class.getName()).log(Level.SEVERE, null, ex);
+        }
+            SwingUtilities.updateComponentTreeUI(this);
     }
 
     /**
@@ -73,13 +78,6 @@ public class JFramePrincipal extends javax.swing.JFrame {
         jButtonManualMENU = new javax.swing.JButton();
         jSeparator5 = new javax.swing.JToolBar.Separator();
         jButtonSairMENU = new javax.swing.JButton();
-        jButtonEstoque = new javax.swing.JButton();
-        jButtonGerRelatorio = new javax.swing.JButton();
-        jButtonProduto = new javax.swing.JButton();
-        jButtonHistoricoCliente = new javax.swing.JButton();
-        jButtonVenda = new javax.swing.JButton();
-        jButtonCompra = new javax.swing.JButton();
-        jButtonManual = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         jLabelStatus = new javax.swing.JLabel();
         jComboBoxLookAndFeel = new javax.swing.JComboBox();
@@ -314,139 +312,6 @@ public class JFramePrincipal extends javax.swing.JFrame {
             }
         });
         jtAtalho.add(jButtonSairMENU);
-
-        jButtonEstoque.setToolTipText("Verificar Estoque");
-        jButtonEstoque.setFocusable(false);
-        jButtonEstoque.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButtonEstoque.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jButtonEstoque.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                jButtonEstoqueMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                jButtonEstoqueMouseExited(evt);
-            }
-        });
-        jButtonEstoque.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonEstoqueActionPerformed(evt);
-            }
-        });
-        jtAtalho.add(jButtonEstoque);
-
-        jButtonGerRelatorio.setToolTipText("Gerenciamento de Relatóriosl");
-        jButtonGerRelatorio.setFocusable(false);
-        jButtonGerRelatorio.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButtonGerRelatorio.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jButtonGerRelatorio.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                jButtonGerRelatorioMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                jButtonGerRelatorioMouseExited(evt);
-            }
-        });
-        jButtonGerRelatorio.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonGerRelatorioActionPerformed(evt);
-            }
-        });
-        jtAtalho.add(jButtonGerRelatorio);
-
-        jButtonProduto.setToolTipText("Cadastro de Produtos");
-        jButtonProduto.setFocusable(false);
-        jButtonProduto.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButtonProduto.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jButtonProduto.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                jButtonProdutoMouseExited(evt);
-            }
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                jButtonProdutoMouseEntered(evt);
-            }
-        });
-        jButtonProduto.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonProdutoActionPerformed(evt);
-            }
-        });
-        jtAtalho.add(jButtonProduto);
-
-        jButtonHistoricoCliente.setToolTipText("Histórico de Clientes");
-        jButtonHistoricoCliente.setFocusable(false);
-        jButtonHistoricoCliente.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButtonHistoricoCliente.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jButtonHistoricoCliente.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                jButtonHistoricoClienteMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                jButtonHistoricoClienteMouseExited(evt);
-            }
-        });
-        jButtonHistoricoCliente.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonHistoricoClienteActionPerformed(evt);
-            }
-        });
-        jtAtalho.add(jButtonHistoricoCliente);
-
-        jButtonVenda.setToolTipText("Registrar Vendas");
-        jButtonVenda.setFocusable(false);
-        jButtonVenda.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButtonVenda.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jButtonVenda.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                jButtonVendaMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                jButtonVendaMouseExited(evt);
-            }
-        });
-        jButtonVenda.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonVendaActionPerformed(evt);
-            }
-        });
-        jtAtalho.add(jButtonVenda);
-
-        jButtonCompra.setToolTipText("Registrar Compras");
-        jButtonCompra.setFocusable(false);
-        jButtonCompra.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButtonCompra.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jButtonCompra.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                jButtonCompraMouseExited(evt);
-            }
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                jButtonCompraMouseEntered(evt);
-            }
-        });
-        jButtonCompra.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonCompraActionPerformed(evt);
-            }
-        });
-        jtAtalho.add(jButtonCompra);
-
-        jButtonManual.setToolTipText("Manual do Usuário");
-        jButtonManual.setFocusable(false);
-        jButtonManual.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButtonManual.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jButtonManual.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                jButtonManualMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                jButtonManualMouseExited(evt);
-            }
-        });
-        jButtonManual.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonManualActionPerformed(evt);
-            }
-        });
-        jtAtalho.add(jButtonManual);
 
         jPanel1.setBorder(javax.swing.BorderFactory.createEtchedBorder(null, new java.awt.Color(102, 102, 102)));
 
@@ -749,78 +614,6 @@ public class JFramePrincipal extends javax.swing.JFrame {
         jdCliente.setVisible(true);
     }//GEN-LAST:event_jButtonClienteActionPerformed
 
-    private void jButtonProdutoMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonProdutoMouseEntered
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButtonProdutoMouseEntered
-
-    private void jButtonProdutoMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonProdutoMouseExited
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButtonProdutoMouseExited
-
-    private void jButtonProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonProdutoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButtonProdutoActionPerformed
-
-    private void jButtonVendaMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonVendaMouseEntered
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButtonVendaMouseEntered
-
-    private void jButtonVendaMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonVendaMouseExited
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButtonVendaMouseExited
-
-    private void jButtonVendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonVendaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButtonVendaActionPerformed
-
-    private void jButtonHistoricoClienteMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonHistoricoClienteMouseEntered
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButtonHistoricoClienteMouseEntered
-
-    private void jButtonHistoricoClienteMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonHistoricoClienteMouseExited
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButtonHistoricoClienteMouseExited
-
-    private void jButtonHistoricoClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonHistoricoClienteActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButtonHistoricoClienteActionPerformed
-
-    private void jButtonEstoqueMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonEstoqueMouseEntered
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButtonEstoqueMouseEntered
-
-    private void jButtonEstoqueMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonEstoqueMouseExited
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButtonEstoqueMouseExited
-
-    private void jButtonEstoqueActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEstoqueActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButtonEstoqueActionPerformed
-
-    private void jButtonGerRelatorioMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonGerRelatorioMouseEntered
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButtonGerRelatorioMouseEntered
-
-    private void jButtonGerRelatorioMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonGerRelatorioMouseExited
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButtonGerRelatorioMouseExited
-
-    private void jButtonGerRelatorioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonGerRelatorioActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButtonGerRelatorioActionPerformed
-
-    private void jButtonManualMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonManualMouseEntered
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButtonManualMouseEntered
-
-    private void jButtonManualMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonManualMouseExited
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButtonManualMouseExited
-
-    private void jButtonManualActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonManualActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButtonManualActionPerformed
-
     private void jButtonSairMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonSairMouseEntered
         // TODO add your handling code here:
     }//GEN-LAST:event_jButtonSairMouseEntered
@@ -1052,18 +845,6 @@ public class JFramePrincipal extends javax.swing.JFrame {
         jdConsTipoDeServico.setVisible(true);
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
-    private void jButtonCompraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCompraActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButtonCompraActionPerformed
-
-    private void jButtonCompraMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonCompraMouseEntered
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButtonCompraMouseEntered
-
-    private void jButtonCompraMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonCompraMouseExited
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButtonCompraMouseExited
-
     private void jMenuItem9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem9ActionPerformed
         // TODO add your handling code here:
         try {
@@ -1134,21 +915,14 @@ public class JFramePrincipal extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JButton jButtonCliente;
-    private javax.swing.JButton jButtonCompra;
     private javax.swing.JButton jButtonConsultaClienteMENU;
-    private javax.swing.JButton jButtonEstoque;
-    private javax.swing.JButton jButtonGerRelatorio;
     private javax.swing.JButton jButtonGerRelatorioMENU;
-    private javax.swing.JButton jButtonHistoricoCliente;
-    private javax.swing.JButton jButtonManual;
     private javax.swing.JButton jButtonManualMENU;
     private javax.swing.JButton jButtonOrdemServicoMENU;
-    private javax.swing.JButton jButtonProduto;
     private javax.swing.JButton jButtonSair;
     private javax.swing.JButton jButtonSairMENU;
     private javax.swing.JButton jButtonSobreMENU;
     private javax.swing.JButton jButtonSolicitacaoService;
-    private javax.swing.JButton jButtonVenda;
     private javax.swing.JComboBox jComboBoxLookAndFeel;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabelStatus;

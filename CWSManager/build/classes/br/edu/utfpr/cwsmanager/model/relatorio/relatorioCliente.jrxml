@@ -7,6 +7,9 @@
 	<style name="SubTitle" forecolor="#666666" fontName="Arial" fontSize="18"/>
 	<style name="Column header" forecolor="#666666" fontName="Arial" fontSize="12" isBold="true"/>
 	<style name="Detail" fontName="Arial" fontSize="12"/>
+	<parameter name="realPath" class="java.lang.String">
+		<defaultValueExpression><![CDATA["./"]]></defaultValueExpression>
+	</parameter>
 	<queryString language="SQL">
 		<![CDATA[SELECT
      Cliente.`id` AS Cliente_id,
@@ -58,22 +61,15 @@ FROM
 	<title>
 		<band height="70" splitType="Stretch">
 			<staticText>
-				<reportElement uuid="37a70c2c-d074-46bd-b4f6-c83ce65a3e65" style="Title" x="295" y="0" width="263" height="33"/>
+				<reportElement uuid="37a70c2c-d074-46bd-b4f6-c83ce65a3e65" style="Title" x="266" y="0" width="263" height="33"/>
 				<textElement verticalAlignment="Middle"/>
 				<text><![CDATA[CWS - Manager]]></text>
 			</staticText>
 			<staticText>
-				<reportElement uuid="4c8c875d-a512-449d-95a0-0d1832b835cd" style="SubTitle" x="305" y="33" width="170" height="22"/>
+				<reportElement uuid="4c8c875d-a512-449d-95a0-0d1832b835cd" style="SubTitle" x="277" y="33" width="170" height="22"/>
 				<textElement/>
 				<text><![CDATA[Relatório de Clientes]]></text>
 			</staticText>
-			<image>
-				<reportElement uuid="a27061ae-704c-47a6-9814-acacf0ba8b2c" x="0" y="-18" width="288" height="88"/>
-			</image>
-			<image>
-				<reportElement uuid="2ed3fa53-5f35-4efa-b8eb-a4f2cb0876ae" x="1" y="-18" width="268" height="88"/>
-				<imageExpression><![CDATA["/Users/eduardogreco/Documents/UTFPR/CWS-Manager/ProjetoIntegradorLavaRapido/CWSManager/src/br/edu/utfpr/cwsmanager/model/relatorio/carws.png"]]></imageExpression>
-			</image>
 		</band>
 	</title>
 	<pageHeader>
