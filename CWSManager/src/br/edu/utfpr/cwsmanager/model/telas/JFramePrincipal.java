@@ -15,8 +15,11 @@ import java.util.GregorianCalendar;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import javax.swing.LookAndFeel;
 import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
+import javax.swing.UIManager.LookAndFeelInfo;
+import javax.swing.UnsupportedLookAndFeelException;
 
 /**
  *
@@ -35,7 +38,8 @@ public class JFramePrincipal extends javax.swing.JFrame {
 
         looks = UIManager.getInstalledLookAndFeels();
         for (UIManager.LookAndFeelInfo lookAndFeelInfo : looks) {
-            jComboBoxLookAndFeel.addItem(lookAndFeelInfo.getClassName());
+          jComboBoxLookAndFeel.addItem(lookAndFeelInfo.getClassName());
+      //    jComboBoxLookAndFeel.setSelectedItem(javax.swing.);
         }
     }
 
@@ -995,7 +999,7 @@ public class JFramePrincipal extends javax.swing.JFrame {
 
     private void jButtonOrdemServicoMENUActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonOrdemServicoMENUActionPerformed
         // TODO add your handling code here:
-        JDialogOrdemServico jdOrdemServico = new JDialogOrdemServico(this, true);
+        JDialogOrdemServico jdOrdemServico = new JDialogOrdemServico(this, true, false);
         jdOrdemServico.setLocationRelativeTo(jdOrdemServico);
         jdOrdemServico.setVisible(true);
     }//GEN-LAST:event_jButtonOrdemServicoMENUActionPerformed
@@ -1016,7 +1020,7 @@ public class JFramePrincipal extends javax.swing.JFrame {
 
     private void jMenuItem19ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem19ActionPerformed
         // TODO add your handling code here:
-        JDialogOrdemServico jdOrdemServico = new JDialogOrdemServico(this, true);
+        JDialogOrdemServico jdOrdemServico = new JDialogOrdemServico(this, true, false);
         jdOrdemServico.setLocationRelativeTo(jdOrdemServico);
         jdOrdemServico.setVisible(true);
     }//GEN-LAST:event_jMenuItem19ActionPerformed
@@ -1029,9 +1033,9 @@ public class JFramePrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem6ActionPerformed
 
     private void jMenuItem15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem15ActionPerformed
-        JDialogConsFuncionario jDialogConsFunc = new JDialogConsFuncionario(this, true);
-        jDialogConsFunc.setLocationRelativeTo(null);
-        jDialogConsFunc.setVisible(true);
+        JDialogConsFuncionario jdConsFuncionario = new JDialogConsFuncionario(new javax.swing.JDialog(), true);
+        jdConsFuncionario.setLocationRelativeTo(null);
+        jdConsFuncionario.setVisible(true);
     }//GEN-LAST:event_jMenuItem15ActionPerformed
 
     private void jMenuItemConsultaCidadeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemConsultaCidadeActionPerformed
