@@ -554,6 +554,8 @@ public class JDialogSolicitacaoServico extends javax.swing.JDialog {
         jComboBoxStatus.setEnabled(false);
         jButtonGerarOrdem.setEnabled(true);
         jButtonSairConsul.setEnabled(true);
+        jTextFieldNomeCliente.setEnabled(false);
+        jTextFieldNomeFuncionario.setEnabled(false);
         pesquisa();
     }//GEN-LAST:event_jButtonGravarActionPerformed
 
@@ -1017,11 +1019,11 @@ public class JDialogSolicitacaoServico extends javax.swing.JDialog {
         jTextFieldHora.setEnabled(!comando);
         jComboBoxStatus.setEnabled(!comando);
         jTextFieldiDfuncionario.setEnabled(comando);
-        jTextFieldNomeFuncionario.setEnabled(comando);
+        jTextFieldNomeFuncionario.setEnabled(!comando);
         jButtonPesquisarFuncionario.setEnabled(comando);
         jButtonAddFuncionario.setEnabled(comando);
         jTextFieldIdCliente.setEnabled(comando);
-        jTextFieldNomeCliente.setEnabled(comando);
+        jTextFieldNomeCliente.setEnabled(!comando);
         jButtonPesquisaClient.setEnabled(comando);
         jButtonAddCliente.setEnabled(comando);
         jComboBoxTipoServico.setEnabled(comando);
