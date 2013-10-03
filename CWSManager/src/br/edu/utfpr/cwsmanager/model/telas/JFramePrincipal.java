@@ -4,6 +4,7 @@
  */
 package br.edu.utfpr.cwsmanager.model.telas;
 
+import br.edu.utfpr.cwsmanager.model.config.DatabaseConfig;
 import br.edu.utfpr.cwsmanager.model.util.UtilDatas;
 import java.awt.Desktop;
 import java.awt.Font;
@@ -624,14 +625,14 @@ public class JFramePrincipal extends javax.swing.JFrame {
 
     private void jButtonSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSairActionPerformed
         // TODO add your handling code here:
-        JDialogFuncionario jdFuncionario = new JDialogFuncionario(this, true);
+        JDialogFuncionario jdFuncionario = new JDialogFuncionario(new javax.swing.JDialog(), true);
         jdFuncionario.setLocationRelativeTo(jdFuncionario);
         jdFuncionario.setVisible(true);
     }//GEN-LAST:event_jButtonSairActionPerformed
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
         // TODO add your handling code here:
-        JDialogFuncionario jdFuncionario = new JDialogFuncionario(this, true);
+        JDialogFuncionario jdFuncionario = new JDialogFuncionario(new javax.swing.JDialog(), true);
         jdFuncionario.setLocationRelativeTo(null);
         jdFuncionario.setVisible(true);
     }//GEN-LAST:event_jMenuItem1ActionPerformed
@@ -689,9 +690,15 @@ public class JFramePrincipal extends javax.swing.JFrame {
 
     private void jMenuItem12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem12ActionPerformed
         // TODO add your handling code here:
-        JDialogConfigBanco jDialogConfigBanco = new JDialogConfigBanco((null), false);
+    /*    JDialogConfigBanco jDialogConfigBanco = new JDialogConfigBanco((null), false);
         jDialogConfigBanco.setLocationRelativeTo(null);
-        jDialogConfigBanco.setVisible(true);
+        jDialogConfigBanco.setVisible(true); */
+        int res = JOptionPane.showConfirmDialog(this, "Tem certeza que deseja recriar o banco de dados?", "Mensagem", JOptionPane.OK_CANCEL_OPTION);
+
+        if (JOptionPane.OK_OPTION == res) {
+            DatabaseConfig.createSchema();
+            JOptionPane.showMessageDialog(this, "O banco de dados foi recriado com sucesso!");
+        }
     }//GEN-LAST:event_jMenuItem12ActionPerformed
 
     private void jMenuItem11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem11ActionPerformed
