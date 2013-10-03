@@ -4,8 +4,8 @@
  */
 package br.edu.utfpr.cwsmanager.model.telas;
 
-import br.edu.utfpr.cwsmanager.model.daos.DaoGenerics;
-import br.edu.utfpr.cwsmanager.model.daos.TransactionManager;
+import br.edu.utfpr.cwsmanager.model.config.DaoGenerics;
+import br.edu.utfpr.cwsmanager.model.config.TransactionManager;
 import br.edu.utfpr.cwsmanager.model.movimentacao.OrdemServico;
 import br.edu.utfpr.cwsmanager.model.movimentacao.SolicitacaoServico;
 import br.edu.utfpr.cwsmanager.model.movimentacao.TipoServico;

@@ -1,8 +1,8 @@
 package br.edu.utfpr.cwsmanager.model.telas;
 
-import br.edu.utfpr.cwsmanager.model.daos.DaoGenerics;
-import br.edu.utfpr.cwsmanager.model.daos.Filter;
-import br.edu.utfpr.cwsmanager.model.daos.Operator;
+import br.edu.utfpr.cwsmanager.model.config.DaoGenerics;
+import br.edu.utfpr.cwsmanager.model.config.Filter;
+import br.edu.utfpr.cwsmanager.model.config.Operator;
 import br.edu.utfpr.cwsmanager.model.endereco.Cidade;
 import br.edu.utfpr.cwsmanager.model.movimentacao.OrdemServico;
 import br.edu.utfpr.cwsmanager.model.movimentacao.SolicitacaoServico;
@@ -94,7 +94,7 @@ public class JDialogOrdemServico extends javax.swing.JDialog {
             }
         });
 
-        jComboBoxTipoConsultaOs.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Cód. Ordem", "Funcionário Responsável", "Cliente" }));
+        jComboBoxTipoConsultaOs.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Cód. Ordem", "Funcionário Responsável", "Cliente", "Status" }));
 
         jTableConsultaOrdem.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -341,22 +341,27 @@ public class JDialogOrdemServico extends javax.swing.JDialog {
                     Logger.getLogger(JDialogConsTipoDeServico.class.getName()).log(Level.SEVERE, null, ex);
                 }
                 break;
-
-//            case 1:
-//                try {
-//                    ordemServicos = new DaoGenerics<OrdemServico>(OrdemServico.class).execute("select s.nome from OrdemServico s join s.SolicitacaoServico where s.funcionario_id like '%" + jFormattedTextFieldPesquisaOrdemServico.getText() + "%'");
-//                } catch (Exception ex) {
-//                    Logger.getLogger(JDialogConsCliente.class.getName()).log(Level.SEVERE, null, ex);
-//                }
-//                break;
-
-//            case 2:
-//                try {
-//                    ordemServicos = new DaoGenerics<OrdemServico>(OrdemServico.class).execute("select s from SolicitacaoServico s where s.cliente.nome like '%" + jFormattedTextFieldPesquisaOrdemServico.getText() + "%'");
-//                } catch (Exception ex) {
-//                    Logger.getLogger(JDialogConsCliente.class.getName()).log(Level.SEVERE, null, ex);
-//                }
-//                break;
+                 case 1:
+                try {
+                    ordemServicos = new DaoGenerics<OrdemServico>(OrdemServico.class).execute("select s from OrdemServico s where s.solicitacaoServico.funcionario.nome like '%" + jFormattedTextFieldPesquisaOrdemServico.getText() + "%'");
+                } catch (Exception ex) {
+                    Logger.getLogger(JDialogConsCliente.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                break;
+                     case 2:
+                try {
+                    ordemServicos = new DaoGenerics<OrdemServico>(OrdemServico.class).execute("select s from OrdemServico s where s.solicitacaoServico.cliente.nome like '%" + jFormattedTextFieldPesquisaOrdemServico.getText() + "%'");
+                } catch (Exception ex) {
+                    Logger.getLogger(JDialogConsCliente.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                break;
+                case 3:
+                try {
+                    ordemServicos = new DaoGenerics<OrdemServico>(OrdemServico.class).execute("select o from OrdemServico o where status like '%" + jFormattedTextFieldPesquisaOrdemServico.getText() + "%'");
+                } catch (Exception ex) {
+                    Logger.getLogger(JDialogConsCliente.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                break;
         }
         preencherjTable();
     }
