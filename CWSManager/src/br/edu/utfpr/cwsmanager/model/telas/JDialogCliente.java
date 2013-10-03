@@ -4,8 +4,8 @@
  */
 package br.edu.utfpr.cwsmanager.model.telas;
 
-import br.edu.utfpr.cwsmanager.model.daos.DaoGenerics;
-import br.edu.utfpr.cwsmanager.model.daos.TransactionManager;
+import br.edu.utfpr.cwsmanager.model.config.DaoGenerics;
+import br.edu.utfpr.cwsmanager.model.config.TransactionManager;
 import br.edu.utfpr.cwsmanager.model.endereco.Cidade;
 import br.edu.utfpr.cwsmanager.model.pessoa.Cliente;
 import br.edu.utfpr.cwsmanager.model.util.UtilDatas;
@@ -876,7 +876,9 @@ public class JDialogCliente extends javax.swing.JDialog {
                 Logger.getLogger(JDialogCliente.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
-
+        
+        jButtonPesquisarCliente.setEnabled(true);
+        jButtonExcluir.setEnabled(false);
 
     }//GEN-LAST:event_jButtonExcluirActionPerformed
 
@@ -920,6 +922,8 @@ public class JDialogCliente extends javax.swing.JDialog {
         jTextFieldIdCliente.setEnabled(false);
         jTextFieldIdVeiculo.setEnabled(false);
         jButtonPesquisarCliente.setEnabled(true);
+        jTextFieldNomeCidade.setEnabled(false);
+        jTextFieldUFCidade.setEnabled(false);
     }//GEN-LAST:event_jButtonCancelarActionPerformed
 
     private void jButtonPesquisarCidadeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonPesquisarCidadeActionPerformed
@@ -1026,7 +1030,6 @@ public class JDialogCliente extends javax.swing.JDialog {
         }
 
         try {
-            //     cidade = daoCidade.retrieve(id_cidade);
             cidade = new DaoGenerics<Cidade>(Cidade.class).retrieve(id_cidade);
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Código da cidade não cadastrado", "Atenção", JOptionPane.WARNING_MESSAGE);

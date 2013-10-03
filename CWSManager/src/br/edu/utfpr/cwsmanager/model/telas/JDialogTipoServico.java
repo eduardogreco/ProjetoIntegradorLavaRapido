@@ -4,8 +4,8 @@
  */
 package br.edu.utfpr.cwsmanager.model.telas;
 
-import br.edu.utfpr.cwsmanager.model.daos.DaoGenerics;
-import br.edu.utfpr.cwsmanager.model.daos.TransactionManager;
+import br.edu.utfpr.cwsmanager.model.config.DaoGenerics;
+import br.edu.utfpr.cwsmanager.model.config.TransactionManager;
 import br.edu.utfpr.cwsmanager.model.movimentacao.TipoServico;
 import java.awt.Color;
 import java.util.logging.Level;
@@ -312,8 +312,9 @@ public class JDialogTipoServico extends javax.swing.JDialog {
     }//GEN-LAST:event_jButtonGravarTipoServicoActionPerformed
 
     private void jButtonCancelarTipoServicoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCancelarTipoServicoActionPerformed
-        habilitaCampos(false);
-        clearCampos();         // TODO add your handling code here:
+        habilitaCampos(true);     // TODO add your handling code here:
+        jTextFieldIdTipoServico.setEnabled(false);
+        jButtonPesquisarTipoServico.setEnabled(true);
     }//GEN-LAST:event_jButtonCancelarTipoServicoActionPerformed
 
     /**
@@ -408,7 +409,7 @@ public class JDialogTipoServico extends javax.swing.JDialog {
         jButtonExcluirTipoServico.setEnabled(comando);
         jButtonIncluirTipoServico.setEnabled(comando);
 
-        jButtonCancelarTipoServico.setEnabled(comando);
+        jButtonCancelarTipoServico.setEnabled(!comando);
         jButtonGravarTipoServico.setEnabled(!comando);
 
         jTextFieldIdTipoServico.setEnabled(comando);

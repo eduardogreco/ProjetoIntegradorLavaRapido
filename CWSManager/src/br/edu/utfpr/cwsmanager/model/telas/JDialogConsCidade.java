@@ -4,9 +4,9 @@
  */
 package br.edu.utfpr.cwsmanager.model.telas;
 
-import br.edu.utfpr.cwsmanager.model.daos.DaoGenerics;
-import br.edu.utfpr.cwsmanager.model.daos.Filter;
-import br.edu.utfpr.cwsmanager.model.daos.Operator;
+import br.edu.utfpr.cwsmanager.model.config.DaoGenerics;
+import br.edu.utfpr.cwsmanager.model.config.Filter;
+import br.edu.utfpr.cwsmanager.model.config.Operator;
 import br.edu.utfpr.cwsmanager.model.endereco.Cidade;
 import java.sql.SQLException;
 import java.util.ArrayList;

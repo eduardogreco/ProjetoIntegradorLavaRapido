@@ -4,7 +4,7 @@
  */
 package br.edu.utfpr.cwsmanager.model.telas;
 
-import br.edu.utfpr.cwsmanager.model.daos.DaoGenerics;
+import br.edu.utfpr.cwsmanager.model.config.DaoGenerics;
 import br.edu.utfpr.cwsmanager.model.pessoa.Funcionario;
 import java.util.ArrayList;
 import java.util.List;

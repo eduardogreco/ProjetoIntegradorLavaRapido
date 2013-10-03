@@ -1,0 +1,25 @@
+***** CONFIGURAR DATABASE *******
+
+Pacote Config - Classe DataBaseConfig
+
+Defina o usuario, senha e o caminho da database (é necessario somente criar a database no banco, depois dentro do sistema no menu ferramentas>Configuracao do Banco de dados, o proprio sistema cria todas as tabelas).
+
+***** USO DO SISTEMA ******
+
+- Cadastros
+
+. Funcionario
+. Cliente
+. Cidade
+. Tipo de Servico
+
+- Movimentacao
+
+. Adiciona solicitacao de servico, status (Aberto)
+. Solicitacao de Servico gera uma ordem(somente grava essa ordem), status da solicitacao passa para (Andamento) e ordem tambem.
+. Ao concluir a ordem(informe uma descrição e hora final) e seu status vai para (Concluido) e a solicitacao vai para (Encerrada).
+
+
+
+
+

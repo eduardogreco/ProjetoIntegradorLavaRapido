@@ -4,8 +4,8 @@
  */
 package br.edu.utfpr.cwsmanager.model.telas;
 
-import br.edu.utfpr.cwsmanager.model.daos.DaoGenerics;
-import br.edu.utfpr.cwsmanager.model.daos.TransactionManager;
+import br.edu.utfpr.cwsmanager.model.config.DaoGenerics;
+import br.edu.utfpr.cwsmanager.model.config.TransactionManager;
 import br.edu.utfpr.cwsmanager.model.endereco.Cidade;
 import br.edu.utfpr.cwsmanager.model.pessoa.Funcionario;
 import br.edu.utfpr.cwsmanager.model.util.UtilDatas;
@@ -30,7 +30,7 @@ public class JDialogFuncionario extends javax.swing.JDialog {
     /**
      * Creates new form JDialogCliente
      */
-    public JDialogFuncionario(java.awt.Frame parent, boolean modal) {
+    public JDialogFuncionario(java.awt.Dialog parent, boolean modal) {
         super(parent, modal);
         initComponents();
 
@@ -648,8 +648,8 @@ public class JDialogFuncionario extends javax.swing.JDialog {
         jTextFieldPesquisaCodCidadeFuncionario.setEnabled(true);
         jButtonPesquisarCidade.setEnabled(true);
         jButtonIncluirCidade.setEnabled(true);
-        jTextFieldNomeCidade.setEnabled(true);
-        jTextFieldUFCidade.setEnabled(true);
+        jTextFieldNomeCidade.setEnabled(false);
+        jTextFieldUFCidade.setEnabled(false);
         jTextFieldCep.setEnabled(true);
 
     }//GEN-LAST:event_jButtonAlterarFuncionarioActionPerformed
@@ -664,6 +664,7 @@ public class JDialogFuncionario extends javax.swing.JDialog {
                 TransactionManager.beginTransaction();
                 DaoGenerics<Funcionario> daoFuncionario = new DaoGenerics<>(Funcionario.class);
                 daoFuncionario.delete(daoFuncionario.retrieve(Integer.parseInt(jTextFieldIdFuncionario.getText())));
+                clearCampos();
                 JOptionPane.showMessageDialog(null, "O registro foi excluido com sucesso!", "Mensagem", JOptionPane.INFORMATION_MESSAGE);
                 TransactionManager.commit();
             } catch (Exception ex) {
@@ -671,7 +672,9 @@ public class JDialogFuncionario extends javax.swing.JDialog {
                 Logger.getLogger(JDialogFuncionario.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
-        clearCampos();
+        jButtonPesquisarFuncionario.setEnabled(true);
+        jButtonExcluirFuncionario.setEnabled(false);
+        
     }//GEN-LAST:event_jButtonExcluirFuncionarioActionPerformed
 
     private void jButtonIncluirFuncionarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonIncluirFuncionarioActionPerformed
@@ -694,14 +697,17 @@ public class JDialogFuncionario extends javax.swing.JDialog {
         clearCampos();
         habilitaCampos(false);
         jButtonPesquisarFuncionario.setEnabled(true);
+        jTextFieldNomeCidade.setEnabled(false);
+        jTextFieldUFCidade.setEnabled(false);
 
     }//GEN-LAST:event_jButtonGravarFuncionarioActionPerformed
 
     private void jButtonCancelarFuncionarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCancelarFuncionarioActionPerformed
         habilitaCampos(true);
-        clearCampos();
         jTextFieldIdFuncionario.setEnabled(false);
         jButtonPesquisarFuncionario.setEnabled(true);
+        jTextFieldNomeCidade.setEnabled(false);
+        jTextFieldUFCidade.setEnabled(false);
     }//GEN-LAST:event_jButtonCancelarFuncionarioActionPerformed
 
     private void jButtonIncluirCidadeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonIncluirCidadeActionPerformed
@@ -762,6 +768,8 @@ public class JDialogFuncionario extends javax.swing.JDialog {
                 jButtonPesquisarFuncionario.setEnabled(true);
                 jTextFieldIdFuncionario.setEnabled(false);
                 jButtonPesquisarFuncionario.setEnabled(true);
+                jTextFieldUFCidade.setEnabled(false);
+                jTextFieldNomeCidade.setEnabled(false);
             }
         });
 
@@ -887,7 +895,7 @@ public class JDialogFuncionario extends javax.swing.JDialog {
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                JDialogFuncionario dialog = new JDialogFuncionario(new javax.swing.JFrame(), true);
+                JDialogFuncionario dialog = new JDialogFuncionario(new javax.swing.JDialog(), true);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {
@@ -1070,8 +1078,8 @@ public class JDialogFuncionario extends javax.swing.JDialog {
         jTextFieldPesquisaCodCidadeFuncionario.setEnabled(!comando);
         jButtonPesquisarCidade.setEnabled(!comando);
         jButtonIncluirCidade.setEnabled(!comando);
-        jTextFieldNomeCidade.setEnabled(!comando);
-        jTextFieldUFCidade.setEnabled(!comando);
+        jTextFieldNomeCidade.setEnabled(comando);
+        jTextFieldUFCidade.setEnabled(comando);
         jTextFieldCep.setEnabled(!comando);
 
 

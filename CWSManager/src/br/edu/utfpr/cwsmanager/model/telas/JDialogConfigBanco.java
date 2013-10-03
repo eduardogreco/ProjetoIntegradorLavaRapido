@@ -4,7 +4,7 @@
  */
 package br.edu.utfpr.cwsmanager.model.telas;
 
-import br.edu.utfpr.cwsmanager.model.daos.HibernateConfiguration;
+import br.edu.utfpr.cwsmanager.model.config.DatabaseConfig;
 import javax.swing.JOptionPane;
 
 /**
@@ -150,7 +150,7 @@ public class JDialogConfigBanco extends javax.swing.JDialog {
         int res = JOptionPane.showConfirmDialog(this, "Tem certeza que deseja recriar o banco de dados?", "Mensagem", JOptionPane.OK_CANCEL_OPTION);
 
         if (JOptionPane.OK_OPTION == res) {
-            HibernateConfiguration.createSchema();
+            DatabaseConfig.createSchema();
             JOptionPane.showMessageDialog(this, "O banco de dados foi recriado com sucesso!");
         }
     }//GEN-LAST:event_jButtonRecriarDBActionPerformed

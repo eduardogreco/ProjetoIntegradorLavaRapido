@@ -4,8 +4,8 @@
  */
 package br.edu.utfpr.cwsmanager.model.telas;
 
-import br.edu.utfpr.cwsmanager.model.daos.DaoGenerics;
-import br.edu.utfpr.cwsmanager.model.daos.TransactionManager;
+import br.edu.utfpr.cwsmanager.model.config.DaoGenerics;
+import br.edu.utfpr.cwsmanager.model.config.TransactionManager;
 import br.edu.utfpr.cwsmanager.model.endereco.Cidade;
 import java.awt.Color;
 import java.util.logging.Level;
@@ -334,6 +334,8 @@ public class JDialogCidade extends javax.swing.JDialog {
         } catch (Exception e) {
         }
         habilitaCampos(true);
+        jTextFieldIdCidade.setEnabled(false);
+        jButtonPesquisarCidade.setEnabled(true);
     }//GEN-LAST:event_jButtonCancelarCidadeActionPerformed
 
     private void jTextFieldIdCidadeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldIdCidadeActionPerformed
