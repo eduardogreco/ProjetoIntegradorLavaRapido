@@ -4,10 +4,10 @@
  */
 package br.edu.utfpr.cwsmanager.model.telas;
 
-import br.edu.utfpr.cwsmanager.model.daos.DaoGenerics;
-import br.edu.utfpr.cwsmanager.model.daos.Filter;
-import br.edu.utfpr.cwsmanager.model.daos.Operator;
-import br.edu.utfpr.cwsmanager.model.daos.TransactionManager;
+import br.edu.utfpr.cwsmanager.model.config.DaoGenerics;
+import br.edu.utfpr.cwsmanager.model.config.Filter;
+import br.edu.utfpr.cwsmanager.model.config.Operator;
+import br.edu.utfpr.cwsmanager.model.config.TransactionManager;
 import br.edu.utfpr.cwsmanager.model.movimentacao.SolicitacaoServico;
 import br.edu.utfpr.cwsmanager.model.movimentacao.TipoServico;
 import br.edu.utfpr.cwsmanager.model.pessoa.Cliente;
@@ -746,7 +746,9 @@ public class JDialogSolicitacaoServico extends javax.swing.JDialog {
     }//GEN-LAST:event_jButtonAddClienteActionPerformed
 
     private void jButtonAddFuncionarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAddFuncionarioActionPerformed
-        // TODO add your handling code here:
+        JDialogFuncionario cadFuncionario = new JDialogFuncionario(this, true);
+        cadFuncionario.setLocationRelativeTo(cadFuncionario);
+        cadFuncionario.setVisible(true);
     }//GEN-LAST:event_jButtonAddFuncionarioActionPerformed
 
     private void jTableConsultaSSMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableConsultaSSMousePressed
