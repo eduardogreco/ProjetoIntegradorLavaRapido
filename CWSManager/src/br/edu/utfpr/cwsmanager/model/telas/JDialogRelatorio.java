@@ -4,7 +4,7 @@
  */
 package br.edu.utfpr.cwsmanager.model.telas;
 
-import br.edu.utfpr.cwsmanager.model.daos.HibernateConfiguration;
+import br.edu.utfpr.cwsmanager.model.config.DatabaseConfig;
 import br.edu.utfpr.cwsmanager.model.relatorio.JDialogRelatorioExibir;
 import java.net.URL;
 import java.util.HashMap;
@@ -273,7 +273,7 @@ public class JDialogRelatorio extends javax.swing.JDialog {
         try {
             URL arquivo = getClass().getResource(nome);
             JasperReport jasperReport = (JasperReport) JRLoader.loadObject(arquivo);
-            JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, new HashMap(), HibernateConfiguration.getConnection());
+            JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, new HashMap(), DatabaseConfig.getConnection());
             JasperViewer jrviewer = new JasperViewer(jasperPrint, false);
             JDialogRelatorioExibir dialog = new JDialogRelatorioExibir((JFrame) getParent(), true);
             dialog.getContentPane().add(jrviewer.getContentPane());
